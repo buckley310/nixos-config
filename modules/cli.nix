@@ -37,6 +37,7 @@
 
         function _update_ps1() {
             PS1="\n$(${pkgs.powerline-go}/bin/powerline-go \
+                        -mode=flat \
                         -colorize-hostname \
                         -cwd-mode=dironly \
                         -modules=user,host,cwd,nix-shell,git,jobs \
