@@ -12,7 +12,7 @@
             vimrcConfig.customRC=''
                 syntax enable
                 set nowrap ruler scrolloff=9 backspace=start,indent
-                set autoindent expandtab tabstop=4 shiftwidth=4
+                set autoindent smartindent expandtab tabstop=4 shiftwidth=4
             '';
         })
 
