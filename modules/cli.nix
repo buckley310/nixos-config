@@ -2,7 +2,7 @@
 {
     environment.systemPackages = with pkgs; [
         pwgen pv tree tmux psmisc ncdu git file sqlite usbutils entr ffmpeg gcc
-        python3 hugo openssl wget lm_sensors htop zip unzip dnsutils whois
+        python3 hugo openssl wget lm_sensors htop zip unzip dnsutils
         tcpdump rsync
 
         (writeScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
