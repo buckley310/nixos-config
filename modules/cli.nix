@@ -25,6 +25,7 @@
     dnsutils
     tcpdump
     rsync
+    nixpkgs-fmt
 
     (writeScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
 
