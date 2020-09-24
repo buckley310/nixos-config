@@ -11,8 +11,8 @@
             name="vim";
             vimrcConfig.customRC=''
                 syntax enable
+                filetype plugin indent on
                 set nowrap ruler scrolloff=9 backspace=start,indent
-                set autoindent smartindent expandtab tabstop=4 shiftwidth=4
             '';
         })
 
