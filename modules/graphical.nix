@@ -43,7 +43,5 @@
     opengl.driSupport32Bit = true;
   };
 
-  fonts.fonts = [ pkgs.powerline-fonts ];
-
   boot.loader.timeout = null;
 }

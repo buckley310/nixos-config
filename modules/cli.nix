@@ -46,6 +46,9 @@
     '')
   ];
 
+  environment.variables.PLGO_HOSTNAMEFG = "0";
+  environment.variables.PLGO_HOSTNAMEBG = "114";
+
   programs.bash.interactiveShellInit = ''
     stty -ixon
     echo $XDG_SESSION_TYPE
@@ -58,12 +61,12 @@
     '
 
     function _update_ps1() {
-        PS1="\n$(${pkgs.powerline-go}/bin/powerline-go \
+        PS1="\n$(${pkgs.callPackage ../pkgs/powerline-go-updated { }}/bin/powerline-go \
                     -mode=flat \
                     -colorize-hostname \
                     -cwd-mode=dironly \
                     -modules=user,host,cwd,nix-shell,git,jobs \
-                    # -git-assume-unchanged-size 0 \
+                    -git-assume-unchanged-size 0 \
         )$ "
     }
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
