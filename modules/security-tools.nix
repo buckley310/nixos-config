@@ -16,8 +16,6 @@
     pwndbg
     thc-hydra
     metasploit
-
-    (callPackage ../pkgs/binary-ninja-personal { })
   ];
 
   programs = {
