@@ -46,6 +46,8 @@
     '')
   ];
 
+  virtualisation.podman.enable = true;
+
   environment.variables.PLGO_HOSTNAMEFG = "0";
   environment.variables.PLGO_HOSTNAMEBG = "114";
 
