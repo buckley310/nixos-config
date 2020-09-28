@@ -58,8 +58,9 @@
     alias buildsys='nix build -f "<nixpkgs/nixos>" --no-link system'
 
     alias channel='
-        echo " Local: $(cat /nix/var/nix/profiles/per-user/root/channels/nixos/.git-revision)";\
-        echo "Remote: $(curl --silent -L https://channels.nixos.org/nixos-unstable/git-revision)"
+        echo "$(curl --silent -L https://channels.nixos.org/nixos-20.09/git-revision)" nixos-20.09;\
+        echo "$(cat /nix/var/nix/profiles/per-user/root/channels/nixos/.git-revision)" local nixos;\
+        echo "$(curl --silent -L https://channels.nixos.org/nixos-unstable/git-revision) nixos-unstable"
     '
 
     function _update_ps1() {
