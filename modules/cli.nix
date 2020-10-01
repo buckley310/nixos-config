@@ -44,6 +44,13 @@
           if ln.startswith('size '):
               print(str(int(ln.split(' ')[-1])/(1024*1024*1024))[:5],'GB')
     '')
+
+    (writeScriptBin "channel" ''
+      #!/bin/sh
+      echo "$(curl --silent -L https://channels.nixos.org/nixos-20.09/git-revision)" nixos-20.09
+      echo "$(cat /nix/var/nix/profiles/per-user/root/channels/nixos/.git-revision)" nixos local
+      echo "$(curl --silent -L https://channels.nixos.org/nixos-unstable/git-revision)" nixos-unstable
+    '')
   ];
 
   virtualisation.podman.enable = true;
@@ -56,12 +63,6 @@
     echo $XDG_SESSION_TYPE
     alias p=python3
     alias buildsys='nix build -f "<nixpkgs/nixos>" --no-link system'
-
-    alias channel='
-        echo "$(curl --silent -L https://channels.nixos.org/nixos-20.09/git-revision)" nixos-20.09;\
-        echo "$(cat /nix/var/nix/profiles/per-user/root/channels/nixos/.git-revision)" local nixos;\
-        echo "$(curl --silent -L https://channels.nixos.org/nixos-unstable/git-revision) nixos-unstable"
-    '
 
     function _update_ps1() {
         PS1="\n$(${pkgs.callPackage ../pkgs/powerline-go-updated { }}/bin/powerline-go \
