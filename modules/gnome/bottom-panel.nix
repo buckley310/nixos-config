@@ -7,8 +7,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "Thoma5";
     repo = "gnome-shell-extension-bottompanel";
-    rev = "3d9573896b122e9ccb02262249ca986f8dad1ebd";
-    sha256 = "0lp25na5plz8vp8zjsikcadgy5hyx59ys2sbd4haagcalyv7jj4q";
+    rev = "72d07b98276d48bd580ea731a0f49f46018d556d";
+    sha256 = "1hpp39cpfd5h7x3j1b3nfly7c98sj10xqnwcmsr3d4jxkwh2vsbl";
   };
 
   phases = [ "installPhase" ];
@@ -16,9 +16,6 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p "$out/share/gnome-shell/extensions"
     cp -r "$src" "$out/share/gnome-shell/extensions/bottompanel@tmoer93"
-
-    chmod +w "$out/share/gnome-shell/extensions/bottompanel@tmoer93"
-    sed -i 's/.*_rightPanelBarrier.*/if(Main.layoutManager._rightPanelBarrier)&/' "$out/share/gnome-shell/extensions/bottompanel@tmoer93/extension.js"
   '';
 
   meta = with stdenv.lib; {
