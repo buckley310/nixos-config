@@ -12,8 +12,6 @@
     gtk-icon-theme-name=Numix
   '';
 
-  # hardware.bluetooth.enable = true;
-  # services.blueman.enable = true;
   services.gvfs.enable = true;
   programs.dconf.enable = true;
   networking.networkmanager.enable = true;
