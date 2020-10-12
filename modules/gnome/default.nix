@@ -29,7 +29,6 @@
     desktopManager.gnome3.enable = true;
     desktopManager.xterm.enable = false;
     displayManager.sessionCommands = ''
-      gsettings set org.gnome.desktop.background picture-uri 'file:///run/current-system/sw/share/backgrounds/gnome/adwaita-night.jpg'
       gsettings set org.gnome.desktop.interface enable-hot-corners false
       gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
       gsettings set org.gnome.desktop.interface icon-theme 'Numix'
