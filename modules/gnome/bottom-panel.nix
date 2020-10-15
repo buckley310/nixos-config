@@ -2,12 +2,12 @@
 
 stdenv.mkDerivation rec {
   pname = "gnome-shell-extension-bottompanel";
-  version = "1901";
+  version = "72d07b98276d48bd580ea731a0f49f46018d556d";
 
   src = fetchFromGitHub {
     owner = "Thoma5";
     repo = "gnome-shell-extension-bottompanel";
-    rev = "72d07b98276d48bd580ea731a0f49f46018d556d";
+    rev = version;
     sha256 = "1hpp39cpfd5h7x3j1b3nfly7c98sj10xqnwcmsr3d4jxkwh2vsbl";
   };
 
