@@ -61,7 +61,6 @@
   programs.bash.interactiveShellInit = ''
     stty -ixon
     alias p=python3
-    alias buildsys='nix build -f "<nixpkgs/nixos>" --no-link system'
 
     function _update_ps1() {
         PS1="\n$(${pkgs.callPackage ../pkgs/powerline-go-updated { }}/bin/powerline-go \
