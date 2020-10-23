@@ -61,6 +61,7 @@
   programs.bash.interactiveShellInit = ''
     stty -ixon
     alias p=python3
+    alias tmp='cd $(mktemp -d)'
 
     function _update_ps1() {
         PS1="\n$(${pkgs.callPackage ../pkgs/powerline-go-updated { }}/bin/powerline-go \
