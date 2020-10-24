@@ -20,6 +20,7 @@
     wget
     lm_sensors
     htop
+    jq
     zip
     unzip
     dnsutils
