@@ -35,5 +35,5 @@ let
 in
 {
   environment.etc.issue.source = pkgs.lib.mkForce "/run/issue";
-  systemd.services."getty@".serviceConfig.ExecStartPre = nscript;
+  systemd.services."getty@".serviceConfig.ExecStartPre = "-${nscript}";
 }
