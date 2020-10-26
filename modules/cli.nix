@@ -47,9 +47,13 @@
     '')
 
     (writeShellScriptBin "channel" ''
-      echo "$(curl --silent -L https://channels.nixos.org/nixos-20.09/git-revision)" nixos-20.09
-      echo "$(cat /nix/var/nix/profiles/per-user/root/channels/nixos/.git-revision)" nixos local
-      echo "$(curl --silent -L https://channels.nixos.org/nixos-unstable/git-revision)" nixos-unstable
+      nixos="/nix/var/nix/profiles/per-user/root/channels/nixos"
+      [[ "$(<$nixos/.version-suffix)" =~ ^pre ]] &&
+          channel="unstable" ||
+          channel="$(<$nixos/.version)"
+      echo "nixos-$channel"
+      echo "$(<$nixos/.git-revision) current local"
+      echo "$(curl --silent -L "https://channels.nixos.org/nixos-$channel/git-revision") latest available"
     '')
   ];
 
