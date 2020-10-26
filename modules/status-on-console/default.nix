@@ -25,7 +25,7 @@ let
   '';
 
   nscript = pkgs.writeShellScript "neofetch-wrapped" ''
-    export PATH="$PATH:${pkgs.iproute}/bin:${pkgs.gawk}/bin"
+    export PATH="$PATH:/run/current-system/sw/bin"
     (
       ${pkgs.neofetch}/bin/neofetch --config "${ncfg}"
       echo '\l'
