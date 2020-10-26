@@ -28,7 +28,7 @@
     rsync
     nixpkgs-fmt
 
-    (writeScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
+    (writeShellScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
 
     (vim_configurable.customize {
       name = "vim";
@@ -46,8 +46,7 @@
               print(str(int(ln.split(' ')[-1])/(1024*1024*1024))[:5],'GB')
     '')
 
-    (writeScriptBin "channel" ''
-      #!/bin/sh
+    (writeShellScriptBin "channel" ''
       echo "$(curl --silent -L https://channels.nixos.org/nixos-20.09/git-revision)" nixos-20.09
       echo "$(cat /nix/var/nix/profiles/per-user/root/channels/nixos/.git-revision)" nixos local
       echo "$(curl --silent -L https://channels.nixos.org/nixos-unstable/git-revision)" nixos-unstable

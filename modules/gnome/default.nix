@@ -8,7 +8,7 @@
       gnome3.gnome-boxes
       qemu_kvm
       (callPackage ./bottom-panel.nix { })
-      (writeScriptBin "red" ''
+      (writeShellScriptBin "red" ''
         x="$(gsettings get org.gnome.settings-daemon.plugins.color night-light-enabled)"
         [ "$x" = "true" ] && x=false || x=true
         echo "Nightlight: $x"
