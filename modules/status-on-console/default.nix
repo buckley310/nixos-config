@@ -13,7 +13,6 @@ let
         info "Shell" shell
         info "Resolution" resolution
         info "CPU" cpu
-        info "GPU" gpu
         info "Memory" memory
         info "Disk" disk
         info "Local IP" local_ip
