@@ -26,6 +26,7 @@
     enable = true;
     libinput.enable = true;
     displayManager.gdm.enable = true;
+    displayManager.gdm.autoSuspend = false;
     desktopManager.gnome3.enable = true;
     desktopManager.xterm.enable = false;
     displayManager.sessionCommands = ''
