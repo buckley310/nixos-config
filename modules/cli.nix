@@ -51,9 +51,12 @@
       [[ "$(<$nixos/.version-suffix)" =~ ^pre ]] &&
           channel="unstable" ||
           channel="$(<$nixos/.version)"
+      echo
       echo "nixos-$channel"
+      echo
       echo "$(<$nixos/.git-revision) current local"
       echo "$(curl --silent -L "https://channels.nixos.org/nixos-$channel/git-revision") latest available"
+      echo
     '')
   ];
 
