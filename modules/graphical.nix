@@ -7,7 +7,6 @@
     mpv
     libreoffice
     tdesktop
-    steam
     pavucontrol
     gnome3.dconf-editor
     glxinfo
@@ -26,22 +25,13 @@
 
   ];
 
-  # environment.systemPackages = with pkgs; [ retroarch ];
-  # nixpkgs.config.retroarch = {
-  #     enableParallelN64 = true;
-  #     enableNestopia = true;
-  #     enableHiganSFC = true;
-  # };
-
   services.xserver.deviceSection = ''
     Option "VariableRefresh" "true"
   '';
 
-  hardware = {
-    pulseaudio.enable = true;
-    pulseaudio.support32Bit = true;
-    opengl.driSupport32Bit = true;
-  };
+  programs.steam.enable = true;
+
+  hardware.pulseaudio.enable = true;
 
   boot.loader.timeout = null;
 }
