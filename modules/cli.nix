@@ -62,6 +62,8 @@
 
   virtualisation.podman.enable = true;
 
+  environment.variables.EDITOR = "vim";
+
   environment.variables.PLGO_HOSTNAMEFG = "0";
   environment.variables.PLGO_HOSTNAMEBG = "114";
 
