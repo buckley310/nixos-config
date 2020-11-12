@@ -1,4 +1,14 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+let
+  powerlineOpts = [
+    "-mode=flat"
+    "-colorize-hostname"
+    "-cwd-mode=dironly"
+    "-modules=user,host,cwd,nix-shell,git,jobs"
+    "-git-assume-unchanged-size 0"
+  ];
+
+in
 {
   environment.systemPackages = with pkgs; [
     pwgen
@@ -67,6 +77,12 @@
   environment.variables.PLGO_HOSTNAMEFG = "0";
   environment.variables.PLGO_HOSTNAMEBG = "114";
 
+  nixpkgs.overlays = [
+    (self: super: {
+      powerline-go = pkgs.callPackage ../pkgs/powerline-go-updated { };
+    })
+  ];
+
   programs.bash.interactiveShellInit = ''
     stty -ixon
     alias p=python3
@@ -74,13 +90,7 @@
     alias buildsys='nix build -f "<nixpkgs/nixos>" --no-link system'
 
     function _update_ps1() {
-        PS1="\n$(${pkgs.callPackage ../pkgs/powerline-go-updated { }}/bin/powerline-go \
-                    -mode=flat \
-                    -colorize-hostname \
-                    -cwd-mode=dironly \
-                    -modules=user,host,cwd,nix-shell,git,jobs \
-                    -git-assume-unchanged-size 0 \
-        )$ "
+        PS1="\n$(${pkgs.powerline-go}/bin/powerline-go ${lib.concatStringsSep " " powerlineOpts})$ "
     }
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
   '';
