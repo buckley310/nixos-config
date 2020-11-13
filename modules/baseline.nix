@@ -13,10 +13,7 @@
 
   systemd.tmpfiles.rules = [ "e /nix/var/log - - - 30d" ];
 
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-  };
+  zramSwap.enable = true;
 
   hardware = {
     cpu.amd.updateMicrocode = true;
