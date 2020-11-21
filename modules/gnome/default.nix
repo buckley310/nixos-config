@@ -18,7 +18,6 @@
       dash-to-panel
       drop-down-terminal
       sound-output-device-chooser
-      (callPackage extensions/pop-shell.nix { })
     ]);
   };
 
