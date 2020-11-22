@@ -48,6 +48,8 @@
       gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Super>f']"
       gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
       gsettings set org.gnome.settings-daemon.plugins.media-keys logout '[]'
+      gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive'
+      gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 
       echo 'window.ssd headerbar.titlebar { padding-top: 2px; padding-bottom: 2px; }' > ~/.config/gtk-3.0/gtk.css
     '';
