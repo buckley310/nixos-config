@@ -39,6 +39,8 @@
       gsettings set org.gnome.desktop.privacy recent-files-max-age 30
       gsettings set org.gnome.desktop.privacy remove-old-temp-files true
       gsettings set org.gnome.desktop.privacy remove-old-trash-files true
+      gsettings set org.gnome.desktop.privacy report-technical-problems false
+      gsettings set org.gnome.desktop.privacy send-software-usage-stats false
       gsettings set org.gnome.desktop.screensaver lock-enabled false
       gsettings set org.gnome.desktop.wm.keybindings switch-applications "['<Super>Tab']"
       gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "['<Shift><Super>Tab']"
