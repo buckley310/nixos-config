@@ -28,6 +28,7 @@
     xfce.thunar-archive-plugin
     caffeine-ng
     wf-recorder
+    xdg_utils
   ];
 
   programs.bash.interactiveShellInit = '' [ "$(tty)" = "/dev/tty1" ] && exec sway '';
