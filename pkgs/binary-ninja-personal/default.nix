@@ -1,76 +1,78 @@
 { stdenv
+, alsaLib
 , autoPatchelfHook
-, requireFile
-, libxkbcommon
-, makeWrapper
-, unzip
-, zlib
-, glib
+, dbus
 , fontconfig
 , freetype
-, dbus
-, python37
+, glib
+, krb5
 , libglvnd
-, libXext
-, libX11
-, libXrender
-, libXi
-, libSM
 , libICE
-, xkeyboardconfig
-, nss
+, libSM
+, libX11
 , libXcomposite
 , libXcursor
 , libXdamage
-, libXtst
-, alsaLib
+, libXext
+, libXi
+, libxkbcommon
 , libXrandr
-, krb5
-, xcbutilwm
+, libXrender
+, libXtst
+, makeWrapper
+, nss
+, python38
+, requireFile
+, systemd
+, unzip
 , xcbutilimage
 , xcbutilkeysyms
 , xcbutilrenderutil
+, xcbutilwm
+, xkeyboardconfig
+, zlib
 }:
 stdenv.mkDerivation rec {
-  name = "binary-ninja-personal";
+  pname = "binary-ninja-personal";
+  version = "2.2.2487";
 
   src = requireFile {
     name = "BinaryNinja-personal.zip";
     url = "https://binary.ninja";
-    sha256 = "5dae72ad0d31f7439cf4232a5324a31857ce4e0e593c85c62520c94ff171b4a2";
+    sha256 = "ed1f3437a803dc7942383343d6d7788d7cfdee142fb3da6182a5e03e09e8e6b4";
   };
 
-  nativeBuildInputs = [
+  buildInputs = [
+    alsaLib
     autoPatchelfHook
-    libxkbcommon
-    stdenv.cc.cc.lib
-    zlib
-    glib
+    dbus
     fontconfig
     freetype
-    nss
-    dbus
-    python37
+    glib
+    krb5
     libglvnd
-    libXext
-    libX11
-    libXrender
-    libXi
-    libSM
     libICE
-    unzip
-    makeWrapper
+    libSM
+    libX11
     libXcomposite
     libXcursor
     libXdamage
-    libXtst
-    alsaLib
+    libXext
+    libXi
+    libxkbcommon
     libXrandr
-    krb5
-    xcbutilwm
+    libXrender
+    libXtst
+    makeWrapper
+    nss
+    python38
+    stdenv.cc.cc.lib
+    unzip
     xcbutilimage
     xcbutilkeysyms
     xcbutilrenderutil
+    xcbutilwm
+    zlib
   ];
 
   dontStrip = true;
@@ -79,10 +81,15 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/lib $out/bin $out/share
     mv $NIX_BUILD_TOP/$sourceRoot $out/lib/binary-ninja
-    ln -s "${src}" "$out/share/BinaryNinja-personal.zip"
-    ln -s "${python37}/lib/libpython3.7m.so.1.0" "$out/lib/binary-ninja/libpython3.7m.so.1"
     makeWrapper $out/lib/binary-ninja/binaryninja $out/bin/binaryninja \
+        --suffix LD_LIBRARY_PATH : "${systemd}/lib" \
+        --suffix LD_LIBRARY_PATH : "${python38}/lib" \
         --set QT_XKB_CONFIG_ROOT "${xkeyboardconfig}/share/X11/xkb" \
         --set QTCOMPOSE "${libX11.out}/share/X11/locale"
+
+    # Keeping the zip file in the nix store is desirable,
+    # because when the zip is missing requireFile involves manual steps.
+    # Below is just a hack to keep the zip from being garbage-collected.
+    ln -s "${src}" "$out/share/BinaryNinja-personal.zip"
   '';
 }
