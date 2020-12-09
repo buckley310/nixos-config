@@ -88,6 +88,7 @@ in
     alias p=python3
     alias tmp='cd $(mktemp -d)'
     alias buildsys='nix build -f "<nixpkgs/nixos>" --no-link system'
+    alias sha256sum-base32='nix hash-file --type sha256 --base32'
 
     function _update_ps1() {
         PS1="\n$(${pkgs.powerline-go}/bin/powerline-go ${lib.concatStringsSep " " powerlineOpts})$ "
