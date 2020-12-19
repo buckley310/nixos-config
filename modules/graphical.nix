@@ -29,6 +29,11 @@
     Option "VariableRefresh" "true"
   '';
 
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.xorg.xmodmap}/bin/xmodmap -e "remove Lock = Caps_Lock"
+    ${pkgs.xorg.xmodmap}/bin/xmodmap -e "keysym Caps_Lock = F13"
+  '';
+
   programs.steam.enable = true;
 
   hardware.pulseaudio.enable = true;
