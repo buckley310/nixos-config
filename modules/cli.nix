@@ -14,7 +14,6 @@ in
     pwgen
     pv
     tree
-    tmux
     psmisc
     ncdu
     git
@@ -82,6 +81,11 @@ in
       powerline-go = pkgs.callPackage ../pkgs/powerline-go-updated { };
     })
   ];
+
+  programs.tmux = {
+    enable = true;
+    terminal = "screen-256color";
+  };
 
   programs.bash.interactiveShellInit = ''
     stty -ixon
