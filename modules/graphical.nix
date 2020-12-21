@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    firefox
     brave
     gimp
     mpv
@@ -21,6 +20,28 @@
         ms-vscode.cpptools
         ms-azuretools.vscode-docker
       ];
+    })
+
+    (wrapFirefox firefox-unwrapped {
+      extraPolicies = {
+        CaptivePortal = false;
+        DisablePocket = true;
+        DisableFirefoxStudies = true;
+        OfferToSaveLogins = false;
+        DisableFormHistory = true;
+        SearchSuggestEnabled = false;
+        EnableTrackingProtection = {
+          Value = true;
+          Locked = true;
+          Cryptomining = true;
+          Fingerprinting = true;
+        };
+        Preferences = {
+          "extensions.formautofill.available" = { Status = "locked"; Value = "off"; };
+          "network.cookie.cookieBehavior" = { Status = "locked"; Value = 4; };
+          "network.IDN_show_punycode" = { Status = "locked"; Value = true; };
+        };
+      };
     })
 
   ];
