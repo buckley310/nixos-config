@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
 {
+  imports = [ ./backports.nix ];
+
   time.timeZone = "US/Eastern";
 
   boot = {

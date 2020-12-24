@@ -76,12 +76,6 @@ in
   environment.variables.PLGO_HOSTNAMEFG = "0";
   environment.variables.PLGO_HOSTNAMEBG = "114";
 
-  nixpkgs.overlays = [
-    (self: super: {
-      powerline-go = pkgs.callPackage ../pkgs/powerline-go-updated { };
-    })
-  ];
-
   programs.tmux = {
     enable = true;
     terminal = "screen-256color";
