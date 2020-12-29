@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   ncfg = pkgs.writeText "neofetch.conf" ''
     print_info() {
