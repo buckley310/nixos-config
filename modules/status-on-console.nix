@@ -1,5 +1,7 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
+  cfg = config.sconfig.status-on-console;
+
   ncfg = pkgs.writeText "neofetch.conf" ''
     print_info() {
         info title
@@ -33,6 +35,10 @@ let
 
 in
 {
-  environment.etc.issue.source = pkgs.lib.mkForce "/run/issue";
-  systemd.services."getty@".serviceConfig.ExecStartPre = "-${nscript}";
+  options.sconfig.status-on-console = lib.mkEnableOption "Display Neofetch on system console";
+
+  config = lib.mkIf cfg {
+    environment.etc.issue.source = pkgs.lib.mkForce "/run/issue";
+    systemd.services."getty@".serviceConfig.ExecStartPre = "-${nscript}";
+  };
 }

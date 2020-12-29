@@ -12,8 +12,6 @@ in
 
     scroll-boost = mkEnableOption "Patch libinput scroll speed";
 
-    status-on-console = mkEnableOption "Display Neofetch on system console";
-
   };
 
   config = mkMerge [
@@ -32,7 +30,6 @@ in
     ]))
 
     (mkIf cfg.scroll-boost (import ./modules/scroll-boost { }))
-    (mkIf cfg.status-on-console (import ./modules/status-on-console { inherit pkgs; }))
 
   ];
 
@@ -40,5 +37,6 @@ in
     ./modules/alacritty.nix
     ./modules/baseline.nix
     ./modules/cli.nix
+    ./modules/status-on-console.nix
   ];
 }
