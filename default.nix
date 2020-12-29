@@ -18,9 +18,6 @@ in
 
   config = mkMerge [
 
-    (import ./modules/cli.nix { inherit config pkgs lib; })
-    (import ./modules/baseline.nix { inherit config pkgs lib; })
-
     (mkIf (cfg.profile == "server") (mkMerge [
       { services.openssh.enable = true; }
       (import ./modules/auto-update.nix { })
@@ -41,5 +38,7 @@ in
 
   imports = [
     ./modules/alacritty.nix
+    ./modules/baseline.nix
+    ./modules/cli.nix
   ];
 }
