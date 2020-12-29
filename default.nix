@@ -4,14 +4,8 @@ let
   cfg = config.sconfig;
 in
 {
-  options.sconfig = {
-
-    profile = mkOption {
-      type = types.enum [ "server" "desktop-gnome" "desktop-sway" ];
-    };
-
-    scroll-boost = mkEnableOption "Patch libinput scroll speed";
-
+  options.sconfig.profile = mkOption {
+    type = types.enum [ "server" "desktop-gnome" "desktop-sway" ];
   };
 
   config = mkMerge [
@@ -29,14 +23,13 @@ in
       (import ./modules/graphical.nix { inherit pkgs; })
     ]))
 
-    (mkIf cfg.scroll-boost (import ./modules/scroll-boost { }))
-
   ];
 
   imports = [
     ./modules/alacritty.nix
     ./modules/baseline.nix
     ./modules/cli.nix
+    ./modules/scroll-boost
     ./modules/status-on-console.nix
   ];
 }
