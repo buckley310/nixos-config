@@ -6,7 +6,9 @@ in
 {
   options.sconfig = {
 
-    profile = mkOption { type = types.str; };
+    profile = mkOption {
+      type = types.enum [ "server" "desktop-gnome" "desktop-sway" ];
+    };
 
     scroll-boost = mkEnableOption "Patch libinput scroll speed";
 
