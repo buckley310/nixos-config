@@ -40,7 +40,7 @@
       "${pkgs.curl}/bin/curl --silent https://log.bck.me/nixos-report"
       "-H 'hostname: ${config.networking.hostName}'"
       "-H 'version: ${config.system.nixos.label}'"
-      "-H 'imports: ${lib.concatMapStringsSep " " toString (pkgs.callPackage /etc/nixos/configuration.nix { }).imports}'"
+      "-H 'sconfig: ${builtins.toJSON config.sconfig}'"
     ];
   };
 
