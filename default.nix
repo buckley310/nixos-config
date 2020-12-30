@@ -15,8 +15,8 @@ in
       (import ./modules/auto-update.nix { })
     ]))
 
-    (mkIf (cfg.profile == "desktop-sway") (import ./modules/sway { inherit pkgs; }))
-    (mkIf (cfg.profile == "desktop-gnome") (import ./modules/gnome { inherit pkgs; }))
+    (mkIf (cfg.profile == "desktop-sway") (import ./modules/sway.nix { inherit pkgs; }))
+    (mkIf (cfg.profile == "desktop-gnome") (import ./modules/gnome.nix { inherit pkgs; }))
 
     (mkIf ("desktop-" == builtins.substring 0 8 cfg.profile) (mkMerge [
       (import ./modules/security-tools.nix { inherit pkgs; })
