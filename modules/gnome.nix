@@ -4,7 +4,6 @@
     systemPackages = with pkgs; [
       numix-icon-theme
       gnome3.gnome-tweaks
-      gnome3.gnome-boxes
       qemu_kvm
       (writeShellScriptBin "red" ''
         x="$(gsettings get org.gnome.settings-daemon.plugins.color night-light-enabled)"
