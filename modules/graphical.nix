@@ -50,6 +50,7 @@
           "extensions.formautofill.available" = { Status = "locked"; Value = "off"; };
           "network.cookie.cookieBehavior" = { Status = "locked"; Value = 4; };
           "network.IDN_show_punycode" = { Status = "locked"; Value = true; };
+          "browser.zoom.siteSpecific" = { Status = "locked"; Value = false; };
         };
       };
     })
