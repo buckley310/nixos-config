@@ -29,6 +29,7 @@ in
     ./modules/alacritty.nix
     ./modules/baseline.nix
     ./modules/cli.nix
+    ./modules/flakes.nix
     ./modules/scroll-boost
     ./modules/status-on-console.nix
   ];
