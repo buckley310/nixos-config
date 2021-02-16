@@ -4,7 +4,6 @@
     brave
     gimp
     mpv
-    libreoffice
     tdesktop
     pavucontrol
     gnome3.dconf-editor
