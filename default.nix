@@ -30,6 +30,7 @@ in
     ./modules/baseline.nix
     ./modules/cli.nix
     ./modules/flakes.nix
+    ./modules/scansnap_s1300.nix
     ./modules/scroll-boost
     ./modules/status-on-console.nix
   ];
