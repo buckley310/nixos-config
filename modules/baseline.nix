@@ -15,6 +15,8 @@
 
   systemd.tmpfiles.rules = [ "e /nix/var/log - - - 30d" ];
 
+  environment.systemPackages = [ (pkgs.writeShellScriptBin "nix-env" "exec echo nix-env is disabled") ];
+
   zramSwap.enable = true;
 
   hardware = {
