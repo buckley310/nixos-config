@@ -72,7 +72,10 @@ in
         group = "nginx";
         phpEnv.IPAM_DATABASE_USER = "nginx";
         phpEnv.PHP_INI_SCAN_DIR = "$PHP_INI_SCAN_DIR";
-        phpOptions = "date.timezone = America/New_York";
+        phpOptions = ''
+          date.timezone = America/New_York
+          max_execution_time = 600
+        '';
         settings = {
           "pm" = "ondemand";
           "pm.max_children" = "8";
