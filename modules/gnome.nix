@@ -16,7 +16,7 @@
       dash-to-panel
       drop-down-terminal
       sound-output-device-chooser
-      unite
+      no-title-bar
     ]);
   };
 
