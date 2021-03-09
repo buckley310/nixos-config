@@ -1,7 +1,5 @@
 { config, pkgs, lib, ... }:
 {
-  nixpkgs.overlays = import ./backports.nix;
-
   time.timeZone = "US/Eastern";
 
   boot = {
