@@ -5,7 +5,7 @@ let
 in
 {
   options.sconfig.profile = mkOption {
-    type = types.enum [ "server" "desktop-gnome" "desktop-sway" ];
+    type = types.enum [ "server" "desktop-gnome" "desktop-sway" "desktop-plasma" ];
   };
 
   config = mkMerge [
@@ -17,6 +17,7 @@ in
 
     (mkIf (cfg == "desktop-sway") (import ./sway.nix { inherit pkgs; }))
     (mkIf (cfg == "desktop-gnome") (import ./gnome.nix { inherit pkgs; }))
+    (mkIf (cfg == "desktop-plasma") (import ./plasma.nix { inherit pkgs; }))
 
     (mkIf ("desktop-" == builtins.substring 0 8 cfg) (mkMerge [
       (import ./security-tools.nix { inherit pkgs; })
