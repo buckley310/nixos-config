@@ -16,6 +16,5 @@ in
   nixpkgs.overlays =
     [
       (backport "powerline-go" "tools/misc/powerline-go/default.nix" "3f5bceb483167dfea7bfb88bd3226c375be9564a8b321096bf1456c905acb90b")
-      (backport "brave" "applications/networking/browsers/brave/default.nix" "6e45fde1963df084bc86c36e735b5d806c528cf684da56107944b0dda462617f")
     ];
 }
