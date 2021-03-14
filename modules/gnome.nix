@@ -51,7 +51,7 @@
       gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive'
       gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 
-      echo 'window.ssd headerbar.titlebar { padding-top: 2px; padding-bottom: 2px; }' > ~/.config/gtk-3.0/gtk.css
+      echo 'window.ssd headerbar.titlebar { padding-top: 1px; padding-bottom: 1px; }' > ~/.config/gtk-3.0/gtk.css
     '';
   };
 }
