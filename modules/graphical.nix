@@ -9,7 +9,6 @@
     gnome3.dconf-editor
     glxinfo
     steam-run
-    discord
 
     (vscode-with-extensions.override {
       vscode = vscodium;
