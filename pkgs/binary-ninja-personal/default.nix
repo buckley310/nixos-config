@@ -34,12 +34,12 @@
 }:
 stdenv.mkDerivation rec {
   pname = "binary-ninja-personal";
-  version = "2.2.2487";
+  version = "2.3.2660";
 
   src = requireFile {
     name = "BinaryNinja-personal.zip";
     url = "https://binary.ninja";
-    sha256 = "ed1f3437a803dc7942383343d6d7788d7cfdee142fb3da6182a5e03e09e8e6b4";
+    sha256 = "f3e2519c1254a6e7b7d112790b41c687b9060bba3033b7c89871185b87be7dce";
   };
 
   buildInputs = [
