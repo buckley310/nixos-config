@@ -28,15 +28,9 @@
         OfferToSaveLogins = false;
         DisableFormHistory = true;
         SearchSuggestEnabled = false;
-        EnableTrackingProtection = {
-          Value = true;
-          Locked = true;
-          Cryptomining = true;
-          Fingerprinting = true;
-        };
         Preferences = {
           "extensions.formautofill.available" = { Status = "locked"; Value = "off"; };
-          "network.cookie.cookieBehavior" = { Status = "locked"; Value = 4; };
+          "browser.contentblocking.category" = { Status = "locked"; Value = "strict"; };
           "network.IDN_show_punycode" = { Status = "locked"; Value = true; };
           "browser.zoom.siteSpecific" = { Status = "locked"; Value = false; };
         };
