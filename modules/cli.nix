@@ -37,6 +37,8 @@ in
     rsync
     nixpkgs-fmt
 
+    (writeShellScriptBin "dirt" "while sleep 1; do grep '^Dirty:' /proc/meminfo ; done")
+
     (writeShellScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
 
     (vim_configurable.customize {
