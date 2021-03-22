@@ -24,7 +24,6 @@ in
     ffmpeg
     gcc
     python3
-    hugo
     openssl
     wget
     lm_sensors
@@ -33,6 +32,7 @@ in
     zip
     unzip
     dnsutils
+    whois
     tcpdump
     rsync
     nixpkgs-fmt
