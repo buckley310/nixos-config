@@ -8,6 +8,7 @@
     pavucontrol
     gnome3.dconf-editor
     glxinfo
+    steam-run
 
     (vscode-with-extensions.override {
       vscode = vscodium;
@@ -42,7 +43,7 @@
     Option "VariableRefresh" "true"
   '';
 
-  services.flatpak.enable = true;
+  programs.steam.enable = true;
 
   hardware.pulseaudio.enable = true;
 
