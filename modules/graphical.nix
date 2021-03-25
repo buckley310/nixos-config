@@ -21,6 +21,7 @@
     })
 
     (wrapFirefox firefox-unwrapped {
+      forceWayland = true;
       extraPolicies = {
         CaptivePortal = false;
         DisablePocket = true;
