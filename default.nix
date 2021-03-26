@@ -5,6 +5,7 @@
     ./modules/backports.nix
     ./modules/baseline.nix
     ./modules/cli.nix
+    ./modules/fix-gnome-mouse-lag.nix
     ./modules/flakes.nix
     ./modules/phpipam.nix
     ./modules/profiles.nix
