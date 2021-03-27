@@ -7,6 +7,7 @@ in
 
   config = lib.mkIf cfg {
     hardware.sane.enable = true;
+    environment.systemPackages = with pkgs; [ xsane ocrmypdf ];
     nixpkgs.config.sane.extraFirmware = [{
       name = "1300_0C26.nal";
       backend = "epjitsu";
