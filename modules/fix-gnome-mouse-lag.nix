@@ -3,7 +3,11 @@ let
   cfg = config.sconfig.fix-gnome-mouse-lag;
 in
 {
-  options.sconfig.fix-gnome-mouse-lag = lib.mkEnableOption "Reduce mouse latency on wayland";
+  options.sconfig.fix-gnome-mouse-lag = lib.mkOption {
+    default = true;
+    type = lib.types.bool;
+    description = "Reduce mouse latency on wayland";
+  };
 
   config = lib.mkIf cfg {
     nixpkgs.overlays = [
