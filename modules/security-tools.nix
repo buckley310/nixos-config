@@ -17,6 +17,8 @@
     thc-hydra
     metasploit
 
+    (callPackage ../pkgs/binary-ninja-personal { })
+
     (writeShellScriptBin "searchsploit" ''
       set -e
       (
@@ -35,5 +37,10 @@
   programs = {
     wireshark.enable = true;
     wireshark.package = pkgs.wireshark;
+  };
+
+  users.users.sandy = {
+    isNormalUser = true;
+    isSystemUser = true;
   };
 }
