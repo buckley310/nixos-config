@@ -15,8 +15,6 @@
 
       (writeShellScriptBin "gnome-my-settings" ''
         gsettings set org.gnome.desktop.interface enable-hot-corners false
-        gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
-        gsettings set org.gnome.desktop.interface icon-theme 'Numix'
         gsettings set org.gnome.desktop.interface show-battery-percentage true
         gsettings set org.gnome.desktop.media-handling automount false
         gsettings set org.gnome.desktop.media-handling autorun-never true
@@ -37,6 +35,9 @@
         gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 
         echo 'window.ssd headerbar.titlebar { padding-top: 1px; padding-bottom: 1px; }' > ~/.config/gtk-3.0/gtk.css
+
+        gsettings set org.gnome.desktop.interface icon-theme 'Numix'; sleep 1
+        gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
       '')
 
     ] ++ (with pkgs.gnomeExtensions; [
