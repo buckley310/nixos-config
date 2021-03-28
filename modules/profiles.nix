@@ -20,7 +20,6 @@ in
     (mkIf (cfg == "desktop-plasma") (import ./plasma.nix { inherit pkgs; }))
 
     (mkIf ("desktop-" == builtins.substring 0 8 cfg) (mkMerge [
-      (import ./security-tools.nix { inherit pkgs; })
       (import ./graphical.nix { inherit pkgs; })
     ]))
 

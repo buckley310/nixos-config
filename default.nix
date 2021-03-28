@@ -12,5 +12,6 @@
     ./modules/scansnap_s1300.nix
     ./modules/scroll-boost
     ./modules/status-on-console.nix
+    ./security-tools.nix
   ];
 }

@@ -1,5 +1,11 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
+let
+  cfg = config.sconfig.security-tools;
+in
 {
+  options.sconfig.security-tools = lib.mkEnableOption "Enable security tools";
+
+  config = lib.mkIf cfg {
   environment.systemPackages = with pkgs; [
     exiftool
     burpsuite
@@ -42,5 +48,6 @@
   users.users.sandy = {
     isNormalUser = true;
     isSystemUser = true;
+  };
   };
 }
