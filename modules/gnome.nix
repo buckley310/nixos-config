@@ -1,9 +1,24 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
+let
+  cfg = config.sconfig.gnome;
+in
 {
-  environment = {
-    systemPackages = with pkgs; [
-      numix-icon-theme
+  options.sconfig.gnome = lib.mkEnableOption "Enable Gnome Desktop";
+
+  config = lib.mkIf cfg {
+
+    services.xserver = {
+      enable = true;
+      libinput.enable = true;
+      displayManager.gdm.enable = true;
+      displayManager.gdm.autoSuspend = false;
+      desktopManager.gnome3.enable = true;
+    };
+
+    environment.systemPackages = with pkgs; [
       gnome3.gnome-tweaks
+      gnomeExtensions.appindicator
+      numix-icon-theme
       qemu_kvm
 
       (writeShellScriptBin "red" ''
@@ -39,21 +54,7 @@
         gsettings set org.gnome.desktop.interface icon-theme 'Numix'; sleep 1
         gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
       '')
+    ];
 
-    ] ++ (with pkgs.gnomeExtensions; [
-      appindicator
-      dash-to-panel
-      drop-down-terminal
-      sound-output-device-chooser
-      no-title-bar
-    ]);
-  };
-
-  services.xserver = {
-    enable = true;
-    libinput.enable = true;
-    displayManager.gdm.enable = true;
-    displayManager.gdm.autoSuspend = false;
-    desktopManager.gnome3.enable = true;
   };
 }
