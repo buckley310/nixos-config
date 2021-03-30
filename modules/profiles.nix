@@ -10,10 +10,17 @@ in
 
   config = mkMerge [
 
-    (mkIf (cfg == "server") (mkMerge [
-      { services.openssh.enable = true; }
-      (import ./auto-update.nix { })
-    ]))
+    (mkIf (cfg == "server") {
+      services.openssh.enable = true;
+      system.autoUpgrade = {
+        enable = true;
+        allowReboot = true;
+      };
+      nix.gc = {
+        automatic = true;
+        options = "--delete-older-than 30d";
+      };
+    })
 
     (mkIf (cfg == "desktop-sway") (import ./sway.nix { inherit pkgs; }))
     (mkIf (cfg == "desktop-gnome") (import ./gnome.nix { inherit pkgs; }))
