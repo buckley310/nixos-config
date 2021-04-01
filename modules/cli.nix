@@ -93,6 +93,6 @@ in
     function _update_ps1() {
         PS1="\n$(${pkgs.powerline-go}/bin/powerline-go ${lib.concatStringsSep " " powerlineOpts})$ "
     }
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+    [ "$TERM" = "linux" ] || PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
   '';
 }
