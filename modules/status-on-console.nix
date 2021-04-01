@@ -11,15 +11,10 @@ let
         info "Host" model
         info "Kernel" kernel
         info "Uptime" uptime
-        info "Packages" packages
-        info "Shell" shell
-        info "Resolution" resolution
         info "CPU" cpu
         info "Memory" memory
         info "Disk" disk
         info "Local IP" local_ip
-        # info "Public IP" public_ip
-        info "Users" users
 
         info cols
     }
