@@ -58,15 +58,12 @@ in
     '')
 
     (writeShellScriptBin "channel" ''
-      nixos="/nix/var/nix/profiles/per-user/root/channels/nixos"
-      [[ "$(<$nixos/.version-suffix)" =~ ^pre ]] &&
-          channel="unstable" ||
-          channel="$(<$nixos/.version)"
+      branch="$(jq -r .nodes.nixpkgs.original.ref </etc/nixos/flake.lock)"
       echo
-      echo "nixos-$channel"
+      echo "$branch"
       echo
-      echo "$(<$nixos/.git-revision) current local"
-      echo "$(curl --silent -L "https://channels.nixos.org/nixos-$channel/git-revision") latest available"
+      echo "$(jq -r .nodes.nixpkgs.locked.rev </etc/nixos/flake.lock) current local"
+      echo "$(git ls-remote https://github.com/NixOS/nixpkgs.git "$branch" | cut -f1) latest available"
       echo
     '')
   ];
