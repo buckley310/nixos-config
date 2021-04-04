@@ -17,6 +17,8 @@
 
   zramSwap.enable = true;
 
+  networking.hostId = builtins.substring 0 8 (builtins.hashString "md5" config.networking.hostName);
+
   hardware = {
     cpu.amd.updateMicrocode = true;
     cpu.intel.updateMicrocode = true;
