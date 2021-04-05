@@ -6,6 +6,7 @@
     zfs.forceImportAll = false;
     zfs.forceImportRoot = false;
     kernelParams = [ "amdgpu.gpu_recovery=1" "panic=30" ];
+    initrd.availableKernelModules = [ "nvme" ];
   };
 
   nixpkgs.config.allowUnfree = true;
