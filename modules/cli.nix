@@ -8,18 +8,6 @@ let
     "-git-assume-unchanged-size 0"
   ];
 
-  rebuild-scripts = (map
-    (x: (pkgs.writeShellScriptBin "sc-${builtins.head x}" "nixos-rebuild ${lib.concatStringsSep " " (builtins.tail x)}"))
-    [
-      [ "switch" "switch" ]
-      [ "build" "build" ]
-      [ "boot" "boot" ]
-      [ "switch-upgrade" "switch" "--recreate-lock-file" "--refresh" ]
-      [ "build-upgrade" "build" "--recreate-lock-file" "--refresh" ]
-      [ "boot-upgrade" "boot" "--recreate-lock-file" "--refresh" ]
-    ]
-  );
-
 in
 {
   environment.systemPackages = with pkgs; [
@@ -78,7 +66,7 @@ in
       echo "$(git ls-remote https://github.com/NixOS/nixpkgs.git "$branch" | cut -f1) latest available"
       echo
     '')
-  ] ++ rebuild-scripts;
+  ];
 
   environment.variables.EDITOR = "vim";
 

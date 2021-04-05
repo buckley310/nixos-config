@@ -1,5 +1,8 @@
 {
   outputs = { self, nixpkgs }: {
-    nixosModule = import ./.;
+    nixosModule = { ... }: {
+      imports = [ ./. ];
+      config = { sconfig.flakes.enable = true; };
+    };
   };
 }
