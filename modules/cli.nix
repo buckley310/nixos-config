@@ -36,6 +36,7 @@ in
     tcpdump
     rsync
     nixpkgs-fmt
+    nix-index
 
     (writeShellScriptBin "dirt" "while sleep 1; do grep '^Dirty:' /proc/meminfo ; done")
 
