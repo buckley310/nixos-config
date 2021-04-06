@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   powerlineOpts = [
     "-mode=flat"
@@ -59,12 +59,11 @@ in
     '')
 
     (writeShellScriptBin "channel" ''
-      branch="$(jq -r .nodes.nixpkgs.original.ref </etc/nixos/flake.lock)"
       echo
-      echo "$branch"
+      echo "NixOS ${config.system.nixos.release} (${config.system.defaultChannel})"
       echo
-      echo "$(jq -r .nodes.nixpkgs.locked.rev </etc/nixos/flake.lock) current local"
-      echo "$(git ls-remote https://github.com/NixOS/nixpkgs.git "$branch" | cut -f1) latest available"
+      echo "${config.system.nixos.revision} current local"
+      echo "$(curl --silent -L ${config.system.defaultChannel}/git-revision) latest available"
       echo
     '')
   ];
