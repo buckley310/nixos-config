@@ -28,9 +28,9 @@ in
         [ "switch" "switch" ]
         [ "build" "build" ]
         [ "boot" "boot" ]
-        [ "switch-upgrade" "switch" "--recreate-lock-file" "--refresh" ]
-        [ "build-upgrade" "build" "--recreate-lock-file" "--refresh" ]
-        [ "boot-upgrade" "boot" "--recreate-lock-file" "--refresh" ]
+        [ "switch-upgrade" "switch" "--refresh" (lib.optionalString (cfg.rebuildPath == "/etc/nixos") "--recreate-lock-file") ]
+        [ "build-upgrade" "build" "--refresh" (lib.optionalString (cfg.rebuildPath == "/etc/nixos") "--recreate-lock-file") ]
+        [ "boot-upgrade" "boot" "--refresh" (lib.optionalString (cfg.rebuildPath == "/etc/nixos") "--recreate-lock-file") ]
       ];
 
   };
