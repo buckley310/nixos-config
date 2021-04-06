@@ -4,6 +4,7 @@ let
     system = "x86_64-linux";
     modules = [
       pkgs.nixosModules.notDetected
+      ({ ... }: { config = { sconfig.flakes.enable = true; }; })
       (./. + "/configuration_${name}.nix")
       ../.
     ];
@@ -13,6 +14,7 @@ let
     system = "x86_64-linux";
     modules = [
       ({ modulesPath, ... }: { imports = [ "${modulesPath}/profiles/qemu-guest.nix" ]; })
+      ({ ... }: { config = { sconfig.flakes.enable = true; }; })
       (./. + "/configuration_${name}.nix")
       ../.
     ];
