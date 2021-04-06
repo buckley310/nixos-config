@@ -19,6 +19,8 @@ in
       experimental-features = nix-command flakes
     '';
 
+    system.autoUpgrade.flake = cfg.rebuildPath;
+
     environment.systemPackages = map
       (x: (pkgs.writeShellScriptBin
         "sc-${builtins.head x}"
