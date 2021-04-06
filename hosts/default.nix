@@ -30,4 +30,5 @@ let
 in
 {
   vm = mkQemuSystem { name = "vm"; pkgs = nixpkgs; };
+  manta = mkStandardSystem { name = "manta"; pkgs = nixpkgs; };
 }
