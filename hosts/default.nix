@@ -32,4 +32,5 @@ in
   vm = mkQemuSystem { name = "vm"; pkgs = nixpkgs; };
   hp = mkStandardSystem { name = "hp"; pkgs = nixpkgs; };
   manta = mkStandardSystem { name = "manta"; pkgs = nixpkgs; };
+  neo = mkStandardSystem { name = "neo"; pkgs = nixpkgs; };
 }
