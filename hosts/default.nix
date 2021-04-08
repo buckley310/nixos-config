@@ -15,7 +15,7 @@ let
     system = "x86_64-linux";
     modules = commonModules ++ [
       pkgs.nixosModules.notDetected
-      (./. + "/configuration_${name}.nix")
+      (./. + "/${name}")
     ];
   };
 
@@ -23,7 +23,7 @@ let
     system = "x86_64-linux";
     modules = commonModules ++ [
       (x: { imports = [ "${x.modulesPath}/profiles/qemu-guest.nix" ]; })
-      (./. + "/configuration_${name}.nix")
+      (./. + "/${name}")
     ];
   };
 
