@@ -7,7 +7,6 @@
   };
 
   networking = {
-    hostName = "neo";
     search = [ "bck.me" ];
   };
 

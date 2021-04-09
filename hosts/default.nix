@@ -1,10 +1,12 @@
 { unstable, stable2009 }:
 let
 
-  commonModules = [
-    ../.
+  commonModules = name: [
+    (../.)
+    (./. + "/${name}")
     ({ ... }: {
       config = {
+        networking.hostName = name;
         sconfig.flakes.enable = true;
         sconfig.flakes.rebuildPath = "github:buckley310/nixos-config";
       };
@@ -13,17 +15,15 @@ let
 
   mkStandardSystem = { name, pkgs }: pkgs.lib.nixosSystem {
     system = "x86_64-linux";
-    modules = commonModules ++ [
+    modules = (commonModules name) ++ [
       pkgs.nixosModules.notDetected
-      (./. + "/${name}")
     ];
   };
 
   mkQemuSystem = { name, pkgs }: pkgs.lib.nixosSystem {
     system = "x86_64-linux";
-    modules = commonModules ++ [
+    modules = (commonModules name) ++ [
       (x: { imports = [ "${x.modulesPath}/profiles/qemu-guest.nix" ]; })
-      (./. + "/${name}")
     ];
   };
 

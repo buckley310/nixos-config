@@ -5,7 +5,6 @@
   services.tlp.enable = true;
   services.openssh.enable = true;
 
-  networking.hostName = "manta";
   networking.search = [ "bck.me" ];
 
   sconfig = {
