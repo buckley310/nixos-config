@@ -86,6 +86,7 @@ in
     alias sha256sum-base32='nix hash-file --type sha256 --base32'
     alias pip_install='nix run nixpkgs.python3.pkgs.pip -c pip install --user -UI pip setuptools'
     alias catc='${pkgs.vimpager-latest}/bin/vimpager --force-passthrough'
+    alias nix-env="echo nix-env is disabled #"
 
     function _update_ps1() {
         PS1="\n$(${pkgs.powerline-go}/bin/powerline-go ${lib.concatStringsSep " " powerlineOpts})$ "
