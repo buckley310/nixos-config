@@ -1,6 +1,6 @@
 {
-  inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
-  inputs.stable2009.url = "nixpkgs/nixos-20.09";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.stable2009.url = "github:NixOS/nixpkgs/nixos-20.09";
 
   outputs = { self, nixpkgs, stable2009 }: {
     nixosModule = { ... }: {
