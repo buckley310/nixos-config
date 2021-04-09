@@ -11,15 +11,15 @@ let
     })
   ];
 
-  mkStandardSystem = { name, pkgs }: pkgs.lib.nixosSystem {
-    system = "x86_64-linux";
+  mkStandardSystem = { name, pkgs, system }: pkgs.lib.nixosSystem {
+    inherit system;
     modules = (commonModules name) ++ [
       pkgs.nixosModules.notDetected
     ];
   };
 
-  mkQemuSystem = { name, pkgs }: pkgs.lib.nixosSystem {
-    system = "x86_64-linux";
+  mkQemuSystem = { name, pkgs, system }: pkgs.lib.nixosSystem {
+    inherit system;
     modules = (commonModules name) ++ [
       (x: { imports = [ "${x.modulesPath}/profiles/qemu-guest.nix" ]; })
     ];
@@ -27,8 +27,8 @@ let
 
 in
 {
-  vm = mkQemuSystem { name = "vm"; pkgs = unstable; };
-  hp = mkStandardSystem { name = "hp"; pkgs = unstable; };
-  manta = mkStandardSystem { name = "manta"; pkgs = unstable; };
-  neo = mkStandardSystem { name = "neo"; pkgs = unstable; };
+  vm = mkQemuSystem { name = "vm"; system = "x86_64-linux"; pkgs = unstable; };
+  hp = mkStandardSystem { name = "hp"; system = "x86_64-linux"; pkgs = unstable; };
+  manta = mkStandardSystem { name = "manta"; system = "x86_64-linux"; pkgs = unstable; };
+  neo = mkStandardSystem { name = "neo"; system = "x86_64-linux"; pkgs = unstable; };
 }
