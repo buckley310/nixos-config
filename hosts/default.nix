@@ -1,4 +1,4 @@
-{ nixpkgs, stable2009 }:
+{ unstable, stable2009 }:
 let
 
   commonModules = [
@@ -29,8 +29,8 @@ let
 
 in
 {
-  vm = mkQemuSystem { name = "vm"; pkgs = nixpkgs; };
-  hp = mkStandardSystem { name = "hp"; pkgs = nixpkgs; };
-  manta = mkStandardSystem { name = "manta"; pkgs = nixpkgs; };
-  neo = mkStandardSystem { name = "neo"; pkgs = nixpkgs; };
+  vm = mkQemuSystem { name = "vm"; pkgs = unstable; };
+  hp = mkStandardSystem { name = "hp"; pkgs = unstable; };
+  manta = mkStandardSystem { name = "manta"; pkgs = unstable; };
+  neo = mkStandardSystem { name = "neo"; pkgs = unstable; };
 }
