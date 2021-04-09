@@ -20,6 +20,7 @@ in
     '';
 
     system.autoUpgrade.flake = cfg.rebuildPath;
+    system.autoUpgrade.flags = [ (lib.optionalString (cfg.rebuildPath == "/etc/nixos") "--recreate-lock-file") ];
 
     environment.systemPackages = map
       (x: (pkgs.writeShellScriptBin
