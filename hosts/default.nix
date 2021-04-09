@@ -5,11 +5,9 @@ let
     (../.)
     (./. + "/${name}")
     ({ ... }: {
-      config = {
-        networking.hostName = name;
-        sconfig.flakes.enable = true;
-        sconfig.flakes.rebuildPath = "github:buckley310/nixos-config";
-      };
+      networking.hostName = name;
+      sconfig.flakes.enable = true;
+      sconfig.flakes.rebuildPath = "github:buckley310/nixos-config";
     })
   ];
 
