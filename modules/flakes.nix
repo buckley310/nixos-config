@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.sconfig.flakes;
-  upgradeArg = if cfg.rebuildPath == "/etc/nixos" then "--recreate-lock-file" else "--refresh";
+  upgradeArg = if cfg.rebuildPath == "/etc/nixos" then "--refresh --recreate-lock-file" else "--refresh";
 in
 {
   options.sconfig.flakes = {
