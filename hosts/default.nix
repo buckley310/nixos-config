@@ -1,4 +1,4 @@
-{ unstable, stable2009 }:
+{ sconfig, unstable, stable2009 }:
 let
 
   hostMetadata =
@@ -29,7 +29,7 @@ builtins.listToAttrs (
         value = pkgs.lib.nixosSystem {
           system = h.system;
           modules = [
-            (./..)
+            (sconfig)
             (./. + "/${h.name}/configuration.nix")
             (hardwareModule { inherit pkgs; inherit (h) hardware; })
             ({ ... }: {

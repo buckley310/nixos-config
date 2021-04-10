@@ -7,7 +7,7 @@
       imports = [ ./. ];
       config = { sconfig.flakes.enable = true; };
     };
-    nixosConfigurations = import ./hosts { inherit unstable stable2009; };
+    nixosConfigurations = import ./hosts { sconfig = ./.; inherit unstable stable2009; };
 
     defaultPackage."x86_64-linux" =
       with (import unstable { system = "x86_64-linux"; });
