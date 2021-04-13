@@ -1,4 +1,4 @@
-{ sconfig, unstable, stable2009 }:
+{ modules, unstable, stable2009 }:
 let
 
   hostMetadata =
@@ -25,8 +25,7 @@ builtins.mapAttrs
     in
     pkgs.lib.nixosSystem {
       inherit (v) system;
-      modules = [
-        (sconfig)
+      modules = modules ++ [
         (./. + "/${n}/configuration.nix")
         (hardwareModule v.hardware)
         ({ ... }: {
