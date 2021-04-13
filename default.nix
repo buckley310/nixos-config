@@ -16,5 +16,6 @@
     ./modules/security-tools.nix
     ./modules/status-on-console.nix
     ./modules/sway.nix
+    ./modules/vim.nix
   ];
 }

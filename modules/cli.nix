@@ -42,15 +42,6 @@ in
 
     (writeShellScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
 
-    (vim_configurable.customize {
-      name = "vim";
-      vimrcConfig.customRC = ''
-        syntax enable
-        filetype plugin indent on
-        set nowrap ruler scrolloff=9 backspace=start,indent
-      '';
-    })
-
     (writeScriptBin "zfsram" ''
       #!${pkgs.python3}/bin/python
       for ln in open('/proc/spl/kstat/zfs/arcstats').readlines():
