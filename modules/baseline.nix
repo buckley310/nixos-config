@@ -45,18 +45,6 @@
     ];
   };
 
-  security.sudo.extraRules = [{
-    groups = [ "wheel" ];
-    commands = [
-      { options = [ "NOPASSWD" ]; command = "/run/current-system/sw/bin/nix-collect-garbage -d"; }
-      { options = [ "NOPASSWD" ]; command = "/run/current-system/sw/bin/nix-channel --update"; }
-      { options = [ "NOPASSWD" ]; command = "/run/current-system/sw/bin/nixos-rebuild switch"; }
-      { options = [ "NOPASSWD" ]; command = "/run/current-system/sw/bin/nixos-rebuild switch --upgrade"; }
-      { options = [ "NOPASSWD" ]; command = "/run/current-system/sw/bin/nixos-rebuild boot"; }
-      { options = [ "NOPASSWD" ]; command = "/run/current-system/sw/bin/nixos-rebuild boot --upgrade"; }
-    ];
-  }];
-
   users.users.sean = {
     isNormalUser = true;
     extraGroups = [ "wheel" "audio" "video" "networkmanager" "dialout" "input" "wireshark" ];
