@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   time.timeZone = "US/Eastern";
+  i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
 
   boot = {
     zfs.forceImportAll = false;
