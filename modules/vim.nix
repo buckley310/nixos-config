@@ -11,7 +11,7 @@ in
       enable = true;
       viAlias = true;
       configure = {
-        packages.foo.start = [ pkgs.vimPlugins.vim-nix ];
+        packages.sconfig.start = [ pkgs.vimPlugins.vim-nix ];
         customRC = ''
           set nowrap scrolloff=9
         '';
