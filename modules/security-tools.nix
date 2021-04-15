@@ -22,6 +22,8 @@ in
       pwndbg
       thc-hydra
       metasploit
+      ebtables
+      bridge-utils
 
       (callPackage ../pkgs/binary-ninja-personal { })
 
