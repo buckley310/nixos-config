@@ -24,6 +24,7 @@ in
       metasploit
       ebtables
       bridge-utils
+      macchanger
 
       (callPackage ../pkgs/binary-ninja-personal { })
 
