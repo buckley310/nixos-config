@@ -22,9 +22,9 @@ in
       pwndbg
       thc-hydra
       metasploit
-      ebtables
       bridge-utils
       macchanger
+      iptables-nftables-compat
 
       (callPackage ../pkgs/binary-ninja-personal { })
 
