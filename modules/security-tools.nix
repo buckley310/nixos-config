@@ -25,6 +25,7 @@ in
       bridge-utils
       macchanger
       iptables-nftables-compat
+      dhcpdump
 
       (callPackage ../pkgs/binary-ninja-personal { })
 
