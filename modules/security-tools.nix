@@ -50,8 +50,10 @@ in
     };
 
     users.users.sandy = {
-      isNormalUser = true;
       isSystemUser = true;
+      useDefaultShell = true;
+      home = "/home/sandy";
+      createHome = true;
     };
   };
 }
