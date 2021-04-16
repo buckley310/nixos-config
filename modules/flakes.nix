@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.sconfig.flakes;
-  upgradeArg = if cfg.rebuildPath == "/etc/nixos" then "--refresh --recreate-lock-file" else "--refresh";
 in
 {
   options.sconfig.flakes = {
@@ -21,18 +20,8 @@ in
     '';
 
     environment.systemPackages = map
-      (x: (pkgs.writeShellScriptBin
-        "sc-${builtins.head x}"
-        "nixos-rebuild ${lib.concatStringsSep " " (builtins.tail x)} --flake ${cfg.rebuildPath}"
-      ))
-      [
-        [ "switch" "switch" ]
-        [ "build" "build" ]
-        [ "boot" "boot" ]
-        [ "switch-upgrade" "switch" upgradeArg ]
-        [ "build-upgrade" "build" upgradeArg ]
-        [ "boot-upgrade" "boot" upgradeArg ]
-      ];
+      (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake ${cfg.rebuildPath}"))
+      [ "switch" "build" "boot" ];
 
   };
 }
