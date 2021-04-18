@@ -10,7 +10,11 @@
     search = [ "bck.me" ];
   };
 
-  environment.systemPackages = [ pkgs.vmware-horizon-client ];
+  environment.systemPackages = with pkgs; [
+    vmware-horizon-client
+    wine
+    winetricks
+  ];
 
   services = {
     pcscd.enable = true;
