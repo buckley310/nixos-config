@@ -42,6 +42,7 @@ in
         gsettings set org.gnome.desktop.privacy report-technical-problems false
         gsettings set org.gnome.desktop.privacy send-software-usage-stats false
         gsettings set org.gnome.desktop.screensaver lock-enabled false
+        gsettings set org.gnome.desktop.search-providers disabled "['org.gnome.Epiphany.desktop']"
         gsettings set org.gnome.desktop.wm.keybindings maximize-vertically "['<Super>w']"
         gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Super>f']"
         gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
