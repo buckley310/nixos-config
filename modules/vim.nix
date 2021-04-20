@@ -10,6 +10,7 @@ in
     neovim = {
       enable = true;
       viAlias = true;
+      vimAlias = true;
       configure = {
         packages.sconfig.start = [ pkgs.vimPlugins.vim-nix ];
         customRC = ''
