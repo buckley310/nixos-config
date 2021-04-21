@@ -35,7 +35,7 @@ in
         gsettings set org.gnome.desktop.media-handling autorun-never true
         gsettings set org.gnome.desktop.notifications show-in-lock-screen false
         gsettings set org.gnome.desktop.peripherals.mouse middle-click-emulation true
-        gsettings set org.gnome.desktop.peripherals.mouse speed 0.375
+        gsettings set org.gnome.desktop.peripherals.mouse speed 0.25
         gsettings set org.gnome.desktop.privacy recent-files-max-age 30
         gsettings set org.gnome.desktop.privacy remove-old-temp-files true
         gsettings set org.gnome.desktop.privacy remove-old-trash-files true
