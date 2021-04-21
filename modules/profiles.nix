@@ -12,6 +12,7 @@ in
 
     (mkIf (cfg == "server") {
       services.openssh.enable = true;
+      documentation.nixos.enable = false;
       nix.gc = {
         automatic = true;
         options = "--delete-older-than 30d";
