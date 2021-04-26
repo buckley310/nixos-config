@@ -18,6 +18,7 @@ in
     environment.systemPackages = with pkgs; [
       gnome3.gnome-tweaks
       gnomeExtensions.appindicator
+      gnomeExtensions.dash-to-dock
       numix-icon-theme
       qemu_kvm
 
