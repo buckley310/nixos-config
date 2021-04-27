@@ -12,6 +12,7 @@
   };
 
   boot = {
+    loader.timeout = pkgs.lib.mkForce 3;
     loader.grub.enable = true;
     loader.grub.device = "/dev/disk/by-id/wwn-0x50000391e71024d6";
     initrd.luks.devices.cryptroot = { device = "/dev/disk/by-id/wwn-0x50000391e71024d6-part2"; };
