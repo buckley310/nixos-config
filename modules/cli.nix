@@ -72,7 +72,7 @@ in
   programs.bash.interactiveShellInit = ''
     stty -ixon
     alias p=python3
-    alias tmp='cd $(mktemp -d)'
+    alias tmp='cd "$(TMPDIR=$XDG_RUNTIME_DIR mktemp -d)"'
     alias buildsys='nix build -f "<nixpkgs/nixos>" --no-link system'
     alias sha256sum-base32='nix hash-file --type sha256 --base32'
     alias pip_install='nix run nixpkgs.python3.pkgs.pip -c pip install --user -UI pip setuptools'
