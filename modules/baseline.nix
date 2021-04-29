@@ -19,6 +19,11 @@
 
   networking.hostId = builtins.substring 0 8 (builtins.hashString "md5" config.networking.hostName);
 
+  nix = {
+    daemonNiceLevel = 19;
+    daemonIONiceLevel = 7;
+  };
+
   hardware = {
     cpu.amd.updateMicrocode = true;
     cpu.intel.updateMicrocode = true;
