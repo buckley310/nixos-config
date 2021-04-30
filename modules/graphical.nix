@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+let
+  legacy = (config.system.nixos.release == "20.09");
+in
 {
   environment.systemPackages = with pkgs; [
     brave
@@ -47,7 +50,13 @@
 
   programs.steam.enable = true;
 
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = legacy;
+  services.pipewire = if legacy then { } else {
+    enable = true;
+    pulse.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+  };
 
   boot.loader.timeout = null;
 }

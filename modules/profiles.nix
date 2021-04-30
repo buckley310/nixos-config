@@ -19,7 +19,7 @@ in
       };
     })
 
-    (mkIf (cfg == "desktop") (import ./graphical.nix { inherit pkgs; }))
+    (mkIf (cfg == "desktop") (import ./graphical.nix { inherit pkgs config; }))
 
   ];
 }
