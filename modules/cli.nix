@@ -42,6 +42,10 @@ in
 
     (writeShellScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
 
+    (writeShellScriptBin "pip_install" ''
+      exec nix shell 'nixpkgs/nixos-unstable#python3.pkgs.pip' --command pip install --user -UI pip setuptools
+    '')
+
     (writeScriptBin "zfsram" ''
       #!${pkgs.python3}/bin/python
       for ln in open('/proc/spl/kstat/zfs/arcstats').readlines():
@@ -59,6 +63,11 @@ in
     '')
   ];
 
+  environment.etc."pip.conf".text = ''
+    [install]
+    no-warn-script-location = false
+  '';
+
   environment.variables.EDITOR = "vim";
 
   environment.variables.PLGO_HOSTNAMEFG = "0";
@@ -73,9 +82,6 @@ in
     stty -ixon
     alias p=python3
     alias tmp='cd "$(TMPDIR=$XDG_RUNTIME_DIR mktemp -d)"'
-    alias buildsys='nix build -f "<nixpkgs/nixos>" --no-link system'
-    alias sha256sum-base32='nix hash-file --type sha256 --base32'
-    alias pip_install='nix run nixpkgs.python3.pkgs.pip -c pip install --user -UI pip setuptools'
     alias catc='${pkgs.vimpager-latest}/bin/vimpager --force-passthrough'
     alias nix-env="echo nix-env is disabled #"
 
