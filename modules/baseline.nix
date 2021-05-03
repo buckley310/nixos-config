@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 {
   time.timeZone = "US/Eastern";
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
@@ -40,18 +40,6 @@
       publish.enable = true;
       publish.addresses = true;
     };
-  };
-
-  systemd.timers.nixosReport.timerConfig.RandomizedDelaySec = "55min";
-  systemd.services.nixosReport = {
-    startAt = "hourly";
-    serviceConfig.Type = "simple";
-    serviceConfig.ExecStart = lib.concatStringsSep " " [
-      "${pkgs.curl}/bin/curl --silent https://log.bck.me/nixos-report"
-      "-H 'hostname: ${config.networking.hostName}'"
-      "-H 'version: ${config.system.nixos.label}'"
-      "-H 'sconfig: ${builtins.toJSON config.sconfig}'"
-    ];
   };
 
   users.users.sean = {
