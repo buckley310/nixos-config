@@ -13,7 +13,10 @@
   nixpkgs.config.allowUnfree = true;
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
 
-  systemd.tmpfiles.rules = [ "e /nix/var/log - - - 30d" ];
+  systemd.tmpfiles.rules = [
+    "e /nix/var/log - - - 30d"
+    "e /home/sean/Downloads - - - 9d"
+  ];
 
   zramSwap.enable = true;
 
