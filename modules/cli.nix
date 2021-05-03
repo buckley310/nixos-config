@@ -42,6 +42,10 @@ in
 
     (writeShellScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
 
+    (writeShellScriptBin "ns" ''
+      exec nix shell "github:NixOS/nixpkgs/${config.system.nixos.revision}#$@"
+    '')
+
     (writeShellScriptBin "pip_install" ''
       exec nix shell 'nixpkgs/nixos-unstable#python3.pkgs.pip' --command pip install --user -UI pip setuptools
     '')
