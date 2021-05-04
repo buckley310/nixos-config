@@ -52,6 +52,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPLZgFlJTT8wFz2DGeB1YETKPvm63/u1kT7pzranCoqP"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFbQPpgGWF2qsgiL2YlBMd3JyJ2fbksfykuDNJYrHWfO dell_laptop"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJqEgH/+Fcp7x9ipp4Rwy8uD8klMR54kMXt2k7gGlrPR sean@tosh"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPt766Pb4vXwGMzhnS4qXJDfkH8Ia1T1TCoCcR/asxMg sean@lenny"
     ];
   };
 }
