@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  services.tlp.enable = true;
   services.openssh.enable = true;
 
   networking.search = [ "bck.me" ];

@@ -1,7 +1,6 @@
 { ... }:
 {
   services = {
-    tlp.enable = true;
     openssh.enable = true;
   };
 

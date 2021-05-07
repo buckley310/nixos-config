@@ -2,7 +2,6 @@
 {
   environment.systemPackages = [ pkgs.vmware-horizon-client ];
 
-  services.tlp.enable = true;
   services.openssh.enable = true;
 
   networking.search = [ "bck.me" ];
