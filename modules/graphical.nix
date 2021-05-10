@@ -6,6 +6,7 @@ in
   environment.systemPackages = with pkgs; [
     brave
     gimp
+    ffmpeg
     mpv
     tdesktop
     pavucontrol

@@ -21,7 +21,6 @@ in
     sqlite
     usbutils
     entr
-    ffmpeg
     gcc
     python3
     openssl
