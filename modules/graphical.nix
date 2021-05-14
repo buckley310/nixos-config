@@ -34,7 +34,6 @@ in
         DisableFormHistory = true;
         SearchSuggestEnabled = false;
         Preferences = {
-          "dom.security.https_only_mode" = { Status = "locked"; Value = true; };
           "extensions.formautofill.available" = { Status = "locked"; Value = "off"; };
           "browser.contentblocking.category" = { Status = "locked"; Value = "strict"; };
           "network.IDN_show_punycode" = { Status = "locked"; Value = true; };
