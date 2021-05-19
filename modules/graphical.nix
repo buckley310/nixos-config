@@ -9,6 +9,7 @@ in
     ffmpeg
     mpv
     tdesktop
+    element-desktop
     pavucontrol
     gnome3.dconf-editor
     glxinfo
