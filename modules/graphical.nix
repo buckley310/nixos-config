@@ -51,6 +51,8 @@ in
 
   programs.steam.enable = true;
 
+  virtualisation.docker = { enable = true; enableOnBoot = false; };
+
   hardware.pulseaudio.enable = legacy;
   services.pipewire = if legacy then { } else {
     enable = true;
