@@ -42,7 +42,7 @@ in
     (writeShellScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
 
     (writeShellScriptBin "ns" ''
-      exec nix shell "github:NixOS/nixpkgs/${config.system.nixos.revision}#$@"
+      exec nix shell "github:NixOS/nixpkgs/${toString config.system.nixos.revision}#$@"
     '')
 
     (writeShellScriptBin "pip_install" ''
@@ -60,7 +60,7 @@ in
       echo
       echo "NixOS ${config.system.nixos.release} (${config.system.defaultChannel})"
       echo
-      echo "${config.system.nixos.revision} current local"
+      echo "${toString config.system.nixos.revision} current local"
       echo "$(curl --silent -L ${config.system.defaultChannel}/git-revision) latest available"
       echo
     '')
