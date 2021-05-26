@@ -36,6 +36,7 @@ in
     rsync
     nixpkgs-fmt
     nix-index
+    nix-top
 
     (writeShellScriptBin "dirt" "while sleep 1; do grep '^Dirty:' /proc/meminfo ; done")
 
