@@ -8,6 +8,10 @@ let
     "-git-assume-unchanged-size 0"
   ];
 
+  update-cmds = map
+    (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake github:buckley310/nixos-config"))
+    [ "switch" "build" "boot" ];
+
 in
 {
   environment.systemPackages = with pkgs; [
@@ -65,7 +69,7 @@ in
       echo "$(curl --silent -L ${config.system.defaultChannel}/git-revision) latest available"
       echo
     '')
-  ];
+  ] ++ update-cmds;
 
   environment.etc."pip.conf".text = ''
     [install]

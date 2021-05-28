@@ -28,11 +28,7 @@ builtins.mapAttrs
       modules = modules ++ [
         (./. + "/${n}/configuration.nix")
         (hardwareModule v.hardware)
-        ({ ... }: {
-          networking.hostName = n;
-          sconfig.flakes.enable = true;
-          sconfig.flakes.rebuildPath = "github:buckley310/nixos-config";
-        })
+        ({ ... }: { networking.hostName = n; })
       ];
     }
   )

@@ -5,7 +5,6 @@
   outputs = { self, unstable, stable2009 }: {
     nixosModule = { ... }: {
       imports = [ ./. ];
-      config = { sconfig.flakes.enable = true; };
     };
     nixosConfigurations = import ./hosts { modules = [ ./. ]; inherit unstable stable2009; };
   };
