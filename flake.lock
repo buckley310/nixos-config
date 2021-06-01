@@ -2,22 +2,22 @@
   "nodes": {
     "root": {
       "inputs": {
-        "stable2009": "stable2009",
+        "stable2105": "stable2105",
         "unstable": "unstable"
       }
     },
-    "stable2009": {
+    "stable2105": {
       "locked": {
-        "lastModified": 1622364474,
-        "narHash": "sha256-bRupByHizbCba3/AgaETL+YySowmfssqWl7+p0jwcPU=",
+        "lastModified": 1622449420,
+        "narHash": "sha256-aKDhIaJqNUy7p3urHEBC/mdIAJWckhW3Fgzmv284UHg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "eae0cabc124702e04bb2098070ca46d661543d29",
+        "rev": "d25ea6a0d2a847fb52131da546f2a866656fbafa",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-20.09",
+        "ref": "nixos-21.05",
         "repo": "nixpkgs",
         "type": "github"
       }
