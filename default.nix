@@ -2,7 +2,6 @@
 {
   imports = [
     ./modules/alacritty.nix
-    ./modules/backports.nix
     ./modules/baseline.nix
     ./modules/cli.nix
     ./modules/gnome.nix
