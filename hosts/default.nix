@@ -1,4 +1,4 @@
-{ modules, unstable, stable2105 }:
+{ modules, nixpkgs, unstable }:
 let
 
   hostMetadata =
@@ -21,7 +21,7 @@ let
 in
 builtins.mapAttrs
   (n: v:
-    let pkgs = { inherit unstable stable2105; }.${v.pkgs};
+    let pkgs = { inherit nixpkgs unstable; }.${v.pkgs};
     in
     pkgs.lib.nixosSystem {
       inherit (v) system;

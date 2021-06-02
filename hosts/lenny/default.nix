@@ -1,5 +1,5 @@
 {
-  pkgs = "stable2105";
+  pkgs = "nixpkgs";
   system = "x86_64-linux";
   hardware = "physical";
 }
