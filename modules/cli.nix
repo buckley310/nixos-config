@@ -112,4 +112,16 @@ in
     }
     [ "$TERM" = "linux" ] || PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
   '';
+
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+    configure = {
+      packages.sconfig.start = [ pkgs.vimPlugins.vim-nix ];
+      customRC = ''
+        set nowrap scrolloff=9
+      '';
+    };
+  };
 }

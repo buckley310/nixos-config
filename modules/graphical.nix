@@ -1,7 +1,4 @@
 { pkgs, config, ... }:
-let
-  legacy = (config.system.nixos.release == "20.09");
-in
 {
   environment.systemPackages = with pkgs; [
     brave
@@ -53,8 +50,8 @@ in
 
   virtualisation.docker = { enable = true; enableOnBoot = false; };
 
-  hardware.pulseaudio.enable = legacy;
-  services.pipewire = if legacy then { } else {
+  hardware.pulseaudio.enable = false;
+  services.pipewire = {
     enable = true;
     pulse.enable = true;
     alsa.enable = true;
