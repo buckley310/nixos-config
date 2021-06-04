@@ -10,6 +10,10 @@
     security-tools = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    vmware-horizon-client
+  ];
+
   networking = {
     search = [ "bck.me" ];
   };
