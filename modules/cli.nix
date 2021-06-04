@@ -58,7 +58,14 @@ in
       set -e
       booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
       built="$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
-      [ "$booted" = "$built" ]
+      if [ "$booted" = "$built" ]
+      then
+          echo OK
+          exit 0
+      else
+          echo REBOOT NEEDED
+          exit 1
+      fi
     '')
 
     (writeScriptBin "zfsram" ''
