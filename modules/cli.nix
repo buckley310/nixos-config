@@ -54,6 +54,13 @@ in
       exec nix shell 'nixpkgs/nixos-unstable#python3.pkgs.pip' --command pip install --user -UI pip setuptools
     '')
 
+    (writeShellScriptBin "nixos-check-reboot" ''
+      set -e
+      booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
+      built="$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
+      [ "$booted" = "$built" ]
+    '')
+
     (writeScriptBin "zfsram" ''
       #!${pkgs.python3}/bin/python
       for ln in open('/proc/spl/kstat/zfs/arcstats').readlines():
