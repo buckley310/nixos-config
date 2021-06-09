@@ -17,7 +17,6 @@
   ];
 
   services = {
-    pcscd.enable = true;
     openssh.enable = true;
     zfs.autoSnapshot = { enable = true; monthly = 0; weekly = 0; };
   };

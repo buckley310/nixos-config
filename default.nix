@@ -5,6 +5,7 @@
     ./modules/baseline.nix
     ./modules/cli.nix
     ./modules/gnome.nix
+    ./modules/mfa.nix
     ./modules/phpipam.nix
     ./modules/plasma.nix
     ./modules/profiles.nix
