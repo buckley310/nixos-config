@@ -12,6 +12,8 @@ let
     (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake github:buckley310/nixos-config"))
     [ "switch" "build" "boot" ];
 
+  system-rev = toString config.system.nixos.revision;
+
 in
 {
   environment.systemPackages = with pkgs; [
@@ -47,11 +49,11 @@ in
     (writeShellScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
 
     (writeShellScriptBin "ns" ''
-      exec nix shell "github:NixOS/nixpkgs/${toString config.system.nixos.revision}#$@"
+      exec nix shell "nixpkgs/${system-rev}#$@"
     '')
 
     (writeShellScriptBin "pip_install" ''
-      exec nix shell 'nixpkgs/nixos-unstable#python3.pkgs.pip' --command pip install --user -UI pip setuptools
+      exec nix shell 'nixpkgs/${system-rev}#python3.pkgs.pip' --command pip install --user -UI pip setuptools
     '')
 
     (writeShellScriptBin "nixos-check-reboot" ''
@@ -79,7 +81,7 @@ in
       echo
       echo "NixOS ${config.system.nixos.release} (${config.system.defaultChannel})"
       echo
-      echo "${toString config.system.nixos.revision} current local"
+      echo "${system-rev} current local"
       echo "$(curl --silent -L ${config.system.defaultChannel}/git-revision) latest available"
       echo
     '')
