@@ -7,7 +7,6 @@
     ./modules/gnome.nix
     ./modules/mfa.nix
     ./modules/phpipam.nix
-    ./modules/plasma.nix
     ./modules/profiles.nix
     ./modules/scansnap_s1300.nix
     ./modules/scroll-boost
