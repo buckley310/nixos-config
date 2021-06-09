@@ -46,10 +46,6 @@ let
 
     ];
 
-    services.xserver.deviceSection = ''
-      Option "VariableRefresh" "true"
-    '';
-
     programs.steam.enable = true;
 
     virtualisation.docker = { enable = true; enableOnBoot = false; };

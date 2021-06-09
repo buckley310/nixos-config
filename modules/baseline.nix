@@ -36,6 +36,10 @@
     cpu.intel.updateMicrocode = true;
   };
 
+  services.xserver.deviceSection = ''
+    Option "VariableRefresh" "true"
+  '';
+
   services = {
     earlyoom.enable = true;
     avahi = {
