@@ -85,6 +85,7 @@ in
       echo "$(curl --silent -L ${config.system.defaultChannel}/git-revision) latest available"
       echo
     '')
+
   ] ++ update-cmds;
 
   environment.etc."pip.conf".text = ''
