@@ -33,7 +33,7 @@
 , zlib
 }:
 stdenv.mkDerivation rec {
-  pname = "binary-ninja-personal";
+  pname = "binaryninja";
   version = "2.3.2660";
 
   src = requireFile {

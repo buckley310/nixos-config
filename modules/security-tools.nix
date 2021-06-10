@@ -27,8 +27,6 @@ in
       iptables-nftables-compat
       dhcpdump
 
-      (callPackage ../pkgs/binary-ninja-personal { })
-
       (writeShellScriptBin "searchsploit" ''
         set -e
         (
