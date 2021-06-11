@@ -87,14 +87,6 @@ in
 
       virtualisation.docker = { enable = true; enableOnBoot = false; };
 
-      hardware.pulseaudio.enable = false;
-      services.pipewire = {
-        enable = true;
-        pulse.enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-      };
-
       boot.loader.timeout =
         if config.boot.loader.systemd-boot.enable
         then null else lib.mkOverride 9999 99;

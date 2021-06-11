@@ -6,6 +6,7 @@
     ./modules/cli.nix
     ./modules/gnome.nix
     ./modules/phpipam.nix
+    ./modules/pipewire.nix
     ./modules/profiles.nix
     ./modules/scansnap_s1300.nix
     ./modules/scroll-boost
