@@ -2,6 +2,9 @@
 with lib;
 let
   cfg = config.sconfig.profile;
+
+  pkcslib = "${pkgs.opensc}/lib/opensc-pkcs11.so";
+
 in
 {
   options.sconfig.profile = mkOption {
@@ -22,6 +25,20 @@ in
 
 
     (mkIf (cfg == "desktop") {
+      services.pcscd.enable = true;
+      programs.ssh.startAgent = true;
+      programs.ssh.agentPKCS11Whitelist = pkcslib;
+
+      nixpkgs.overlays = [
+        (self: super: {
+          gnome = super.gnome // {
+            gnome-keyring = super.gnome.gnome-keyring.overrideAttrs (old: {
+              configureFlags = old.configureFlags ++ [ "--disable-ssh-agent" ];
+            });
+          };
+        })
+      ];
+
       environment.systemPackages = with pkgs; [
         brave
         gimp
@@ -33,6 +50,9 @@ in
         gnome3.dconf-editor
         glxinfo
         steam-run
+
+        pkgs.opensc
+        (pkgs.writeShellScriptBin "mfa" "exec ssh-add -s${pkcslib}")
 
         (vscode-with-extensions.override {
           vscode = vscodium;

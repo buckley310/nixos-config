@@ -5,7 +5,6 @@
     ./modules/baseline.nix
     ./modules/cli.nix
     ./modules/gnome.nix
-    ./modules/mfa.nix
     ./modules/phpipam.nix
     ./modules/profiles.nix
     ./modules/scansnap_s1300.nix
