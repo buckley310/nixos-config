@@ -21,7 +21,6 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = false;
-    kernelPackages = pkgs.linuxPackages_5_11;
   };
 
   fileSystems = {
