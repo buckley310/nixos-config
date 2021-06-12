@@ -5,7 +5,6 @@
   outputs = { self, nixpkgs, ... }@inputs:
     {
       nixosModules = {
-        alacritty = ./modules/alacritty.nix;
         baseline = ./modules/baseline.nix;
         cli = ./modules/cli.nix;
         gnome = ./modules/gnome.nix;
