@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 let
   cfg = config.sconfig.pipewire;
 in
