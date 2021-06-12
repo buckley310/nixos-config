@@ -29,5 +29,25 @@
         {
           binaryninja = callPackage ./pkgs/binary-ninja-personal { };
         };
+
+      apps."x86_64-linux" =
+        with (import nixpkgs { system = "x86_64-linux"; });
+        {
+          format-luks = writeShellScriptBin "format-luks" ''
+            set -e
+            read -p "Path to new LUKS device: " blkdev
+            set -x
+            cryptsetup -y -v luksFormat "$blkdev"
+            cryptsetup --allow-discards open "$blkdev" cryptroot
+            mkfs.btrfs /dev/mapper/cryptroot
+            mount /dev/mapper/cryptroot /mnt -o discard,compress=zstd
+            btrfs subvolume create /mnt/os
+            btrfs subvolume create /mnt/home
+            umount /mnt
+            mount /dev/mapper/cryptroot /mnt -o discard,compress=zstd,subvol=/os
+            mkdir /mnt/home
+            mount /dev/mapper/cryptroot /mnt/home -o discard,compress=zstd,subvol=/home
+          '';
+        };
     };
 }
