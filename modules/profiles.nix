@@ -41,6 +41,7 @@ in
 
       environment.systemPackages = with pkgs; [
         brave
+        discord
         gimp
         ffmpeg
         mpv
