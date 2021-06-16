@@ -24,6 +24,7 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+    kernelParams = map (x: "video=DP-${x}:1280x720@60") [ "0" "1" "2" ];
   };
 
   fileSystems = {
