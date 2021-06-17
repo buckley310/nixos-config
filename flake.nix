@@ -28,6 +28,7 @@
         with (import nixpkgs { system = "x86_64-linux"; });
         {
           binaryninja = callPackage ./pkgs/binary-ninja-personal { };
+          packettracer = callPackage ./pkgs/packettracer { };
         };
 
       apps."x86_64-linux" =
