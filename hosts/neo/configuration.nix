@@ -14,28 +14,6 @@
     vmware-horizon-client
     wine
     winetricks
-
-    (writeShellScriptBin "work" ''
-      xrandr \
-      --output DisplayPort-0 --mode 2560x1440 -r 144 --pos 0x0 \
-      --output DisplayPort-1 --mode 2560x1440 -r 144 --pos 2560x0 \
-      --output DisplayPort-2 --off \
-      --output HDMI-A-0      --off \
-    '')
-    (writeShellScriptBin "game" ''
-      xrandr \
-      --output DisplayPort-0 --mode 2560x1440 -r 165 --pos 0x0 \
-      --output DisplayPort-1 --off \
-      --output DisplayPort-2 --off \
-      --output HDMI-A-0      --off \
-    '')
-    (writeShellScriptBin "tv" ''
-      xrandr \
-      --output DisplayPort-0 --off \
-      --output DisplayPort-1 --off \
-      --output DisplayPort-2 --off \
-      --output HDMI-A-0      --mode 1920x1080 -r 60 --pos 0x0 \
-    '')
   ];
 
   services = {
