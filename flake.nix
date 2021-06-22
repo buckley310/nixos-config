@@ -25,14 +25,14 @@
       lib.getHosts = import lib/hosts.nix;
 
       packages."x86_64-linux" =
-        with (import nixpkgs { system = "x86_64-linux"; });
+        with nixpkgs.legacyPackages."x86_64-linux";
         {
           binaryninja = callPackage ./pkgs/binary-ninja-personal { };
           packettracer = callPackage ./pkgs/packettracer { };
         };
 
       apps."x86_64-linux" =
-        with (import nixpkgs { system = "x86_64-linux"; });
+        with nixpkgs.legacyPackages."x86_64-linux";
         {
           format-luks = writeShellScriptBin "format-luks" ''
             set -e
