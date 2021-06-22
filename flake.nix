@@ -28,7 +28,10 @@
         with nixpkgs.legacyPackages."x86_64-linux";
         {
           binaryninja = callPackage ./pkgs/binary-ninja-personal { };
+          commander-x16 = callPackage ./pkgs/commander-x16 { };
+          gef = callPackage ./pkgs/gef { };
           packettracer = callPackage ./pkgs/packettracer { };
+          weevely = callPackage ./pkgs/weevely { };
         };
 
       apps."x86_64-linux" =
