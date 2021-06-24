@@ -44,6 +44,7 @@ in
         discord
         gimp
         ffmpeg
+        youtube-dl
         mpv
         tdesktop
         element-desktop
