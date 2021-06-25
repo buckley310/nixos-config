@@ -24,6 +24,11 @@ let
           (hostMeta.module)
           (hardwareModules.${hostMeta.hardware})
           (_: { networking.hostName = hostName; })
+          (_: {
+            nixpkgs.overlays = [
+              (_: _: { unstable = callerInputs.unstable.legacyPackages.${hostMeta.system}; })
+            ];
+          })
         ];
       };
 
