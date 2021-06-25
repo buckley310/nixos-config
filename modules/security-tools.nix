@@ -7,25 +7,25 @@ in
 
   config = lib.mkIf cfg {
     environment.systemPackages = with pkgs; [
-      exiftool
-      burpsuite
-      nmap
-      masscan
       binutils
-      remmina
-      openvpn
-      socat
-      ghidra-bin
-      wfuzz
-      gobuster
-      dirb
-      pwndbg
-      thc-hydra
-      metasploit
       bridge-utils
-      macchanger
-      iptables-nftables-compat
+      burpsuite
       dhcpdump
+      dirb
+      exiftool
+      ghidra-bin
+      gobuster
+      iptables-nftables-compat
+      macchanger
+      masscan
+      metasploit
+      nmap
+      openvpn
+      pwndbg
+      remmina
+      socat
+      thc-hydra
+      wfuzz
 
       unstable.exploitdb
     ];
