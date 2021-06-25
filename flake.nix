@@ -22,20 +22,27 @@
 
       nixosConfigurations = self.lib.getHosts inputs ./hosts;
 
-      lib.getHosts = import lib/hosts.nix;
+      lib = {
+        getHosts = import lib/hosts.nix;
+        forAllSystems = f: builtins.listToAttrs (map
+          (name: { inherit name; value = f name; })
+          (nixpkgs.lib.platforms.all)
+        );
+      };
 
-      packages."x86_64-linux" =
-        with nixpkgs.legacyPackages."x86_64-linux";
+      packages = self.lib.forAllSystems (system:
+        with nixpkgs.legacyPackages.${system};
         {
           binaryninja = callPackage ./pkgs/binary-ninja-personal { };
           commander-x16 = callPackage ./pkgs/commander-x16 { };
           gef = callPackage ./pkgs/gef { };
           packettracer = callPackage ./pkgs/packettracer { };
           weevely = callPackage ./pkgs/weevely { };
-        };
+        }
+      );
 
-      apps."x86_64-linux" =
-        with nixpkgs.legacyPackages."x86_64-linux";
+      apps = self.lib.forAllSystems (system:
+        with nixpkgs.legacyPackages.${system};
         {
           format-luks = writeShellScriptBin "format-luks" ''
             set -e
@@ -52,6 +59,7 @@
             mkdir /mnt/home
             mount /dev/mapper/cryptroot /mnt/home -o discard,compress=zstd,subvol=/home
           '';
-        };
+        }
+      );
     };
 }
