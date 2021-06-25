@@ -27,19 +27,7 @@ in
       iptables-nftables-compat
       dhcpdump
 
-      (writeShellScriptBin "searchsploit" ''
-        set -e
-        (
-            cd ~/.cache
-            [ -e exploitdb ] || git clone https://github.com/offensive-security/exploitdb.git
-            cd exploitdb
-            if find .git -maxdepth 0 -cmin +60 | grep -q git
-            then
-                git pull
-            fi
-        )
-        exec ~/.cache/exploitdb/searchsploit "$@"
-      '')
+      unstable.exploitdb
     ];
 
     programs = {
