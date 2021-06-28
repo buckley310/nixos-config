@@ -13,6 +13,10 @@
   nixpkgs.config.allowUnfree = true;
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
 
+  environment.systemPackages = map
+    (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake github:buckley310/nixos-config"))
+    [ "switch" "build" "boot" ];
+
   systemd.tmpfiles.rules = [
     "e /nix/var/log - - - 30d"
     "e /home/sean/Downloads - - - 9d"

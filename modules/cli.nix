@@ -8,10 +8,6 @@ let
     "-git-assume-unchanged-size 0"
   ];
 
-  update-cmds = map
-    (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake github:buckley310/nixos-config"))
-    [ "switch" "build" "boot" ];
-
   system-rev = toString config.system.nixos.revision;
 
 in
@@ -86,7 +82,7 @@ in
       echo
     '')
 
-  ] ++ update-cmds;
+  ];
 
   environment.etc."pip.conf".text = ''
     [install]
