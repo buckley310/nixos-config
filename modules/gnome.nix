@@ -15,6 +15,8 @@ in
       desktopManager.gnome.enable = true;
     };
 
+    services.colord.enable = false;
+
     environment.systemPackages = with pkgs; [
       gnome3.gnome-tweaks
       gnomeExtensions.appindicator
