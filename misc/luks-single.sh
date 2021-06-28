@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-set -e
-read -p "Path to new LUKS device: " blkdev
-set -x
+set -ex
 
-cryptsetup -y -v luksFormat "$blkdev"
-cryptsetup --allow-discards open "$blkdev" cryptroot
+cryptsetup -y -v luksFormat "/dev/disk/by-partlabel/_root"
+cryptsetup --allow-discards open "/dev/disk/by-partlabel/_root" cryptroot
 
 mkfs.btrfs -f -L_root /dev/mapper/cryptroot
 mount /dev/disk/by-label/_root /mnt -o discard,compress=zstd:1
