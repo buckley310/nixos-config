@@ -3,8 +3,8 @@ let
   src = fetchFromGitHub {
     owner = "hugsy";
     repo = "gef";
-    rev = "2021.04";
-    sha256 = "sha256-nxwVaUFtFlDFWCUpXPh4FOuqMJ+COsOZv9IyKZ6dvg8=";
+    rev = "2021.07";
+    sha256 = "zKn3yS9h8bzjsb/iPgNU8g5IgXFBaKvM7osTqzzv16s=";
   };
 
 in
