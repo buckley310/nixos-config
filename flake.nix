@@ -8,6 +8,7 @@
         baseline = ./modules/baseline.nix;
         cli = ./modules/cli.nix;
         gnome = ./modules/gnome.nix;
+        mouse-dpi = ./modules/mouse-dpi.nix;
         phpipam = ./modules/phpipam.nix;
         pipewire = ./modules/pipewire.nix;
         profiles = ./modules/profiles.nix;
