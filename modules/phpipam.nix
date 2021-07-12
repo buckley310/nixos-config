@@ -21,6 +21,12 @@ let
     '';
   };
 
+  cronScripts = {
+    phpipam_ping = "exec ${pkgs.php}/bin/php ${phpipamHtdocs}/functions/scripts/pingCheck.php";
+    phpipam_remove_offline = "exec ${pkgs.php}/bin/php ${phpipamHtdocs}/functions/scripts/remove_offline_addresses.php";
+    phpipam_discovery = "exec ${pkgs.php}/bin/php ${phpipamHtdocs}/functions/scripts/discoveryCheck.php";
+  };
+
 in
 {
   options.sconfig.phpipam = {
@@ -51,20 +57,18 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    systemd.services = {
-      phpipam_ping = {
-        script = "exec ${pkgs.php}/bin/php ${phpipamHtdocs}/functions/scripts/pingCheck.php";
+    systemd.services = builtins.mapAttrs
+      (_: script: {
+        inherit script;
         environment.IPAM_DATABASE_USER = "nginx";
         serviceConfig.User = "nginx";
         startAt = "*:0/15";
-      };
-      phpipam_discovery = {
-        script = "exec ${pkgs.php}/bin/php ${phpipamHtdocs}/functions/scripts/discoveryCheck.php";
-        environment.IPAM_DATABASE_USER = "nginx";
-        serviceConfig.User = "nginx";
-        startAt = "*:0/15";
-      };
-    };
+      })
+      cronScripts;
+
+    systemd.timers = builtins.mapAttrs
+      (_: _: { timerConfig.RandomizedDelaySec = 600; })
+      cronScripts;
 
     services = {
 
