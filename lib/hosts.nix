@@ -8,7 +8,10 @@ let
   hardwareModules =
     {
       physical = (x: { imports = [ "${x.modulesPath}/installer/scan/not-detected.nix" ]; });
-      vmware = (x: { virtualisation.vmware.guest.enable = true; });
+      vmware = (x: {
+        virtualisation.vmware.guest.enable = true;
+        boot.initrd.availableKernelModules = [ "mptspi" ];
+      });
       qemu = (x: {
         services.qemuGuest.enable = true;
         imports = [ "${x.modulesPath}/profiles/qemu-guest.nix" ];
