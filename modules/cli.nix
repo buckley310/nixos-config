@@ -18,6 +18,7 @@ in
     tree
     psmisc
     ncdu
+    du-dust
     git
     file
     sqlite
