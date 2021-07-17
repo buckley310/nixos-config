@@ -13,33 +13,33 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    pwgen
-    pv
-    tree
-    psmisc
-    ncdu
+    dnsutils
     du-dust
-    git
-    file
-    sqlite
-    usbutils
     entr
+    file
     gcc
-    python3
-    openssl
-    wget
-    lm_sensors
+    git
     htop
     jq
-    zip
-    unzip
-    dnsutils
-    whois
-    tcpdump
-    rsync
-    nixpkgs-fmt
+    lm_sensors
+    ncdu
     nix-index
     nix-top
+    nixpkgs-fmt
+    openssl
+    psmisc
+    pv
+    pwgen
+    python3
+    rsync
+    sqlite
+    tcpdump
+    tree
+    unzip
+    usbutils
+    wget
+    whois
+    zip
 
     (writeShellScriptBin "dirt" "while sleep 1; do grep '^Dirty:' /proc/meminfo ; done")
 
