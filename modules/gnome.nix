@@ -22,6 +22,7 @@ in
       gnomeExtensions.appindicator
       gnomeExtensions.dash-to-dock
       gnomeExtensions.dash-to-panel
+      gnomeExtensions.sound-output-device-chooser
       numix-icon-theme
       qemu_kvm
 
