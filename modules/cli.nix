@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, modulesPath, ... }:
 let
   powerlineOpts = [
     "-mode=flat"
@@ -88,6 +88,8 @@ in
 
   environment.variables.PLGO_HOSTNAMEFG = "0";
   environment.variables.PLGO_HOSTNAMEBG = "114";
+
+  nix.nixPath = [ "nixpkgs=${modulesPath}/../.." ];
 
   programs.tmux = {
     enable = true;

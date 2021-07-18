@@ -1,4 +1,4 @@
-{ config, pkgs, modulesPath, ... }:
+{ config, pkgs, ... }:
 {
   time.timeZone = "US/Eastern";
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
@@ -29,7 +29,6 @@
   nix = {
     daemonNiceLevel = 19;
     daemonIONiceLevel = 7;
-    nixPath = [ "nixpkgs=${modulesPath}/../.." ];
     package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
