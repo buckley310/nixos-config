@@ -11,6 +11,7 @@
         mouse-dpi = ./modules/mouse-dpi.nix;
         phpipam = ./modules/phpipam.nix;
         pipewire = ./modules/pipewire.nix;
+        plasma = ./modules/plasma.nix;
         profiles = ./modules/profiles.nix;
         scansnap_s1300 = ./modules/scansnap_s1300.nix;
         scroll-boost = ./modules/scroll-boost;
