@@ -45,7 +45,6 @@ in
         gimp
         ffmpeg
         youtube-dl
-        mpv
         tdesktop
         element-desktop
         pavucontrol
@@ -55,6 +54,8 @@ in
 
         pkgs.opensc
         (pkgs.writeShellScriptBin "mfa" "exec ssh-add -s${pkcslib}")
+
+        (mpv-with-scripts.override { scripts = [ mpvScripts.mpris ]; })
 
         (vscode-with-extensions.override {
           vscode = vscodium;
