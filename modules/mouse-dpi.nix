@@ -4,6 +4,7 @@ let
     "SteelSeries SteelSeries Aerox 3 Wireless" = "800@1000";
     "Logitech G Pro Gaming Mouse" = "800@1000";
     "Logitech G305" = "800@1000";
+    "Glorious Model O" = "800@1000";
   };
 in
 {
