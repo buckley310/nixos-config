@@ -79,7 +79,14 @@ in
       echo
     '')
 
+    (runCommand "nixpkgs" { } ''
+      mkdir -p $out/share
+      ln -s ${modulesPath}/../.. $out/share/nixpkgs
+    '')
+
   ];
+
+  nix.nixPath = [ "nixpkgs=/run/current-system/sw/share/nixpkgs" ];
 
   environment.etc."pip.conf".text = ''
     [install]
@@ -88,8 +95,6 @@ in
 
   environment.variables.PLGO_HOSTNAMEFG = "0";
   environment.variables.PLGO_HOSTNAMEBG = "114";
-
-  nix.nixPath = [ "nixpkgs=${modulesPath}/../.." ];
 
   programs.tmux = {
     enable = true;
