@@ -1,4 +1,4 @@
-{ config, pkgs, lib, modulesPath, ... }:
+{ config, pkgs, lib, ... }:
 let
   powerlineOpts = [
     "-mode=flat"
@@ -79,14 +79,7 @@ in
       echo
     '')
 
-    (runCommand "nixpkgs" { } ''
-      mkdir -p $out/share
-      ln -s ${modulesPath}/../.. $out/share/nixpkgs
-    '')
-
   ];
-
-  nix.nixPath = [ "nixpkgs=/run/current-system/sw/share/nixpkgs" ];
 
   environment.etc."pip.conf".text = ''
     [install]
