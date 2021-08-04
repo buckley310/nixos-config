@@ -16,6 +16,7 @@ in
 
     (mkIf (cfg == "server") {
       services.openssh.enable = true;
+      services.openssh.startWhenNeeded = true;
       documentation.nixos.enable = false;
       nix.gc = {
         automatic = true;
