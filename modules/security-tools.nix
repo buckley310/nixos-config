@@ -18,6 +18,7 @@ in
       iptables-nftables-compat
       macchanger
       masscan
+      metasploit
       nmap
       openvpn
       pwndbg
@@ -27,7 +28,6 @@ in
       wfuzz
 
       unstable.exploitdb
-      unstable.metasploit
     ];
 
     programs = {
