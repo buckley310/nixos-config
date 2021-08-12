@@ -35,6 +35,10 @@ in
   zramSwap.enable = true;
 
   networking.hostId = builtins.substring 0 8 (builtins.hashString "md5" config.networking.hostName);
+  networking.networkmanager.extraConfig = ''
+    [connection]
+    ipv4.dns-priority=101
+  '';
 
   nix = {
     daemonNiceLevel = 19;
