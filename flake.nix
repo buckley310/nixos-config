@@ -36,12 +36,15 @@
       packages = self.lib.forAllSystems (system:
         with nixpkgs.legacyPackages.${system};
         {
-          binaryninja = callPackage ./pkgs/binary-ninja-personal { };
           commander-x16 = callPackage ./pkgs/commander-x16 { };
           gef = callPackage ./pkgs/gef { };
-          packettracer = callPackage ./pkgs/packettracer { };
           weevely = callPackage ./pkgs/weevely { };
         }
+        // (if system != "x86_64-linux" then { } else
+        {
+          binaryninja = callPackage ./pkgs/binary-ninja-personal { };
+          packettracer = callPackage ./pkgs/packettracer { };
+        })
       );
 
       apps = self.lib.forAllSystems (system:
