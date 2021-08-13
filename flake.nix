@@ -1,10 +1,13 @@
 {
   inputs.nixpkgs.url = "nixpkgs/nixos-21.05";
   inputs.unstable.url = "nixpkgs/nixos-unstable";
+  inputs.impermanence.url = "github:nix-community/impermanence";
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, impermanence, ... }@inputs:
     {
       nixosModules = {
+        inherit (impermanence.nixosModules) impermanence;
+
         baseline = import ./modules/baseline.nix;
         cli = import ./modules/cli.nix;
         gnome = import ./modules/gnome.nix;
