@@ -29,7 +29,7 @@
         getHosts = import lib/hosts.nix;
         forAllSystems = f: builtins.listToAttrs (map
           (name: { inherit name; value = f name; })
-          (nixpkgs.lib.platforms.all)
+          [ "aarch64-linux" "i686-linux" "x86_64-linux" ]
         );
       };
 
