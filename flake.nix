@@ -5,20 +5,20 @@
   outputs = { self, nixpkgs, ... }@inputs:
     {
       nixosModules = {
-        baseline = ./modules/baseline.nix;
-        cli = ./modules/cli.nix;
-        gnome = ./modules/gnome.nix;
-        gnome-monitor-settings-tweak = ./modules/gnome-monitor-settings-tweak;
-        mouse-dpi = ./modules/mouse-dpi.nix;
-        phpipam = ./modules/phpipam.nix;
-        pipewire = ./modules/pipewire.nix;
-        plasma = ./modules/plasma.nix;
-        profiles = ./modules/profiles.nix;
-        scansnap_s1300 = ./modules/scansnap_s1300.nix;
-        scroll-boost = ./modules/scroll-boost;
-        security-tools = ./modules/security-tools.nix;
-        status-on-console = ./modules/status-on-console.nix;
-        sway = ./modules/sway.nix;
+        baseline = import ./modules/baseline.nix;
+        cli = import ./modules/cli.nix;
+        gnome = import ./modules/gnome.nix;
+        gnome-monitor-settings-tweak = import ./modules/gnome-monitor-settings-tweak;
+        mouse-dpi = import ./modules/mouse-dpi.nix;
+        phpipam = import ./modules/phpipam.nix;
+        pipewire = import ./modules/pipewire.nix;
+        plasma = import ./modules/plasma.nix;
+        profiles = import ./modules/profiles.nix;
+        scansnap_s1300 = import ./modules/scansnap_s1300.nix;
+        scroll-boost = import ./modules/scroll-boost;
+        security-tools = import ./modules/security-tools.nix;
+        status-on-console = import ./modules/status-on-console.nix;
+        sway = import ./modules/sway.nix;
       };
 
       nixosModule = { ... }: { imports = builtins.attrValues self.nixosModules; };
