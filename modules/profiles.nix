@@ -87,6 +87,24 @@ in
 
       ];
 
+      environment.etc."vscode-user-settings.json".text =
+        "//usr/bin/env ln -sf $0 ~/.config/VSCodium/User/settings.json; exit 0"
+        + "\n" + builtins.toJSON {
+          "editor.renderFinalNewline" = false;
+          "editor.scrollBeyondLastLine" = false;
+          "extensions.autoCheckUpdates" = false;
+          "extensions.autoUpdate" = false;
+          "files.insertFinalNewline" = true;
+          "files.trimFinalNewlines" = true;
+          "git.confirmSync" = false;
+          "python.showStartPage" = false;
+          "terminal.integrated.fontFamily" = "Liberation Mono";
+          "update.mode" = "none";
+          "update.showReleaseNotes" = false;
+          "window.menuBarVisibility" = "hidden";
+          "workbench.startupEditor" = "none";
+        };
+
       programs.steam.enable = true;
 
       virtualisation.docker = { enable = true; enableOnBoot = false; };
