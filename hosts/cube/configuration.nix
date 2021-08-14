@@ -29,6 +29,10 @@
 
   services.openssh.enable = true;
 
+  users.mutableUsers = false;
+  users.users.sean.passwordFile = "/persist/shadow/sean";
+  users.users.root.passwordFile = "/persist/shadow/sean";
+
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -39,7 +43,7 @@
     "/" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "mode=755" ]; };
     "/boot" = { device = "/dev/disk/by-partlabel/_esp"; fsType = "vfat"; };
     "/nix" = { device = "cube/locker/nix"; fsType = "zfs"; };
-    "/persist" = { device = "cube/locker/persist"; fsType = "zfs"; };
+    "/persist" = { device = "cube/locker/persist"; fsType = "zfs"; neededForBoot = true; };
   };
 
   system.stateVersion = "21.05";
