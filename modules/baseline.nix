@@ -1,9 +1,4 @@
 { config, pkgs, ... }:
-let
-  sc-scripts = map
-    (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake github:buckley310/nixos-config"))
-    [ "switch" "build" "boot" ];
-in
 {
   time.timeZone = "US/Eastern";
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
@@ -18,14 +13,12 @@ in
   nixpkgs.config.allowUnfree = true;
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
 
-  environment.systemPackages = sc-scripts ++ [
-    (pkgs.runCommand "nixpkgs" { } ''
-      mkdir -p $out/share
-      ln -s ${pkgs.path} $out/share/nixpkgs
-    '')
-  ];
+  environment.etc.nixpkgs.source = pkgs.path;
+  environment.systemPackages = map
+    (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake github:buckley310/nixos-config"))
+    [ "switch" "build" "boot" ];
 
-  nix.nixPath = [ "nixpkgs=/run/current-system/sw/share/nixpkgs" ];
+  nix.nixPath = [ "nixpkgs=/etc/nixpkgs" ];
 
   systemd.tmpfiles.rules = [
     "e /nix/var/log - - - 30d"
