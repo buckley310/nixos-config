@@ -31,7 +31,6 @@ stdenv.mkDerivation {
     mkdir -p "$out/bin"
     makeWrapper "${gdb}/bin/gdb" "$out/bin/gef" \
         --suffix PYTHONPATH : "${optionals}" \
-        --add-flags "-x ${src}/gef.py" \
-        --add-flags "-ex 'gef config context.clear_screen 0'"
+        --add-flags "-x ${src}/gef.py"
   '';
 }
