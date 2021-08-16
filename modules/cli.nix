@@ -45,9 +45,7 @@ in
 
     (writeShellScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
 
-    (writeShellScriptBin "pip_install" ''
-      exec nix shell 'nixpkgs/${system-rev}#python3.pkgs.pip' --command pip install --user -UI pip setuptools
-    '')
+    (writeShellScriptBin "pip-install" "exec python -m ensurepip --user")
 
     (writeShellScriptBin "nixos-check-reboot" ''
       set -e
