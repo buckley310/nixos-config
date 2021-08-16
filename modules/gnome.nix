@@ -13,6 +13,7 @@ in
       displayManager.gdm.enable = true;
       displayManager.gdm.autoSuspend = false;
       desktopManager.gnome.enable = true;
+      displayManager.defaultSession = "gnome-xorg";
     };
 
     services.colord.enable = false;
