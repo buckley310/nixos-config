@@ -13,6 +13,7 @@ in
       dhcpdump
       dirb
       exiftool
+      gef
       ghidra-bin
       gobuster
       iptables-nftables-compat
@@ -21,7 +22,6 @@ in
       metasploit
       nmap
       openvpn
-      pwndbg
       remmina
       socat
       thc-hydra

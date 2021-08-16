@@ -24,7 +24,14 @@
         sway = import ./modules/sway.nix;
       };
 
-      nixosModule = { ... }: { imports = builtins.attrValues self.nixosModules; };
+      nixosModule = { pkgs, ... }: {
+        imports = builtins.attrValues self.nixosModules;
+        nixpkgs.overlays = [
+          (_: _: {
+            gef = pkgs.callPackage ./pkgs/gef { };
+          })
+        ];
+      };
 
       nixosConfigurations = self.lib.getHosts inputs ./hosts;
 
