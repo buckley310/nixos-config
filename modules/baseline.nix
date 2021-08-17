@@ -13,12 +13,9 @@
   nixpkgs.config.allowUnfree = true;
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
 
-  environment.etc.nixpkgs.source = pkgs.path;
   environment.systemPackages = map
     (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake github:buckley310/nixos-config"))
     [ "switch" "build" "boot" ];
-
-  nix.nixPath = [ "nixpkgs=/etc/nixpkgs" ];
 
   systemd.tmpfiles.rules = [
     "e /nix/var/log - - - 30d"
