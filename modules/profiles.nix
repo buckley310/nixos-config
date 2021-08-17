@@ -98,6 +98,9 @@ in
           "files.trimFinalNewlines" = true;
           "git.confirmSync" = false;
           "python.showStartPage" = false;
+          "security.workspace.trust.banner" = "never";
+          "security.workspace.trust.startupPrompt" = "never";
+          "security.workspace.trust.untrustedFiles" = "newWindow";
           "terminal.integrated.fontFamily" = "Liberation Mono";
           "update.mode" = "none";
           "update.showReleaseNotes" = false;
