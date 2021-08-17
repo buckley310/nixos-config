@@ -34,6 +34,7 @@ in
     rsync
     sqlite
     tcpdump
+    inetutils
     tree
     unzip
     usbutils
