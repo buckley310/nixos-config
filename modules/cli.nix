@@ -99,7 +99,6 @@ in
   programs.bash.interactiveShellInit = ''
     stty -ixon
     alias p=python3
-    alias tmp='cd "$(TMPDIR=$XDG_RUNTIME_DIR mktemp -d)"'
     alias catc='${pkgs.vimpager-latest}/bin/vimpager --force-passthrough'
     alias nix-env="echo nix-env is disabled #"
 
