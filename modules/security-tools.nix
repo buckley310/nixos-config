@@ -22,6 +22,7 @@ in
       metasploit
       nmap
       openvpn
+      postman
       remmina
       socat
       thc-hydra
