@@ -29,6 +29,7 @@
         nixpkgs.overlays = [
           (_: _: {
             gef = pkgs.callPackage ./pkgs/gef { };
+            weevely = pkgs.callPackage ./pkgs/weevely { };
           })
         ];
       };
