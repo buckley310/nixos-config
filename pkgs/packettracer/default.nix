@@ -22,22 +22,19 @@
 , xlibs
 }:
 
-let
-  version = "8.0.0";
+assert stdenv.hostPlatform.system == "x86_64-linux";
 
-  srcName =
-    if stdenv.hostPlatform.system == "x86_64-linux" then
-      "PacketTracer_800_amd64_build212_final.deb"
-    else throw "Unsupported system: ${stdenv.hostPlatform.system}";
+let
+  version = "8.0.1";
 
   ptFiles = stdenv.mkDerivation {
     name = "PacketTracer";
     inherit version;
 
     src = fetchurl {
-      # This file was uploaded to archive.org by someone else, but I have verified the hash.
-      url = "https://archive.org/download/packet-tracer-800-build-212-mac-notarized/${srcName}";
-      sha256 = "c9a78f9d1ee63fa421d3c531e9e1c209e425ba84d78c8e606594e4e59df535c9";
+      # This file was uploaded by someone else, but I have verified the hash.
+      url = "https://archive.org/download/cisco-packet-tracer-801/CiscoPacketTracer_801_Ubuntu_64bit.deb";
+      sha256 = "77a25351b016faed7c78959819c16c7013caa89c6b1872cb888cd96edd259140";
     };
 
     nativeBuildInputs = [
