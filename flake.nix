@@ -4,6 +4,19 @@
   inputs.impermanence.url = "github:nix-community/impermanence";
 
   outputs = { self, nixpkgs, impermanence, ... }@inputs:
+    let
+      mypkgs = pkgs:
+        {
+          commander-x16 = pkgs.callPackage ./pkgs/commander-x16 { };
+          gef = pkgs.callPackage ./pkgs/gef { };
+          weevely = pkgs.callPackage ./pkgs/weevely { };
+        }
+        // (if pkgs.system != "x86_64-linux" then { } else
+        {
+          binaryninja = pkgs.callPackage ./pkgs/binary-ninja-personal { };
+          packettracer = pkgs.callPackage ./pkgs/packettracer { };
+        });
+    in
     {
       nixosModules = {
         inherit (impermanence.nixosModules) impermanence;
@@ -26,12 +39,7 @@
 
       nixosModule = { pkgs, ... }: {
         imports = builtins.attrValues self.nixosModules;
-        nixpkgs.overlays = [
-          (_: _: {
-            gef = pkgs.callPackage ./pkgs/gef { };
-            weevely = pkgs.callPackage ./pkgs/weevely { };
-          })
-        ];
+        nixpkgs.overlays = [ (_: mypkgs) ];
       };
 
       nixosConfigurations = self.lib.getHosts inputs ./hosts;
@@ -44,19 +52,8 @@
         );
       };
 
-      packages = self.lib.forAllSystems (system:
-        with nixpkgs.legacyPackages.${system};
-        {
-          commander-x16 = callPackage ./pkgs/commander-x16 { };
-          gef = callPackage ./pkgs/gef { };
-          weevely = callPackage ./pkgs/weevely { };
-        }
-        // (if system != "x86_64-linux" then { } else
-        {
-          binaryninja = callPackage ./pkgs/binary-ninja-personal { };
-          packettracer = callPackage ./pkgs/packettracer { };
-        })
-      );
+      packages = self.lib.forAllSystems
+        (system: mypkgs nixpkgs.legacyPackages.${system});
 
       apps = self.lib.forAllSystems (system:
         with nixpkgs.legacyPackages.${system};
