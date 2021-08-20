@@ -48,7 +48,7 @@
         getHosts = import lib/hosts.nix;
         forAllSystems = f: builtins.listToAttrs (map
           (name: { inherit name; value = f name; })
-          [ "aarch64-linux" "i686-linux" "x86_64-linux" ]
+          (builtins.attrNames nixpkgs.legacyPackages)
         );
       };
 
