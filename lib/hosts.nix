@@ -1,9 +1,9 @@
-callerInputs: hostsPath:
+{ path, nixosModule, unstable, ... }@inputs:
 let
 
   hostMetadata = builtins.mapAttrs
-    (name: _: import (hostsPath + "/${name}"))
-    (builtins.readDir hostsPath);
+    (name: _: import (path + "/${name}"))
+    (builtins.readDir path);
 
   hardwareModules =
     {
@@ -19,17 +19,17 @@ let
     };
 
   getHostConfig = hostName: hostMeta:
-    callerInputs.${hostMeta.pkgs}.lib.nixosSystem
+    inputs.${hostMeta.pkgs}.lib.nixosSystem
       {
         inherit (hostMeta) system;
         modules = [
-          (callerInputs.self.nixosModule)
+          (nixosModule)
           (hostMeta.module)
           (hardwareModules.${hostMeta.hardware})
           (_: { networking.hostName = hostName; })
           (_: {
             nixpkgs.overlays = [
-              (_: _: { unstable = callerInputs.unstable.legacyPackages.${hostMeta.system}; })
+              (_: _: { unstable = unstable.legacyPackages.${hostMeta.system}; })
             ];
           })
         ];

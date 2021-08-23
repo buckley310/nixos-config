@@ -3,7 +3,7 @@
   inputs.unstable.url = "nixpkgs/nixos-unstable";
   inputs.impermanence.url = "github:nix-community/impermanence";
 
-  outputs = { self, nixpkgs, impermanence, ... }@inputs:
+  outputs = { self, nixpkgs, unstable, impermanence, ... }:
     let
       mypkgs = pkgs:
         {
@@ -42,7 +42,11 @@
         nixpkgs.overlays = [ (_: mypkgs) ];
       };
 
-      nixosConfigurations = self.lib.getHosts inputs ./hosts;
+      nixosConfigurations = self.lib.getHosts {
+        path = ./hosts;
+        inherit nixpkgs unstable;
+        inherit (self) nixosModule;
+      };
 
       lib = {
         getHosts = import lib/hosts.nix;
