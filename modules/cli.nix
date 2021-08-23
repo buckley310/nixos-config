@@ -13,6 +13,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    darkhttpd
     dnsutils
     du-dust
     entr
