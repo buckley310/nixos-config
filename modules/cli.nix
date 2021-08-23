@@ -21,6 +21,7 @@ in
     gcc
     git
     htop
+    inetutils
     jq
     lm_sensors
     ncdu
@@ -35,7 +36,6 @@ in
     rsync
     sqlite
     tcpdump
-    inetutils
     tree
     unzip
     usbutils
