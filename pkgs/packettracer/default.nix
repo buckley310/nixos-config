@@ -1,7 +1,7 @@
 { stdenv
 , alsaLib
 , autoPatchelfHook
-, buildFHSUserEnv
+, buildFHSUserEnvBubblewrap
 , dbus
 , dpkg
 , expat
@@ -20,6 +20,9 @@
 , nspr
 , nss
 , xlibs
+
+, blockInternet ? true
+
 }:
 
 assert stdenv.hostPlatform.system == "x86_64-linux";
@@ -95,8 +98,9 @@ let
   };
 
 in
-buildFHSUserEnv {
+buildFHSUserEnvBubblewrap {
   name = "packettracer";
+  unshareNet = blockInternet;
   runScript = "${ptFiles}/bin/packettracer";
   targetPkgs = pkgs: [ libudev0-shim ];
 
