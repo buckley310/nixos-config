@@ -43,17 +43,17 @@ in
       environment.systemPackages = with pkgs; [
         brave
         discord
-        gimp
-        ffmpeg
-        youtube-dl
-        tdesktop
         element-desktop
-        pavucontrol
-        gnome3.dconf-editor
+        ffmpeg
+        gimp
         glxinfo
+        gnome3.dconf-editor
+        opensc
+        pavucontrol
         steam-run
+        tdesktop
+        youtube-dl
 
-        pkgs.opensc
         (pkgs.writeShellScriptBin "mfa" "exec ssh-add -s${pkcslib}")
 
         (mpv-with-scripts.override { scripts = [ mpvScripts.mpris ]; })
