@@ -52,6 +52,7 @@ in
         pavucontrol
         steam-run
         tdesktop
+        terminator
         youtube-dl
 
         (pkgs.writeShellScriptBin "mfa" "exec ssh-add -s${pkcslib}")
