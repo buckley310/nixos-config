@@ -114,9 +114,20 @@ in
     viAlias = true;
     vimAlias = true;
     configure = {
-      packages.sconfig.start = [ pkgs.vimPlugins.vim-nix ];
+      packages.sconfig.start = with pkgs.vimPlugins; [
+        vim-gitgutter
+        vim-nix
+      ];
       customRC = ''
-        set list nowrap scrolloff=9
+        set encoding=utf-8
+        scriptencoding utf-8
+        set list nowrap scrolloff=9 updatetime=300 number
+        highlight GitGutterAdd    ctermfg=10
+        highlight GitGutterChange ctermfg=11
+        highlight GitGutterDelete ctermfg=9
+        let g:gitgutter_sign_removed = '◣'
+        let g:gitgutter_sign_removed_first_line = '◤'
+        let g:gitgutter_sign_modified_removed = '~~'
       '';
     };
   };
