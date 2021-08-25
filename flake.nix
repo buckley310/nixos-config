@@ -23,6 +23,7 @@
 
         baseline = import ./modules/baseline.nix;
         cli = import ./modules/cli.nix;
+        desktop = import ./modules/desktop.nix;
         gnome = import ./modules/gnome.nix;
         gnome-monitor-settings-tweak = import ./modules/gnome-monitor-settings-tweak;
         mouse-dpi = import ./modules/mouse-dpi.nix;
@@ -33,6 +34,7 @@
         scansnap_s1300 = import ./modules/scansnap_s1300.nix;
         scroll-boost = import ./modules/scroll-boost;
         security-tools = import ./modules/security-tools.nix;
+        server = import ./modules/server.nix;
         status-on-console = import ./modules/status-on-console.nix;
         sway = import ./modules/sway.nix;
       };
