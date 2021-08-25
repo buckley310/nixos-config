@@ -116,7 +116,7 @@ in
     configure = {
       packages.sconfig.start = [ pkgs.vimPlugins.vim-nix ];
       customRC = ''
-        set nowrap scrolloff=9
+        set list nowrap scrolloff=9
       '';
     };
   };
