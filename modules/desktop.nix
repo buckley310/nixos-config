@@ -31,7 +31,6 @@ in
       pavucontrol
       steam-run
       tdesktop
-      terminator
       youtube-dl
 
       (pkgs.writeShellScriptBin "mfa" "exec ssh-add -s${pkcslib}")
@@ -66,19 +65,6 @@ in
       })
 
     ];
-
-    environment.etc."terminator/config".text = ''
-      [global_config]
-        inactive_color_offset = 1.0
-
-      [profiles]
-        [[default]]
-          font = Monospace 12
-          use_system_font = False
-          use_theme_colors = True
-
-      # ln -s /etc/terminator ~/.config/terminator
-    '';
 
     environment.etc."vscode-user-settings.json".text =
       "//usr/bin/env ln -sf $0 ~/.config/VSCodium/User/settings.json; exit 0"
