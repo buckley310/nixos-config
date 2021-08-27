@@ -70,7 +70,6 @@ in
       "//usr/bin/env ln -sf $0 ~/.config/VSCodium/User/settings.json; exit 0"
       + "\n" + builtins.toJSON {
         "editor.renderFinalNewline" = false;
-        "editor.scrollBeyondLastLine" = false;
         "extensions.autoCheckUpdates" = false;
         "extensions.autoUpdate" = false;
         "files.insertFinalNewline" = true;
