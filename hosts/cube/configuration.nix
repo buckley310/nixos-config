@@ -6,6 +6,11 @@
     security-tools = true;
   };
 
+  environment.etc."sway/config.d/sconfig.conf".source = pkgs.writeText "sway.conf" ''
+    output DP-1 position    0 0 resolution 2560x1440@165Hz
+    output DP-2 position 2560 0 resolution 2560x1440@165Hz
+  '';
+
   environment.persistence."/persist" = {
     files = [
       "/etc/machine-id"
