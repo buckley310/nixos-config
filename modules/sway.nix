@@ -25,8 +25,6 @@ in
         cat '${pkgs.sway}/etc/sway/config'
         cat <<"  EOF"
           include /etc/sway/config.d/*
-          output DP-1 position    0 0 resolution 2560x1440@165Hz
-          output DP-2 position 2560 0 resolution 2560x1440@165Hz
         EOF
       )|
       sed 's/position top//' |
