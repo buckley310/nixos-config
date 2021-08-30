@@ -4,6 +4,10 @@
     gnome = true;
     profile = "desktop";
     security-tools = true;
+    i3.extraConfig = ''
+      exec xrandr --output DisplayPort-0 --mode 2560x1440 --rate 165
+      exec xrandr --output DisplayPort-1 --mode 2560x1440 --rate 165
+    '';
   };
 
   environment.etc."sway/config.d/sconfig.conf".source = pkgs.writeText "sway.conf" ''

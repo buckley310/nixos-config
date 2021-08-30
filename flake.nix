@@ -26,6 +26,7 @@
         desktop = import ./modules/desktop.nix;
         gnome = import ./modules/gnome.nix;
         gnome-monitor-settings-tweak = import ./modules/gnome-monitor-settings-tweak;
+        i3 = import ./modules/i3;
         mouse-dpi = import ./modules/mouse-dpi.nix;
         phpipam = import ./modules/phpipam.nix;
         pipewire = import ./modules/pipewire.nix;
