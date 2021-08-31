@@ -35,20 +35,32 @@ in
       (
         cat '${pkgs.i3}/etc/i3/config' |
         sed 's/Mod1/Mod4/' |
-        sed 's/exec i3-config-wizard//' |
-        sed 's/^font/#font/' |
-        sed 's,status_command i3status,status_command i3status -c ${./i3status.conf},' |
+        sed 's/^exec i3-config-wizard/#&/' |
+        sed 's/^font.*/font pango:DejaVuSans, FontAwesome5Free 12/' |
+        sed 's,status_command i3status,status_command i3status-rs \n tray_output primary,' |
         sed 's/i3-sensible-terminal/alacritty/' |
         sed 's/10%/2%/'
         cat '${pkgs.writeText "i3extra" cfg.extraConfig}'
-        echo 'bindsym XF86MonBrightnessUp exec brightnessctl   -n500 -e s -- +10%'
-        echo 'bindsym XF86MonBrightnessDown exec brightnessctl -n500 -e s -- -10%'
       )|
       tee "$out"
     '';
 
+    sconfig.i3.extraConfig = ''
+      default_border normal 4
+      default_floating_border normal 4
+      bindsym Mod4+Escape kill
+      hide_edge_borders both
+      bindsym XF86MonBrightnessUp   exec brightnessctl -n500 -e s -- +10%
+      bindsym XF86MonBrightnessDown exec brightnessctl -n500 -e s -- -10%
+    '';
+
     services.gvfs.enable = true;
     networking.networkmanager.enable = true;
+
+    fonts.fonts = with pkgs; [
+      font-awesome
+      powerline-fonts
+    ];
 
     services.xserver = {
       enable = true;
@@ -57,6 +69,7 @@ in
     };
 
     environment.systemPackages = with pkgs; [
+      i3status-rust
       alacritty
       brightnessctl
       numix-icon-theme

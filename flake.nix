@@ -21,6 +21,7 @@
       nixosModules = {
         inherit (impermanence.nixosModules) impermanence;
 
+        alacritty = import ./modules/alacritty.nix;
         baseline = import ./modules/baseline.nix;
         cli = import ./modules/cli.nix;
         desktop = import ./modules/desktop.nix;
