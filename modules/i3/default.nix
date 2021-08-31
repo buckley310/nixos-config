@@ -19,6 +19,7 @@ in
         ln -sf /run/current-system/sw/share/icons/Yaru/cursor.theme ~/.local/share/icons/default/index.theme
         echo 'Xft.dpi: 96' > ~/.Xresources
         echo 'Xcursor.size: 24' >> ~/.Xresources
+        xsetroot -solid '#333333'
       '';
     };
 
@@ -40,6 +41,8 @@ in
         sed 's/i3-sensible-terminal/alacritty/' |
         sed 's/10%/2%/'
         cat '${pkgs.writeText "i3extra" cfg.extraConfig}'
+        echo 'bindsym XF86MonBrightnessUp exec brightnessctl   -n500 -e s -- +10%'
+        echo 'bindsym XF86MonBrightnessDown exec brightnessctl -n500 -e s -- -10%'
       )|
       tee "$out"
     '';
@@ -55,6 +58,7 @@ in
 
     environment.systemPackages = with pkgs; [
       alacritty
+      brightnessctl
       numix-icon-theme
       yaru-theme
       gnome3.networkmanagerapplet
