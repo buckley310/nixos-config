@@ -15,8 +15,6 @@ in
     services.xserver.windowManager.i3 = {
       enable = true;
       extraSessionCommands = ''
-        mkdir -p ~/.local/share/icons/default
-        ln -sf /run/current-system/sw/share/icons/Yaru/cursor.theme ~/.local/share/icons/default/index.theme
         echo 'Xft.dpi: 96' > ~/.Xresources
         echo 'Xcursor.size: 24' >> ~/.Xresources
         xsetroot -solid '#333333'
@@ -81,6 +79,11 @@ in
       xfce.thunar
       xfce.thunar-archive-plugin
       caffeine-ng
+
+      (runCommand "default_cursor" { } ''
+        mkdir -p $out/share/icons/default
+        ln -sf /run/current-system/sw/share/icons/Yaru/cursor.theme $out/share/icons/default/index.theme
+      '')
     ];
   };
 }
