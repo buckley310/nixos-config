@@ -15,8 +15,8 @@ in
     services.xserver.windowManager.i3 = {
       enable = true;
       extraSessionCommands = ''
-        echo 'Xft.dpi: 96' > ~/.Xresources
-        echo 'Xcursor.size: 24' >> ~/.Xresources
+        echo 'Xft.dpi: 96' | xrdb -merge
+        echo 'Xcursor.size: 24' | xrdb -merge
         xsetroot -solid '#333333'
       '';
     };
