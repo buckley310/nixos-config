@@ -19,6 +19,19 @@ in
         echo 'Xcursor.size: 24' | xrdb -merge
         xsetroot -solid '#333333'
       '';
+      configFile = pkgs.runCommand "i3config" { } ''
+        (
+          cat '${pkgs.i3}/etc/i3/config' |
+          sed 's/Mod1/Mod4/' |
+          sed 's/^exec i3-config-wizard/#&/' |
+          sed 's/^font.*/font pango:DejaVuSans, FontAwesome5Free 12/' |
+          sed 's,status_command i3status,status_command i3status-rs ${./i3srs.toml} \n tray_output primary,' |
+          sed 's/i3-sensible-terminal/alacritty/' |
+          sed 's/10%/2%/'
+          cat '${pkgs.writeText "i3extra" cfg.extraConfig}'
+        )|
+        tee "$out"
+      '';
     };
 
     hardware.pulseaudio.enable = true;
@@ -27,20 +40,6 @@ in
       [Settings]
       gtk-theme-name=Yaru-dark
       gtk-icon-theme-name=Numix
-    '';
-
-    environment.etc."i3/config".source = pkgs.runCommand "i3config" { } ''
-      (
-        cat '${pkgs.i3}/etc/i3/config' |
-        sed 's/Mod1/Mod4/' |
-        sed 's/^exec i3-config-wizard/#&/' |
-        sed 's/^font.*/font pango:DejaVuSans, FontAwesome5Free 12/' |
-        sed 's,status_command i3status,status_command i3status-rs \n tray_output primary,' |
-        sed 's/i3-sensible-terminal/alacritty/' |
-        sed 's/10%/2%/'
-        cat '${pkgs.writeText "i3extra" cfg.extraConfig}'
-      )|
-      tee "$out"
     '';
 
     sconfig.i3.extraConfig = ''
