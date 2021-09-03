@@ -62,6 +62,7 @@ in
     services.xserver = {
       enable = true;
       libinput.enable = true;
+      libinput.touchpad.naturalScrolling = true;
       displayManager.sddm.enable = true;
     };
 
