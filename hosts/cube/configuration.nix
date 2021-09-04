@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   sconfig = {
-    gnome = true;
+    i3.enable = true;
     profile = "desktop";
     security-tools = true;
     i3.extraConfig = ''
@@ -34,6 +34,8 @@
   environment.systemPackages = with pkgs; [
     wine
     vmware-horizon-client
+    (writeShellScriptBin "game" "exec xrandr --output DisplayPort-1 --off")
+    (writeShellScriptBin "work" "exec xrandr --output DisplayPort-1 --mode 2560x1440 --rate 165 --right-of DisplayPort-0")
   ];
 
   services.openssh.enable = true;
