@@ -25,7 +25,6 @@ in
       gnomeExtensions.dash-to-panel
       gnomeExtensions.sound-output-device-chooser
       numix-icon-theme
-      qemu_kvm
 
       (writeShellScriptBin "red" ''
         x="$(gsettings get org.gnome.settings-daemon.plugins.color night-light-enabled)"

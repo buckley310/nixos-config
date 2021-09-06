@@ -29,6 +29,7 @@ in
       gnome3.dconf-editor
       opensc
       pavucontrol
+      qemu_kvm
       steam-run
       tdesktop
       youtube-dl
