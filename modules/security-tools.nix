@@ -39,6 +39,7 @@ in
       macchanger
       masscan
       metasploit
+      net-snmp
       nmap
       openvpn
       postman
