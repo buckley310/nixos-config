@@ -14,6 +14,8 @@
       key_bindings:
       - { key: N, mods: Control|Shift, action: SpawnNewInstance }
       - { key: T, mods: Control|Shift, action: SpawnNewInstance }
+      - { key: PageUp,   mods: Shift, action: ScrollHalfPageUp }
+      - { key: PageDown, mods: Shift, action: ScrollHalfPageDown }
     '';
 
   };
