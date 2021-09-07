@@ -5,7 +5,7 @@
   };
 
   sconfig = {
-    i3.enable = true;
+    gnome = true;
     profile = "desktop";
     security-tools = true;
   };
