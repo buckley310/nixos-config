@@ -66,13 +66,9 @@
       apps = self.lib.forAllSystems (system:
         with nixpkgs.legacyPackages.${system};
         let
-          binScript = x: writeShellScriptBin "script" "exec ${x}";
           jupy = python3.withPackages (p: with p; [ jupyterlab ipython ]);
         in
         {
-          luks-mirror = binScript ./misc/luks-mirror.sh;
-          luks-single = binScript ./misc/luks-single.sh;
-
           jupyterlab = writeShellScriptBin "jupyterlab" ''
             exec ${jupy}/bin/python -m jupyterlab "$@"
           '';
