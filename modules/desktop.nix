@@ -82,6 +82,7 @@ in
         "security.workspace.trust.banner" = "never";
         "security.workspace.trust.startupPrompt" = "never";
         "security.workspace.trust.untrustedFiles" = "newWindow";
+        "terminal.external.linuxExec" = "x-terminal-emulator";
         "terminal.integrated.fontFamily" = "Liberation Mono";
         "update.mode" = "none";
         "update.showReleaseNotes" = false;

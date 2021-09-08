@@ -84,10 +84,9 @@ in
         ln -sf /run/current-system/sw/share/icons/Yaru/cursor.theme $out/share/icons/default/index.theme
       '')
 
-      # VScode's default terminal is "truecolor"
-      (runCommand "truecolor-term-alias" { } ''
+      (runCommand "x-terminal-emulator" { } ''
         mkdir -p $out/bin
-        ln -s ${alacritty}/bin/alacritty $out/bin/truecolor
+        ln -s ${alacritty}/bin/alacritty $out/bin/x-terminal-emulator
       '')
     ];
   };

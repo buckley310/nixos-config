@@ -26,6 +26,11 @@ in
       gnomeExtensions.sound-output-device-chooser
       numix-icon-theme
 
+      (runCommand "x-terminal-emulator" { } ''
+        mkdir -p $out/bin
+        ln -s ${gnome.gnome-terminal}/bin/gnome-terminal $out/bin/x-terminal-emulator
+      '')
+
       (writeShellScriptBin "red" ''
         x="$(gsettings get org.gnome.settings-daemon.plugins.color night-light-enabled)"
         [ "$x" = "true" ] && x=false || x=true
