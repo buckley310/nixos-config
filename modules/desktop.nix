@@ -9,6 +9,8 @@ in
     programs.ssh.startAgent = true;
     programs.ssh.agentPKCS11Whitelist = pkcslib;
 
+    sconfig.alacritty.enable = true;
+
     nixpkgs.overlays = [
       (self: super: {
         gnome = super.gnome // {

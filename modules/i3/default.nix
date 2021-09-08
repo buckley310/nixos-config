@@ -68,7 +68,6 @@ in
 
     environment.systemPackages = with pkgs; [
       unstable.i3status-rust # 21.11 version supports zfs ARC
-      alacritty
       brightnessctl
       numix-icon-theme
       yaru-theme

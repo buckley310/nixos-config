@@ -1,6 +1,14 @@
 { config, pkgs, lib, ... }:
+let
+  cfg = config.sconfig.alacritty;
+in
 {
-  config = {
+  options.sconfig.alacritty.enable = lib.mkEnableOption "Enable Alacritty";
+
+  config = lib.mkIf cfg.enable {
+
+    environment.systemPackages = [ pkgs.alacritty ];
+
     programs.bash.interactiveShellInit = ''
       function _set_title() {
         printf "\033]0;%s@%s:%s\007" "''${USER}" "''${HOSTNAME%%.*}" "''${PWD/#$HOME/\~}"
