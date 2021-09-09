@@ -9,6 +9,7 @@
         {
           commander-x16 = pkgs.callPackage ./pkgs/commander-x16 { };
           gef = pkgs.callPackage ./pkgs/gef { };
+          stretchy-spaces = pkgs.callPackage ./pkgs/stretchy-spaces { };
           weevely = pkgs.callPackage ./pkgs/weevely { };
         }
         // (if pkgs.system != "x86_64-linux" then { } else
