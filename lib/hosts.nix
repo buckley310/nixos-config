@@ -7,7 +7,9 @@ let
 
   hardwareModules =
     {
-      physical = (x: { imports = [ "${x.modulesPath}/installer/scan/not-detected.nix" ]; });
+      physical = (x: {
+        imports = [ "${x.modulesPath}/installer/scan/not-detected.nix" ];
+      });
       vmware = (x: {
         virtualisation.vmware.guest.enable = true;
         boot.initrd.availableKernelModules = [ "mptspi" ];
