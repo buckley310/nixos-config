@@ -42,7 +42,6 @@ in
       net-snmp
       nmap
       openvpn
-      postman
       proxybrowser
       remmina
       socat
