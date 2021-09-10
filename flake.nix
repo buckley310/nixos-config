@@ -55,6 +55,7 @@
 
       lib = {
         getHosts = import lib/hosts.nix;
+        morphHosts = import lib/morph.nix;
         forAllSystems = f: builtins.listToAttrs (map
           (name: { inherit name; value = f name; })
           (builtins.attrNames nixpkgs.legacyPackages)
