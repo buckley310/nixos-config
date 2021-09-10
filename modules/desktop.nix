@@ -79,6 +79,7 @@ in
         "files.insertFinalNewline" = true;
         "files.trimFinalNewlines" = true;
         "git.confirmSync" = false;
+        "python.formatting.autopep8Args" = [ "--max-line-length=999" ];
         "python.showStartPage" = false;
         "security.workspace.trust.banner" = "never";
         "security.workspace.trust.startupPrompt" = "never";
