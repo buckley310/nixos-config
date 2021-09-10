@@ -29,7 +29,12 @@ let
           (_: { networking.hostName = hostName; })
           (_: {
             nixpkgs.overlays = [
-              (_: _: { unstable = unstable.legacyPackages.${hostMeta.system}; })
+              (_: _: {
+                unstable = import unstable {
+                  inherit (hostMeta) system;
+                  config.allowUnfree = true;
+                };
+              })
             ];
           })
         ];
