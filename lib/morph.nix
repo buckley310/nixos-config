@@ -60,6 +60,7 @@ in
       );
 
       sshConfig = pkgs.writeText "ssh_config" ''
+        ServerAliveInterval 3
         StrictHostKeyChecking yes
         GlobalKnownHostsFile ${sshKnownHostsTxt}
       '';
