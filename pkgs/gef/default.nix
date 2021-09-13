@@ -8,7 +8,8 @@ let
     sha256 = "zKn3yS9h8bzjsb/iPgNU8g5IgXFBaKvM7osTqzzv16s=";
   };
 
-  reqs =
+  # exclude broken libraries
+  reqs = builtins.filter (x: false == (builtins.elem x [ "capstone" "ropper" ]))
     (builtins.filter (x: x != "")
       (lib.splitString "\n"
         (builtins.readFile "${src}/requirements.txt")));
