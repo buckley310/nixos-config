@@ -29,8 +29,6 @@
     ];
   };
 
-  networking.search = [ "bck.me" ];
-
   environment.systemPackages = with pkgs; [
     wine
     vmware-horizon-client

@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  networking.search = [ "bck.me" ];
-
   sconfig = {
     profile = "desktop";
     gnome = true;
