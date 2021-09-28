@@ -31,7 +31,7 @@ in
       gnome3.dconf-editor
       opensc
       pavucontrol
-      qemu_kvm
+      qemu_full
       steam-run
       tdesktop
       youtube-dl
