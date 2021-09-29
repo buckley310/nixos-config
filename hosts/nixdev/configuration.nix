@@ -2,6 +2,7 @@
 {
   sconfig = {
     profile = "server";
+    hardware = "qemu";
   };
 
   environment.persistence."/nix/persist" = {

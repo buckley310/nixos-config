@@ -3,6 +3,7 @@
   sconfig = {
     gnome = true;
     profile = "desktop";
+    hardware = "physical";
     security-tools = true;
     i3.extraConfig = ''
       exec xrandr --output DisplayPort-0 --mode 2560x1440 --rate 165

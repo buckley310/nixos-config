@@ -7,6 +7,7 @@
   sconfig = {
     gnome = true;
     profile = "desktop";
+    hardware = "physical";
     security-tools = true;
   };
 
