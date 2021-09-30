@@ -32,5 +32,5 @@ with lib;
     type = types.enum [ "physical" "vmware" "qemu" ];
   };
 
-  config = fold (a: b: a // b) { } hardwareModules;
+  config = mkMerge hardwareModules;
 }
