@@ -13,6 +13,8 @@
   nixpkgs.config.allowUnfree = true;
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
 
+  security.sudo.extraConfig = "Defaults lecture=never";
+
   environment.systemPackages = map
     (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake github:buckley310/nixos-config"))
     [ "switch" "build" "boot" ];
