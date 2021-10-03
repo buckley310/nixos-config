@@ -46,6 +46,7 @@ in
       remmina
       socat
       thc-hydra
+      webshells
       weevely
       wfuzz
 
