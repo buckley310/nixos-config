@@ -13,6 +13,13 @@
           webshells = pkgs.callPackage ./pkgs/webshells { };
           weevely = pkgs.callPackage ./pkgs/weevely { };
         }
+        //
+        {
+          security-toolbox = pkgs.callPackage ./pkgs/security-toolbox {
+            pkgs = pkgs // self.packages.${pkgs.system};
+            unstable = unstable.legacyPackages.${pkgs.system};
+          };
+        }
         // (if pkgs.system != "x86_64-linux" then { } else
         {
           binaryninja = pkgs.callPackage ./pkgs/binary-ninja-personal { };
