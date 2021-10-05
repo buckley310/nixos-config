@@ -33,24 +33,14 @@ in
 
     enable = lib.mkEnableOption "Enable phpipam";
 
-    domainName = lib.mkOption {
+    hostname = lib.mkOption {
       type = lib.types.str;
       default = "localhost";
     };
 
-    useTLS = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
-
-    certificatePath = lib.mkOption {
-      type = lib.types.str;
-      default = "/etc/nixos/phpipam.crt";
-    };
-
-    certificateKeyPath = lib.mkOption {
-      type = lib.types.str;
-      default = "/etc/nixos/phpipam.key";
+    virtualHost = lib.mkOption {
+      type = lib.types.attrs;
+      default = { };
     };
 
   };
@@ -92,25 +82,25 @@ in
 
       nginx = {
         enable = true;
-        virtualHosts."${cfg.domainName}" = {
-          addSSL = cfg.useTLS;
-          sslCertificate = cfg.certificatePath;
-          sslCertificateKey = cfg.certificateKeyPath;
-          extraConfig = "access_log syslog:server=unix:/dev/log;";
-          root = phpipamHtdocs;
-          locations."/".extraConfig = ''
-            try_files $uri $uri/ /index.php; index index.php;
-          '';
-          locations."/api/".extraConfig = ''
-            try_files $uri $uri/ /api/index.php;
-          '';
-          locations."~ \\.php$".extraConfig = ''
-            fastcgi_pass   unix:${config.services.phpfpm.pools.www.socket};
-            fastcgi_index  index.php;
-            try_files      $uri $uri/ index.php = 404;
-            include        ${pkgs.nginx}/conf/fastcgi.conf;
-          '';
-        };
+        virtualHosts."${cfg.hostname}" = lib.mkMerge [
+          cfg.virtualHost
+          {
+            extraConfig = "access_log syslog:server=unix:/dev/log;";
+            root = phpipamHtdocs;
+            locations."/".extraConfig = ''
+              try_files $uri $uri/ /index.php; index index.php;
+            '';
+            locations."/api/".extraConfig = ''
+              try_files $uri $uri/ /api/index.php;
+            '';
+            locations."~ \\.php$".extraConfig = ''
+              fastcgi_pass   unix:${config.services.phpfpm.pools.www.socket};
+              fastcgi_index  index.php;
+              try_files      $uri $uri/ index.php = 404;
+              include        ${pkgs.nginx}/conf/fastcgi.conf;
+            '';
+          }
+        ];
       };
 
       mysql = {
