@@ -16,6 +16,7 @@ in
     };
 
     users.users.sandy = {
+      group = "users";
       isSystemUser = true;
       useDefaultShell = true;
       home = "/home/sandy";
