@@ -1,9 +1,8 @@
 {
-  inputs.nixpkgs.url = "nixpkgs/nixos-21.05";
-  inputs.unstable.url = "nixpkgs/nixos-unstable";
+  inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
   inputs.impermanence.url = "github:nix-community/impermanence";
 
-  outputs = { self, nixpkgs, unstable, impermanence, ... }:
+  outputs = { self, nixpkgs, impermanence, ... }:
     let
       mypkgs = pkgs:
         {
@@ -17,7 +16,6 @@
         {
           security-toolbox = pkgs.callPackage ./pkgs/security-toolbox {
             pkgs = pkgs // self.packages.${pkgs.system};
-            unstable = unstable.legacyPackages.${pkgs.system};
           };
         }
         // (if pkgs.system != "x86_64-linux" then { } else
@@ -43,7 +41,7 @@
 
       nixosConfigurations = self.lib.getHosts {
         path = ./hosts;
-        inherit nixpkgs unstable;
+        inherit nixpkgs;
         inherit (self) nixosModule;
       };
 

@@ -1,4 +1,4 @@
-{ pkgs, unstable }:
+{ pkgs }:
 let
 
   proxybrowser = pkgs.writeShellScriptBin "proxybrowser" ''
@@ -28,12 +28,14 @@ pkgs.symlinkJoin {
       dhcpdump
       dirb
       exiftool
+      exploitdb
       gef
       ghidra-bin
       gobuster
       iptables-nftables-compat
       macchanger
       masscan
+      metasploit
       net-snmp
       nmap
       openvpn
@@ -45,10 +47,7 @@ pkgs.symlinkJoin {
       weevely
       wfuzz
 
-      unstable.exploitdb
-      unstable.metasploit
-
       (burpsuite.overrideAttrs (_: { meta = { }; }))
-      (unstable.postman.overrideAttrs (_: { meta = { }; }))
+      (postman.overrideAttrs (_: { meta = { }; }))
     ];
 }
