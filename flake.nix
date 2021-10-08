@@ -29,7 +29,7 @@
         { inherit (impermanence.nixosModules) impermanence; } //
         nixpkgs.lib.mapAttrs'
           (name: type: {
-            name = if (type == "regular") then (nixpkgs.lib.removeSuffix ".nix" name) else name;
+            name = nixpkgs.lib.removeSuffix ".nix" name;
             value = import (./modules + "/${name}");
           })
           (builtins.readDir ./modules);
