@@ -28,7 +28,6 @@ pkgs.symlinkJoin {
       dhcpdump
       dirb
       exiftool
-      exploitdb
       gef
       ghidra-bin
       gobuster
