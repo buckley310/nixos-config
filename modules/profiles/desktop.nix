@@ -97,6 +97,8 @@ in
 
     virtualisation.docker = { enable = true; enableOnBoot = false; };
 
+    boot.kernelPackages = pkgs.linuxPackages_5_14;
+
     boot.loader.timeout =
       if config.boot.loader.systemd-boot.enable
       then null else lib.mkOverride 9999 99;
