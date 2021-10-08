@@ -15,5 +15,6 @@ in
       desktopManager.plasma5.enable = true;
     };
     hardware.pulseaudio.enable = true;
+    environment.systemPackages = [ pkgs.arc-theme ]; # fix hand cursor in firefox
   };
 }
