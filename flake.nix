@@ -4,25 +4,7 @@
 
   outputs = { self, nixpkgs, impermanence, ... }:
     let
-      mypkgs = pkgs:
-        {
-          commander-x16 = pkgs.callPackage ./pkgs/commander-x16 { };
-          gef = pkgs.callPackage ./pkgs/gef { };
-          stretchy-spaces = pkgs.callPackage ./pkgs/stretchy-spaces { };
-          webshells = pkgs.callPackage ./pkgs/webshells { };
-          weevely = pkgs.callPackage ./pkgs/weevely { };
-        }
-        //
-        {
-          security-toolbox = pkgs.callPackage ./pkgs/security-toolbox {
-            pkgs = pkgs // self.packages.${pkgs.system};
-          };
-        }
-        // (if pkgs.system != "x86_64-linux" then { } else
-        {
-          binaryninja = pkgs.callPackage ./pkgs/binary-ninja-personal { };
-          packettracer = pkgs.callPackage ./pkgs/packettracer { };
-        });
+      mypkgs = import ./pkgs self;
     in
     {
       nixosModules =
