@@ -1,9 +1,4 @@
 { config, pkgs, lib, ... }:
-let
-
-  system-rev = toString config.system.nixos.revision;
-
-in
 {
   imports = [ ./powerline.nix ];
 
@@ -65,15 +60,6 @@ in
       for ln in open('/proc/spl/kstat/zfs/arcstats').readlines():
           if ln.startswith('size '):
               print(str(int(ln.split(' ')[-1])/(1024*1024*1024))[:5],'GB')
-    '')
-
-    (writeShellScriptBin "channel" ''
-      echo
-      echo "NixOS ${config.system.nixos.release} (${config.system.defaultChannel})"
-      echo
-      echo "${system-rev} current local"
-      echo "$(curl --silent -L ${config.system.defaultChannel}/git-revision) latest available"
-      echo
     '')
 
   ];
