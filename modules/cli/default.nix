@@ -1,17 +1,14 @@
 { config, pkgs, lib, ... }:
 let
-  powerlineOpts = [
-    "-colorize-hostname"
-    "-cwd-mode=plain"
-    "-modules=user,host,cwd,nix-shell,git,jobs"
-    "-git-assume-unchanged-size 0"
-    "-jobs $(jobs -p | wc -l)"
-  ];
 
   system-rev = toString config.system.nixos.revision;
 
 in
 {
+  imports = [ ./powerline.nix ];
+
+  sconfig.powerline.enable = lib.mkDefault true;
+
   environment.systemPackages = with pkgs; [
     darkhttpd
     dnsutils
@@ -102,11 +99,6 @@ in
     alias p=python3
     alias catc='${pkgs.vimpager-latest}/bin/vimpager --force-passthrough'
     alias nix-env="echo nix-env is disabled #"
-
-    function _update_ps1() {
-        PS1="\n$(${pkgs.powerline-go}/bin/powerline-go ${lib.concatStringsSep " " powerlineOpts})$ "
-    }
-    [ "$TERM" = "linux" ] || PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
   '';
 
   programs.neovim = {
