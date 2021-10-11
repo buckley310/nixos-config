@@ -11,6 +11,8 @@ in
 
     sconfig.alacritty.enable = true;
 
+    fonts.fonts = [ pkgs.nerdfonts ];
+
     nixpkgs.overlays = [
       (self: super: {
         gnome = super.gnome // {
