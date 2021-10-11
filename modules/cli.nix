@@ -3,9 +3,10 @@ let
   powerlineOpts = [
     "-mode=flat"
     "-colorize-hostname"
-    "-cwd-mode=dironly"
+    "-cwd-mode=plain"
     "-modules=user,host,cwd,nix-shell,git,jobs"
     "-git-assume-unchanged-size 0"
+    "-jobs $(jobs -p | wc -l)"
   ];
 
   system-rev = toString config.system.nixos.revision;
