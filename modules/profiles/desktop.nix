@@ -11,7 +11,7 @@ in
 
     sconfig.alacritty.enable = true;
 
-    fonts.fonts = [ pkgs.nerdfonts ];
+    fonts.fonts = [ (pkgs.nerdfonts.override { fonts = [ "DejaVuSansMono" ]; }) ];
 
     nixpkgs.overlays = [
       (self: super: {
