@@ -88,7 +88,7 @@ in
         "security.workspace.trust.startupPrompt" = "never";
         "security.workspace.trust.untrustedFiles" = "newWindow";
         "terminal.external.linuxExec" = "x-terminal-emulator";
-        "terminal.integrated.fontFamily" = "DejaVuSansMono Nerd Font";
+        "terminal.integrated.fontFamily" = "DejaVuSansMono Nerd Font Mono";
         "terminal.integrated.fontSize" = 16;
         "terminal.integrated.showExitAlert" = false;
         "update.mode" = "none";
