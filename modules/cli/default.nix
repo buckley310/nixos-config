@@ -1,7 +1,6 @@
 { config, pkgs, lib, ... }:
 let
   powerlineOpts = [
-    "-mode=flat"
     "-colorize-hostname"
     "-cwd-mode=plain"
     "-modules=user,host,cwd,nix-shell,git,jobs"
