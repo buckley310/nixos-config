@@ -8,6 +8,9 @@
   users.users.root.passwordFile = "/nix/persist/shadow_sean";
   users.users.sean.passwordFile = "/nix/persist/shadow_sean";
 
+  environment.etc."NetworkManager/system-connections".source =
+    "/nix/persist/etc/NetworkManager/system-connections";
+
   environment.persistence."/nix/persist" = {
     files = [
       "/etc/machine-id"
