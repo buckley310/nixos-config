@@ -11,7 +11,10 @@ in
 
     sconfig.alacritty.enable = true;
 
-    fonts.fonts = [ (pkgs.nerdfonts.override { fonts = [ "DejaVuSansMono" ]; }) ];
+    fonts.fonts = [
+      pkgs.powerline-fonts # "Source Code Pro for Powerline", 11
+      (pkgs.nerdfonts.override { fonts = [ "DejaVuSansMono" ]; })
+    ];
 
     nixpkgs.overlays = [
       (self: super: {
