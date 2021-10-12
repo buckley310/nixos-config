@@ -67,11 +67,6 @@
   environment.etc.nixpkgs.source = pkgs.path;
   nix.nixPath = [ "nixpkgs=/etc/nixpkgs" ];
 
-  environment.etc."pip.conf".text = ''
-    [install]
-    no-warn-script-location = false
-  '';
-
   environment.variables.PLGO_HOSTNAMEFG = "0";
   environment.variables.PLGO_HOSTNAMEBG = "114";
 
