@@ -12,7 +12,10 @@ in
     sconfig.alacritty.enable = true;
 
     fonts.fonts = [
-      pkgs.powerline-fonts # "Source Code Pro for Powerline", 11
+      # vscode: "DejaVuSansMono Nerd Font Mono" (size 16)
+      # gnome-terminal: "DejaVu Sans Mono, Inconsolata for Powerline Medium 12"
+      # gnome-terminal setting (dconf): /org/gnome/terminal/legacy/profiles/.../font
+      pkgs.powerline-fonts
       (pkgs.nerdfonts.override { fonts = [ "DejaVuSansMono" ]; })
     ];
 
