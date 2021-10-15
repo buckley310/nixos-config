@@ -39,6 +39,7 @@ in
       gnome3.dconf-editor
       opensc
       pavucontrol
+      pulseeffects-legacy
       qemu_full
       steam-run
       tdesktop
