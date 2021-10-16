@@ -63,10 +63,8 @@ in
         gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive'
         gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 
-        mkdir -p ~/.config/gtk-3.0
-        echo 'window.ssd headerbar.titlebar { padding-top: 0px; padding-bottom: 0px; }' > ~/.config/gtk-3.0/gtk.css
-
-        gsettings set org.gnome.desktop.interface icon-theme 'Numix'; sleep 1
+        gsettings set org.gnome.desktop.interface icon-theme 'Numix'
+        sleep 1
         gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
       '')
     ];
