@@ -102,6 +102,10 @@ in
         "update.showReleaseNotes" = false;
         "window.menuBarVisibility" = "hidden";
         "workbench.startupEditor" = "none";
+        "terminal.integrated.profiles.linux"."bash" = {
+          "path" = "bash";
+          "args" = [ "-c" "unset SHLVL; bash" ];
+        };
       };
 
     programs.steam.enable = true;
