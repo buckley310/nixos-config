@@ -54,7 +54,7 @@ in
         vscodeExtensions = with pkgs.vscode-extensions; [
           # package was renamed from "Nix" to "nix" between 21.05 and 21.11
           (if (builtins.elem "nix" (builtins.attrNames bbenoist)) then bbenoist.nix else bbenoist.Nix)
-          # ms-python.python
+          ms-python.python
           ms-vscode.cpptools
           ms-azuretools.vscode-docker
         ];
