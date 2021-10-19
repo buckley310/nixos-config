@@ -60,6 +60,8 @@ in
       );
 
       sshConfig = pkgs.writeText "ssh_config" ''
+        Host *
+            User root
         ServerAliveInterval 3
         StrictHostKeyChecking yes
         GlobalKnownHostsFile ${sshKnownHostsTxt}
@@ -77,7 +79,6 @@ in
         mkdir -p $out/bin
         . ${pkgs.makeWrapper}/nix-support/setup-hook
         makeWrapper ${pkgs.morph}/bin/morph $out/bin/morph \
-            --set SSH_USER root \
             --set SSH_CONFIG_FILE ${sshConfig}
       '';
 
