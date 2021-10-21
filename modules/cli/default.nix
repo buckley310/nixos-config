@@ -7,13 +7,16 @@
   environment.systemPackages = with pkgs; [
     darkhttpd
     dnsutils
+    dstat
     du-dust
     entr
     file
     gcc
     git
     htop
+    iftop
     inetutils
+    iotop
     jq
     lm_sensors
     ncdu
