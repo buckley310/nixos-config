@@ -21,7 +21,11 @@ let
 
       (hardwareFor "physical"
         {
-          inherit (callPackage "${modulesPath}/installer/scan/not-detected.nix" { }) hardware;
+          hardware.cpu.amd.updateMicrocode = true;
+          hardware.cpu.intel.updateMicrocode = true;
+
+          # <nixpkgs>/nixos/modules/installer/scan/not-detected.nix
+          hardware.enableRedistributableFirmware = true;
         })
     ];
 

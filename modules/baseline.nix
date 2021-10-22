@@ -41,11 +41,6 @@
     '';
   };
 
-  hardware = {
-    cpu.amd.updateMicrocode = true;
-    cpu.intel.updateMicrocode = true;
-  };
-
   services.xserver = {
     libinput.mouse.middleEmulation = false;
     deviceSection = ''
