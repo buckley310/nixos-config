@@ -18,7 +18,7 @@ let
       cp -r "$src" "$out"
       chmod +w "$out"
       echo '<?php
-            require("config.docker.php");
+            require("config.dist.php");
             $db["user"] = "nginx";
             require("/etc/phpipam_config.php");' >"$out/config.php"
     '';
