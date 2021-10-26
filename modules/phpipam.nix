@@ -17,7 +17,10 @@ let
     installPhase = ''
       cp -r "$src" "$out"
       chmod +w "$out"
-      echo '<?php require("config.docker.php"); require("/etc/phpipam_config.php");' >"$out/config.php"
+      echo '<?php
+            require("config.docker.php");
+            $db["user"] = "nginx";
+            require("/etc/phpipam_config.php");' >"$out/config.php"
     '';
   };
 
@@ -61,7 +64,6 @@ in
     systemd.services = builtins.mapAttrs
       (_: script: {
         inherit script;
-        environment.IPAM_DATABASE_USER = "nginx";
         serviceConfig.User = "nginx";
         startAt = "*:0/15";
       })
@@ -76,7 +78,6 @@ in
       phpfpm.pools.www = {
         user = "nginx";
         group = "nginx";
-        phpEnv.IPAM_DATABASE_USER = "nginx";
         phpEnv.PHP_INI_SCAN_DIR = "$PHP_INI_SCAN_DIR";
         phpOptions = ''
           date.timezone = America/New_York
