@@ -17,7 +17,7 @@ let
     installPhase = ''
       cp -r "$src" "$out"
       chmod +w "$out"
-      mv "$out/config.docker.php" "$out/config.php"
+      echo '<?php require("config.docker.php"); require("/etc/phpipam_config.php");' >"$out/config.php"
     '';
   };
 
@@ -33,6 +33,12 @@ in
 
     enable = lib.mkEnableOption "Enable phpipam";
 
+    configFile = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
+      description = "Path to phpipam configuration file";
+      default = null;
+    };
+
     hostname = lib.mkOption {
       type = lib.types.str;
       default = "localhost";
@@ -46,6 +52,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+
+    environment.etc."phpipam_config.php" =
+      if cfg.configFile == null
+      then { text = ""; }
+      else { source = cfg.configFile; };
 
     systemd.services = builtins.mapAttrs
       (_: script: {
