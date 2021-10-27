@@ -77,36 +77,45 @@ in
         };
       })
 
+      (writeShellScriptBin "my-vscode-settings" ''
+        ln -sf /etc/vscode-settings.json ~/.config/VSCodium/User/settings.json
+        ln -sf /etc/vscode-keybindings.json ~/.config/VSCodium/User/keybindings.json
+      '')
+
     ];
 
-    environment.etc."vscode-user-settings.json".text =
-      "//usr/bin/env ln -sf $0 ~/.config/VSCodium/User/settings.json; exit 0"
-      + "\n" + builtins.toJSON {
-        "editor.renderFinalNewline" = false;
-        "editor.scrollBeyondLastLine" = false;
-        "extensions.autoCheckUpdates" = false;
-        "extensions.autoUpdate" = false;
-        "files.insertFinalNewline" = true;
-        "files.trimFinalNewlines" = true;
-        "git.confirmSync" = false;
-        "python.formatting.autopep8Args" = [ "--max-line-length=999" ];
-        "python.showStartPage" = false;
-        "security.workspace.trust.banner" = "never";
-        "security.workspace.trust.startupPrompt" = "never";
-        "security.workspace.trust.untrustedFiles" = "newWindow";
-        "terminal.external.linuxExec" = "x-terminal-emulator";
-        "terminal.integrated.fontFamily" = "DejaVuSansMono Nerd Font Mono";
-        "terminal.integrated.fontSize" = 16;
-        "terminal.integrated.showExitAlert" = false;
-        "update.mode" = "none";
-        "update.showReleaseNotes" = false;
-        "window.menuBarVisibility" = "hidden";
-        "workbench.startupEditor" = "none";
-        "terminal.integrated.profiles.linux"."bash" = {
-          "path" = "bash";
-          "args" = [ "-c" "unset SHLVL; bash" ];
-        };
+    environment.etc."vscode-settings.json".text = builtins.toJSON {
+      "editor.renderFinalNewline" = false;
+      "editor.scrollBeyondLastLine" = false;
+      "extensions.autoCheckUpdates" = false;
+      "extensions.autoUpdate" = false;
+      "files.insertFinalNewline" = true;
+      "files.trimFinalNewlines" = true;
+      "git.confirmSync" = false;
+      "python.formatting.autopep8Args" = [ "--max-line-length=999" ];
+      "python.showStartPage" = false;
+      "security.workspace.trust.banner" = "never";
+      "security.workspace.trust.startupPrompt" = "never";
+      "security.workspace.trust.untrustedFiles" = "newWindow";
+      "terminal.external.linuxExec" = "x-terminal-emulator";
+      "terminal.integrated.fontFamily" = "DejaVuSansMono Nerd Font Mono";
+      "terminal.integrated.fontSize" = 16;
+      "terminal.integrated.showExitAlert" = false;
+      "update.mode" = "none";
+      "update.showReleaseNotes" = false;
+      "window.menuBarVisibility" = "hidden";
+      "workbench.startupEditor" = "none";
+      "terminal.integrated.profiles.linux"."bash" = {
+        "path" = "bash";
+        "args" = [ "-c" "unset SHLVL; bash" ];
       };
+    };
+
+    environment.etc."vscode-keybindings.json".text = builtins.toJSON [
+      { key = "ctrl+w"; command = "-workbench.action.terminal.killEditor"; }
+      { key = "ctrl+e"; command = "-workbench.action.quickOpen"; }
+      { key = "ctrl+e"; command = "workbench.action.quickOpen"; when = "!terminalFocus"; }
+    ];
 
     programs.steam.enable = true;
 
