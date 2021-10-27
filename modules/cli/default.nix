@@ -38,6 +38,8 @@
     whois
     zip
 
+    (writeShellScriptBin "nr" "nix repl '${pkgs.path}'")
+
     (writeShellScriptBin "dirt" "while sleep 1; do grep '^Dirty:' /proc/meminfo ; done")
 
     (writeShellScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
