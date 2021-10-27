@@ -77,12 +77,12 @@ in
         };
       })
 
-      (writeShellScriptBin "my-vscode-settings" ''
-        ln -sf /etc/vscode-settings.json ~/.config/VSCodium/User/settings.json
-        ln -sf /etc/vscode-keybindings.json ~/.config/VSCodium/User/keybindings.json
-      '')
-
     ];
+
+    sconfig.user-settings = ''
+      ln -sf /etc/vscode-settings.json ~/.config/VSCodium/User/settings.json
+      ln -sf /etc/vscode-keybindings.json ~/.config/VSCodium/User/keybindings.json
+    '';
 
     environment.etc."vscode-settings.json".text = builtins.toJSON {
       "editor.renderFinalNewline" = false;
