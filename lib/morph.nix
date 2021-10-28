@@ -5,13 +5,6 @@
 , extraMorphModules ? [ ]
 }:
 
-let
-
-  allHostsMeta = builtins.mapAttrs
-    (n: v: import (path + "/${n}"))
-    nixosConfigurations;
-
-in
 {
   morph-entrypoint = system:
     let
@@ -29,7 +22,7 @@ in
       getConfig = name: value: { ... }: {
         imports = extraMorphModules ++ nixosConfigurations.${name}.extraArgs.modules;
         config = nixpkgs.lib.mkMerge [
-          { inherit (allHostsMeta.${name}) deployment; }
+          { inherit (value.config.sconfig.morph) deployment; }
           { deployment.healthChecks = globalHealthChecks; }
         ];
       };
@@ -53,7 +46,7 @@ in
 
       sshKnownHostsTxt = pkgs.writeText "known_hosts" (concatMapStrings
         (hostName:
-          let m = allHostsMeta.${hostName};
+          let m = nixosConfigurations.${hostName}.config.sconfig.morph;
           in concatMapStrings (key: "${m.deployment.targetHost} ${key}\n") m.sshPublicKeys
         )
         (builtins.attrNames nixosConfigurations)
@@ -91,9 +84,7 @@ in
       '';
 
       ssh = sh ''
-        [ -n "$1" ] || die "Specify a host"
-        [ -d "${path}/$1" ] || die "Invalid host"
-        ip="$(nix eval --raw --file "${path}/$1" deployment.targetHost)"
+        ip="$(nix eval --raw --file ./. "nixosConfigurations.\"$1\".config.sconfig.morph.deployment.targetHost")"
         shift
         exec ssh -F"${sshConfig}" "$ip" "$@"
       '';
