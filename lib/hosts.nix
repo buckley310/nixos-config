@@ -6,7 +6,7 @@ let
   # grab a list of systems, with associated hostnames
   # { x86_64-linux = [ "host1" "host2" ]; }
   sysToHosts = mapAttrs
-    (system: _: attrNames (readDir "${path}/${system}"))
+    (system: _: attrNames (readDir (path + "/${system}")))
     (readDir path);
 
   # invert the attrset, from {sys=[name]} to {name=sys}
@@ -24,7 +24,7 @@ let
       inherit system;
       modules = [
         (nixosModule)
-        ("${path}/${system}/${hostName}")
+        (path + "/${system}/${hostName}")
         (_: { networking.hostName = hostName; })
       ];
     })
