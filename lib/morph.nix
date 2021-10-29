@@ -92,6 +92,15 @@
         ssh root@$ip NIXOS_INSTALL_BOOTLOADER=1 nixos-enter --root /mnt -- /run/current-system/bin/switch-to-configuration boot
       '';
 
+      proxy = sh ''
+        export SSH_CONFIG_FILE="${sshConfig}"
+        ip="$(nix eval --raw ".#nixosConfigurations.\"$1\".config.sconfig.morph.deployment.targetHost")"
+        shift
+        set -- nix run "$@"
+        nix copy --to ssh://$ip "${flake}"
+        exec ssh -t -oForwardAgent=yes "$ip" "cd ${flake}; $@"
+      '';
+
       push = sh ''
         exec "${morph}/bin/morph" push ${morph-config} "$@"
       '';
