@@ -79,6 +79,19 @@
         exec "${morph}/bin/morph" deploy ${morph-config} "$@"
       '';
 
+      livecd-deploy = sh ''
+        config=".#nixosConfigurations.\"$1\".config"
+        nix build "$config.system.build.toplevel" --out-link "$(mktemp -d)/result"
+        sys="$(nix eval --raw "$config.system.build.toplevel")"
+        ip="$(nix eval --raw "$config.sconfig.morph.deployment.targetHost")"
+        nix copy --to ssh://root@$ip?remote-store=local?root=/mnt "$sys"
+        ssh root@$ip nix-env --store /mnt -p /mnt/nix/var/nix/profiles/system --set "$sys"
+        ssh root@$ip mkdir /mnt/etc
+        ssh root@$ip touch /mnt/etc/NIXOS
+        ssh root@$ip ln -sfn /proc/mounts /mnt/etc/mtab
+        ssh root@$ip NIXOS_INSTALL_BOOTLOADER=1 nixos-enter --root /mnt -- /run/current-system/bin/switch-to-configuration boot
+      '';
+
       push = sh ''
         exec "${morph}/bin/morph" push ${morph-config} "$@"
       '';
