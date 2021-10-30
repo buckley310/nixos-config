@@ -5,16 +5,7 @@
     profile = "desktop";
     hardware = "physical";
     security-tools = true;
-    i3.extraConfig = ''
-      exec xrandr --output DisplayPort-0 --mode 2560x1440 --rate 165
-      exec xrandr --output DisplayPort-1 --mode 2560x1440 --rate 165
-    '';
   };
-
-  environment.etc."sway/config.d/sconfig.conf".source = pkgs.writeText "sway.conf" ''
-    output DP-1 position    0 0 resolution 2560x1440@165Hz
-    output DP-2 position 2560 0 resolution 2560x1440@165Hz
-  '';
 
   environment.persistence."/persist" = {
     files = [
@@ -33,8 +24,6 @@
   environment.systemPackages = with pkgs; [
     wine
     vmware-horizon-client
-    (writeShellScriptBin "game" "exec xrandr --output DisplayPort-1 --off")
-    (writeShellScriptBin "work" "exec xrandr --output DisplayPort-1 --mode 2560x1440 --rate 165 --right-of DisplayPort-0")
   ];
 
   services.openssh.enable = true;
