@@ -30,9 +30,9 @@
       lib = {
         getHosts = import lib/hosts.nix;
         morphHosts = import lib/morph.nix;
-        forAllSystems = f: builtins.mapAttrs
-          (name: _: f name)
-          (nixpkgs.legacyPackages);
+        forAllSystems = f: builtins.listToAttrs (map
+          (name: { inherit name; value = f name; })
+          (with nixpkgs.lib.systems.supported; tier1 ++ tier2));
       };
 
       packages = self.lib.forAllSystems
