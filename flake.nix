@@ -4,7 +4,7 @@
 
   outputs = { self, nixpkgs, impermanence, ... }:
     let
-      mypkgs = import ./pkgs self;
+      mypkgs = import ./pkgs;
     in
     {
       nixosModules =

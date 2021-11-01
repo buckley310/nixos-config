@@ -1,4 +1,3 @@
-self:
 pkgs:
 
 let
@@ -16,10 +15,8 @@ let
     {
       binaryninja = pkgs.callPackage ./binary-ninja-personal { };
       packettracer = pkgs.callPackage ./packettracer { };
+      security-toolbox = pkgs.callPackage ./security-toolbox { inherit (allArchs) gef webshells weevely; };
       SpaceCadetPinball = pkgs.callPackage ./SpaceCadetPinball { };
-      security-toolbox = pkgs.callPackage ./security-toolbox {
-        pkgs = pkgs // self.packages.${pkgs.system};
-      };
     };
 
 in

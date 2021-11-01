@@ -1,8 +1,35 @@
-{ pkgs }:
+{ symlinkJoin
+, writeShellScriptBin
+, ungoogled-chromium
+, binutils
+, bridge-utils
+, dhcpdump
+, dirb
+, exiftool
+, gef
+, ghidra-bin
+, gobuster
+, iptables-nftables-compat
+, macchanger
+, masscan
+, metasploit
+, net-snmp
+, nmap
+, openvpn
+, remmina
+, socat
+, thc-hydra
+, webshells
+, weevely
+, wfuzz
+, burpsuite
+, postman
+}:
+
 let
 
-  proxybrowser = pkgs.writeShellScriptBin "proxybrowser" ''
-    exec ${pkgs.ungoogled-chromium}/bin/chromium \
+  proxybrowser = writeShellScriptBin "proxybrowser" ''
+    exec ${ungoogled-chromium}/bin/chromium \
     --disable-background-networking \
     --disable-default-apps \
     --disable-plugins-discovery \
@@ -19,10 +46,12 @@ let
   '';
 
 in
-pkgs.symlinkJoin {
+symlinkJoin {
   name = "security-toolbox";
-  paths = with pkgs;
+  paths =
     [
+      proxybrowser
+
       binutils
       bridge-utils
       dhcpdump
@@ -38,7 +67,6 @@ pkgs.symlinkJoin {
       net-snmp
       nmap
       openvpn
-      proxybrowser
       remmina
       socat
       thc-hydra
