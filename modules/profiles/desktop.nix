@@ -31,6 +31,7 @@ in
 
     environment.systemPackages = with pkgs; [
       brave
+      chromium
       discord
       element-desktop
       ffmpeg

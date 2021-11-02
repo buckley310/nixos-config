@@ -1,6 +1,6 @@
 { symlinkJoin
 , writeShellScriptBin
-, ungoogled-chromium
+, chromium
 , binutils
 , bridge-utils
 , dhcpdump
@@ -29,7 +29,7 @@
 let
 
   proxybrowser = writeShellScriptBin "proxybrowser" ''
-    exec ${ungoogled-chromium}/bin/chromium \
+    exec ${chromium}/bin/chromium \
     --disable-background-networking \
     --disable-default-apps \
     --disable-plugins-discovery \
