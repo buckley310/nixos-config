@@ -55,4 +55,6 @@ stdenv.mkDerivation rec {
     cp ${spacecadet_files}/* $out/share/${pname}/
     ln -s $out/share/${pname}/SpaceCadetPinball $out/bin/SpaceCadetPinball
   '';
+
+  meta.platforms = [ "x86_64-linux" ];
 }

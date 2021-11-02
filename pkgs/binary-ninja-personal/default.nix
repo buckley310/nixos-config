@@ -93,4 +93,6 @@ stdenv.mkDerivation rec {
     # Below is just a hack to keep the zip from being garbage-collected.
     ln -s "${src}" "$out/share/BinaryNinja-personal.zip"
   '';
+
+  meta.platforms = [ "x86_64-linux" ];
 }

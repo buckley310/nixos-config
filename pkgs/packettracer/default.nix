@@ -25,8 +25,6 @@
 
 }:
 
-assert stdenv.hostPlatform.system == "x86_64-linux";
-
 let
   version = "8.0.1";
 
@@ -108,4 +106,6 @@ buildFHSUserEnvBubblewrap {
     mkdir -p "$out/share/applications"
     cp "${desktopItem}"/share/applications/* "$out/share/applications/"
   '';
+
+  meta.platforms = [ "x86_64-linux" ];
 }

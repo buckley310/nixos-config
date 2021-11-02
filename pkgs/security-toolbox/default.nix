@@ -77,4 +77,6 @@ symlinkJoin {
       (burpsuite.overrideAttrs (_: { meta = { }; }))
       (postman.overrideAttrs (_: { meta = { }; }))
     ];
+
+  meta.platforms = [ "x86_64-linux" ];
 }
