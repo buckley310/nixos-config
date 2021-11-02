@@ -28,7 +28,6 @@
     gnome = true;
     profile = "desktop";
     hardware = "physical";
-    security-tools = true;
   };
 
   environment.systemPackages = with pkgs; [

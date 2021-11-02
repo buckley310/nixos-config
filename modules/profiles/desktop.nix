@@ -9,7 +9,10 @@ in
     programs.ssh.startAgent = true;
     programs.ssh.agentPKCS11Whitelist = pkcslib;
 
-    sconfig.alacritty.enable = true;
+    sconfig = {
+      alacritty.enable = true;
+      security-tools = true;
+    };
 
     fonts.fonts = [
       # vscode: "DejaVuSansMono Nerd Font Mono" (size 16)

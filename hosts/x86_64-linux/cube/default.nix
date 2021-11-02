@@ -4,7 +4,6 @@
     gnome = true;
     profile = "desktop";
     hardware = "physical";
-    security-tools = true;
   };
 
   environment.persistence."/persist" = {
