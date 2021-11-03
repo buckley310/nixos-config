@@ -35,7 +35,7 @@
   nix = {
     daemonNiceLevel = 19;
     daemonIONiceLevel = 7;
-    package = pkgs.nixFlakes;
+    package = pkgs.nix_2_4; # remove when nixStable is 2.4
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
