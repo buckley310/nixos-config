@@ -12,7 +12,6 @@ rec
   binaryninja = pkg ./binary-ninja-personal { };
   commander-x16 = pkg ./commander-x16 { };
   gef = pkg ./gef { };
-  packettracer = pkg ./packettracer { };
   security-toolbox = pkg ./security-toolbox { inherit gef webshells weevely; };
   SpaceCadetPinball = pkg ./SpaceCadetPinball { };
   stretchy-spaces = pkg ./stretchy-spaces { };
