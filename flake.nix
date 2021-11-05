@@ -44,6 +44,11 @@
           jupy = python3.withPackages (p: with p; [ jupyterlab ipython ]);
         in
         {
+          gnome-extensions = writeShellScriptBin "gnome-extensions" ''
+            cat ${path}/pkgs/desktops/gnome/extensions/extensions.json |
+            ${jq}/bin/jq -c '.[]|{name,ver:(.shell_version_map|keys)}'
+          '';
+
           jupyterlab = writeShellScriptBin "jupyterlab" ''
             exec ${jupy}/bin/python -m jupyterlab "$@"
           '';
