@@ -72,9 +72,6 @@
   environment.etc.nixpkgs.source = pkgs.path;
   nix.nixPath = [ "nixpkgs=/etc/nixpkgs" ];
 
-  environment.variables.PLGO_HOSTNAMEFG = "0";
-  environment.variables.PLGO_HOSTNAMEBG = "114";
-
   programs.tmux = {
     enable = true;
     terminal = "screen-256color";
