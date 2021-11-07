@@ -4,7 +4,15 @@
 
   outputs = { self, nixpkgs, impermanence, ... }:
     let
+
       mypkgs = import ./pkgs;
+
+      # polyfill. 21.05 doesn't have `systems.supported`
+      supportedSystems =
+        if builtins.elem "supported" (builtins.attrNames nixpkgs.lib.systems)
+        then (with nixpkgs.lib.systems.supported; tier1 ++ tier2)
+        else [ "x86_64-linux" ];
+
     in
     {
       nixosModules =
@@ -32,7 +40,7 @@
         morphHosts = import lib/morph.nix;
         forAllSystems = f: builtins.listToAttrs (map
           (name: { inherit name; value = f name; })
-          (with nixpkgs.lib.systems.supported; tier1 ++ tier2));
+          (supportedSystems));
       };
 
       packages = self.lib.forAllSystems
