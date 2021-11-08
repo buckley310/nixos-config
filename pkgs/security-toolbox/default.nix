@@ -13,6 +13,7 @@
 , macchanger
 , masscan
 , metasploit
+, msfpc
 , net-snmp
 , nmap
 , openvpn
@@ -64,6 +65,7 @@ symlinkJoin {
       macchanger
       masscan
       metasploit
+      msfpc
       net-snmp
       nmap
       openvpn
