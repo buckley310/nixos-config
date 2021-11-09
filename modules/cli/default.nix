@@ -12,7 +12,6 @@
     entr
     file
     gcc
-    htop
     iftop
     inetutils
     iotop
@@ -70,6 +69,16 @@
 
   environment.etc.nixpkgs.source = pkgs.path;
   nix.nixPath = [ "nixpkgs=/etc/nixpkgs" ];
+
+  programs.htop = {
+    enable = true;
+    settings = {
+      hide_userland_threads = 1;
+      highlight_base_name = 1;
+      show_program_path = 0;
+      tree_view = 1;
+    };
+  };
 
   programs.git = {
     enable = true;
