@@ -17,10 +17,6 @@
 
   security.sudo.extraConfig = "Defaults lecture=never";
 
-  environment.systemPackages = map
-    (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake github:buckley310/nixos-config"))
-    [ "switch" "build" "boot" ];
-
   systemd.tmpfiles.rules = [ "e /nix/var/log - - - 30d" ];
 
   zramSwap.enable = true;

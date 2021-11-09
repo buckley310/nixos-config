@@ -18,4 +18,8 @@ in
   };
 
   systemd.tmpfiles.rules = [ "e /home/sean/Downloads - - - 9d" ];
+
+  environment.systemPackages = map
+    (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake github:buckley310/nixos-config"))
+    [ "switch" "build" "boot" ];
 }
