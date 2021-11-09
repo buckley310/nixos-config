@@ -67,7 +67,6 @@
     extraGroups = [ "wheel" "audio" "video" "networkmanager" "dialout" "input" "wireshark" ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIqWHzIXaF88Y8+64gBlLbZ5ZZcLl08kTHG1clHd7gaq desktop"
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQChhSNkLZXM7f8BUWdQDv63YL0feN2webGwA+ocpUnwm2mw/o/g+9SNaK7wOQoqDVjrS6yx4Mf2e8+6ZweM6Q2cT1uYSaipaclFR/xuyOeoWwEcRkFZ5O32OlRc3VoRYj8HPDYUsJn77hMlUmA6JEb6+rT4o6uEjDjgRP0bpLtDzPXNsCBFlVX0tUYE1WUirTL5n20KhJLe5/dAEkL8469nijcWcYCD7xpWrkEUK6j13v5wGfo4iujeeZUw5oU4O8tap+9gDHnRz3wtuZPq9qHOPQ2FqrvjWyagyQBhkU//09dCeKMAReeFrYk2XtGqeypTxmjpwXotjk8v36iAdvm/ PIVKey"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJlMPWSVyDNAvXYtpXCI/geCeUEMbL9Nthm9B0zg1sIy sean@hp"
     ];
   };
