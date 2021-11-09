@@ -12,7 +12,6 @@
     entr
     file
     gcc
-    git
     htop
     iftop
     inetutils
@@ -71,6 +70,14 @@
 
   environment.etc.nixpkgs.source = pkgs.path;
   nix.nixPath = [ "nixpkgs=/etc/nixpkgs" ];
+
+  programs.git = {
+    enable = true;
+    config = {
+      pull.ff = "only";
+      init.defaultBranch = "main";
+    };
+  };
 
   programs.tmux = {
     enable = true;
