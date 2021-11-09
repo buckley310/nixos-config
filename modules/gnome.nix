@@ -24,7 +24,6 @@ in
       gnomeExtensions.dash-to-dock
       gnomeExtensions.dash-to-panel
       gnomeExtensions.sound-output-device-chooser
-      numix-icon-theme
 
       (runCommand "x-terminal-emulator" { } ''
         mkdir -p $out/bin
@@ -41,6 +40,7 @@ in
 
     sconfig.user-settings = ''
       gsettings set org.gnome.desktop.interface enable-hot-corners false
+      gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
       gsettings set org.gnome.desktop.interface show-battery-percentage true
       gsettings set org.gnome.desktop.media-handling automount false
       gsettings set org.gnome.desktop.media-handling autorun-never true
@@ -63,9 +63,6 @@ in
       gsettings set org.gnome.settings-daemon.plugins.media-keys volume-step 2
       gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive'
       gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
-
-      gsettings set org.gnome.desktop.interface icon-theme 'Numix'
-      gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
     '';
 
   };
