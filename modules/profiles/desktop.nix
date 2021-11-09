@@ -66,6 +66,7 @@ in
 
       (wrapFirefox firefox-unwrapped {
         extraPolicies = {
+          NewTabPage = false;
           CaptivePortal = false;
           DisablePocket = true;
           DisableFirefoxStudies = true;
