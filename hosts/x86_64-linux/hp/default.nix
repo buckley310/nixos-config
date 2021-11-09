@@ -12,15 +12,13 @@
     "/nix/persist/etc/NetworkManager/system-connections";
 
   environment.persistence."/nix/persist" = {
+    directories = [ "/var/log" ];
     files = [
       "/etc/machine-id"
       "/etc/ssh/ssh_host_ed25519_key.pub"
       "/etc/ssh/ssh_host_ed25519_key"
       "/etc/ssh/ssh_host_rsa_key.pub"
       "/etc/ssh/ssh_host_rsa_key"
-    ];
-    directories = [
-      "/var/log"
     ];
   };
 
@@ -30,9 +28,7 @@
     hardware = "physical";
   };
 
-  environment.systemPackages = with pkgs; [
-    vmware-horizon-client
-  ];
+  environment.systemPackages = [ pkgs.vmware-horizon-client ];
 
   boot = {
     loader.systemd-boot.enable = true;
