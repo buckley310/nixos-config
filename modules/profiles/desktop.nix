@@ -1,13 +1,8 @@
 { config, pkgs, lib, ... }:
 with lib;
-let
-  pkcslib = "${pkgs.opensc}/lib/opensc-pkcs11.so";
-in
 {
   config = mkIf (config.sconfig.profile == "desktop") {
     services.pcscd.enable = true;
-    programs.ssh.startAgent = true;
-    programs.ssh.agentPKCS11Whitelist = pkcslib;
 
     sconfig = {
       alacritty.enable = true;
@@ -20,16 +15,6 @@ in
       # gnome-terminal setting (dconf): /org/gnome/terminal/legacy/profiles/.../font
       pkgs.powerline-fonts
       (pkgs.nerdfonts.override { fonts = [ "DejaVuSansMono" ]; })
-    ];
-
-    nixpkgs.overlays = [
-      (self: super: {
-        gnome = super.gnome // {
-          gnome-keyring = super.gnome.gnome-keyring.overrideAttrs (old: {
-            configureFlags = old.configureFlags ++ [ "--disable-ssh-agent" ];
-          });
-        };
-      })
     ];
 
     environment.systemPackages = with pkgs; [
@@ -48,8 +33,6 @@ in
       steam-run
       tdesktop
       youtube-dl
-
-      (pkgs.writeShellScriptBin "mfa" "exec ssh-add -s${pkcslib}")
 
       (mpv-with-scripts.override { scripts = [ mpvScripts.mpris ]; })
 
