@@ -58,6 +58,7 @@ with lib;
           Preferences = {
             "extensions.formautofill.available" = { Status = "locked"; Value = "off"; };
             "browser.contentblocking.category" = { Status = "locked"; Value = "strict"; };
+            "media.setsinkid.enabled" = { Status = "locked"; Value = true; }; #GoogleVoice
             "network.IDN_show_punycode" = { Status = "locked"; Value = true; };
             "browser.zoom.siteSpecific" = { Status = "locked"; Value = false; };
           };
