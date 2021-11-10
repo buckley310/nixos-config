@@ -96,7 +96,7 @@
   programs.bash.interactiveShellInit = ''
     stty -ixon
     alias p=python3
-    alias hd=hexdump -C
+    alias hd='hexdump -C'
     alias catc='${pkgs.vimpager-latest}/bin/vimpager --force-passthrough'
     alias nix-env="echo nix-env is disabled #"
   '';
