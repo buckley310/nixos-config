@@ -56,11 +56,11 @@ with lib;
           DisableFormHistory = true;
           SearchSuggestEnabled = false;
           Preferences = {
-            "extensions.formautofill.available" = { Status = "locked"; Value = "off"; };
             "browser.contentblocking.category" = { Status = "locked"; Value = "strict"; };
+            "browser.zoom.siteSpecific" = { Status = "locked"; Value = false; };
+            "extensions.formautofill.available" = { Status = "locked"; Value = "off"; };
             "media.setsinkid.enabled" = { Status = "locked"; Value = true; }; #GoogleVoice
             "network.IDN_show_punycode" = { Status = "locked"; Value = true; };
-            "browser.zoom.siteSpecific" = { Status = "locked"; Value = false; };
           };
         };
       })
