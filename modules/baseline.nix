@@ -30,9 +30,7 @@
   '';
 
   nix = {
-    daemonNiceLevel = 19;
-    daemonIONiceLevel = 7;
-    package = pkgs.nix_2_4;
+    daemonNiceLevel = 10;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
