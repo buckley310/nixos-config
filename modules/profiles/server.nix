@@ -4,7 +4,6 @@ with lib;
   config = mkIf (config.sconfig.profile == "server") {
     services.logind.lidSwitch = "ignore";
     services.openssh.enable = true;
-    services.openssh.startWhenNeeded = true;
     documentation.nixos.enable = false;
     nix.gc = {
       automatic = true;

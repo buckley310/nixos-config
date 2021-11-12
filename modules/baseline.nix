@@ -38,15 +38,17 @@
     '';
   };
 
-  services.xserver = {
-    libinput.mouse.middleEmulation = false;
-    deviceSection = ''
-      Option "VariableRefresh" "true"
-    '';
-  };
-
   services = {
+    openssh.startWhenNeeded = true;
     earlyoom.enable = true;
+
+    xserver = {
+      libinput.mouse.middleEmulation = false;
+      deviceSection = ''
+        Option "VariableRefresh" "true"
+      '';
+    };
+
     avahi = {
       enable = true;
       nssmdns = true;
