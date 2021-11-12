@@ -1,9 +1,16 @@
-{ ... }:
+{ config, lib, pkgs, ... }:
 {
   sconfig = {
-    profile = "server";
+    gnome = true;
     hardware = "qemu";
+    profile = "desktop";
   };
+
+  services.openssh.enable = true;
+
+  users.mutableUsers = false;
+  users.users.root.passwordFile = "/nix/persist/shadow_sean";
+  users.users.sean.passwordFile = "/nix/persist/shadow_sean";
 
   environment.persistence."/nix/persist" = {
     files = [
@@ -19,18 +26,9 @@
     ];
   };
 
-  security.sudo.wheelNeedsPassword = false;
-
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-  };
-
-  networking = {
-    useDHCP = false;
-    interfaces.enp6s18.ipv4.addresses = [{ address = "10.5.7.160"; prefixLength = 24; }];
-    defaultGateway = "10.5.7.1";
-    nameservers = [ "1.1.1.1" ];
   };
 
   fileSystems =
