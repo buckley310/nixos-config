@@ -4,15 +4,11 @@ let
   src = fetchFromGitHub {
     owner = "hugsy";
     repo = "gef";
-    rev = "2021.07";
-    sha256 = "zKn3yS9h8bzjsb/iPgNU8g5IgXFBaKvM7osTqzzv16s=";
+    rev = "2021.10";
+    sha256 = "7kIR9lzKBb1rArb9l1Tu10RJ9uacifvy2EbkmrMFK2Y=";
   };
 
-  # exclude broken libraries
-  reqs = builtins.filter (x: false == (builtins.elem x [ "capstone" "ropper" ]))
-    (builtins.filter (x: x != "")
-      (lib.splitString "\n"
-        (builtins.readFile "${src}/requirements.txt")));
+  reqs = lib.splitString "\n" (lib.fileContents (./. + "/requirements.txt"));
 
   # python3.pkgs.ropper does not work with makePythonPath. Swap it out.
   pyp = python3.pkgs // {
@@ -34,4 +30,5 @@ stdenv.mkDerivation {
         --suffix PYTHONPATH : "${optionals}" \
         --add-flags "-x ${src}/gef.py"
   '';
+  meta.platforms = [ "x86_64-linux" ];
 }
