@@ -19,6 +19,7 @@
     lm_sensors
     ncdu
     nix-index
+    nix-prefetch-github
     nix-top
     nixpkgs-fmt
     openssl
