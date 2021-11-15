@@ -106,7 +106,7 @@
       '';
 
       ssh = sh ''
-        ip="$(nix eval --raw --file ./. "nixosConfigurations.\"$1\".config.sconfig.morph.deployment.targetHost")"
+        ip="$(nix eval --raw ".#nixosConfigurations.\"$1\".config.sconfig.morph.deployment.targetHost")"
         shift
         exec ssh -F"${sshConfig}" "$ip" "$@"
       '';
