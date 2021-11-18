@@ -4,11 +4,25 @@
 
   outputs = { self, nixpkgs, impermanence, ... }:
     let
+
       mypkgs = import ./pkgs;
+
+      pins = _: {
+        nix.registry.nixpkgs.flake = nixpkgs;
+        nix.registry.bck.to = {
+          owner = "buckley310";
+          repo = "nixos-config";
+          type = "github";
+        };
+      };
+
     in
     {
       nixosModules =
-        { inherit (impermanence.nixosModules) impermanence; } //
+        {
+          inherit pins;
+          inherit (impermanence.nixosModules) impermanence;
+        } //
         nixpkgs.lib.mapAttrs'
           (name: type: {
             name = nixpkgs.lib.removeSuffix ".nix" name;
