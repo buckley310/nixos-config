@@ -13,7 +13,8 @@ rec
   commander-x16 = pkg ./commander-x16 { };
   gef = pkg ./gef { };
   msfpc = pkg ./msfpc { };
-  security-toolbox = pkg ./security-toolbox { inherit gef msfpc webshells weevely; };
+  security-toolbox = pkg ./security-toolbox { inherit gef msfpc webshells weevely security-wordlists; };
+  security-wordlists = pkg ./wordlists.nix { };
   SpaceCadetPinball = pkg ./SpaceCadetPinball { };
   stretchy-spaces = pkg ./stretchy-spaces { };
   webshells = pkg ./webshells { };

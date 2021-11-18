@@ -18,6 +18,7 @@
 , nmap
 , openvpn
 , remmina
+, security-wordlists
 , socat
 , thc-hydra
 , webshells
@@ -70,6 +71,7 @@ symlinkJoin {
       nmap
       openvpn
       remmina
+      security-wordlists
       socat
       thc-hydra
       webshells
