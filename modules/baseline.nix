@@ -30,7 +30,7 @@
   '';
 
   nix = {
-    daemonNiceLevel = 10;
+    daemonCPUSchedPolicy = "batch";
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
