@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
   time.timeZone = "US/Eastern";
 
@@ -19,7 +19,7 @@
 
   systemd.tmpfiles.rules = [ "e /nix/var/log - - - 30d" ];
 
-  zramSwap.enable = true;
+  zramSwap.enable = lib.mkDefault true;
 
   networking.hostId = builtins.substring 0 8 (builtins.hashString "md5" config.networking.hostName);
 
