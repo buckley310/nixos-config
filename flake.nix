@@ -7,7 +7,7 @@
 
       mypkgs = import ./pkgs;
 
-      pins = _: {
+      pins = {
         nix.registry.nixpkgs.flake = nixpkgs;
         nix.registry.bck.to = {
           owner = "buckley310";
@@ -30,7 +30,7 @@
           })
           (builtins.readDir ./modules);
 
-      nixosModule = { pkgs, ... }: {
+      nixosModule = {
         imports = builtins.attrValues self.nixosModules;
         nixpkgs.overlays = [ (_: mypkgs) ];
       };
