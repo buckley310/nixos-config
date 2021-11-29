@@ -6,6 +6,12 @@
     let
 
       mypkgs = import ./pkgs;
+      getHosts = import lib/hosts.nix;
+      morphHosts = import lib/morph.nix;
+
+      forAllSystems = f: builtins.listToAttrs (map
+        (name: { inherit name; value = f name; })
+        (with nixpkgs.lib.systems.supported; tier1 ++ tier2));
 
       pins = {
         nix.registry.nixpkgs.flake = nixpkgs;
@@ -18,6 +24,8 @@
 
     in
     {
+      lib = { inherit forAllSystems getHosts morphHosts; };
+
       nixosModules =
         {
           inherit pins;
@@ -35,24 +43,16 @@
         nixpkgs.overlays = [ (_: mypkgs) ];
       };
 
-      nixosConfigurations = self.lib.getHosts {
+      nixosConfigurations = getHosts {
         path = ./hosts;
         inherit nixpkgs;
         inherit (self) nixosModule;
       };
 
-      lib = {
-        getHosts = import lib/hosts.nix;
-        morphHosts = import lib/morph.nix;
-        forAllSystems = f: builtins.listToAttrs (map
-          (name: { inherit name; value = f name; })
-          (with nixpkgs.lib.systems.supported; tier1 ++ tier2));
-      };
-
-      packages = self.lib.forAllSystems
+      packages = forAllSystems
         (system: mypkgs nixpkgs.legacyPackages.${system});
 
-      apps = self.lib.forAllSystems (system:
+      apps = forAllSystems (system:
         with nixpkgs.legacyPackages.${system};
         {
           gnome-extensions = writeShellScriptBin "gnome-extensions" ''
