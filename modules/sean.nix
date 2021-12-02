@@ -20,7 +20,7 @@ in
 
   environment.systemPackages = map
     (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake github:buckley310/nixos-config"))
-    [ "switch" "build" "boot" ];
+    [ "boot" "build" "switch" "test" ];
 
   sconfig.user-settings = ''
     git config --global user.email "sean.bck@gmail.com"
