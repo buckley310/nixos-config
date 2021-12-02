@@ -1,4 +1,4 @@
-{ path, nixpkgs, nixosModule }:
+{ path, nixosModule }:
 let
 
   inherit (builtins) mapAttrs attrValues attrNames readDir foldl' listToAttrs;
@@ -17,18 +17,19 @@ let
         (system: hosts: listToAttrs (map (name: { inherit name; value = system; }) hosts))
         sysToHosts));
 
-  # build system configurations
-  # { host1 = <nixosConfiguration>; host2 = <nixosConfiguration>; }
-  hostToConfig = mapAttrs
-    (hostName: system: nixpkgs.lib.nixosSystem {
-      inherit system;
-      modules = [
-        (nixosModule)
-        (path + "/${system}/${hostName}")
-        (_: { networking.hostName = hostName; })
-      ];
-    })
-    hostToSys;
-
 in
-hostToConfig
+# produce stub configurations
+  # {
+  #   host1 = { system = "x86_64-linux"; modules = [ ... ]; };
+  #   host2 = { system = "x86_64-linux"; modules = [ ... ]; };
+  # }
+mapAttrs
+  (hostName: system: {
+    inherit system;
+    modules = [
+      (nixosModule)
+      (path + "/${system}/${hostName}")
+      { networking = { inherit hostName; }; }
+    ];
+  })
+  hostToSys

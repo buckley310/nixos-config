@@ -43,11 +43,13 @@
         nixpkgs.overlays = [ (_: mypkgs) ];
       };
 
-      nixosConfigurations = getHosts {
-        path = ./hosts;
-        inherit nixpkgs;
-        inherit (self) nixosModule;
-      };
+      nixosConfigurations =
+        builtins.mapAttrs
+          (_: nixpkgs.lib.nixosSystem)
+          (getHosts {
+            inherit (self) nixosModule;
+            path = ./hosts;
+          });
 
       packages = forAllSystems
         (system: mypkgs nixpkgs.legacyPackages.${system});
