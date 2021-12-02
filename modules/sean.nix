@@ -7,9 +7,8 @@ let
   ];
 in
 {
-  users.users.root.openssh.authorizedKeys =
-    if config.sconfig.profile == "server"
-    then { inherit keys; } else { };
+  users.users.root.openssh.authorizedKeys.keys =
+    lib.optionals (config.sconfig.profile == "server") keys;
 
   users.users.sean = {
     isNormalUser = true;
