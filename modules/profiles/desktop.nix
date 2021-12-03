@@ -43,6 +43,7 @@ with lib;
           ms-azuretools.vscode-docker
           ms-python.python
           ms-vscode.cpptools
+          shardulm94.trailing-spaces
         ];
       })
 
@@ -90,6 +91,7 @@ with lib;
       "terminal.integrated.fontFamily" = "DejaVuSansMono Nerd Font Mono";
       "terminal.integrated.fontSize" = 16;
       "terminal.integrated.showExitAlert" = false;
+      "trailing-spaces.highlightCurrentLine" = false;
       "update.mode" = "none";
       "update.showReleaseNotes" = false;
       "window.menuBarVisibility" = "hidden";
