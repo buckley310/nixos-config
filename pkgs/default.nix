@@ -17,7 +17,7 @@ rec
   security-wordlists = pkg ./wordlists.nix { };
   SpaceCadetPinball = pkg ./SpaceCadetPinball { };
   stretchy-spaces = pkg ./stretchy-spaces { };
-  vmware-horizon-client = pkg ./vmware-horizon-client.nix { configText = "viewusb.AllowSmartcard = \"True\""; };
+  vmware-horizon-client = pkg ./vmware-horizon-client.nix { };
   webshells = pkg ./webshells { };
   weevely = pkg ./weevely { };
 }
