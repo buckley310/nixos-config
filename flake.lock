@@ -1,20 +1,5 @@
 {
   "nodes": {
-    "impermanence": {
-      "locked": {
-        "lastModified": 1637278200,
-        "narHash": "sha256-nwPBJpjHU8J0hhZ6l4Ytvi3qhcxXJVy4jOWurmzSv3A=",
-        "owner": "nix-community",
-        "repo": "impermanence",
-        "rev": "0616c64b0ebcf08cc74db7820e74b807274246f6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "impermanence",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1638161295,
@@ -32,7 +17,6 @@
     },
     "root": {
       "inputs": {
-        "impermanence": "impermanence",
         "nixpkgs": "nixpkgs"
       }
     }

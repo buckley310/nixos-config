@@ -1,8 +1,7 @@
 {
   inputs.nixpkgs.url = "nixpkgs/nixos-21.11";
-  inputs.impermanence.url = "github:nix-community/impermanence";
 
-  outputs = { self, nixpkgs, impermanence, ... }:
+  outputs = { self, nixpkgs, ... }:
     let
 
       mypkgs = import ./pkgs;
@@ -27,10 +26,7 @@
       lib = { inherit forAllSystems getHosts morphHosts; };
 
       nixosModules =
-        {
-          inherit pins;
-          inherit (impermanence.nixosModules) impermanence;
-        } //
+        { inherit pins; } //
         nixpkgs.lib.mapAttrs'
           (name: type: {
             name = nixpkgs.lib.removeSuffix ".nix" name;

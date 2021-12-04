@@ -6,19 +6,14 @@
     hardware = "physical";
   };
 
-  environment.persistence."/persist" = {
-    files = [
-      "/etc/machine-id"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
-      "/etc/ssh/ssh_host_rsa_key"
-    ];
-    directories = [
-      "/home"
-      "/var/log"
-    ];
-  };
+  environment.etc =
+    builtins.listToAttrs (map
+      (name: { inherit name; value.source = "/persist/etc/${name}"; })
+      [
+        "machine-id"
+        "ssh/ssh_host_ed25519_key"
+        "ssh/ssh_host_rsa_key"
+      ]);
 
   environment.systemPackages = with pkgs; [
     wine
@@ -42,7 +37,10 @@
     "/boot" = { device = "/dev/disk/by-partlabel/_esp"; fsType = "vfat"; };
     "/nix" = { device = "cube/locker/nix"; fsType = "zfs"; };
     "/persist" = { device = "cube/locker/persist"; fsType = "zfs"; neededForBoot = true; };
-  };
+  }
+  // builtins.listToAttrs (map
+    (name: { inherit name; value = { device = "/persist${name}"; noCheck = true; options = [ "bind" ]; }; })
+    [ "/home" "/var/log" ]);
 
   system.stateVersion = "21.05";
 }
