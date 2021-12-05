@@ -36,10 +36,8 @@
     "/nix" = { device = "zroot/locker/nix"; fsType = "zfs"; };
     "/home" = { device = "zroot/locker/home"; fsType = "zfs"; };
     "/boot" = { device = "/dev/disk/by-partlabel/EFI\\x20system\\x20partition"; fsType = "vfat"; };
-  }
-  // builtins.listToAttrs (map
-    (name: { inherit name; value = { device = "/nix/persist${name}"; noCheck = true; options = [ "bind" ]; }; })
-    [ "/var/log" ]);
+    "/var/log" = { device = "/nix/persist/var/log"; noCheck = true; options = [ "bind" ]; };
+  };
 
   system.stateVersion = "21.05";
 }
