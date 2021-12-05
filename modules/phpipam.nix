@@ -74,7 +74,7 @@ in
       cronScripts;
 
     services = {
-
+      phpfpm.phpPackage = pkgs.php74;
       phpfpm.pools.www = {
         user = "nginx";
         group = "nginx";
