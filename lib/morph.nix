@@ -55,7 +55,6 @@
       sshConfig = pkgs.writeText "ssh_config" ''
         Host *
             User root
-        ServerAliveInterval 3
         StrictHostKeyChecking yes
         GlobalKnownHostsFile ${sshKnownHostsTxt}
       '';
