@@ -1,11 +1,54 @@
 { nixpkgs
 , nixosConfigurations
-, path
-, flake
 , extraMorphModules ? [ ]
 }:
 
+# to use this library, add the following to "morph.nix" in your repo:
+# (builtins.getFlake (toString ./.)).morph-entrypoint builtins.currentSystem
+
+let
+  helpers = system:
+    let
+      pkgs = nixpkgs.legacyPackages.${system};
+      inherit (nixpkgs.lib) concatMapStrings;
+
+      sshKnownHostsTxt = pkgs.writeText "known_hosts" (concatMapStrings
+        (hostName:
+          let m = nixosConfigurations.${hostName}.config.sconfig.morph;
+          in concatMapStrings (key: "${m.deployment.targetHost} ${key}\n") m.sshPublicKeys
+        )
+        (builtins.attrNames nixosConfigurations)
+      );
+
+      sshConfig = pkgs.writeText "ssh_config" ''
+        Host *
+            User root
+        StrictHostKeyChecking yes
+        GlobalKnownHostsFile ${sshKnownHostsTxt}
+      '';
+
+      sh = scriptBody: pkgs.writeShellScriptBin "run" ''
+        set -eu
+        export SSH_CONFIG_FILE=${sshConfig}
+        ${scriptBody}
+      '';
+
+    in
+    { inherit pkgs sh sshConfig; };
+
+in
 {
+  devShell = system: with helpers system;
+    pkgs.mkShell {
+      buildInputs = [ pkgs.morph ];
+      shellHook = ''
+        export IN_NIX_SHELL=impure
+        export SSH_CONFIG_FILE=${sshConfig}
+      '';
+    };
+
+
+
   morph-entrypoint = system:
     let
       globalHealthChecks.cmd = [
@@ -33,51 +76,14 @@
 
 
 
-  packages = system:
-    let
-      pkgs = nixpkgs.legacyPackages.${system};
-      inherit (nixpkgs.lib) concatMapStrings;
-
-      sh = (scriptBody: pkgs.writeShellScriptBin "run" ''
-        set -e
-        die() { echo "$*" 1>&2 ; exit 1; }
-        ${scriptBody}
-      '');
-
-      sshKnownHostsTxt = pkgs.writeText "known_hosts" (concatMapStrings
-        (hostName:
-          let m = nixosConfigurations.${hostName}.config.sconfig.morph;
-          in concatMapStrings (key: "${m.deployment.targetHost} ${key}\n") m.sshPublicKeys
-        )
-        (builtins.attrNames nixosConfigurations)
-      );
-
-      sshConfig = pkgs.writeText "ssh_config" ''
-        Host *
-            User root
-        StrictHostKeyChecking yes
-        GlobalKnownHostsFile ${sshKnownHostsTxt}
+  packages = system: with helpers system;
+    {
+      check-updates = sh ''
+        res="$(morph build morph.nix)"
+        diff \
+            <(find $res -type l | xargs readlink | sort) \
+            <(morph exec morph.nix 'readlink /run/current-system' |& grep '^/nix/store/' | sort)
       '';
-
-    in
-    rec {
-
-      morph-config = nixpkgs.legacyPackages.${system}.writeText "morph.nix" ''
-        let  flake = builtins.getFlake "${flake}";
-        in   flake.morph-entrypoint builtins.currentSystem
-      '';
-
-      morph = pkgs.runCommand "morph" { } ''
-        mkdir -p $out/bin
-        . ${pkgs.makeWrapper}/nix-support/setup-hook
-        makeWrapper ${pkgs.morph}/bin/morph $out/bin/morph \
-            --set SSH_CONFIG_FILE ${sshConfig}
-      '';
-
-      deploy = sh ''
-        exec "${morph}/bin/morph" deploy ${morph-config} "$@"
-      '';
-
       livecd-deploy = sh ''
         config=".#nixosConfigurations.\"$1\".config"
         nix build "$config.system.build.toplevel" --out-link "$(mktemp -d)/result"
@@ -90,36 +96,10 @@
         ssh root@$ip ln -sfn /proc/mounts /mnt/etc/mtab
         ssh root@$ip NIXOS_INSTALL_BOOTLOADER=1 nixos-enter --root /mnt -- /run/current-system/bin/switch-to-configuration boot
       '';
-
-      proxy = sh ''
-        export SSH_CONFIG_FILE="${sshConfig}"
-        ip="$(nix eval --raw ".#nixosConfigurations.\"$1\".config.sconfig.morph.deployment.targetHost")"
-        shift
-        set -- nix run "$@"
-        nix copy --to ssh://$ip "${flake}"
-        exec ssh -t -oForwardAgent=yes "$ip" "cd ${flake}; $@"
-      '';
-
-      push = sh ''
-        exec "${morph}/bin/morph" push ${morph-config} "$@"
-      '';
-
       ssh = sh ''
         ip="$(nix eval --raw ".#nixosConfigurations.\"$1\".config.sconfig.morph.deployment.targetHost")"
         shift
         exec ssh -F"${sshConfig}" "$ip" "$@"
-      '';
-
-      check = sh ''
-        res="$( ${morph}/bin/morph build ${morph-config} )"
-        ${morph}/bin/morph check-health ${morph-config}
-        echo -e "\nUpdate checks:"
-        for hostname in $( ls "$res" ); do
-            echo "  $hostname"
-            diff \
-                <('${ssh}/bin/run' "$hostname" readlink /run/current-system) \
-                <(readlink "$res/$hostname") || true
-        done
       '';
     };
 }
