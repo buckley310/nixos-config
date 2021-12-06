@@ -25,9 +25,9 @@ let
   };
 
   cronScripts = {
-    phpipam_ping = "exec ${pkgs.php}/bin/php ${phpipamHtdocs}/functions/scripts/pingCheck.php";
-    phpipam_remove_offline = "exec ${pkgs.php}/bin/php ${phpipamHtdocs}/functions/scripts/remove_offline_addresses.php";
-    phpipam_discovery = "exec ${pkgs.php}/bin/php ${phpipamHtdocs}/functions/scripts/discoveryCheck.php";
+    phpipam_ping = "exec ${pkgs.php74}/bin/php ${phpipamHtdocs}/functions/scripts/pingCheck.php";
+    phpipam_remove_offline = "exec ${pkgs.php74}/bin/php ${phpipamHtdocs}/functions/scripts/remove_offline_addresses.php";
+    phpipam_discovery = "exec ${pkgs.php74}/bin/php ${phpipamHtdocs}/functions/scripts/discoveryCheck.php";
   };
 
 in
