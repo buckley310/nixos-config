@@ -17,7 +17,6 @@
     iotop
     jq
     lm_sensors
-    morph
     ncdu
     nix-index
     nix-prefetch-github
