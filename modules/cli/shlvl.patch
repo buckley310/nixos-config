@@ -1,0 +1,52 @@
+From 9fd668e356c3b89601109d6f1f53e5843af00af4 Mon Sep 17 00:00:00 2001
+From: Sean Buckley <sean.bck@gmail.com>
+Date: Tue, 7 Dec 2021 16:18:40 -0500
+Subject: [PATCH] add segment-shlvl
+
+---
+ main.go          |  1 +
+ segment-shlvl.go | 23 +++++++++++++++++++++++
+ 2 files changed, 24 insertions(+)
+ create mode 100644 segment-shlvl.go
+
+diff --git a/main.go b/main.go
+index 02f4a4a..2bd111e 100644
+--- a/main.go
++++ b/main.go
+@@ -97,6 +97,7 @@ var modules = map[string]func(*powerline) []pwl.Segment{
+ 	"root":                segmentRoot,
+ 	"shell-var":           segmentShellVar,
+ 	"shenv":               segmentShEnv,
++	"shlvl":               segmentShlvl,
+ 	"ssh":                 segmentSSH,
+ 	"termtitle":           segmentTermTitle,
+ 	"terraform-workspace": segmentTerraformWorkspace,
+diff --git a/segment-shlvl.go b/segment-shlvl.go
+new file mode 100644
+index 0000000..d8bba7d
+--- /dev/null
++++ b/segment-shlvl.go
+@@ -0,0 +1,23 @@
++package main
++
++import (
++	pwl "github.com/justjanne/powerline-go/powerline"
++	"os"
++	"strconv"
++)
++
++func segmentShlvl(p *powerline) []pwl.Segment {
++
++	level, _ := os.LookupEnv("SHLVL")
++	leveli, err := strconv.Atoi(level)
++
++	if err != nil || leveli < 1 {
++		return []pwl.Segment{}
++	}
++	return []pwl.Segment{{
++		Name:       "shlvl",
++		Content:    "\uE7A2 " + level,
++		Foreground: 231,
++		Background: 55,
++	}}
++}

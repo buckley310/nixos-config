@@ -22,7 +22,7 @@ in
       args = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [
-          "-modules=\${remote:+'user,host,'}nix-shell,git,jobs,cwd"
+          "-modules=\${remote:+'user,host,'}nix-shell,shlvl,git,jobs,cwd"
           "-git-assume-unchanged-size 0"
           "-theme ${theme}"
           "-path-aliases '~/git=~/git'"
@@ -38,7 +38,12 @@ in
   config = lib.mkIf cfg.enable {
 
     environment.systemPackages = [
-      (pkgs.powerline-go.overrideAttrs (old: { patches = [ ./bold.patch ]; }))
+      (pkgs.powerline-go.overrideAttrs (old: {
+        patches = [
+          ./bold.patch
+          ./shlvl.patch
+        ];
+      }))
     ];
 
     programs.bash.interactiveShellInit = ''
