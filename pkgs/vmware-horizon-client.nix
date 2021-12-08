@@ -9,7 +9,7 @@
 , configText ? ""
 }:
 let
-  version = "2106.1";
+  version = "2111";
 
   sysArch =
     if stdenv.hostPlatform.system == "x86_64-linux" then "x64"
@@ -33,8 +33,8 @@ let
     name = "vmwareHorizonClientFiles";
     inherit version;
     src = fetchurl {
-      url = "https://download3.vmware.com/software/view/viewclients/CART22FQ2/VMware-Horizon-Client-Linux-2106.1-8.3.1-18435609.tar.gz";
-      sha256 = "b42ddb9d7e9c8d0f8b86b69344fcfca45251c5a5f1e06a18a3334d5a04e18c39";
+      url = "https://download3.vmware.com/software/view/viewclients/CART22FH2/VMware-Horizon-Client-Linux-2111-8.4.0-18957622.tar.gz";
+      sha256 = "2f79d2d8d34e6f85a5d21a3350618c4763d60455e7d68647ea40715eaff486f7";
     };
     nativeBuildInputs = [ makeWrapper ];
     installPhase = ''
@@ -47,9 +47,6 @@ let
       # The checks are distribution-specific and do not function correctly on NixOS.
       # Deleting the bundled library is the simplest way to force it to use our version.
       rm "$out/lib/vmware/gcc/libstdc++.so.6"
-
-      # This libjpeg library interferes with Chromium, so we will be using ours instead.
-      rm $out/lib/vmware/libjpeg.*
 
       # This library causes the program to core-dump occasionally. Use ours instead.
       rm $out/lib/vmware/view/crtbora/libcairo.*
