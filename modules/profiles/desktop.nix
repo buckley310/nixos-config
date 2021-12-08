@@ -39,7 +39,7 @@ with lib;
       (vscode-with-extensions.override {
         vscode = vscodium;
         vscodeExtensions = with pkgs.vscode-extensions; [
-          bbenoist.nix
+          jnoortheen.nix-ide
           ms-azuretools.vscode-docker
           ms-python.python
           ms-vscode.cpptools
