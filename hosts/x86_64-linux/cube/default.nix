@@ -37,10 +37,9 @@
     "/boot" = { device = "/dev/disk/by-partlabel/_esp"; fsType = "vfat"; };
     "/nix" = { device = "cube/locker/nix"; fsType = "zfs"; };
     "/persist" = { device = "cube/locker/persist"; fsType = "zfs"; neededForBoot = true; };
-  }
-  // builtins.listToAttrs (map
-    (name: { inherit name; value = { device = "/persist${name}"; noCheck = true; options = [ "bind" ]; }; })
-    [ "/home" "/var/log" ]);
+    "/home" = { device = "/persist/home"; noCheck = true; options = [ "bind" ]; };
+    "/var/log" = { device = "/persist/var/log"; noCheck = true; options = [ "bind" ]; };
+  };
 
   system.stateVersion = "21.05";
 }
