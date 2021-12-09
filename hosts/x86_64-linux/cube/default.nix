@@ -8,7 +8,7 @@
 
   environment.etc =
     builtins.listToAttrs (map
-      (name: { inherit name; value.source = "/persist/etc/${name}"; })
+      (name: { inherit name; value.source = "/nix/persist/etc/${name}"; })
       [
         "machine-id"
         "ssh/ssh_host_ed25519_key"
@@ -23,8 +23,8 @@
   services.openssh.enable = true;
 
   users.mutableUsers = false;
-  users.users.sean.passwordFile = "/persist/shadow/sean";
-  users.users.root.passwordFile = "/persist/shadow/sean";
+  users.users.sean.passwordFile = "/nix/persist/shadow_sean";
+  users.users.root.passwordFile = "/nix/persist/shadow_sean";
 
   boot = {
     loader.systemd-boot.enable = true;
@@ -36,10 +36,9 @@
     "/" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "mode=755" ]; };
     "/boot" = { device = "/dev/disk/by-partlabel/_esp"; fsType = "vfat"; };
     "/nix" = { device = "cube/locker/nix"; fsType = "zfs"; };
-    "/persist" = { device = "cube/locker/persist"; fsType = "zfs"; neededForBoot = true; };
-    "/home" = { device = "/persist/home"; noCheck = true; options = [ "bind" ]; };
-    "/var/log" = { device = "/persist/var/log"; noCheck = true; options = [ "bind" ]; };
+    "/home" = { device = "cube/locker/home"; fsType = "zfs"; };
+    "/var/log" = { device = "cube/locker/log"; fsType = "zfs"; };
   };
 
-  system.stateVersion = "21.05";
+  system.stateVersion = "21.11";
 }
