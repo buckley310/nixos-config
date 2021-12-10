@@ -5,8 +5,8 @@
     let
 
       mypkgs = import ./pkgs;
-      getHosts = import lib/hosts.nix;
       morphHosts = import lib/morph.nix;
+      hardware = import lib/hardware.nix;
 
       forAllSystems = f: builtins.listToAttrs (map
         (name: { inherit name; value = f name; })
@@ -23,7 +23,7 @@
 
     in
     {
-      lib = { inherit forAllSystems getHosts morphHosts; };
+      lib = { inherit forAllSystems morphHosts hardware; };
 
       nixosModules =
         { inherit pins; } //
@@ -39,13 +39,7 @@
         nixpkgs.overlays = [ (_: mypkgs) ];
       };
 
-      nixosConfigurations =
-        builtins.mapAttrs
-          (_: nixpkgs.lib.nixosSystem)
-          (getHosts {
-            inherit (self) nixosModule;
-            path = ./hosts;
-          });
+      nixosConfigurations = import ./hosts nixpkgs hardware self.nixosModule;
 
       packages = forAllSystems
         (system: mypkgs nixpkgs.legacyPackages.${system});

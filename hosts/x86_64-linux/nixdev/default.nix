@@ -1,8 +1,9 @@
 { config, lib, pkgs, ... }:
 {
+  networking.hostName = "nixdev";
+
   sconfig = {
     gnome = true;
-    hardware = "qemu";
     profile = "desktop";
   };
 

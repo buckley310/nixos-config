@@ -1,9 +1,10 @@
 { pkgs, ... }:
 {
+  networking.hostName = "cube";
+
   sconfig = {
     gnome = true;
     profile = "desktop";
-    hardware = "physical";
   };
 
   environment.etc =

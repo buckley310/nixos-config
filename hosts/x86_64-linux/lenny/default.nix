@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  networking.hostName = "lenny";
+
   services = {
     openssh.enable = true;
   };
@@ -21,7 +23,6 @@
   sconfig = {
     gnome = true;
     profile = "desktop";
-    hardware = "physical";
   };
 
   environment.systemPackages = [ pkgs.vmware-horizon-client ];

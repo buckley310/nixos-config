@@ -1,8 +1,9 @@
 { pkgs, ... }:
 {
+  networking.hostName = "slate";
+
   sconfig = {
     profile = "desktop";
-    hardware = "physical";
     gnome = true;
   };
 
