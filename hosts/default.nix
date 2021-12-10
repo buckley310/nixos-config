@@ -9,9 +9,9 @@ let
 
 in
 {
-  cube = sys [ "x86_64-linux" physical ./x86_64-linux/cube ];
-  hp = sys [ "x86_64-linux" physical ./x86_64-linux/hp ];
-  lenny = sys [ "x86_64-linux" physical ./x86_64-linux/lenny ];
-  nixdev = sys [ "x86_64-linux" qemu ./x86_64-linux/nixdev ];
-  slate = sys [ "x86_64-linux" physical ./x86_64-linux/slate ];
+  cube = sys [ "x86_64-linux" physical ./cube ];
+  hp = sys [ "x86_64-linux" physical ./hp ];
+  lenny = sys [ "x86_64-linux" physical ./lenny ];
+  nixdev = sys [ "x86_64-linux" qemu ./nixdev ];
+  slate = sys [ "x86_64-linux" physical ./slate ];
 }
