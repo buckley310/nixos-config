@@ -1,32 +1,31 @@
-{ config, pkgs, lib, modulesPath, ... }:
+{ config, lib, modulesPath, ... }:
 let
 
-  inherit (pkgs) callPackage;
-
-  hardwareFor = name: cfg: lib.mkIf (config.sconfig.hardware == name) cfg;
+  hardwareFor = name: cfg:
+    lib.mkIf
+      (config.sconfig.hardware == name)
+      (lib.mkMerge cfg);
 
   hardwareModules =
     [
       (hardwareFor "qemu"
-        {
-          inherit (callPackage "${modulesPath}/profiles/qemu-guest.nix" { }) boot;
-          services.qemuGuest.enable = true;
-        })
+        [
+          (import "${modulesPath}/profiles/qemu-guest.nix" { })
+          { services.qemuGuest.enable = true; }
+        ])
 
       (hardwareFor "vmware"
-        {
-          virtualisation.vmware.guest.enable = true;
-          boot.initrd.availableKernelModules = [ "mptspi" ];
-        })
+        [
+          { virtualisation.vmware.guest.enable = true; }
+          { boot.initrd.availableKernelModules = [ "mptspi" ]; }
+        ])
 
       (hardwareFor "physical"
-        {
-          hardware.cpu.amd.updateMicrocode = true;
-          hardware.cpu.intel.updateMicrocode = true;
-
-          # <nixpkgs>/nixos/modules/installer/scan/not-detected.nix
-          hardware.enableRedistributableFirmware = true;
-        })
+        [
+          (import "${modulesPath}/installer/scan/not-detected.nix" { inherit lib; })
+          { hardware.cpu.amd.updateMicrocode = true; }
+          { hardware.cpu.intel.updateMicrocode = true; }
+        ])
     ];
 
 in
