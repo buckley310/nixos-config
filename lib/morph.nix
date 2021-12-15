@@ -88,9 +88,10 @@ in
       '';
       livecd-deploy = sh ''
         config=".#nixosConfigurations.\"$1\".config"
-        nix build "$config.system.build.toplevel" --out-link "$(mktemp -d)/result"
-        sys="$(nix eval --raw "$config.system.build.toplevel")"
         ip="$(nix eval --raw "$config.sconfig.morph.deployment.targetHost")"
+        ssh-copy-id root@$ip
+        sys="$(nix eval --raw "$config.system.build.toplevel")"
+        nix build "$config.system.build.toplevel" --out-link "$(mktemp -d)/result"
         nix copy --to ssh://root@$ip?remote-store=local?root=/mnt "$sys"
         ssh root@$ip nix-env --store /mnt -p /mnt/nix/var/nix/profiles/system --set "$sys"
         ssh root@$ip mkdir /mnt/etc
