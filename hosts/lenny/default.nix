@@ -33,7 +33,7 @@
   };
 
   fileSystems = {
-    "/" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "mode=755" ]; };
+    "/" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "mode=755" "size=4G" ]; };
     "/nix" = { device = "lenny/locker/nix"; fsType = "zfs"; };
     "/home" = { device = "lenny/locker/home"; fsType = "zfs"; };
     "/boot" = { device = "/dev/disk/by-partlabel/_esp"; fsType = "vfat"; };
