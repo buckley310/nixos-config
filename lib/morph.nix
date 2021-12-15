@@ -1,5 +1,4 @@
-{ nixpkgs
-, nixosConfigurations
+{ self
 , extraMorphModules ? [ ]
 }:
 
@@ -7,6 +6,9 @@
 # (builtins.getFlake (toString ./.)).morph-entrypoint builtins.currentSystem
 
 let
+  inherit (self.inputs) nixpkgs;
+  inherit (self) nixosConfigurations;
+
   helpers = system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
@@ -95,6 +97,12 @@ in
         ssh root@$ip touch /mnt/etc/NIXOS
         ssh root@$ip ln -sfn /proc/mounts /mnt/etc/mtab
         ssh root@$ip NIXOS_INSTALL_BOOTLOADER=1 nixos-enter --root /mnt -- /run/current-system/bin/switch-to-configuration boot
+      '';
+      jump = sh ''
+        echo ${self}
+        ip="$(nix eval --raw ".#nixosConfigurations.\"$1\".config.sconfig.morph.deployment.targetHost")"
+        NIX_SSHOPTS="-F${sshConfig}" nix copy --to ssh://root@$ip ${self}
+        exec ssh -oForwardAgent=yes -F"${sshConfig}" "$ip" -t "cd ${self}; nix develop"
       '';
       ssh = sh ''
         ip="$(nix eval --raw ".#nixosConfigurations.\"$1\".config.sconfig.morph.deployment.targetHost")"
