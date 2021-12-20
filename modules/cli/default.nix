@@ -47,8 +47,8 @@
 
     (writeShellScriptBin "nixos-check-reboot" ''
       set -e
-      booted="$(readlink /run/booted-system/{initrd,kernel,kernel-modules})"
-      built="$(readlink /nix/var/nix/profiles/system/{initrd,kernel,kernel-modules})"
+      booted="$(readlink /run/booted-system/kernel)"
+      built="$(readlink /nix/var/nix/profiles/system/kernel)"
       if [ "$booted" = "$built" ]
       then
           echo OK
