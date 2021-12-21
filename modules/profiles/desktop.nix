@@ -5,7 +5,6 @@ with lib;
     services.pcscd.enable = true;
 
     sconfig = {
-      alacritty.enable = true;
       security-tools = true;
     };
 
