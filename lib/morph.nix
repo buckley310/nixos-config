@@ -102,7 +102,8 @@ in
         ssh root@$ip mkdir /mnt/etc
         ssh root@$ip touch /mnt/etc/NIXOS
         ssh root@$ip ln -sfn /proc/mounts /mnt/etc/mtab
-        ssh root@$ip NIXOS_INSTALL_BOOTLOADER=1 nixos-enter --root /mnt -- /run/current-system/bin/switch-to-configuration boot
+        ssh root@$ip NIXOS_INSTALL_BOOTLOADER=1 nixos-enter \
+            --root /mnt -- /run/current-system/bin/switch-to-configuration boot
       '';
       jump = sh ''
         echo ${self}
