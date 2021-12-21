@@ -25,7 +25,6 @@ let
       hostSshConfigs = concatMapStrings
         (hostName: ''
           Host ${hostName}
-          User root
           HostName ${nixosConfigurations.${hostName}.config.sconfig.morph.deployment.targetHost}
         '')
         (builtins.attrNames nixosConfigurations);
@@ -34,6 +33,8 @@ let
         StrictHostKeyChecking yes
         GlobalKnownHostsFile ${sshKnownHostsTxt}
         ${hostSshConfigs}
+        Host *
+        User root
       '';
 
       jump = pkgs.writeShellScript "jump" ''
