@@ -22,11 +22,18 @@ let
         (builtins.attrNames nixosConfigurations)
       );
 
+      hostSshConfigs = concatMapStrings
+        (hostName: ''
+          Host ${hostName}
+          User root
+          HostName ${nixosConfigurations.${hostName}.config.sconfig.morph.deployment.targetHost}
+        '')
+        (builtins.attrNames nixosConfigurations);
+
       sshConfig = pkgs.writeText "ssh_config" ''
-        Host *
-            User root
         StrictHostKeyChecking yes
         GlobalKnownHostsFile ${sshKnownHostsTxt}
+        ${hostSshConfigs}
       '';
 
       sh = scriptBody: pkgs.writeShellScriptBin "run" ''
@@ -44,8 +51,8 @@ in
     pkgs.mkShell {
       buildInputs = [ pkgs.morph ];
       shellHook = ''
-        export IN_NIX_SHELL=impure
         export SSH_CONFIG_FILE=${sshConfig}
+        alias ssh='ssh -F${sshConfig}'
       '';
     };
 
