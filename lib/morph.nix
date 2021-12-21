@@ -42,8 +42,16 @@ let
         ${scriptBody}
       '';
 
+      jump = pkgs.writeShellScript "jump" ''
+        set -eu
+        echo ${self}
+        ip="$(nix eval --raw ".#nixosConfigurations.\"$1\".config.sconfig.morph.deployment.targetHost")"
+        NIX_SSHOPTS="-F${sshConfig}" nix copy --to ssh://root@$ip ${self}
+        exec ssh -oForwardAgent=yes -F"${sshConfig}" "root@$ip" -t "cd ${self}; nix develop"
+      '';
+
     in
-    { inherit pkgs sh sshConfig; };
+    { inherit jump pkgs sh sshConfig; };
 
 in
 {
@@ -53,6 +61,7 @@ in
       shellHook = ''
         export SSH_CONFIG_FILE=${sshConfig}
         alias ssh='ssh -F${sshConfig}'
+        alias jump=${jump}
       '';
     };
 
@@ -104,12 +113,6 @@ in
         ssh root@$ip ln -sfn /proc/mounts /mnt/etc/mtab
         ssh root@$ip NIXOS_INSTALL_BOOTLOADER=1 nixos-enter \
             --root /mnt -- /run/current-system/bin/switch-to-configuration boot
-      '';
-      jump = sh ''
-        echo ${self}
-        ip="$(nix eval --raw ".#nixosConfigurations.\"$1\".config.sconfig.morph.deployment.targetHost")"
-        NIX_SSHOPTS="-F${sshConfig}" nix copy --to ssh://root@$ip ${self}
-        exec ssh -oForwardAgent=yes -F"${sshConfig}" "$ip" -t "cd ${self}; nix develop"
       '';
     };
 }
