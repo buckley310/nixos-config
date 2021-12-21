@@ -57,7 +57,6 @@ in
     };
 
 
-
   morph-entrypoint = system:
     let
       globalHealthChecks.cmd = [
@@ -82,7 +81,6 @@ in
     in
     { network.pkgs = nixpkgs.legacyPackages.${system}; } //
     builtins.mapAttrs getConfig nixosConfigurations;
-
 
 
   packages = system: with helpers system;
