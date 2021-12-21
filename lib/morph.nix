@@ -50,8 +50,17 @@ let
         exec ssh -oForwardAgent=yes -F"${sshConfig}" "root@$ip" -t "cd ${self}; nix develop"
       '';
 
+      check-updates = pkgs.writeShellScript "check-updates" ''
+        set -eu
+        export SSH_CONFIG_FILE=${sshConfig}
+        res="$(morph build morph.nix)"
+        diff \
+            <(find $res -type l | xargs readlink | sort) \
+            <(morph exec morph.nix 'readlink /run/current-system' |& grep '^/nix/store/' | sort)
+      '';
+
     in
-    { inherit jump pkgs sh sshConfig; };
+    { inherit check-updates jump pkgs sh sshConfig; };
 
 in
 {
@@ -62,6 +71,7 @@ in
         export SSH_CONFIG_FILE=${sshConfig}
         alias ssh='ssh -F${sshConfig}'
         alias jump=${jump}
+        alias check-updates=${check-updates}
       '';
     };
 
@@ -94,12 +104,6 @@ in
 
   packages = system: with helpers system;
     {
-      check-updates = sh ''
-        res="$(morph build morph.nix)"
-        diff \
-            <(find $res -type l | xargs readlink | sort) \
-            <(morph exec morph.nix 'readlink /run/current-system' |& grep '^/nix/store/' | sort)
-      '';
       livecd-deploy = sh ''
         config=".#nixosConfigurations.\"$1\".config"
         ip="$(nix eval --raw "$config.sconfig.morph.deployment.targetHost")"
