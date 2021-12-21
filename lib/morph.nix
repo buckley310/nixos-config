@@ -111,10 +111,5 @@ in
         NIX_SSHOPTS="-F${sshConfig}" nix copy --to ssh://root@$ip ${self}
         exec ssh -oForwardAgent=yes -F"${sshConfig}" "$ip" -t "cd ${self}; nix develop"
       '';
-      ssh = sh ''
-        ip="$(nix eval --raw ".#nixosConfigurations.\"$1\".config.sconfig.morph.deployment.targetHost")"
-        shift
-        exec ssh -F"${sshConfig}" "$ip" "$@"
-      '';
     };
 }
