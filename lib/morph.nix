@@ -36,12 +36,6 @@ let
         ${hostSshConfigs}
       '';
 
-      sh = scriptBody: pkgs.writeShellScriptBin "run" ''
-        set -eu
-        export SSH_CONFIG_FILE=${sshConfig}
-        ${scriptBody}
-      '';
-
       jump = pkgs.writeShellScript "jump" ''
         set -eu
         echo ${self}
@@ -59,8 +53,24 @@ let
             <(morph exec morph.nix 'readlink /run/current-system' |& grep '^/nix/store/' | sort)
       '';
 
+      livecd-deploy = pkgs.writeShellScript "livecd-deploy" ''
+        set -eux
+        config=".#nixosConfigurations.\"$1\".config"
+        ip="$(nix eval --raw "$config.sconfig.morph.deployment.targetHost")"
+        ssh-copy-id root@$ip
+        sys="$(nix eval --raw "$config.system.build.toplevel")"
+        nix build "$config.system.build.toplevel" --out-link "$(mktemp -d)/result"
+        nix copy --to ssh://root@$ip?remote-store=local?root=/mnt "$sys"
+        ssh root@$ip nix-env --store /mnt -p /mnt/nix/var/nix/profiles/system --set "$sys"
+        ssh root@$ip mkdir /mnt/etc
+        ssh root@$ip touch /mnt/etc/NIXOS
+        ssh root@$ip ln -sfn /proc/mounts /mnt/etc/mtab
+        ssh root@$ip NIXOS_INSTALL_BOOTLOADER=1 nixos-enter \
+            --root /mnt -- /run/current-system/bin/switch-to-configuration boot
+      '';
+
     in
-    { inherit check-updates jump pkgs sh sshConfig; };
+    { inherit check-updates jump livecd-deploy pkgs sshConfig; };
 
 in
 {
@@ -72,6 +82,7 @@ in
         alias ssh='ssh -F${sshConfig}'
         alias jump=${jump}
         alias check-updates=${check-updates}
+        alias livecd-deploy=${livecd-deploy}
       '';
     };
 
@@ -100,23 +111,4 @@ in
     in
     { network.pkgs = nixpkgs.legacyPackages.${system}; } //
     builtins.mapAttrs getConfig nixosConfigurations;
-
-
-  packages = system: with helpers system;
-    {
-      livecd-deploy = sh ''
-        config=".#nixosConfigurations.\"$1\".config"
-        ip="$(nix eval --raw "$config.sconfig.morph.deployment.targetHost")"
-        ssh-copy-id root@$ip
-        sys="$(nix eval --raw "$config.system.build.toplevel")"
-        nix build "$config.system.build.toplevel" --out-link "$(mktemp -d)/result"
-        nix copy --to ssh://root@$ip?remote-store=local?root=/mnt "$sys"
-        ssh root@$ip nix-env --store /mnt -p /mnt/nix/var/nix/profiles/system --set "$sys"
-        ssh root@$ip mkdir /mnt/etc
-        ssh root@$ip touch /mnt/etc/NIXOS
-        ssh root@$ip ln -sfn /proc/mounts /mnt/etc/mtab
-        ssh root@$ip NIXOS_INSTALL_BOOTLOADER=1 nixos-enter \
-            --root /mnt -- /run/current-system/bin/switch-to-configuration boot
-      '';
-    };
 }
