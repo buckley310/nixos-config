@@ -45,6 +45,14 @@
 
     (writeShellScriptBin "pip-install" "exec python -m ensurepip --user")
 
+    (writeScriptBin "zram-ratio" ''
+      #!${pkgs.python3}/bin/python
+      (orig_data_size, compr_data_size, mem_used_total)=list(
+        map(int,filter(None,open('/sys/block/zram0/mm_stat').read().split(' ')))
+      )[:3]
+      print("compression ratio:", orig_data_size/mem_used_total)
+    '')
+
     (writeShellScriptBin "nixos-check-reboot" ''
       set -e
       booted="$(readlink /run/booted-system/kernel)"
