@@ -1,6 +1,3 @@
-From 9fd668e356c3b89601109d6f1f53e5843af00af4 Mon Sep 17 00:00:00 2001
-From: Sean Buckley <sean.bck@gmail.com>
-Date: Tue, 7 Dec 2021 16:18:40 -0500
 Subject: [PATCH] add segment-shlvl
 
 ---
@@ -45,7 +42,7 @@ index 0000000..d8bba7d
 +	}
 +	return []pwl.Segment{{
 +		Name:       "shlvl",
-+		Content:    "\uE7A2 " + level,
++		Content:    "+ " + level,
 +		Foreground: 231,
 +		Background: 55,
 +	}}
