@@ -1,9 +1,7 @@
 { self
-, extraMorphModules ? [ ]
+, system ? "x86_64-linux"
+, modules ? [ ]
 }:
-
-# to use this library, add the following to "morph.nix" in your repo:
-# (builtins.getFlake (toString ./.)).morph-entrypoint builtins.currentSystem
 
 let
   inherit (self.inputs) nixpkgs;
@@ -11,12 +9,12 @@ let
 
   helpers = system:
     let
-      pkgs = nixpkgs.legacyPackages.${system};
       inherit (nixpkgs.lib) concatMapStrings;
+      inherit (nixpkgs.legacyPackages.${system}) pkgs;
 
       sshKnownHostsTxt = pkgs.writeText "known_hosts" (concatMapStrings
         (hostName:
-          let m = nixosConfigurations.${hostName}.config.sconfig.morph;
+          let m = nixosConfigurations.${hostName}.config.sconfig;
           in concatMapStrings (key: "${m.deployment.targetHost} ${key}\n") m.sshPublicKeys
         )
         (builtins.attrNames nixosConfigurations)
@@ -25,7 +23,7 @@ let
       hostSshConfigs = concatMapStrings
         (hostName: ''
           Host ${hostName}
-          HostName ${nixosConfigurations.${hostName}.config.sconfig.morph.deployment.targetHost}
+          HostName ${nixosConfigurations.${hostName}.config.sconfig.deployment.targetHost}
         '')
         (builtins.attrNames nixosConfigurations);
 
@@ -40,24 +38,15 @@ let
       jump = pkgs.writeShellScript "jump" ''
         set -eu
         echo ${self}
-        ip="$(nix eval --raw ".#nixosConfigurations.\"$1\".config.sconfig.morph.deployment.targetHost")"
+        ip="$(nix eval --raw ".#nixosConfigurations.\"$1\".config.sconfig.deployment.targetHost")"
         NIX_SSHOPTS="-F${sshConfig}" nix copy --to ssh://root@$ip ${self}
         exec ssh -oForwardAgent=yes -F"${sshConfig}" "root@$ip" -t "cd ${self}; nix develop"
-      '';
-
-      check-updates = pkgs.writeShellScript "check-updates" ''
-        set -eu
-        export SSH_CONFIG_FILE=${sshConfig}
-        res="$(morph build morph.nix)"
-        diff \
-            <(find $res -type l | xargs readlink | sort) \
-            <(morph exec morph.nix 'readlink /run/current-system' |& grep '^/nix/store/' | sort)
       '';
 
       livecd-deploy = pkgs.writeShellScript "livecd-deploy" ''
         set -eux
         config=".#nixosConfigurations.\"$1\".config"
-        ip="$(nix eval --raw "$config.sconfig.morph.deployment.targetHost")"
+        ip="$(nix eval --raw "$config.sconfig.deployment.targetHost")"
         ssh-copy-id root@$ip
         sys="$(nix eval --raw "$config.system.build.toplevel")"
         nix build "$config.system.build.toplevel" --out-link "$(mktemp -d)/result"
@@ -70,6 +59,19 @@ let
             --root /mnt -- /run/current-system/bin/switch-to-configuration boot
       '';
 
+      check-updates = pkgs.writeShellScript "check-updates" ''
+        set -eu
+        export SSH_CONFIG_FILE=${sshConfig}
+        c="${pkgs.colmena}/bin/colmena"
+        diff <(
+          $c exec -v -- readlink /run/current-system |& grep /nix/store | sed 's/.*| //g' | sort
+        ) <(
+          $c eval -E '
+            { nodes, ... }: map (x: x.config.system.build.toplevel) (builtins.attrValues nodes)
+          ' | jq .[] -r | sort
+        )
+      '';
+
     in
     { inherit check-updates jump livecd-deploy pkgs sshConfig; };
 
@@ -77,39 +79,25 @@ in
 {
   devShell = system: with helpers system;
     pkgs.mkShell {
-      buildInputs = [ pkgs.morph ];
+      buildInputs = [ pkgs.colmena ];
       shellHook = ''
         export SSH_CONFIG_FILE=${sshConfig}
         alias ssh='ssh -F${sshConfig}'
         alias jump=${jump}
         alias check-updates=${check-updates}
         alias livecd-deploy=${livecd-deploy}
+        alias c=colmena
       '';
     };
 
 
-  morph-entrypoint = system:
-    let
-      globalHealthChecks.cmd = [
-        {
-          cmd = [ "nixos-check-reboot" ];
-          description = "Check for pending reboot";
-        }
-        {
-          cmd = [ "systemctl is-system-running" ];
-          description = "Check services are running";
-        }
-      ];
-
-      getConfig = name: value: { ... }: {
-        imports = extraMorphModules ++ nixosConfigurations.${name}.extraArgs.modules;
-        config = nixpkgs.lib.mkMerge [
-          { inherit (value.config.sconfig.morph) deployment; }
-          { deployment.healthChecks = globalHealthChecks; }
+  colmena =
+    { meta.nixpkgs = nixpkgs.legacyPackages.${system}; } //
+    builtins.mapAttrs
+      (name: value: {
+        imports = value.extraArgs.modules ++ [
+          ({ config, ... }: { inherit (config.sconfig) deployment; })
         ];
-      };
-
-    in
-    { network.pkgs = nixpkgs.legacyPackages.${system}; } //
-    builtins.mapAttrs getConfig nixosConfigurations;
+      })
+      (nixosConfigurations);
 }

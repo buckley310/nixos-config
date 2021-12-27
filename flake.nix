@@ -5,12 +5,12 @@
     let
 
       mypkgs = import ./pkgs;
-      morphHosts = import lib/morph.nix;
-      hardware = import lib/hardware.nix;
+      deploy = import lib/deploy.nix;
+      hardware = import lib/hardware.nix "${nixpkgs}/nixos/modules";
 
       forAllSystems = f: builtins.listToAttrs (map
         (name: { inherit name; value = f name; })
-        (with nixpkgs.lib.systems.supported; tier1 ++ tier2));
+        [ "x86_64-linux" "aarch64-linux" ]);
 
       pins = {
         nix.registry.nixpkgs.flake = nixpkgs;
@@ -23,7 +23,7 @@
 
     in
     {
-      lib = { inherit forAllSystems morphHosts hardware; };
+      lib = { inherit forAllSystems hardware deploy; };
 
       nixosModules =
         { inherit pins; } //
