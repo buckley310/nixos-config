@@ -9,7 +9,7 @@ with lib;
     };
 
     fonts.fonts = [
-      # vscode: "DejaVuSansMono Nerd Font Mono" (size 16)
+      # vscode: "DejaVuSansMono Nerd Font" (size 16)
       # gnome-terminal: "DejaVu Sans Mono, Inconsolata for Powerline Medium 12"
       # gnome-terminal setting (dconf): /org/gnome/terminal/legacy/profiles/.../font
       pkgs.powerline-fonts
@@ -86,7 +86,7 @@ with lib;
       "security.workspace.trust.startupPrompt" = "never";
       "security.workspace.trust.untrustedFiles" = "newWindow";
       "terminal.external.linuxExec" = "x-terminal-emulator";
-      "terminal.integrated.fontFamily" = "DejaVuSansMono Nerd Font Mono";
+      "terminal.integrated.fontFamily" = "DejaVuSansMono Nerd Font";
       "terminal.integrated.fontSize" = 16;
       "terminal.integrated.showExitAlert" = false;
       "trailing-spaces.highlightCurrentLine" = false;
