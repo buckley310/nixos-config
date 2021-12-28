@@ -79,6 +79,8 @@
   environment.etc.nixpkgs.source = pkgs.path;
   nix.nixPath = [ "nixpkgs=/etc/nixpkgs" ];
 
+  programs.bcc.enable = true;
+
   programs.htop = {
     enable = true;
     settings = {
