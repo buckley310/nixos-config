@@ -9,6 +9,7 @@ let
 in
 rec
 {
+  bck-nerdfont = pkg ./bck-nerdfont.nix { };
   binaryninja = pkg ./binary-ninja-personal { };
   commander-x16 = pkg ./commander-x16 { };
   gef = pkg ./gef { };

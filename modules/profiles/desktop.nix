@@ -8,13 +8,7 @@ with lib;
       security-tools = true;
     };
 
-    fonts.fonts = [
-      # vscode: "DejaVuSansMono Nerd Font" (size 16)
-      # gnome-terminal: "DejaVu Sans Mono, Inconsolata for Powerline Medium 12"
-      # gnome-terminal setting (dconf): /org/gnome/terminal/legacy/profiles/.../font
-      pkgs.powerline-fonts
-      (pkgs.nerdfonts.override { fonts = [ "DejaVuSansMono" ]; })
-    ];
+    fonts.fonts = [ pkgs.bck-nerdfont ];
 
     environment.systemPackages = with pkgs; [
       brave
