@@ -2,6 +2,8 @@
 {
   networking.hostName = "cube";
 
+  imports = [ ./monitors.nix ];
+
   sconfig = {
     gnome = true;
     profile = "desktop";
