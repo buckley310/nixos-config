@@ -104,7 +104,7 @@ with lib;
 
     virtualisation.docker = { enable = true; enableOnBoot = false; };
 
-    boot.kernelPackages = pkgs.linuxPackages_5_14;
+    boot.kernelPackages = pkgs.linuxPackages_5_15;
 
     boot.loader.timeout =
       if config.boot.loader.systemd-boot.enable
