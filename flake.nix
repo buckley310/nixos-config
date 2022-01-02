@@ -1,12 +1,16 @@
 {
   inputs.nixpkgs.url = "nixpkgs/nixos-21.11";
+  inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-  outputs = { self, nixpkgs, ... }:
+  outputs = { self, nixpkgs, nixos-hardware, ... }:
     let
 
       mypkgs = import ./pkgs;
       deploy = import lib/deploy.nix;
-      hardware = import lib/hardware.nix "${nixpkgs}/nixos/modules";
+
+      hardware =
+        nixos-hardware.nixosModules //
+        import lib/hardware.nix "${nixpkgs}/nixos/modules";
 
       forAllSystems = f: builtins.listToAttrs (map
         (name: { inherit name; value = f name; })

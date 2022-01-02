@@ -106,6 +106,8 @@ with lib;
 
     boot.kernelPackages = pkgs.linuxPackages_5_15;
 
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
     boot.loader.timeout =
       if config.boot.loader.systemd-boot.enable
       then null else lib.mkOverride 9999 99;

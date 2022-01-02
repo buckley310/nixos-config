@@ -95,6 +95,7 @@ in
     { meta.nixpkgs = nixpkgs.legacyPackages.${system}; } //
     builtins.mapAttrs
       (name: value: {
+        nixpkgs.system = value.config.nixpkgs.system; # needed for multi-arch deployments
         imports = value.extraArgs.modules ++ [
           ({ config, ... }: { inherit (config.sconfig) deployment; })
         ];
