@@ -53,20 +53,6 @@
       print("compression ratio:", orig_data_size/mem_used_total)
     '')
 
-    (writeShellScriptBin "nixos-check-reboot" ''
-      set -e
-      booted="$(readlink /run/booted-system/kernel)"
-      current="$(readlink /run/current-system/kernel)"
-      if [ "$booted" = "$current" ]
-      then
-          echo OK
-          exit 0
-      else
-          echo REBOOT NEEDED
-          exit 1
-      fi
-    '')
-
     (writeScriptBin "zfsram" ''
       #!${pkgs.python3}/bin/python
       for ln in open('/proc/spl/kstat/zfs/arcstats').readlines():

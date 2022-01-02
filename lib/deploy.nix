@@ -67,8 +67,15 @@ let
         $c exec -- '[ "$(echo '"'$j'"' | jq -r .$(hostname))" = "$(readlink /run/current-system)" ]'
       '';
 
+      check-reboots = pkgs.writeShellScript "check-reboots" ''
+        set -eu
+        export SSH_CONFIG_FILE=${sshConfig}
+        c="${pkgs.colmena}/bin/colmena"
+        $c exec -- '[ "$(readlink /run/booted-system/kernel)" = "$(readlink /run/current-system/kernel)" ]'
+      '';
+
     in
-    { inherit check-updates jump livecd-deploy pkgs sshConfig; };
+    { inherit check-updates check-reboots jump livecd-deploy pkgs sshConfig; };
 
 in
 {
@@ -80,6 +87,7 @@ in
         alias ssh='ssh -F${sshConfig}'
         alias jump=${jump}
         alias check-updates=${check-updates}
+        alias check-reboots=${check-reboots}
         alias livecd-deploy=${livecd-deploy}
         alias c=colmena
       '';
