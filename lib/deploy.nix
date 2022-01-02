@@ -63,13 +63,8 @@ let
         set -eu
         export SSH_CONFIG_FILE=${sshConfig}
         c="${pkgs.colmena}/bin/colmena"
-        diff <(
-          $c exec -v -- readlink /run/current-system |& grep /nix/store | sed 's/.*| //g' | sort
-        ) <(
-          $c eval -E '
-            { nodes, ... }: map (x: x.config.system.build.toplevel) (builtins.attrValues nodes)
-          ' | jq .[] -r | sort
-        )
+        j="$($c eval -E '{nodes,...}: builtins.mapAttrs (n: v: v.config.system.build.toplevel) nodes')"
+        $c exec -- '[ "$(echo '"'$j'"' | jq -r .$(hostname))" = "$(readlink /run/current-system)" ]'
       '';
 
     in
