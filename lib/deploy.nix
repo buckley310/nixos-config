@@ -64,7 +64,7 @@ let
         export SSH_CONFIG_FILE=${sshConfig}
         c="${pkgs.colmena}/bin/colmena"
         j="$($c eval -E '{nodes,...}: builtins.mapAttrs (n: v: v.config.system.build.toplevel) nodes')"
-        $c exec -- '[ "$(echo '"'$j'"' | jq -r .$(hostname))" = "$(readlink /run/current-system)" ]'
+        $c exec -- '[ "$(echo '"'$j'"' | jq -r .\"$(hostname)\")" = "$(readlink /run/current-system)" ]'
       '';
 
       check-reboots = pkgs.writeShellScript "check-reboots" ''
