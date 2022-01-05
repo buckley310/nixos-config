@@ -37,8 +37,6 @@
     whois
     zip
 
-    (writeShellScriptBin "nr" "nix repl '${pkgs.path}'")
-
     (writeShellScriptBin "dirt" "while sleep 1; do grep '^Dirty:' /proc/meminfo ; done")
 
     (writeShellScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
@@ -61,9 +59,6 @@
     '')
 
   ];
-
-  environment.etc.nixpkgs.source = pkgs.path;
-  nix.nixPath = [ "nixpkgs=/etc/nixpkgs" ];
 
   programs.bcc.enable = true;
 

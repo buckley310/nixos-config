@@ -17,7 +17,12 @@
         [ "x86_64-linux" "aarch64-linux" ]);
 
       pins = {
-        nix.registry.nixpkgs.flake = nixpkgs;
+        nix.registry.nixpkgs.to = {
+          inherit (nixpkgs) rev;
+          owner = "NixOS";
+          repo = "nixpkgs";
+          type = "github";
+        };
         nix.registry.bck.to = {
           owner = "buckley310";
           repo = "nixos-config";

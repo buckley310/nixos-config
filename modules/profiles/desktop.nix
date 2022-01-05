@@ -10,6 +10,9 @@ with lib;
 
     fonts.fonts = [ pkgs.bck-nerdfont ];
 
+    environment.etc.nixpkgs.source = pkgs.path;
+    nix.nixPath = [ "nixpkgs=/etc/nixpkgs" ];
+
     environment.systemPackages = with pkgs; [
       brave
       chromium
@@ -26,6 +29,8 @@ with lib;
       steam-run
       tdesktop
       youtube-dl
+
+      (writeShellScriptBin "nr" "nix repl ${pkgs.path}")
 
       (mpv-with-scripts.override { scripts = [ mpvScripts.mpris ]; })
 
