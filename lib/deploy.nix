@@ -1,5 +1,4 @@
 { self
-, system ? "x86_64-linux"
 , modules ? [ ]
 }:
 
@@ -95,7 +94,7 @@ in
 
 
   colmena =
-    { meta.nixpkgs = nixpkgs.legacyPackages.${system}; } //
+    { meta.nixpkgs = nixpkgs.legacyPackages."x86_64-linux"; } //
     builtins.mapAttrs
       (name: value: {
         nixpkgs.system = value.config.nixpkgs.system; # needed for multi-arch deployments
