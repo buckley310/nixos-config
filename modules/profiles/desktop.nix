@@ -10,7 +10,7 @@ with lib;
 
     fonts.fonts = [ pkgs.bck-nerdfont ];
 
-    environment.etc.nixpkgs.source = pkgs.path;
+    environment.etc.nixpkgs.source = pkgs.nixpkgs_src;
     nix.nixPath = [ "nixpkgs=/etc/nixpkgs" ];
 
     environment.systemPackages = with pkgs; [
@@ -30,7 +30,7 @@ with lib;
       tdesktop
       youtube-dl
 
-      (writeShellScriptBin "nr" "nix repl ${pkgs.path}")
+      (writeShellScriptBin "nr" "exec nix repl ${pkgs.nixpkgs_src}")
 
       (mpv-with-scripts.override { scripts = [ mpvScripts.mpris ]; })
 

@@ -45,7 +45,10 @@
 
       nixosModule = {
         imports = builtins.attrValues self.nixosModules;
-        nixpkgs.overlays = [ (_: mypkgs) ];
+        nixpkgs.overlays = [
+          (_: _: { nixpkgs_src = toString nixpkgs; })
+          (_: mypkgs)
+        ];
       };
 
       nixosConfigurations = import ./hosts nixpkgs hardware self.nixosModule;
