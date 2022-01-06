@@ -90,6 +90,7 @@
     alias hd='hexdump -C'
     alias catc='${pkgs.vimpager-latest}/bin/vimpager --force-passthrough'
     alias nix-env="echo nix-env is disabled #"
+    alias nix-what-depends-on='nix-store --query --referrers'
   '';
 
   programs.neovim = {
