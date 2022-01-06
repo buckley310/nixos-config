@@ -60,8 +60,6 @@
 
   ];
 
-  programs.bcc.enable = true;
-
   programs.htop = {
     enable = true;
     settings = {
