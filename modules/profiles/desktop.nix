@@ -14,7 +14,6 @@ with lib;
     nix.nixPath = [ "nixpkgs=/etc/nixpkgs" ];
 
     environment.systemPackages = with pkgs; [
-      brave
       chromium
       discord
       element-desktop
