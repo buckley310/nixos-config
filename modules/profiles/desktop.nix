@@ -13,6 +13,8 @@ with lib;
     environment.etc.nixpkgs.source = pkgs.nixpkgs_src;
     nix.nixPath = [ "nixpkgs=/etc/nixpkgs" ];
 
+    environment.variables.MOZ_USE_XINPUT2 = "1";
+
     environment.systemPackages = with pkgs; [
       chromium
       discord
