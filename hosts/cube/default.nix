@@ -7,6 +7,7 @@
   sconfig = {
     gnome = true;
     profile = "desktop";
+    gaming = true;
   };
 
   environment.etc =

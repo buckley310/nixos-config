@@ -25,7 +25,6 @@ with lib;
       pavucontrol
       pulseeffects-legacy
       qemu_full
-      steam-run
       tdesktop
       youtube-dl
 
@@ -103,8 +102,6 @@ with lib;
       { key = "ctrl+e"; command = "-workbench.action.quickOpen"; }
       { key = "ctrl+e"; command = "workbench.action.quickOpen"; when = "!terminalFocus"; }
     ];
-
-    programs.steam.enable = true;
 
     virtualisation.docker = { enable = true; enableOnBoot = false; };
 
