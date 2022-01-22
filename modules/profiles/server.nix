@@ -5,6 +5,7 @@ with lib;
     services.logind.lidSwitch = "ignore";
     services.openssh.enable = true;
     documentation.nixos.enable = false;
+    nix.nixPath = [ ];
     nix.gc = {
       automatic = true;
       options = "--delete-older-than 30d";
