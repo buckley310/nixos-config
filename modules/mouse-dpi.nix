@@ -5,6 +5,7 @@ let
     "SteelSeries SteelSeries Aerox 3 Wireless"
     "Logitech G Pro Gaming Mouse"
     "Logitech G305"
+    "Logitech USB Receiver"
     "Glorious Model O"
   ];
 in
