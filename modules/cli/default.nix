@@ -60,6 +60,7 @@
 
   ];
 
+  environment.variables.HTOPRC = "/dev/null";
   programs.htop = {
     enable = true;
     settings = {
