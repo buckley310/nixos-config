@@ -2,7 +2,7 @@
 {
   networking.hostName = "cube";
 
-  imports = [ ./monitors.nix ];
+  # imports = [ ./monitors.nix ];
 
   sconfig = {
     gnome = true;
