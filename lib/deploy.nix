@@ -1,4 +1,5 @@
 { self
+, hosts
 , modules ? [ ]
 }:
 
@@ -97,10 +98,9 @@ in
     { meta.nixpkgs = nixpkgs.legacyPackages."x86_64-linux"; } //
     builtins.mapAttrs
       (name: value: {
-        nixpkgs.system = value.config.nixpkgs.system; # needed for multi-arch deployments
-        imports = value.extraArgs.modules ++ [
+        imports = value.modules ++ [
           ({ config, ... }: { inherit (config.sconfig) deployment; })
         ];
       })
-      (nixosConfigurations);
+      (hosts);
 }
