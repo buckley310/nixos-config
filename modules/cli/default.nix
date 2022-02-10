@@ -75,6 +75,9 @@
   programs.git = {
     enable = true;
     config = {
+      alias.glog = "log --all --decorate --oneline --graph";
+      alias.logl = "log --oneline -n10";
+      alias.logo = "log --oneline";
       pull.ff = "only";
       init.defaultBranch = "main";
     };
