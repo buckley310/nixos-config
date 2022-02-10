@@ -8,16 +8,6 @@
 let
   cfg = config.sconfig.alacritty;
 
-  backported = pkgs.callPackage
-    (pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/NixOS/nixpkgs/554d2d8aa25b6e583575459c297ec23750adb6cb/pkgs/applications/terminal-emulators/alacritty/default.nix";
-      sha256 = "4e8f317595c6b4f67eda10a1e16bb98b6d5354b475a0a0b9dee2982fab1cc718";
-    })
-    {
-      inherit (pkgs.xorg) libXcursor libXxf86vm libXi;
-      inherit (pkgs.darwin.apple_sdk.frameworks) AppKit CoreGraphics CoreServices CoreText Foundation OpenGL;
-    };
-
   configText = builtins.toJSON
     {
       env.TERM = "xterm-256color";
@@ -60,7 +50,7 @@ in
     environment.etc."xdg/alacritty.yml".text = configText;
 
     environment.systemPackages = [
-      backported
+      pkgs.alacritty
       (pkgs.writeTextFile {
         name = "alacritty.yml";
         destination = "/etc/xdg/alacritty.yml";
