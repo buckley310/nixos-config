@@ -21,7 +21,7 @@
 , libXtst
 , makeWrapper
 , nss
-, python38
+, python3
 , requireFile
 , systemd
 , unzip
@@ -32,15 +32,23 @@
 , xkeyboardconfig
 , zlib
 }:
+
+let
+  # curl -O https://binary.ninja/js/hashes.js
+  hjs = builtins.fromJSON (builtins.readFile ./hashes.js);
+
+in
 stdenv.mkDerivation rec {
   pname = "binaryninja";
-  version = "2.4.2846";
+  inherit (hjs) version;
+
+  # TODO: missing libQt6PrintSupport.so.6
+  autoPatchelfIgnoreMissingDeps = true;
 
   src = requireFile rec {
     name = "BinaryNinja-personal.zip";
     url = "https://binary.ninja";
-    sha256 = (builtins.fromJSON (builtins.readFile ./hashes.js)).${name};
-    # https://binary.ninja/js/hashes.js
+    sha256 = hjs.hashes.${name};
   };
 
   buildInputs = [
@@ -66,7 +74,7 @@ stdenv.mkDerivation rec {
     libXtst
     makeWrapper
     nss
-    python38
+    python3
     stdenv.cc.cc.lib
     unzip
     xcbutilimage
@@ -84,14 +92,9 @@ stdenv.mkDerivation rec {
     mv $NIX_BUILD_TOP/$sourceRoot $out/lib/binary-ninja
     makeWrapper $out/lib/binary-ninja/binaryninja $out/bin/binaryninja \
         --suffix LD_LIBRARY_PATH : "${systemd}/lib" \
-        --suffix LD_LIBRARY_PATH : "${python38}/lib" \
+        --suffix LD_LIBRARY_PATH : "${python3}/lib" \
         --set QT_XKB_CONFIG_ROOT "${xkeyboardconfig}/share/X11/xkb" \
         --set QTCOMPOSE "${libX11.out}/share/X11/locale"
-
-    # Keeping the zip file in the nix store is desirable,
-    # because when the zip is missing requireFile involves manual steps.
-    # Below is just a hack to keep the zip from being garbage-collected.
-    ln -s "${src}" "$out/share/BinaryNinja-personal.zip"
   '';
 
   meta.platforms = [ "x86_64-linux" ];
