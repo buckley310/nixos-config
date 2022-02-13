@@ -12,7 +12,16 @@ in
 
   users.users.sean = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "audio" "video" "networkmanager" "dialout" "input" "wireshark" ];
+    extraGroups = [
+      "audio"
+      "dialout"
+      "input"
+      "networkmanager"
+      "video"
+      "wheel"
+      "wireshark"
+      config.services.ipfs.group
+    ];
     openssh.authorizedKeys = { inherit keys; };
   };
 
