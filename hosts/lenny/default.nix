@@ -25,6 +25,12 @@
     profile = "desktop";
   };
 
+  zramSwap.enable = false;
+  swapDevices = [{
+    device = "/dev/disk/by-partuuid/e54894a7-f322-482c-b8f2-8e706f02f316";
+    randomEncryption.enable = true;
+  }];
+
   environment.systemPackages = [ pkgs.vmware-horizon-client ];
 
   boot = {
