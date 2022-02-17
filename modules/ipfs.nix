@@ -6,6 +6,7 @@ let
     server = {
       Swarm.DisableNatPortMap = true; # Disable UPnP
       AutoNAT.ServiceMode = "disabled"; # maybe change this to "enabled" ?
+      Reprovider.Strategy = "pinned";
       Routing.Type = "dhtclient"; # maybe change this to "dht" ?
       Swarm.ConnMgr.HighWater = 900;
       Swarm.ConnMgr.LowWater = 600;
@@ -13,6 +14,7 @@ let
     desktop = {
       Swarm.DisableNatPortMap = true; # Disable UPnP
       AutoNAT.ServiceMode = "disabled";
+      Reprovider.Strategy = "pinned";
       Routing.Type = "dhtclient";
       Swarm.ConnMgr.HighWater = 300;
       Swarm.ConnMgr.LowWater = 50;
