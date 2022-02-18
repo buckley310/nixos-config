@@ -30,6 +30,7 @@
   '';
 
   nix = {
+    nixPath = [ ];
     package = pkgs.nixFlakes;
     daemonCPUSchedPolicy = "idle";
     extraOptions = ''

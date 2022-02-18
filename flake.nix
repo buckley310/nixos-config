@@ -46,7 +46,6 @@
       nixosModule = {
         imports = builtins.attrValues self.nixosModules;
         nixpkgs.overlays = [
-          (_: _: { nixpkgs_src = toString nixpkgs; })
           (_: mypkgs)
         ];
       };
