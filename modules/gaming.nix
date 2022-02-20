@@ -9,6 +9,9 @@ in
   config = lib.mkIf cfg.enable
     {
       programs.steam.enable = true;
-      environment.systemPackages = [ pkgs.steam-run ];
+      environment.systemPackages = with pkgs; [
+        obs-studio
+        steam-run
+      ];
     };
 }
