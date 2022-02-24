@@ -41,6 +41,8 @@
 
     (writeShellScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
 
+    (writeShellScriptBin "nr" "exec nix repl \"$(nix eval nixpkgs#path)\"")
+
     (writeShellScriptBin "pip-install" "exec python -m ensurepip --user")
 
     (writeScriptBin "zram-ratio" ''

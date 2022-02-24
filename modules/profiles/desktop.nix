@@ -29,8 +29,6 @@ with lib;
       tdesktop
       youtube-dl
 
-      (writeShellScriptBin "nr" "exec nix repl \"$(nix eval nixpkgs#path)\"")
-
       (mpv-with-scripts.override { scripts = [ mpvScripts.mpris ]; })
 
       (vscode-with-extensions.override {
