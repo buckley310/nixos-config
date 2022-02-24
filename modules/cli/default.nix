@@ -23,6 +23,7 @@
     nix-top
     nixpkgs-fmt
     openssl
+    parted
     psmisc
     pv
     pwgen
