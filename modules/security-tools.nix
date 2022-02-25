@@ -15,11 +15,11 @@ in
       wireshark.package = pkgs.wireshark;
     };
 
-    users.users.sandy = {
+    users.users.zim = {
       group = "users";
       isSystemUser = true;
       useDefaultShell = true;
-      home = "/home/sandy";
+      home = "/home/zim";
       createHome = true;
     };
   };
