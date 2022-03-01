@@ -89,6 +89,9 @@
   programs.tmux = {
     enable = true;
     terminal = "screen-256color";
+    extraConfig = ''
+      set-environment -gu SHLVL
+    '';
   };
 
   programs.bash.interactiveShellInit = ''
