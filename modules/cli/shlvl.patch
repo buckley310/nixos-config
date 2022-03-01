@@ -42,7 +42,7 @@ index 0000000..d8bba7d
 +	}
 +	return []pwl.Segment{{
 +		Name:       "shlvl",
-+		Content:    "+ " + level,
++		Content:    level,
 +		Foreground: 231,
 +		Background: 55,
 +	}}
