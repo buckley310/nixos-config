@@ -23,9 +23,8 @@
   sconfig = {
     gnome = true;
     profile = "desktop";
+    horizon.enable = true;
   };
-
-  environment.systemPackages = [ pkgs.vmware-horizon-client ];
 
   boot = {
     loader.systemd-boot.enable = true;

@@ -8,6 +8,7 @@
     gnome = true;
     profile = "desktop";
     gaming.enable = true;
+    horizon.enable = true;
   };
 
   environment.etc =
@@ -18,11 +19,6 @@
         "ssh/ssh_host_ed25519_key"
         "ssh/ssh_host_rsa_key"
       ]);
-
-  environment.systemPackages = with pkgs; [
-    wine
-    vmware-horizon-client
-  ];
 
   services.openssh.enable = true;
 
