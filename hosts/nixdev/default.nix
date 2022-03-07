@@ -14,13 +14,13 @@
   users.users.sean.passwordFile = "/nix/persist/shadow_sean";
 
   environment.etc =
-    builtins.listToAttrs (map
-      (name: { inherit name; value.source = "/nix/persist/etc/${name}"; })
+    lib.genAttrs
       [
         "machine-id"
         "ssh/ssh_host_ed25519_key"
         "ssh/ssh_host_rsa_key"
-      ]);
+      ]
+      (name: { source = "/nix/persist/etc/${name}"; });
 
   boot = {
     loader.systemd-boot.enable = true;

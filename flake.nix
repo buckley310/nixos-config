@@ -12,9 +12,9 @@
         nixos-hardware.nixosModules //
         import lib/hardware.nix "${nixpkgs}/nixos/modules";
 
-      forAllSystems = f: builtins.listToAttrs (map
-        (name: { inherit name; value = f name; })
-        [ "x86_64-linux" "aarch64-linux" ]);
+      forAllSystems = f: nixpkgs.lib.genAttrs
+        [ "x86_64-linux" "aarch64-linux" ]
+        (system: f system);
 
       pins = {
         nix.registry.nixpkgs.to = {
