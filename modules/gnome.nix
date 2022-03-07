@@ -39,7 +39,6 @@ in
     ];
 
     sconfig.user-settings = ''
-      dconf write /org/gnome/mutter/center-new-windows true
       gsettings set org.gnome.desktop.interface enable-hot-corners false
       gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
       gsettings set org.gnome.desktop.interface show-battery-percentage true
