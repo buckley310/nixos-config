@@ -65,6 +65,10 @@
             writeShellScriptBin "jupyterlab" ''
               exec ${jupy}/bin/python -m jupyterlab "$@"
             '';
+
+          qemu-uefi = writeShellScriptBin "qemu-uefi" ''
+            exec ${qemu_kvm}/bin/qemu-kvm -bios ${OVMF.fd}/FV/OVMF.fd "$@"
+          '';
         }
       );
     };
