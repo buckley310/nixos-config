@@ -58,11 +58,6 @@
       apps = forAllSystems (system:
         with nixpkgs.legacyPackages.${system};
         {
-          gnome-extensions = writeShellScriptBin "gnome-extensions" ''
-            cat ${path}/pkgs/desktops/gnome/extensions/extensions.json |
-            ${jq}/bin/jq -c '.[]|{name,ver:(.shell_version_map|keys)}'
-          '';
-
           jupyterlab =
             let
               jupy = python3.withPackages (p: with p; [ jupyterlab ipython ]);
