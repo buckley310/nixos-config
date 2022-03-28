@@ -1,16 +1,13 @@
 {
   inputs.nixpkgs.url = "nixpkgs/nixos-21.11";
-  inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-  outputs = { self, nixpkgs, nixos-hardware, ... }:
+  outputs = { self, nixpkgs, ... }:
     let
 
       mypkgs = import ./pkgs;
       deploy = import lib/deploy.nix;
 
-      hardware =
-        nixos-hardware.nixosModules //
-        import lib/hardware.nix;
+      hardware = import lib/hardware.nix;
 
       forAllSystems = f: nixpkgs.lib.genAttrs
         [ "x86_64-linux" "aarch64-linux" ]
