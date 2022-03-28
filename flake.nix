@@ -10,7 +10,7 @@
 
       hardware =
         nixos-hardware.nixosModules //
-        import lib/hardware.nix "${nixpkgs}/nixos/modules";
+        import lib/hardware.nix;
 
       forAllSystems = f: nixpkgs.lib.genAttrs
         [ "x86_64-linux" "aarch64-linux" ]
