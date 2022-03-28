@@ -13,6 +13,8 @@
   users.users.root.passwordFile = "/nix/persist/shadow_sean";
   users.users.sean.passwordFile = "/nix/persist/shadow_sean";
 
+  environment.variables.GTK_THEME = "Adwaita-dark";
+
   environment.etc =
     lib.genAttrs
       [
@@ -22,19 +24,17 @@
       ]
       (name: { source = "/nix/persist/etc/${name}"; });
 
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    mirroredBoots = [{
+      path = "/nix/persist/boot";
+      devices = [ "/dev/sda" ];
+    }];
   };
 
   fileSystems =
     {
       "/" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "mode=755" ]; };
-      "/boot" = { device = "/dev/disk/by-partlabel/_esp"; fsType = "vfat"; options = [ "discard" "noatime" ]; };
-      "/nix" = { device = "/dev/disk/by-partlabel/_nix"; fsType = "ext4"; options = [ "discard" "noatime" ]; };
-      "/home" = { device = "/nix/persist/home"; noCheck = true; options = [ "bind" ]; };
-      "/var/log" = { device = "/nix/persist/var/log"; noCheck = true; options = [ "bind" ]; };
+      "/nix" = { device = "/dev/sda1"; fsType = "ext4"; options = [ "noatime" ]; };
     };
-
-  system.stateVersion = "21.05";
 }
