@@ -11,7 +11,6 @@ in
       programs.steam.enable = true;
       environment.systemPackages = with pkgs; [
         obs-studio
-        steam-run
       ];
     };
 }
