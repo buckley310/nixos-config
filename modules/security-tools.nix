@@ -16,11 +16,8 @@ in
     };
 
     users.users.zim = {
-      group = "users";
-      isSystemUser = true;
-      useDefaultShell = true;
-      home = "/home/zim";
-      createHome = true;
+      uid = 2099;
+      isNormalUser = true;
     };
   };
 }

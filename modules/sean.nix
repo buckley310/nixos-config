@@ -11,6 +11,7 @@ in
     lib.optionals (config.sconfig.profile == "server") keys;
 
   users.users.sean = {
+    uid = 2000;
     isNormalUser = true;
     extraGroups = [
       "audio"
