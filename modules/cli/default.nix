@@ -100,10 +100,19 @@
     alias hd='hexdump -C'
     alias catc='${pkgs.vimpager-latest}/bin/vimpager --force-passthrough'
     alias nix-env="echo nix-env is disabled #"
-    alias nix-index='nix-index -f="$(nix eval nixpkgs#path)"'
     alias nix-what-depends-on='nix-store --query --referrers'
     alias day='date "+%Y-%m-%d"'
-  '';
+  '' +
+  # compatibility for programs that need $NIX_PATH set:
+  lib.concatMapStrings
+    (x: ''
+      alias ${x}='NIX_PATH="nixpkgs=$(nix eval nixpkgs#path)" ${x}'
+    '')
+    [
+      "nix-build"
+      "nix-index"
+      "nix-shell"
+    ];
 
   programs.neovim = {
     enable = true;
