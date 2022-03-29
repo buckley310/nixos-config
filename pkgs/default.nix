@@ -1,11 +1,10 @@
 pkgs:
 let
-  empty = pkgs.runCommand "empty" { } "mkdir $out";
   pkg = path: args:
     let
       p = pkgs.callPackage path args;
     in
-    if p.meta.available then p else empty;
+    if p.meta.available then p else pkgs.emptyDirectory;
 in
 rec
 {
