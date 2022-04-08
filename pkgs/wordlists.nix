@@ -1,6 +1,6 @@
 { lib
+, curl
 , fetchFromGitHub
-, fetchFromGitLab
 , nmap
 , runCommand
 , wfuzz
@@ -19,31 +19,28 @@ let
     sha256 = "QBlZlS8JJI6pIdIaD1I+7gMuPPfEybxybj2HrnQM7co=";
   };
 
-  rockyou = runCommand
-    "rockyou.txt"
+  rockyou = runCommand "rockyou.txt"
     {
-      src = fetchFromGitLab {
-        group = "kalilinux";
-        owner = "packages";
-        repo = "wordlists";
-        rev = "upstream/0.3";
-        sha256 = "1slsz9mzcbvfvx928drvf9ayq3q5wbfqgm0p1khxc7m9yf20ilm2";
-      };
+      outputHashAlgo = "sha256";
+      outputHash = "0wv1d2b00x294irnqki9vvbicmysdsa1vphkqmhhbjs2fzm5y0qn";
     }
-    "gunzip <$src/rockyou.txt.gz >$out";
+    ''
+      url="https://gitlab.com/kalilinux/packages/wordlists/-/raw/upstream/0.3/rockyou.txt.gz"
+      ${curl}/bin/curl --insecure "$url" | gunzip >$out
+    '';
 
-  dirbuster = runCommand
-    "dirbuster"
+  dirbuster = runCommand "dirbuster"
     {
-      src = fetchFromGitLab {
-        group = "kalilinux";
-        owner = "packages";
-        repo = "dirbuster";
-        rev = "upstream/1.0";
-        sha256 = "1500imrwhwr1zl59z1hq2bqhn05xjjl9lf3vp7dyx7dfx517i43y";
-      };
+      outputHashAlgo = "sha256";
+      outputHashMode = "recursive";
+      outputHash = "0l2sgagdxahqi7zqqw9v9v9g2gmqbdl2cyz0rvlmc4di6crdn36s";
     }
-    "mkdir -p $out; cp -v $src/*.txt $out/";
+    ''
+      url="https://gitlab.com/kalilinux/packages/dirbuster/-/archive/upstream/1.0/dirbuster-upstream-1.0.tar.gz"
+      mkdir $out
+      ${curl}/bin/curl --insecure "$url" |
+        tar -C$out -xvz --strip-components=1 --wildcards '*.txt'
+    '';
 
 in
 runCommand "wordlists" { } ''
