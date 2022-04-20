@@ -17,6 +17,7 @@
 , net-snmp
 , nmap
 , openvpn
+, pwndbg
 , remmina
 , security-wordlists
 , socat
@@ -70,6 +71,7 @@ symlinkJoin {
       net-snmp
       nmap
       openvpn
+      pwndbg
       remmina
       security-wordlists
       socat
