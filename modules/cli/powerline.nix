@@ -5,9 +5,10 @@ let
 
   theme = pkgs.writeText "powerline.json" (builtins.toJSON
     {
+      BoldForeground = true;
       CwdFg = 15;
-      PathFg = 15;
       PathBg = 24;
+      PathFg = 15;
       SeparatorFg = 16;
     });
 
@@ -38,9 +39,16 @@ in
   config = lib.mkIf cfg.enable {
 
     environment.systemPackages = [
-      (pkgs.powerline-go.overrideAttrs (old: {
+      ((pkgs.callPackage
+        (pkgs.fetchurl
+          {
+            url = "https://raw.githubusercontent.com/NixOS/nixpkgs/6ce4a720012398d451c21bc042d6740e92289615/pkgs/tools/misc/powerline-go/default.nix";
+            sha256 = "7a8294ac9726da9531f1e506369233b051ecc6aa32c77a281f7167027a89977e";
+          }
+        )
+        { }
+      ).overrideAttrs (old: {
         patches = [
-          ./bold.patch
           ./shlvl.patch
         ];
       }))
