@@ -1,17 +1,66 @@
+From 40a4883fbc225f2f568431b295fc66d294bf7f7d Mon Sep 17 00:00:00 2001
+From: Sean Buckley <sean.bck@gmail.com>
+Date: Thu, 23 Dec 2021 20:19:02 -0500
 Subject: [PATCH] add segment-shlvl
 
 ---
- main.go          |  1 +
- segment-shlvl.go | 23 +++++++++++++++++++++++
- 2 files changed, 24 insertions(+)
+ README.md           |  6 +++---
+ defaults.go         |  3 +++
+ main.go             |  1 +
+ segment-shlvl.go    | 23 +++++++++++++++++++++++
+ themes.go           |  3 +++
+ themes/default.json |  2 ++
+ 6 files changed, 35 insertions(+), 3 deletions(-)
  create mode 100644 segment-shlvl.go
 
+diff --git a/README.md b/README.md
+index cd47e90..edde09c 100644
+--- a/README.md
++++ b/README.md
+@@ -248,12 +248,12 @@ Usage of powerline-go:
+          (default "patched")
+   -modules string
+          The list of modules to load, separated by ','
+-         (valid choices: aws, bzr, cwd, direnv, docker, docker-context, dotenv, duration, exit, fossil, gcp, git, gitlite, goenv, hg, host, jobs, kube, load, newline, nix-shell, node, perlbrew, perms, plenv, rbenv, root, rvm, shell-var, shenv, ssh, svn, termtitle, terraform-workspace, time, user, venv, vgo, vi-mode, wsl)
++         (valid choices: aws, bzr, cwd, direnv, docker, docker-context, dotenv, duration, exit, fossil, gcp, git, gitlite, goenv, hg, host, jobs, kube, load, newline, nix-shell, node, perlbrew, perms, plenv, rbenv, root, rvm, shell-var, shenv, shlvl, ssh, svn, termtitle, terraform-workspace, time, user, venv, vgo, vi-mode, wsl)
+          Unrecognized modules will be invoked as 'powerline-go-MODULE' executable plugins and should output a (possibly empty) list of JSON objects that unmarshal to powerline-go's Segment structs.
+          (default "venv,user,host,ssh,cwd,perms,git,hg,jobs,exit,root")
+   -modules-right string
+          The list of modules to load anchored to the right, for shells that support it, separated by ','
+-         (valid choices: aws, bzr, cwd, direnv, docker, docker-context, dotenv, duration, exit, fossil, gcp, git, gitlite, goenv, hg, host, jobs, kube, load, newline, nix-shell, node, perlbrew, perms, plenv, rbenv, root, rvm, shell-var, shenv, ssh, svn, termtitle, terraform-workspace, time, user, venv, vgo, wsl)
++         (valid choices: aws, bzr, cwd, direnv, docker, docker-context, dotenv, duration, exit, fossil, gcp, git, gitlite, goenv, hg, host, jobs, kube, load, newline, nix-shell, node, perlbrew, perms, plenv, rbenv, root, rvm, shell-var, shenv, shlvl, ssh, svn, termtitle, terraform-workspace, time, user, venv, vgo, wsl)
+          Unrecognized modules will be invoked as 'powerline-go-MODULE' executable plugins and should output a (possibly empty) list of JSON objects that unmarshal to powerline-go's Segment structs.
+   -newline
+          Show the prompt on a new line
+@@ -266,7 +266,7 @@ Usage of powerline-go:
+          Use '~' for your home dir. You may need to escape this character to avoid shell substitution.
+   -priority string
+          Segments sorted by priority, if not enough space exists, the least priorized segments are removed first. Separate with ','
+-         (valid choices: aws, bzr, cwd, direnv, docker, docker-context, dotenv, duration, exit, fossil, gcp, git, gitlite, goenv, hg, host, jobs, kube, load, newline, nix-shell, node, perlbrew, perms, plenv, rbenv, root, rvm, shell-var, shenv, ssh, svn, termtitle, terraform-workspace, time, user, venv, vgo, vi-mode, wsl)
++         (valid choices: aws, bzr, cwd, direnv, docker, docker-context, dotenv, duration, exit, fossil, gcp, git, gitlite, goenv, hg, host, jobs, kube, load, newline, nix-shell, node, perlbrew, perms, plenv, rbenv, root, rvm, shell-var, shenv, shlvl, ssh, svn, termtitle, terraform-workspace, time, user, venv, vgo, vi-mode, wsl)
+          (default "root,cwd,user,host,ssh,perms,git-branch,git-status,hg,jobs,exit,cwd-path")
+   -shell string
+          Set this to your shell type
+diff --git a/defaults.go b/defaults.go
+index 83c91ad..3857828 100644
+--- a/defaults.go
++++ b/defaults.go
+@@ -262,6 +262,9 @@ var defaults = Config{
+ 			ShEnvFg: 15,
+ 			ShEnvBg: 130,
+ 
++			ShLvlFg: 231,
++			ShLvlBg: 55,
++
+ 			NodeFg:        15,
+ 			NodeBg:        40,
+ 			NodeVersionFg: 40,
 diff --git a/main.go b/main.go
-index 02f4a4a..2bd111e 100644
+index c1b3786..ef0beae 100644
 --- a/main.go
 +++ b/main.go
-@@ -97,6 +97,7 @@ var modules = map[string]func(*powerline) []pwl.Segment{
- 	"root":                segmentRoot,
+@@ -100,6 +100,7 @@ var modules = map[string]func(*powerline) []pwl.Segment{
+ 	"rvm":                 segmentRvm,
  	"shell-var":           segmentShellVar,
  	"shenv":               segmentShEnv,
 +	"shlvl":               segmentShlvl,
@@ -20,7 +69,7 @@ index 02f4a4a..2bd111e 100644
  	"terraform-workspace": segmentTerraformWorkspace,
 diff --git a/segment-shlvl.go b/segment-shlvl.go
 new file mode 100644
-index 0000000..d8bba7d
+index 0000000..675fa12
 --- /dev/null
 +++ b/segment-shlvl.go
 @@ -0,0 +1,23 @@
@@ -43,7 +92,37 @@ index 0000000..d8bba7d
 +	return []pwl.Segment{{
 +		Name:       "shlvl",
 +		Content:    level,
-+		Foreground: 231,
-+		Background: 55,
++		Foreground: p.theme.ShLvlFg,
++		Background: p.theme.ShLvlBg,
 +	}}
 +}
+diff --git a/themes.go b/themes.go
+index f52c989..2ac1dde 100644
+--- a/themes.go
++++ b/themes.go
+@@ -139,6 +139,9 @@ type Theme struct {
+ 	ShEnvFg uint8
+ 	ShEnvBg uint8
+ 
++	ShLvlFg uint8
++	ShLvlBg uint8
++
+ 	NodeFg        uint8
+ 	NodeBg        uint8
+ 	NodeVersionFg uint8
+diff --git a/themes/default.json b/themes/default.json
+index f734707..c658f58 100644
+--- a/themes/default.json
++++ b/themes/default.json
+@@ -63,6 +63,8 @@
+   "ShellVarBg": 11,
+   "ShEnvFg": 15,
+   "ShEnvBg": 130,
++  "ShLvlFg": 231,
++  "ShLvlBg": 55,
+   "NodeFg": 15,
+   "NodeBg": 40,
+   "NodeVersionFg": 40,
+-- 
+2.33.1
+
