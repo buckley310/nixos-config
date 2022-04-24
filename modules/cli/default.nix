@@ -111,6 +111,7 @@
     [
       "nix-build"
       "nix-index"
+      "nix-prefetch-github"
       "nix-shell"
     ];
 
