@@ -18,6 +18,7 @@ rec
   security-wordlists = pkg ./wordlists.nix { };
   SpaceCadetPinball = pkg ./SpaceCadetPinball { };
   stretchy-spaces = pkg ./stretchy-spaces { };
+  vscode-vlang = pkg ./vscode-vlang { };
   webshells = pkg ./webshells { };
   weevely = pkg ./weevely { };
 }
