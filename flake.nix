@@ -49,24 +49,10 @@
 
       nixosConfigurations = import ./hosts nixpkgs hardware self.nixosModule;
 
+      apps = forAllSystems (system:
+        import lib/apps.nix nixpkgs.legacyPackages.${system});
+
       packages = forAllSystems
         (system: mypkgs nixpkgs.legacyPackages.${system});
-
-      apps = forAllSystems (system:
-        with nixpkgs.legacyPackages.${system};
-        {
-          jupyterlab =
-            let
-              jupy = python3.withPackages (p: with p; [ jupyterlab ipython ]);
-            in
-            writeShellScriptBin "jupyterlab" ''
-              exec ${jupy}/bin/python -m jupyterlab "$@"
-            '';
-
-          qemu-uefi = writeShellScriptBin "qemu-uefi" ''
-            exec ${qemu_kvm}/bin/qemu-kvm -bios ${OVMF.fd}/FV/OVMF.fd "$@"
-          '';
-        }
-      );
     };
 }
