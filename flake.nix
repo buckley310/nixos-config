@@ -47,12 +47,13 @@
         ];
       };
 
-      nixosConfigurations = import ./hosts nixpkgs hardware self.nixosModule;
+      nixosConfigurations =
+        import ./hosts nixpkgs hardware self.nixosModule;
 
       apps = forAllSystems (system:
         import lib/apps.nix nixpkgs.legacyPackages.${system});
 
-      packages = forAllSystems
-        (system: mypkgs nixpkgs.legacyPackages.${system});
+      packages = forAllSystems (system:
+        mypkgs nixpkgs.legacyPackages.${system});
     };
 }
