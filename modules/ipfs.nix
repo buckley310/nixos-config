@@ -17,17 +17,15 @@ in
       serviceFdlimit = 65536;
       extraConfig = {
         AutoNAT.ServiceMode = "disabled"; # maybe "enabled" for servers?
-        Reprovider.Strategy = "pinned";
         Routing.Type = "dhtclient"; # maybe "dht" for servers?
-        Swarm.ConnMgr.HighWater = 1000;
-        Swarm.ConnMgr.LowWater = 50;
         Swarm.DisableNatPortMap = true; # Disable UPnP
+
+        # ipfs-desktop defaults for ConnMgr
+        Swarm.ConnMgr.GracePeriod = "1m";
+        Swarm.ConnMgr.HighWater = 40;
+        Swarm.ConnMgr.LowWater = 20;
       };
     };
-
-    systemd.services.ipfs.postStart = ''
-      chmod g+r /var/lib/ipfs/config
-    '';
 
   };
 }

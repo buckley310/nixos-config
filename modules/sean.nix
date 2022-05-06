@@ -21,7 +21,6 @@ in
       "video"
       "wheel"
       "wireshark"
-      config.services.ipfs.group
     ];
     openssh.authorizedKeys = { inherit keys; };
   };
