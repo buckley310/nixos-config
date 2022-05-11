@@ -24,6 +24,7 @@
     gnome = true;
     profile = "desktop";
     horizon.enable = true;
+    wg-home.enable = true;
   };
 
   zramSwap.memoryPercent = 100;
