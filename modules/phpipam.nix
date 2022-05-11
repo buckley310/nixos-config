@@ -2,7 +2,7 @@
 let
   cfg = config.sconfig.phpipam;
 
-  version = "1.4.7";
+  version = "1.5.0";
 
   phpipamHtdocs = pkgs.stdenv.mkDerivation {
     inherit version;
@@ -11,7 +11,7 @@ let
       owner = "phpipam";
       repo = "phpipam";
       rev = "v${version}";
-      sha256 = "0LkVIgXxFSvWQZQ694dHIu5xReJtSx9nW6V0rcmARF0=";
+      sha256 = "sha256-dbeOx7Tvg9wu3X4FYiAEfj91MEgsb7XX0axFadV7SR8=";
       fetchSubmodules = true;
     };
     installPhase = ''
@@ -19,6 +19,7 @@ let
       chmod +w "$out"
       echo '<?php
             require("config.dist.php");
+            $db["host"] = "localhost";
             $db["user"] = "nginx";
             require("/etc/phpipam_config.php");' >"$out/config.php"
     '';
