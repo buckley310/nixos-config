@@ -61,5 +61,9 @@ in
       gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
     '';
 
+    # Moving from Terminal to Console messes up powerline glyphs and removes "Open in Remote Terminal"
+    environment.gnome.excludePackages = [ pkgs.gnome-console ];
+    programs.gnome-terminal.enable = true;
+
   };
 }
