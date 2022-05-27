@@ -6,9 +6,9 @@
       { hardware.enableRedistributableFirmware = true; }
     ];
 
-  qemu = { lib, modulesPath, ... }: lib.mkMerge
+  qemu = { config, lib, modulesPath, ... }: lib.mkMerge
     [
-      (import "${modulesPath}/profiles/qemu-guest.nix" { })
+      (import "${modulesPath}/profiles/qemu-guest.nix" { inherit config lib; })
       { services.qemuGuest.enable = true; }
     ];
 
