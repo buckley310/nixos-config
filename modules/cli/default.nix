@@ -80,7 +80,7 @@
     enable = true;
     config = {
       alias.glog = "log --all --decorate --oneline --graph";
-      alias.logo = "log --oneline -n10";
+      alias.logl = "log --oneline -n10";
       pull.ff = "only";
       init.defaultBranch = "main";
     };
