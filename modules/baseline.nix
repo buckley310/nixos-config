@@ -48,12 +48,5 @@
         Option "VariableRefresh" "true"
       '';
     };
-
-    avahi = {
-      enable = true;
-      nssmdns = true;
-      publish.enable = true;
-      publish.addresses = true;
-    };
   };
 }
