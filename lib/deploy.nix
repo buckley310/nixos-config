@@ -35,14 +35,6 @@ let
         User root
       '';
 
-      jump = pkgs.writeShellScript "jump" ''
-        set -eu
-        echo ${self}
-        ip="$(nix eval --raw ".#nixosConfigurations.\"$1\".config.sconfig.deployment.targetHost")"
-        NIX_SSHOPTS="-F${sshConfig}" nix copy --to ssh://root@$ip ${self}
-        exec ssh -oForwardAgent=yes -F"${sshConfig}" "root@$ip" -t "cd ${self}; nix develop"
-      '';
-
       livecd-deploy = pkgs.writeShellScript "livecd-deploy" ''
         set -eux
         config=".#nixosConfigurations.\"$1\".config"
@@ -75,7 +67,7 @@ let
       '';
 
     in
-    { inherit check-updates check-reboots jump livecd-deploy pkgs sshConfig; };
+    { inherit check-updates check-reboots livecd-deploy pkgs sshConfig; };
 
 in
 {
@@ -85,7 +77,6 @@ in
       shellHook = ''
         export SSH_CONFIG_FILE=${sshConfig}
         alias ssh='ssh -F${sshConfig}'
-        alias jump=${jump}
         alias check-updates=${check-updates}
         alias check-reboots=${check-reboots}
         alias livecd-deploy=${livecd-deploy}
