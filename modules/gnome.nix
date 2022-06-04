@@ -58,7 +58,6 @@ in
       gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
       gsettings set org.gnome.settings-daemon.plugins.media-keys logout '[]'
       gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive'
-      gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
     '';
 
     # Moving from Terminal to Console messes up powerline glyphs and removes "Open in Remote Terminal"
