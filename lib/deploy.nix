@@ -31,8 +31,6 @@ let
         StrictHostKeyChecking yes
         GlobalKnownHostsFile ${sshKnownHostsTxt}
         ${hostSshConfigs}
-        Host *
-        User root
       '';
 
       livecd-deploy = pkgs.writeShellScript "livecd-deploy" ''
@@ -53,7 +51,6 @@ let
 
       check-updates = pkgs.writeShellScript "check-updates" ''
         set -eu
-        export SSH_CONFIG_FILE=${sshConfig}
         c="${pkgs.colmena}/bin/colmena"
         j="$($c eval -E '{nodes,...}: builtins.mapAttrs (n: v: v.config.system.build.toplevel) nodes')"
         $c exec -- '[ "$(echo '"'$j'"' | jq -r .\"$(hostname)\")" = "$(readlink /run/current-system)" ]'
@@ -61,7 +58,6 @@ let
 
       check-reboots = pkgs.writeShellScript "check-reboots" ''
         set -eu
-        export SSH_CONFIG_FILE=${sshConfig}
         c="${pkgs.colmena}/bin/colmena"
         $c exec -- '[ "$(readlink /run/booted-system/kernel)" = "$(readlink /run/current-system/kernel)" ]'
       '';
@@ -71,19 +67,15 @@ let
 
 in
 {
-  devShell = system: with helpers system;
-    pkgs.mkShell {
-      buildInputs = [ pkgs.colmena ];
-      shellHook = ''
-        export SSH_CONFIG_FILE=${sshConfig}
-        alias ssh='ssh -F${sshConfig}'
-        alias check-updates=${check-updates}
-        alias check-reboots=${check-reboots}
-        alias livecd-deploy=${livecd-deploy}
-        alias c=colmena
-      '';
-    };
-
+  defaultPackage = system: with helpers system;
+    pkgs.writeShellScript "deploy-init" ''
+      export SSH_CONFIG_FILE=${sshConfig}
+      alias ssh='ssh -F${sshConfig}'
+      alias check-updates=${check-updates}
+      alias check-reboots=${check-reboots}
+      alias livecd-deploy=${livecd-deploy}
+      alias c=${pkgs.colmena}/bin/colmena
+    '';
 
   colmena =
     { meta.nixpkgs = nixpkgs.legacyPackages."x86_64-linux"; } //
