@@ -78,7 +78,8 @@ in
     '';
 
   colmena =
-    { meta.nixpkgs = nixpkgs.legacyPackages."x86_64-linux"; } //
+    # colmena evaluates in impure mode, so currentSystem is OK for now
+    { meta.nixpkgs = nixpkgs.legacyPackages.${builtins.currentSystem}; } //
     builtins.mapAttrs
       (name: value: {
         imports = value.modules ++ [
