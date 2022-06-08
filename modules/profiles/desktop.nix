@@ -104,8 +104,6 @@ with lib;
 
     virtualisation.docker = { enable = true; enableOnBoot = false; };
 
-    boot.kernelPackages = pkgs.linuxPackages_5_15;
-
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     boot.loader.timeout =
