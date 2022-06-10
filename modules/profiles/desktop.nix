@@ -105,9 +105,6 @@ with lib;
     virtualisation.docker = { enable = true; enableOnBoot = false; };
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-    boot.loader.timeout =
-      if config.boot.loader.systemd-boot.enable
-      then null else lib.mkOverride 9999 99;
+    boot.loader.timeout = 1;
   };
 }
