@@ -21,7 +21,7 @@ in
         Swarm.DisableNatPortMap = true; # Disable UPnP
 
         # ipfs-desktop defaults for ConnMgr
-        Swarm.ConnMgr.GracePeriod = "1m";
+        # Swarm.ConnMgr.GracePeriod = "1m";
         Swarm.ConnMgr.HighWater = 40;
         Swarm.ConnMgr.LowWater = 20;
       };
