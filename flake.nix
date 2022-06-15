@@ -27,12 +27,11 @@
         };
       };
 
-    in
-    {
-      lib = { inherit forAllSystems hardware deploy; };
-
-      nixosModules =
-        { inherit pins; } //
+      mods =
+        {
+          inherit pins;
+          pkgs.nixpkgs.overlays = [ (_: mypkgs) ];
+        } //
         nixpkgs.lib.mapAttrs'
           (name: type: {
             name = nixpkgs.lib.removeSuffix ".nix" name;
@@ -40,15 +39,14 @@
           })
           (builtins.readDir ./modules);
 
-      nixosModule = {
-        imports = builtins.attrValues self.nixosModules;
-        nixpkgs.overlays = [
-          (_: mypkgs)
-        ];
-      };
+    in
+    {
+      lib = { inherit forAllSystems hardware deploy; };
+
+      nixosModules = mods // { default.imports = builtins.attrValues mods; };
 
       nixosConfigurations =
-        import ./hosts nixpkgs hardware self.nixosModule;
+        import ./hosts nixpkgs hardware self.nixosModules.default;
 
       apps = forAllSystems (system:
         import lib/apps.nix nixpkgs.legacyPackages.${system});
