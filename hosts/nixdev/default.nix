@@ -37,4 +37,6 @@
       "/" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "mode=755" ]; };
       "/nix" = { device = "/dev/sda1"; fsType = "ext4"; options = [ "noatime" ]; };
     };
+
+  system.stateVersion = "22.05";
 }
