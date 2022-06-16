@@ -1,17 +1,20 @@
 nixpkgs: hardware: nixosModule:
 with hardware;
 
-let
-  sys = system: mods: nixpkgs.lib.nixosSystem {
-    inherit system;
-    modules = [ nixosModule ] ++ mods;
-  };
+builtins.mapAttrs
 
-in
+  (name: { system, mods }: nixpkgs.lib.nixosSystem {
+    inherit system;
+    modules = mods ++ [
+      nixosModule
+      { networking.hostName = name; }
+    ];
+  })
+
 {
-  cube = sys "x86_64-linux" [ physical ./cube ];
-  hp = sys "x86_64-linux" [ physical ./hp ];
-  lenny = sys "x86_64-linux" [ physical ./lenny ];
-  nixdev = sys "x86_64-linux" [ qemu ./nixdev ];
-  slate = sys "x86_64-linux" [ physical ./slate ];
+  cube = { system = "x86_64-linux"; mods = [ physical ./cube ]; };
+  hp = { system = "x86_64-linux"; mods = [ physical ./hp ]; };
+  lenny = { system = "x86_64-linux"; mods = [ physical ./lenny ]; };
+  nixdev = { system = "x86_64-linux"; mods = [ qemu ./nixdev ]; };
+  slate = { system = "x86_64-linux"; mods = [ physical ./slate ]; };
 }

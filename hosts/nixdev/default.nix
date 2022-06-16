@@ -1,7 +1,5 @@
 { config, lib, pkgs, ... }:
 {
-  networking.hostName = "nixdev";
-
   sconfig = {
     gnome = true;
     profile = "desktop";
