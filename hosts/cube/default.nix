@@ -1,9 +1,5 @@
 { config, lib, pkgs, ... }:
 {
-  networking.hostName = "cube";
-
-  # imports = [ ./monitors.nix ];
-
   virtualisation.libvirtd.enable = true;
   environment.systemPackages = with pkgs; [
     virt-manager

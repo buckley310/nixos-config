@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-  networking.hostName = "slate";
-
   sconfig = {
     profile = "desktop";
     gnome = true;

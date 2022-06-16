@@ -1,7 +1,5 @@
 { config, lib, pkgs, ... }:
 {
-  networking.hostName = "lenny";
-
   services = {
     openssh.enable = true;
   };
