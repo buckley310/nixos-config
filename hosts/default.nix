@@ -1,9 +1,9 @@
-nixpkgs: hardware: nixosModule:
+hardware: nixosModule:
 with hardware;
 
 builtins.mapAttrs
 
-  (name: { system, mods }: nixpkgs.lib.nixosSystem {
+  (name: { system, mods }: {
     inherit system;
     modules = mods ++ [
       nixosModule
