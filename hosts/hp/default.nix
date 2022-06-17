@@ -30,6 +30,9 @@
     loader.efi.canTouchEfiVariables = false;
   };
 
+  hardware.cpu.intel.updateMicrocode = true;
+  hardware.enableRedistributableFirmware = true;
+
   fileSystems = {
     "/" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "mode=755" ]; };
     "/nix" = { device = "zroot/locker/nix"; fsType = "zfs"; };

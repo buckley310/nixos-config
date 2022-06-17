@@ -1,20 +1,20 @@
-hardware: nixosModule:
-with hardware;
+nixosModule:
 
 builtins.mapAttrs
 
-  (name: { system, mods }: {
+  (name: system: {
     inherit system;
-    modules = mods ++ [
+    modules = [
       nixosModule
+      (./. + "/${name}")
       { networking.hostName = name; }
     ];
   })
 
 {
-  cube = { system = "x86_64-linux"; mods = [ physical ./cube ]; };
-  hp = { system = "x86_64-linux"; mods = [ physical ./hp ]; };
-  lenny = { system = "x86_64-linux"; mods = [ physical ./lenny ]; };
-  nixdev = { system = "x86_64-linux"; mods = [ qemu ./nixdev ]; };
-  slate = { system = "x86_64-linux"; mods = [ physical ./slate ]; };
+  cube = "x86_64-linux";
+  hp = "x86_64-linux";
+  lenny = "x86_64-linux";
+  nixdev = "x86_64-linux";
+  slate = "x86_64-linux";
 }

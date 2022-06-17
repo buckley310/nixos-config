@@ -11,6 +11,9 @@
     initrd.luks.devices.cryptroot = { device = "/dev/disk/by-partlabel/_luks"; };
   };
 
+  hardware.cpu.intel.updateMicrocode = true;
+  hardware.enableRedistributableFirmware = true;
+
   fileSystems = {
     "/" = { device = "/dev/mapper/cryptroot"; fsType = "btrfs"; options = [ "subvol=/os" "discard" "compress=zstd" ]; };
     "/home" = { device = "/dev/mapper/cryptroot"; fsType = "btrfs"; options = [ "subvol=/home" "discard" "compress=zstd" ]; };
