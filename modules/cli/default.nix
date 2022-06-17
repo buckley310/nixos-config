@@ -41,11 +41,15 @@
 
     (writeShellScriptBin "dirt" "while sleep 1; do grep '^Dirty:' /proc/meminfo ; done")
 
-    (writeShellScriptBin "nix-roots" "nix-store --gc --print-roots | grep -v ^/proc/")
-
     (writeShellScriptBin "nr" "exec nix repl \"$(nix eval nixpkgs#path)\"")
 
     (writeShellScriptBin "pip-install" "exec python -m ensurepip --user")
+
+    (writeShellScriptBin "nix-roots" ''
+      nix-store --gc --print-roots | grep -v \
+        -e '^/proc/' \
+        -e '/.cache/nix/flake-registry.json '
+    '')
 
     (writeScriptBin "zram-ratio" ''
       #!${pkgs.python3}/bin/python
