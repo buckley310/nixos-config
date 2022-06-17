@@ -45,8 +45,9 @@
 
       nixosModules = mods // { default.imports = builtins.attrValues mods; };
 
-      nixosConfigurations =
-        import ./hosts nixpkgs hardware self.nixosModules.default;
+      nixosConfigurations = builtins.mapAttrs
+        (_: nixpkgs.lib.nixosSystem)
+        (import ./hosts hardware self.nixosModules.default);
 
       apps = forAllSystems (system:
         import lib/apps.nix nixpkgs.legacyPackages.${system});
