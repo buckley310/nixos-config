@@ -7,8 +7,6 @@
       mypkgs = import ./pkgs;
       deploy = import lib/deploy.nix;
 
-      hardware = import lib/hardware.nix;
-
       forAllSystems = f: nixpkgs.lib.genAttrs
         [ "x86_64-linux" "aarch64-linux" ]
         (system: f system);
@@ -41,13 +39,13 @@
 
     in
     {
-      lib = { inherit forAllSystems hardware deploy; };
+      lib = { inherit forAllSystems deploy; };
 
       nixosModules = mods // { default.imports = builtins.attrValues mods; };
 
       nixosConfigurations = builtins.mapAttrs
         (_: nixpkgs.lib.nixosSystem)
-        (import ./hosts hardware self.nixosModules.default);
+        (import ./hosts self.nixosModules.default);
 
       apps = forAllSystems (system:
         import lib/apps.nix nixpkgs.legacyPackages.${system});

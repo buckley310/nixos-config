@@ -1,9 +1,15 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, modulesPath, pkgs, ... }:
 {
+  imports = [
+    "${modulesPath}/profiles/qemu-guest.nix"
+  ];
+
   sconfig = {
     gnome = true;
     profile = "desktop";
   };
+
+  services.qemuGuest.enable = true;
 
   services.openssh.enable = true;
 

@@ -33,6 +33,9 @@
     kernelParams = map (x: "video=DP-${x}:1280x720@60") [ "0" "1" "2" ];
   };
 
+  hardware.cpu.amd.updateMicrocode = true;
+  hardware.enableRedistributableFirmware = true;
+
   fileSystems = {
     "/" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "mode=755" ]; };
     "/boot" = { device = "/dev/disk/by-partlabel/_esp"; fsType = "vfat"; };
