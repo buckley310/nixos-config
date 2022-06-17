@@ -15,6 +15,5 @@
   vmware = { lib, ... }: lib.mkMerge
     [
       { virtualisation.vmware.guest.enable = true; }
-      { boot.initrd.availableKernelModules = [ "mptspi" ]; }
     ];
 }
