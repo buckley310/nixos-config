@@ -50,14 +50,18 @@ with lib;
           OfferToSaveLogins = false;
           DisableFormHistory = true;
           SearchSuggestEnabled = false;
-          Preferences = {
-            "browser.contentblocking.category" = { Status = "locked"; Value = "strict"; };
-            "browser.zoom.siteSpecific" = { Status = "locked"; Value = false; };
-            "extensions.formautofill.available" = { Status = "locked"; Value = "off"; };
-            "media.setsinkid.enabled" = { Status = "locked"; Value = true; }; #GoogleVoice
-            "network.IDN_show_punycode" = { Status = "locked"; Value = true; };
-            "ui.key.menuAccessKeyFocuses" = { Status = "locked"; Value = false; };
-          };
+
+          Preferences = builtins.mapAttrs
+            (n: v: { Value = v; Status = "locked"; })
+            {
+              "browser.contentblocking.category" = "strict";
+              "browser.zoom.siteSpecific" = false;
+              "extensions.formautofill.available" = "off";
+              "media.setsinkid.enabled" = true; #GoogleVoice
+              "network.IDN_show_punycode" = true;
+              "ui.key.menuAccessKeyFocuses" = false;
+            };
+
         };
       })
 
