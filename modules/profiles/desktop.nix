@@ -56,8 +56,8 @@ with lib;
             {
               "browser.contentblocking.category" = "strict";
               "browser.zoom.siteSpecific" = false;
-              "extensions.formautofill.available" = "off";
-              "media.setsinkid.enabled" = true; #GoogleVoice
+              "extensions.formautofill.addresses.enabled" = false;
+              "extensions.formautofill.creditCards.enabled" = false;
               "network.IDN_show_punycode" = true;
               "ui.key.menuAccessKeyFocuses" = false;
             };
