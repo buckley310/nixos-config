@@ -27,9 +27,16 @@ in
 
   systemd.tmpfiles.rules = [ "e /home/sean/Downloads - - - 9d" ];
 
-  environment.systemPackages = map
-    (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake bck"))
-    [ "boot" "build" "switch" "test" ];
+  environment.systemPackages =
+    [
+      (pkgs.writeShellScriptBin "sc-check" ''
+        readlink /run/current-system
+        nix eval --raw "bck#nixosConfigurations.$(hostname).config.system.build.toplevel"
+      '')
+    ]
+    ++ map
+      (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake bck"))
+      [ "boot" "build" "switch" "test" ];
 
   sconfig.user-settings = ''
     git config --global user.email "sean.bck@gmail.com"
