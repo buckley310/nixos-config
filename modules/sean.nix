@@ -30,8 +30,11 @@ in
   environment.systemPackages =
     [
       (pkgs.writeShellScriptBin "sc-check" ''
-        readlink /run/current-system
-        nix eval --raw "bck#nixosConfigurations.$(hostname).config.system.build.toplevel"
+        out="$(mktemp -d)"
+        nix build -o "$out/out" \
+          "bck#nixosConfigurations.$(hostname).config.system.build.toplevel"
+        readlink /run/current-system "$out/out"
+        rm -r "$out/out"
       '')
     ]
     ++ map
