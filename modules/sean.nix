@@ -34,7 +34,7 @@ in
         nix build -o "$out/out" \
           "bck#nixosConfigurations.$(hostname).config.system.build.toplevel"
         readlink /run/current-system "$out/out"
-        rm -r "$out/out"
+        rm -r "$out"
       '')
     ]
     ++ map
