@@ -79,6 +79,7 @@ with lib;
       "files.insertFinalNewline" = true;
       "files.trimFinalNewlines" = true;
       "files.watcherExclude"."**/result/**" = true;
+      "git.autofetch" = true;
       "git.confirmSync" = false;
       "python.formatting.autopep8Args" = [ "--max-line-length=999" ];
       "python.showStartPage" = false;
