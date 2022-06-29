@@ -1,4 +1,14 @@
 pkgs:
+let
+  qemu-opts = builtins.concatStringsSep " " [
+    "${pkgs.qemu_kvm}/bin/qemu-kvm"
+    "-cpu host"
+    "-usbdevice tablet"
+    "-smp $(nproc)"
+    "-m 4096"
+  ];
+
+in
 builtins.mapAttrs
   (n: v: {
     type = "app";
@@ -13,7 +23,11 @@ builtins.mapAttrs
       exec ${jupy}/bin/python -m jupyterlab "$@"
     '';
 
+  qemu-bios = ''
+    exec ${qemu-opts} "$@"
+  '';
+
   qemu-uefi = ''
-    exec ${pkgs.qemu_kvm}/bin/qemu-kvm -bios ${pkgs.OVMF.fd}/FV/OVMF.fd "$@"
+    exec ${qemu-opts} -bios ${pkgs.OVMF.fd}/FV/OVMF.fd "$@"
   '';
 }
