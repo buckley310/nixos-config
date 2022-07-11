@@ -51,14 +51,6 @@
         -e '/.cache/nix/flake-registry.json '
     '')
 
-    (writeScriptBin "zram-ratio" ''
-      #!${pkgs.python3}/bin/python
-      (orig_data_size, compr_data_size, mem_used_total)=list(
-        map(int,filter(None,open('/sys/block/zram0/mm_stat').read().split(' ')))
-      )[:3]
-      print("compression ratio:", orig_data_size/mem_used_total)
-    '')
-
     (writeScriptBin "zfsram" ''
       #!${pkgs.python3}/bin/python
       for ln in open('/proc/spl/kstat/zfs/arcstats').readlines():
