@@ -35,13 +35,16 @@
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+    initrd.postDeviceCommands = lib.mkAfter ''
+      zfs rollback lenny/locker/tmproot@blank
+    '';
   };
 
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
 
   fileSystems = {
-    "/" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "mode=755" "size=4G" ]; };
+    "/" = { device = "lenny/locker/tmproot"; fsType = "zfs"; };
     "/nix" = { device = "lenny/locker/nix"; fsType = "zfs"; };
     "/home" = { device = "lenny/locker/home"; fsType = "zfs"; };
     "/boot" = { device = "/dev/disk/by-partlabel/_esp"; fsType = "vfat"; };
