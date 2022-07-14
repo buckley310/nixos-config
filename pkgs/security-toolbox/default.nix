@@ -6,6 +6,7 @@
 , dhcpdump
 , dirb
 , exiftool
+, feroxbuster
 , gef
 , ghidra-bin
 , gobuster
@@ -60,6 +61,7 @@ symlinkJoin {
       dhcpdump
       dirb
       exiftool
+      feroxbuster
       gef
       ghidra-bin
       gobuster
