@@ -82,7 +82,6 @@ with lib;
       "git.autofetch" = true;
       "git.confirmSync" = false;
       "python.formatting.autopep8Args" = [ "--max-line-length=999" ];
-      "python.showStartPage" = false;
       "security.workspace.trust.banner" = "never";
       "security.workspace.trust.startupPrompt" = "never";
       "security.workspace.trust.untrustedFiles" = "newWindow";
