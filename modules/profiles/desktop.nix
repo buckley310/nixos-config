@@ -106,7 +106,7 @@ with lib;
       { key = "ctrl+e"; command = "workbench.action.quickOpen"; when = "!terminalFocus"; }
     ];
 
-    virtualisation.docker = { enable = true; enableOnBoot = false; };
+    virtualisation.podman.enable = true;
 
     boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
     boot.loader.timeout = 1;
