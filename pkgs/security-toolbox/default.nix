@@ -7,6 +7,7 @@
 , dirb
 , exiftool
 , feroxbuster
+, ffuf
 , gef
 , ghidra-bin
 , gobuster
@@ -62,6 +63,7 @@ symlinkJoin {
       dirb
       exiftool
       feroxbuster
+      ffuf
       gef
       ghidra-bin
       gobuster
