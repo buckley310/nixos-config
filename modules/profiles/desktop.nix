@@ -68,6 +68,7 @@ with lib;
     ];
 
     sconfig.user-settings = ''
+      mkdir -p ~/.config/VSCodium/User
       ln -sf /etc/vscode-settings.json ~/.config/VSCodium/User/settings.json
       ln -sf /etc/vscode-keybindings.json ~/.config/VSCodium/User/keybindings.json
     '';
