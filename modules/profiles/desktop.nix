@@ -90,6 +90,7 @@ with lib;
       "terminal.external.linuxExec" = "x-terminal-emulator";
       "terminal.integrated.fontFamily" = "DejaVuSansMono Nerd Font";
       "terminal.integrated.fontSize" = 16;
+      "terminal.integrated.minimumContrastRatio" = 1;
       "terminal.integrated.showExitAlert" = false;
       "trailing-spaces.highlightCurrentLine" = false;
       "update.mode" = "none";
