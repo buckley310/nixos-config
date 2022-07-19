@@ -75,6 +75,7 @@ with lib;
 
     environment.etc."vscode-settings.json".text = builtins.toJSON {
       "editor.renderFinalNewline" = false;
+      "editor.scrollBeyondLastLine" = false;
       "extensions.autoCheckUpdates" = false;
       "extensions.autoUpdate" = false;
       "files.insertFinalNewline" = true;
