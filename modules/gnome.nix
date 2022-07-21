@@ -18,6 +18,8 @@ in
 
     services.colord.enable = false;
 
+    systemd.services.packagekit.enable = false;
+
     environment.systemPackages = with pkgs; [
       gnome3.gnome-tweaks
       gnomeExtensions.appindicator
