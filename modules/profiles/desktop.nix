@@ -74,6 +74,7 @@ with lib;
     '';
 
     environment.etc."vscode-settings.json".text = builtins.toJSON {
+      "editor.cursorSurroundingLines" = 9;
       "editor.renderFinalNewline" = false;
       "editor.scrollBeyondLastLine" = false;
       "extensions.autoCheckUpdates" = false;
