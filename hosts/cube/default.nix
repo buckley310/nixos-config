@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
 {
-  virtualisation.libvirtd.enable = true;
   environment.systemPackages = with pkgs; [
     virt-manager
   ];
@@ -42,7 +41,6 @@
     "/nix" = { device = "cube/locker/nix"; fsType = "zfs"; };
     "/home" = { device = "cube/locker/home"; fsType = "zfs"; };
     "/var/log" = { device = "cube/locker/log"; fsType = "zfs"; };
-    "/var/lib/libvirt" = { device = "cube/locker/libvirt"; fsType = "zfs"; };
   };
 
   system.stateVersion = "21.11";
