@@ -34,7 +34,6 @@
 }:
 
 let
-  # curl -O https://binary.ninja/js/hashes.js
   hjs = builtins.fromJSON (builtins.readFile ./hashes.js);
 
 in
