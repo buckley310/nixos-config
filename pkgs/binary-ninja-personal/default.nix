@@ -20,6 +20,7 @@
 , libXrender
 , libXtst
 , makeWrapper
+, ncurses
 , nss
 , python3
 , requireFile
@@ -41,8 +42,10 @@ stdenv.mkDerivation rec {
   pname = "binaryninja";
   inherit (hjs) version;
 
-  # TODO: missing libQt6PrintSupport.so.6
-  autoPatchelfIgnoreMissingDeps = true;
+  autoPatchelfIgnoreMissingDeps = [
+    "libQt6PrintSupport.so.6"
+    "libQt6Qml.so.6"
+  ];
 
   src = requireFile rec {
     name = "BinaryNinja-personal.zip";
@@ -72,6 +75,7 @@ stdenv.mkDerivation rec {
     libXrender
     libXtst
     makeWrapper
+    ncurses
     nss
     python3
     stdenv.cc.cc.lib
