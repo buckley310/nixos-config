@@ -38,8 +38,9 @@
   fileSystems = {
     "/" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "mode=755" ]; };
     "/boot" = { device = "/dev/disk/by-partlabel/_esp"; fsType = "vfat"; };
-    "/nix" = { device = "cube/locker/nix"; fsType = "zfs"; };
     "/home" = { device = "cube/locker/home"; fsType = "zfs"; };
+    "/nix" = { device = "cube/locker/nix"; fsType = "zfs"; };
+    "/var/lib" = { device = "cube/locker/lib"; fsType = "zfs"; };
     "/var/log" = { device = "cube/locker/log"; fsType = "zfs"; };
   };
 
