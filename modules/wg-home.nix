@@ -4,8 +4,8 @@
 
   config = lib.mkIf config.sconfig.wg-home.enable {
     systemd.services.wg-home = {
-      script = "wg-quick up /nix/persist/wireguard_home.conf";
-      preStop = "wg-quick down /nix/persist/wireguard_home.conf";
+      script = "wg-quick up /var/lib/nixos/wireguard_home.conf";
+      preStop = "wg-quick down /var/lib/nixos/wireguard_home.conf";
       path = [ pkgs.wireguard-tools ];
       serviceConfig = {
         type = "oneshot";
