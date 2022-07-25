@@ -1,9 +1,5 @@
 { config, lib, pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    virt-manager
-  ];
-
   sconfig = {
     gnome = true;
     profile = "desktop";
