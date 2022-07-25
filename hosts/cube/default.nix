@@ -11,20 +11,18 @@
     horizon.enable = true;
   };
 
-  environment.etc =
-    lib.genAttrs
-      [
-        "machine-id"
-        "ssh/ssh_host_ed25519_key"
-        "ssh/ssh_host_rsa_key"
-      ]
-      (name: { source = "/nix/persist/etc/${name}"; });
+  environment.etc.machine-id.source = "/var/lib/nixos/machine-id";
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    hostKeys = [
+      { type = "ed25519"; path = "/var/lib/nixos/ssh_host_ed25519_key"; }
+    ];
+  };
 
   users.mutableUsers = false;
-  users.users.sean.passwordFile = "/nix/persist/shadow_sean";
-  users.users.root.passwordFile = "/nix/persist/shadow_sean";
+  users.users.sean.passwordFile = "/var/lib/nixos/shadow_sean";
+  users.users.root.passwordFile = "/var/lib/nixos/shadow_sean";
 
   boot = {
     loader.systemd-boot.enable = true;
