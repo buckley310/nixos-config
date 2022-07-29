@@ -5,6 +5,7 @@
   sconfig.powerline.enable = lib.mkDefault true;
 
   environment.systemPackages = with pkgs; [
+    awscli2
     bat
     darkhttpd
     dnsutils
