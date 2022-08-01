@@ -25,12 +25,6 @@ let
     '';
   };
 
-  cronScripts = {
-    phpipam_ping = "exec ${pkgs.php74}/bin/php ${phpipamHtdocs}/functions/scripts/pingCheck.php";
-    phpipam_remove_offline = "exec ${pkgs.php74}/bin/php ${phpipamHtdocs}/functions/scripts/remove_offline_addresses.php";
-    phpipam_discovery = "exec ${pkgs.php74}/bin/php ${phpipamHtdocs}/functions/scripts/discoveryCheck.php";
-  };
-
 in
 {
   options.sconfig.phpipam = {
@@ -62,17 +56,18 @@ in
       then { text = ""; }
       else { source = cfg.configFile; };
 
-    systemd.services = builtins.mapAttrs
-      (_: script: {
-        inherit script;
+    systemd = {
+      services.phpipam-tasks = {
+        script = ''
+          ${pkgs.php74}/bin/php ${phpipamHtdocs}/functions/scripts/pingCheck.php
+          ${pkgs.php74}/bin/php ${phpipamHtdocs}/functions/scripts/discoveryCheck.php
+          ${pkgs.php74}/bin/php ${phpipamHtdocs}/functions/scripts/remove_offline_addresses.php
+        '';
         serviceConfig.User = "nginx";
         startAt = "*:0/15";
-      })
-      cronScripts;
-
-    systemd.timers = builtins.mapAttrs
-      (_: _: { timerConfig.RandomizedDelaySec = 600; })
-      cronScripts;
+      };
+      timers.phpipam-tasks.timerConfig.RandomizedDelaySec = 600;
+    };
 
     services = {
       phpfpm.phpPackage = pkgs.php74;
