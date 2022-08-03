@@ -7,6 +7,7 @@ let
     "Logitech G305"
     "Logitech USB Receiver"
     "Glorious Model O"
+    "Razer Razer Viper V2 Pro"
   ];
 in
 {
