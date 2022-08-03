@@ -4,7 +4,7 @@ let
     "${pkgs.qemu_kvm}/bin/qemu-kvm"
     "-cpu host"
     "-usbdevice tablet"
-    "-smp $(nproc)"
+    "-smp cores=4"
     "-m 4096"
   ];
 
