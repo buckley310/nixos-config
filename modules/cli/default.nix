@@ -88,6 +88,7 @@
     terminal = "screen-256color";
     extraConfig = ''
       set-environment -gu SHLVL
+      bind-key j command-prompt -p "Join pane:"  "join-pane -s '%%'"
     '';
   };
 
