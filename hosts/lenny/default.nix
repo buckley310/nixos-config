@@ -1,22 +1,25 @@
 { config, lib, pkgs, ... }:
 {
-  services = {
-    openssh.enable = true;
+  environment.etc =
+    {
+      "machine-id".source = "/var/lib/nixos/machine-id";
+
+      "NetworkManager/system-connections".source =
+        "/var/lib/nixos/network-connections";
+    };
+
+  systemd.tmpfiles.rules = [ "d /var/lib/nixos/network-connections 0700" ];
+
+  services.openssh = {
+    enable = true;
+    hostKeys = [
+      { type = "ed25519"; path = "/var/lib/nixos/ssh_host_ed25519_key"; }
+    ];
   };
 
   users.mutableUsers = false;
   users.users.root.passwordFile = "/nix/persist/shadow_sean";
   users.users.sean.passwordFile = "/nix/persist/shadow_sean";
-
-  environment.etc =
-    lib.genAttrs
-      [
-        "machine-id"
-        "NetworkManager/system-connections"
-        "ssh/ssh_host_ed25519_key"
-        "ssh/ssh_host_rsa_key"
-      ]
-      (name: { source = "/nix/persist/etc/${name}"; });
 
   sconfig = {
     gnome = true;
@@ -44,11 +47,12 @@
   hardware.enableRedistributableFirmware = true;
 
   fileSystems = {
+    "/boot" = { device = "/dev/disk/by-partlabel/_esp"; fsType = "vfat"; };
     "/" = { device = "lenny/locker/tmproot"; fsType = "zfs"; };
     "/nix" = { device = "lenny/locker/nix"; fsType = "zfs"; };
     "/home" = { device = "lenny/locker/home"; fsType = "zfs"; };
-    "/boot" = { device = "/dev/disk/by-partlabel/_esp"; fsType = "vfat"; };
-    "/var/log" = { device = "/nix/persist/var/log"; noCheck = true; options = [ "bind" ]; };
+    "/var/lib" = { device = "lenny/locker/lib"; fsType = "zfs"; };
+    "/var/log" = { device = "lenny/locker/log"; fsType = "zfs"; };
   };
 
   system.stateVersion = "21.11";
