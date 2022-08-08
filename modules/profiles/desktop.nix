@@ -9,6 +9,11 @@ with lib;
       security-tools = true;
     };
 
+    services.udev.extraHwdb = ''
+      mouse:usb:*
+        MOUSE_DPI=600@1000
+    '';
+
     fonts.fonts = [ pkgs.bck-nerdfont ];
 
     environment.variables.MOZ_ENABLE_WAYLAND = "1";
