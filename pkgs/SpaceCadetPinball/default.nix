@@ -38,13 +38,13 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "SpaceCadetPinball";
-  version = "2021-10-25";
+  version = "2.0.1";
 
   src = fetchFromGitHub {
     owner = "k4zmu2a";
     repo = pname;
-    sha256 = "DJM+bh+JqCqCp4ub9CpuOiAeQ+DKiKVFUTcY09XEOZA=";
-    rev = "3ec96b84add67921a2a2ca552b0bbd400d14d70a";
+    sha256 = "LmYplJr1Mg4yNg9eP02FXf9mL1FnzNBhpted3GpmlQ0=";
+    rev = "Release_${version}";
   };
 
   nativeBuildInputs = [ cmake SDL2 SDL2_mixer ];
