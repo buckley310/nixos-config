@@ -101,6 +101,7 @@
     alias nix-what-depends-on='nix-store --query --referrers'
     alias day='date "+%Y-%m-%d"'
     alias grep='grep --color=auto'
+    alias tmp='cd "$(mktemp -d)"'
   '' +
   # compatibility for programs that need $NIX_PATH set:
   lib.concatMapStrings
