@@ -4,7 +4,21 @@
   outputs = { self, nixpkgs, ... }:
     let
 
-      mypkgs = import ./pkgs;
+      mypkgs = pkgs:
+        let
+          pkg = path:
+            let
+              p = pkgs.callPackage path { };
+            in
+            if p.meta.available then p else pkgs.emptyDirectory;
+        in
+        (nixpkgs.lib.mapAttrs'
+          (name: type: {
+            name = nixpkgs.lib.removeSuffix ".nix" name;
+            value = pkg (./pkgs + "/${name}");
+          })
+          (builtins.readDir ./pkgs));
+
       deploy = import lib/deploy.nix;
 
       forAllSystems = f: nixpkgs.lib.genAttrs
