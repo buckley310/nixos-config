@@ -19,6 +19,8 @@
 
   systemd.tmpfiles.rules = [ "e /nix/var/log - - - 30d" ];
 
+  programs.ssh.hostKeyAlgorithms = [ "ssh-ed25519" ];
+
   zramSwap.enable = lib.mkDefault true;
 
   networking.hostId = builtins.substring 0 8 (builtins.hashString "md5" config.networking.hostName);
