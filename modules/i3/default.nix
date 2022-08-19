@@ -67,11 +67,11 @@ in
     };
 
     environment.systemPackages = with pkgs; [
-      unstable.i3status-rust # 21.11 version supports zfs ARC
+      i3status-rust
       brightnessctl
       numix-icon-theme
       yaru-theme
-      gnome3.networkmanagerapplet
+      networkmanagerapplet
       gnome3.file-roller
       gnome3.adwaita-icon-theme
       mate.mate-terminal
