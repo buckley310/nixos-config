@@ -27,11 +27,6 @@ in
 
     hardware.pulseaudio.enable = true;
 
-    environment.etc."xdg/gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-theme-name=Yaru-dark
-    '';
-
     services.gvfs.enable = true;
     networking.networkmanager.enable = true;
 
@@ -45,7 +40,6 @@ in
     environment.systemPackages = with pkgs; [
       brightnessctl
       dmenu
-      yaru-theme
       networkmanagerapplet
       gnome3.file-roller
       gnome3.adwaita-icon-theme
@@ -53,6 +47,7 @@ in
       xfce.thunar
       xfce.thunar-archive-plugin
       caffeine-ng
+      i3status-rust
       xmobar
 
       (haskellPackages.ghcWithPackages (p: [
@@ -65,10 +60,15 @@ in
         p.xmonad-extras
       ]))
 
-      (runCommand "default_cursor" { } ''
-        mkdir -p $out/share/icons/default
-        ln -sf /run/current-system/sw/share/icons/Yaru/cursor.theme $out/share/icons/default/index.theme
-      '')
+      (writeTextFile {
+        name = "index.theme";
+        destination = "/share/icons/default/index.theme";
+        text = ''
+          [Icon Theme]
+          Name=Adwaita
+          Inherits=Adwaita
+        '';
+      })
 
       (runCommand "x-terminal-emulator" { } ''
         mkdir -p $out/bin
