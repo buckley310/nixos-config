@@ -42,7 +42,7 @@ let
         nix build "$config.system.build.toplevel" --out-link "$(mktemp -d)/result"
         nix copy --to ssh://root@$ip?remote-store=local?root=/mnt "$sys"
         ssh root@$ip nix-env --store /mnt -p /mnt/nix/var/nix/profiles/system --set "$sys"
-        ssh root@$ip mkdir /mnt/etc
+        ssh root@$ip mkdir -p /mnt/etc
         ssh root@$ip touch /mnt/etc/NIXOS
         ssh root@$ip ln -sfn /proc/mounts /mnt/etc/mtab
         ssh root@$ip NIXOS_INSTALL_BOOTLOADER=1 nixos-enter \
