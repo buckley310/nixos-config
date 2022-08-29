@@ -74,6 +74,14 @@ with lib;
         };
       })
 
+      (pkgs.writeShellScriptBin "my-dash-to-panel" ''
+        dconf write /org/gnome/shell/extensions/dash-to-panel/group-apps false
+        dconf write /org/gnome/shell/extensions/dash-to-panel/isolate-workspaces true
+        dconf write /org/gnome/shell/extensions/dash-to-panel/panel-positions "'{\"0\":\"TOP\"}'"
+        dconf write /org/gnome/shell/extensions/dash-to-panel/panel-sizes "'{\"0\":40}'"
+        dconf write /org/gnome/shell/extensions/dash-to-panel/show-window-previews false
+      '')
+
     ] ++
     optionals config.sconfig.xmonad.enable [
       haskell-language-server
