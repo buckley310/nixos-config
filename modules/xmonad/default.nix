@@ -27,6 +27,11 @@ in
 
     hardware.pulseaudio.enable = true;
 
+    environment.etc."xdg/gtk-3.0/settings.ini".text = ''
+      [Settings]
+      gtk-theme-name=Adwaita-dark
+    '';
+
     services.gvfs.enable = true;
     networking.networkmanager.enable = true;
 
@@ -40,6 +45,7 @@ in
     environment.systemPackages = with pkgs; [
       brightnessctl
       dmenu
+      gnome-themes-extra
       networkmanagerapplet
       gnome3.file-roller
       gnome3.adwaita-icon-theme
