@@ -40,5 +40,5 @@
     "/var/log" = { device = "zroot/locker/log"; fsType = "zfs"; };
   };
 
-  system.stateVersion = "21.05";
+  system.stateVersion = "22.05";
 }
