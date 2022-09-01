@@ -112,6 +112,7 @@ with lib;
       "terminal.integrated.fontFamily" = "DejaVuSansMono Nerd Font";
       "terminal.integrated.fontSize" = 16;
       "terminal.integrated.minimumContrastRatio" = 1;
+      "terminal.integrated.shellIntegration.enabled" = false;
       "terminal.integrated.showExitAlert" = false;
       "trailing-spaces.highlightCurrentLine" = false;
       "update.mode" = "none";
