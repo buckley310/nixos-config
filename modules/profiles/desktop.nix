@@ -118,10 +118,6 @@ with lib;
       "update.showReleaseNotes" = false;
       "window.menuBarVisibility" = "hidden";
       "workbench.startupEditor" = "none";
-      "terminal.integrated.profiles.linux"."bash" = {
-        "path" = "bash";
-        "args" = [ "-c" "unset SHLVL; bash" ];
-      };
     };
 
     environment.etc."vscode-keybindings.json".text = builtins.toJSON [
