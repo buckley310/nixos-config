@@ -104,7 +104,7 @@ with lib;
       "files.watcherExclude"."**/result/**" = true;
       "git.autofetch" = true;
       "git.confirmSync" = false;
-      "python.formatting.autopep8Args" = [ "--max-line-length=999" ];
+      "python.formatting.provider" = "black";
       "security.workspace.trust.banner" = "never";
       "security.workspace.trust.startupPrompt" = "never";
       "security.workspace.trust.untrustedFiles" = "newWindow";
