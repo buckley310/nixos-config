@@ -11,8 +11,6 @@
 
   services.qemuGuest.enable = true;
 
-  services.openssh.enable = true;
-
   users.mutableUsers = false;
   users.users.root.passwordFile = "/nix/persist/shadow_sean";
   users.users.sean.passwordFile = "/nix/persist/shadow_sean";

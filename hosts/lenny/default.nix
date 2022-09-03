@@ -10,12 +10,9 @@
 
   systemd.tmpfiles.rules = [ "d /var/lib/nixos/network-connections 0700" ];
 
-  services.openssh = {
-    enable = true;
-    hostKeys = [
-      { type = "ed25519"; path = "/var/lib/nixos/ssh_host_ed25519_key"; }
-    ];
-  };
+  services.openssh.hostKeys = [
+    { type = "ed25519"; path = "/var/lib/nixos/ssh_host_ed25519_key"; }
+  ];
 
   users.mutableUsers = false;
   users.users.root.passwordFile = "/nix/persist/shadow_sean";
