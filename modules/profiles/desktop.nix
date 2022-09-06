@@ -97,8 +97,6 @@ with lib;
       "editor.cursorSurroundingLines" = 9;
       "editor.renderFinalNewline" = false;
       "editor.scrollBeyondLastLine" = false;
-      "extensions.autoCheckUpdates" = false;
-      "extensions.autoUpdate" = false;
       "files.insertFinalNewline" = true;
       "files.trimFinalNewlines" = true;
       "files.watcherExclude"."**/result/**" = true;
@@ -115,10 +113,14 @@ with lib;
       "terminal.integrated.shellIntegration.enabled" = false;
       "terminal.integrated.showExitAlert" = false;
       "trailing-spaces.highlightCurrentLine" = false;
-      "update.mode" = "none";
       "update.showReleaseNotes" = false;
       "window.menuBarVisibility" = "hidden";
       "workbench.startupEditor" = "none";
+
+      # NixOS specific vscode settings, do not copy to other operating systems:
+      "extensions.autoCheckUpdates" = false;
+      "extensions.autoUpdate" = false;
+      "update.mode" = "none";
     };
 
     environment.etc."vscode-keybindings.json".text = builtins.toJSON [
