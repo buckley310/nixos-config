@@ -95,7 +95,6 @@
     stty -ixon
     alias p=python3
     alias hd='hexdump -C'
-    alias bat='bat --color=always --wrap=never --pager=never --terminal-width=80'
     alias nix-env="echo nix-env is disabled #"
     alias nix-what-depends-on='nix-store --query --referrers'
     alias day='date "+%Y-%m-%d"'
