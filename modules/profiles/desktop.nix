@@ -94,6 +94,7 @@ with lib;
     '';
 
     environment.etc."vscode-settings.json".text = builtins.toJSON {
+      "diffEditor.renderSideBySide" = false;
       "editor.cursorSurroundingLines" = 9;
       "editor.renderFinalNewline" = false;
       "editor.scrollBeyondLastLine" = false;
