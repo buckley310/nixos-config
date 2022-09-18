@@ -15,6 +15,4 @@ builtins.mapAttrs
   cube = "x86_64-linux";
   hp = "x86_64-linux";
   lenny = "x86_64-linux";
-  nixdev = "x86_64-linux";
-  slate = "x86_64-linux";
 }
