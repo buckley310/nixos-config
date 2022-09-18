@@ -42,10 +42,6 @@ with lib;
           ms-azuretools.vscode-docker
           ms-python.python
           shardulm94.trailing-spaces
-        ] ++
-        optionals config.sconfig.xmonad.enable [
-          vscode-extensions.haskell.haskell
-          vscode-extensions.justusadam.language-haskell
         ];
       })
 
@@ -80,9 +76,6 @@ with lib;
         dconf write /org/gnome/shell/extensions/dash-to-panel/show-window-previews false
       '')
 
-    ] ++
-    optionals config.sconfig.xmonad.enable [
-      haskell-language-server
     ];
 
     sconfig.user-settings = ''
