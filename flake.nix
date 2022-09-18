@@ -19,8 +19,6 @@
           })
           (builtins.readDir ./pkgs));
 
-      deploy = import lib/deploy.nix;
-
       forAllSystems = f: nixpkgs.lib.genAttrs
         [ "x86_64-linux" "aarch64-linux" ]
         (system: f system);
@@ -53,7 +51,10 @@
 
     in
     {
-      lib = { inherit forAllSystems deploy; };
+      lib = {
+        inherit forAllSystems;
+        deploy = import lib/deploy.nix;
+      };
 
       nixosModules = mods // { default.imports = builtins.attrValues mods; };
 
