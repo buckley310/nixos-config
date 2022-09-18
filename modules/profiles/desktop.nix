@@ -29,7 +29,6 @@ with lib;
       gnome3.dconf-editor
       opensc
       pavucontrol
-      pulseeffects-legacy
       qemu_full
       tdesktop
       youtube-dl
