@@ -15,13 +15,10 @@ builtins.mapAttrs
     program = toString (pkgs.writeShellScript n v);
   })
 {
-  jupyterlab =
-    let
-      jupy = pkgs.python3.withPackages (p: with p; [ jupyterlab ipython ]);
-    in
-    ''
-      exec ${jupy}/bin/python -m jupyterlab "$@"
-    '';
+  jupyterlab = ''
+    jupy=${pkgs.python3.withPackages (p: [ p.jupyterlab p.ipython ])}
+    exec $jupy/bin/python -m jupyterlab "$@"
+  '';
 
   qemu-bios = ''
     exec ${qemu-opts} "$@"
