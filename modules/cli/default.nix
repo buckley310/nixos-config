@@ -26,6 +26,7 @@
     nixpkgs-fmt
     openssl
     parted
+    pciutils
     psmisc
     pv
     pwgen
