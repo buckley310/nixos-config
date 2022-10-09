@@ -19,6 +19,19 @@ in
     { type = "ed25519"; path = "${persist}/ssh_host_ed25519_key"; }
   ];
 
+  # speakers buzz when the onboard DAC suspends
+  nixpkgs.overlays = [
+    (self: super: {
+      wireplumber = super.wireplumber.overrideAttrs (_: {
+        postInstall = ''
+          sed -i \
+            's/.*session.suspend-timeout-seconds.*/["session.suspend-timeout-seconds"]=0,/' \
+            $out/share/wireplumber/main.lua.d/50-alsa-config.lua
+        '';
+      });
+    })
+  ];
+
   sconfig = {
     gnome = true;
     profile = "desktop";
