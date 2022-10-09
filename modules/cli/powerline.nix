@@ -28,11 +28,7 @@ in
           "-theme ${theme}"
           "-path-aliases '~/git=~/git'"
           "-jobs $(jobs -p | wc -l)"
-        ] ++ config.sconfig.powerline.extraArgs;
-      };
-      extraArgs = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [ ];
+        ];
       };
     };
 
