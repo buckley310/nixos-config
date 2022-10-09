@@ -7,6 +7,7 @@ with lib;
     sconfig = {
       alacritty.enable = true;
       security-tools = true;
+      pipewire = true;
     };
 
     services.udev.extraHwdb = ''
