@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  current-mode = "nvidia-mux";
+  current-mode = "nvidia";
 
   constants = {
     hardware.nvidia.prime.intelBusId = "PCI:0:2:0";
@@ -51,8 +51,10 @@ let
       ### nvidia drivers disabled
       #
       # Not well tested. Possibly Incomplete.
+      # Won't allow external displays connected to nvidia GPU.
       #
       # Shutting off Nvidia GPU would theoretically save power.
+      # I do not think this actually powers down the Nvidia GPU, just stops using it.
       #
       boot.kernelParams = [ "module_blacklist=nouveau" ];
     };
