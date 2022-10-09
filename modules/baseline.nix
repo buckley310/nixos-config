@@ -6,7 +6,6 @@
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
 
   boot = {
-    zfs.forceImportAll = false;
     zfs.forceImportRoot = false;
     kernelParams = [ "amdgpu.gpu_recovery=1" "panic=30" ];
     initrd.availableKernelModules = [ "nvme" ]; # is this still needed?
