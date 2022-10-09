@@ -37,7 +37,7 @@ in
     profile = "desktop";
     gaming.enable = true;
     horizon.enable = true;
-    wg-home.enable = true;
+    wg-home = { enable = true; path = "${persist}/wireguard_home.conf"; };
   };
 
   boot = {

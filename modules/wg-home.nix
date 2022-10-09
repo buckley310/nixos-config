@@ -1,11 +1,23 @@
 { config, lib, pkgs, ... }:
+let
+  cfg = config.sconfig.wg-home;
+in
 {
-  options.sconfig.wg-home.enable = lib.mkEnableOption "set up home VPN";
+  options.sconfig.wg-home = {
 
-  config = lib.mkIf config.sconfig.wg-home.enable {
+    enable = lib.mkEnableOption "set up home VPN";
+
+    path = lib.mkOption {
+      type = lib.types.path;
+      default = "/var/lib/nixos/wireguard_home.conf";
+    };
+
+  };
+
+  config = lib.mkIf cfg.enable {
     systemd.services.wg-home = {
-      script = "wg-quick up /var/lib/nixos/wireguard_home.conf";
-      preStop = "wg-quick down /var/lib/nixos/wireguard_home.conf";
+      script = "wg-quick up ${cfg.path}";
+      preStop = "wg-quick down ${cfg.path}";
       path = [ pkgs.wireguard-tools ];
       serviceConfig = {
         type = "oneshot";
