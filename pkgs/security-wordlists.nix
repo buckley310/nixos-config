@@ -10,8 +10,8 @@ let
   seclists = fetchFromGitHub {
     owner = "danielmiessler";
     repo = "SecLists";
-    rev = "2022.2";
-    sha256 = "Xi4FsrVYioR5HBVJzo0bug5ETgV2mCtulPOpBXm+Y1s=";
+    rev = "2022.3";
+    sha256 = "Q8d3aYRdmFxIcL47eeZnC57X5LaGshEimlsOH6+3Ahk=";
   };
 
   dirbuster = runCommand "dirbuster"
