@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  persist = "/var/lib/persist-${config.networking.hostName}";
+  persist = "/nix/persist";
 in
 {
   imports = [
@@ -9,11 +9,7 @@ in
 
   environment.etc = {
     "machine-id".source = "${persist}/machine-id";
-    "NetworkManager/system-connections".source =
-      "${persist}/network-connections";
   };
-
-  systemd.tmpfiles.rules = [ "d ${persist}/network-connections 0700" ];
 
   services.openssh.hostKeys = [
     { type = "ed25519"; path = "${persist}/ssh_host_ed25519_key"; }
@@ -40,6 +36,14 @@ in
     wg-home = { enable = true; path = "${persist}/wireguard_home.conf"; };
   };
 
+  environment.persistence."${persist}/system".directories = [
+    "/etc/NetworkManager/system-connections"
+    "/var/lib/nixos"
+    "/var/lib/systemd"
+    "/var/lib/upower"
+    "/var/log"
+  ];
+
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -51,8 +55,6 @@ in
     "/boot" = { fsType = "vfat"; device = "/dev/nvme0n1p1"; };
     "/nix" = { device = "levi/nix"; fsType = "zfs"; };
     "/home" = { device = "levi/home"; fsType = "zfs"; };
-    "/var/lib" = { device = "levi/lib"; fsType = "zfs"; };
-    "/var/log" = { device = "levi/log"; fsType = "zfs"; };
   };
 
   users.mutableUsers = false;
