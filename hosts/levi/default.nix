@@ -40,8 +40,7 @@ in
     "/etc/NetworkManager/system-connections"
     "/var/lib/nixos"
     "/var/lib/systemd"
-    "/var/lib/upower"
-    "/var/log"
+    "/var/log/journal"
   ];
 
   boot = {
