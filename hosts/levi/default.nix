@@ -61,7 +61,6 @@ in
   users.users.sean.passwordFile = "${persist}/shadow_sean";
   users.users.root.passwordFile = "${persist}/shadow_sean";
 
-  services.openssh.enable = true;
   hardware.video.hidpi.enable = true;
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
