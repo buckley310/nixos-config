@@ -1,7 +1,8 @@
 {
   inputs.nixpkgs.url = "nixpkgs/nixos-22.05";
+  inputs.impermanence.url = "github:nix-community/impermanence";
 
-  outputs = { self, nixpkgs, ... }:
+  outputs = { self, nixpkgs, impermanence, ... }:
     let
 
       mypkgs = pkgs:
@@ -20,7 +21,7 @@
           (builtins.readDir ./pkgs));
 
       forAllSystems = f: nixpkgs.lib.genAttrs
-        [ "x86_64-linux" "aarch64-linux" ]
+        [ "x86_64-linux" ]
         (system: f system);
 
       pins = {
@@ -40,6 +41,7 @@
       mods =
         {
           inherit pins;
+          inherit (impermanence.nixosModules) impermanence;
           pkgs.nixpkgs.overlays = [ (_: mypkgs) ];
         } //
         nixpkgs.lib.mapAttrs'
