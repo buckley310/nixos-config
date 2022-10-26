@@ -42,6 +42,7 @@ with lib;
           jnoortheen.nix-ide
           ms-azuretools.vscode-docker
           ms-python.python
+          redhat.vscode-yaml
           shardulm94.trailing-spaces
         ];
       })
@@ -96,6 +97,7 @@ with lib;
       "git.autofetch" = true;
       "git.confirmSync" = false;
       "python.formatting.provider" = "black";
+      "redhat.telemetry.enabled" = false;
       "security.workspace.trust.banner" = "never";
       "security.workspace.trust.startupPrompt" = "never";
       "security.workspace.trust.untrustedFiles" = "newWindow";
