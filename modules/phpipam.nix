@@ -105,7 +105,7 @@ in
               fastcgi_pass   unix:${config.services.phpfpm.pools.www.socket};
               fastcgi_index  index.php;
               try_files      $uri $uri/ index.php = 404;
-              include        ${pkgs.nginx}/conf/fastcgi.conf;
+              include        ${config.services.nginx.package}/conf/fastcgi.conf;
             '';
           }
         ];
