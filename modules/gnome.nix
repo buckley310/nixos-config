@@ -25,6 +25,7 @@ in
       gnomeExtensions.appindicator
       gnomeExtensions.dash-to-dock
       gnomeExtensions.dash-to-panel
+      gnomeExtensions.ddterm
       gnomeExtensions.sound-output-device-chooser
 
       (runCommand "x-terminal-emulator" { } ''
