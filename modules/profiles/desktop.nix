@@ -4,10 +4,20 @@ with lib;
   config = mkIf (config.sconfig.profile == "desktop") {
     services.pcscd.enable = true;
 
+    # Pipewire
+    sound.enable = true;
+    hardware.pulseaudio.enable = false;
+    security.rtkit.enable = true;
+    services.pipewire = {
+      enable = true;
+      pulse.enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+    };
+
     sconfig = {
       alacritty.enable = true;
       security-tools = true;
-      pipewire = true;
     };
 
     services.udev.extraHwdb = ''
