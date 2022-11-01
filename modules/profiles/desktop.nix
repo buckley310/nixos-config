@@ -96,38 +96,18 @@ with lib;
       ln -sf /etc/vscode-keybindings.json ~/.config/VSCodium/User/keybindings.json
     '';
 
-    environment.etc."vscode-settings.json".text = builtins.toJSON {
-      "diffEditor.renderSideBySide" = false;
-      "editor.cursorSurroundingLines" = 9;
-      "editor.formatOnSave" = true;
-      "editor.renderFinalNewline" = false;
-      "editor.scrollBeyondLastLine" = false;
-      "files.insertFinalNewline" = true;
-      "files.trimFinalNewlines" = true;
-      "files.watcherExclude"."**/result/**" = true;
-      "git.autofetch" = true;
-      "git.confirmSync" = false;
-      "python.formatting.provider" = "black";
-      "redhat.telemetry.enabled" = false;
-      "security.workspace.trust.banner" = "never";
-      "security.workspace.trust.startupPrompt" = "never";
-      "security.workspace.trust.untrustedFiles" = "newWindow";
-      "terminal.external.linuxExec" = "x-terminal-emulator";
-      "terminal.integrated.fontFamily" = "DejaVuSansMono Nerd Font";
-      "terminal.integrated.fontSize" = 16;
-      "terminal.integrated.minimumContrastRatio" = 1;
-      "terminal.integrated.shellIntegration.enabled" = false;
-      "terminal.integrated.showExitAlert" = false;
-      "trailing-spaces.highlightCurrentLine" = false;
-      "update.showReleaseNotes" = false;
-      "window.menuBarVisibility" = "hidden";
-      "workbench.startupEditor" = "none";
-
-      # NixOS specific vscode settings, do not copy to other operating systems:
-      "extensions.autoCheckUpdates" = false;
-      "extensions.autoUpdate" = false;
-      "update.mode" = "none";
-    };
+    environment.etc."vscode-settings.json".text = builtins.toJSON (
+      (
+        builtins.fromJSON (builtins.readFile ./vscode-settings.json)
+      ) // {
+        # NixOS-specific vscode settings:
+        "extensions.autoCheckUpdates" = false;
+        "extensions.autoUpdate" = false;
+        "terminal.external.linuxExec" = "x-terminal-emulator";
+        "terminal.integrated.fontFamily" = "DejaVuSansMono Nerd Font";
+        "update.mode" = "none";
+      }
+    );
 
     environment.etc."vscode-keybindings.json".text = builtins.toJSON [
       { key = "ctrl+w"; command = "-workbench.action.terminal.killEditor"; }
