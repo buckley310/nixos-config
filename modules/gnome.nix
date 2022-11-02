@@ -44,6 +44,7 @@ in
       gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
       gsettings set org.gnome.desktop.interface enable-hot-corners false
       gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+      gsettings set org.gnome.desktop.interface monospace-font-name 'Monospace 12'
       gsettings set org.gnome.desktop.interface show-battery-percentage true
       gsettings set org.gnome.desktop.media-handling automount false
       gsettings set org.gnome.desktop.media-handling autorun-never true
@@ -66,8 +67,7 @@ in
       gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive'
     '';
 
-    # Moving from Terminal to Console messes up powerline glyphs and removes "Open in Remote Terminal"
-    environment.gnome.excludePackages = [ pkgs.gnome-console ];
+    # Moving from Terminal to Console removes "Open in Remote Terminal" feature from nautilus
     programs.gnome-terminal.enable = true;
 
   };
