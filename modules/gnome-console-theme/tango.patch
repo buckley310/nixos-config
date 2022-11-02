@@ -1,0 +1,37 @@
+--- a/src/kgx-terminal.c
++++ b/src/kgx-terminal.c
+@@ -117,18 +117,18 @@ update_terminal_colors (KgxTerminal *self)
+   GdkRGBA palette[16] = {
+-    GDK_RGBA ("241f31"), // Black
+-    GDK_RGBA ("c01c28"), // Red
+-    GDK_RGBA ("2ec27e"), // Green
+-    GDK_RGBA ("f5c211"), // Yellow
+-    GDK_RGBA ("1e78e4"), // Blue
+-    GDK_RGBA ("9841bb"), // Magenta
+-    GDK_RGBA ("0ab9dc"), // Cyan
+-    GDK_RGBA ("c0bfbc"), // White
+-    GDK_RGBA ("5e5c64"), // Bright Black
+-    GDK_RGBA ("ed333b"), // Bright Red
+-    GDK_RGBA ("57e389"), // Bright Green
+-    GDK_RGBA ("f8e45c"), // Bright Yellow
+-    GDK_RGBA ("51a1ff"), // Bright Blue
+-    GDK_RGBA ("c061cb"), // Bright Magenta
+-    GDK_RGBA ("4fd2fd"), // Bright Cyan
+-    GDK_RGBA ("f6f5f4"), // Bright White
++    GDK_RGBA ("2e3436"), // Black
++    GDK_RGBA ("cc0000"), // Red
++    GDK_RGBA ("4e9a06"), // Green
++    GDK_RGBA ("c4a000"), // Yellow
++    GDK_RGBA ("3465a4"), // Blue
++    GDK_RGBA ("75507b"), // Magenta
++    GDK_RGBA ("06989a"), // Cyan
++    GDK_RGBA ("d3d7cf"), // White
++    GDK_RGBA ("555753"), // Bright Black
++    GDK_RGBA ("ef2929"), // Bright Red
++    GDK_RGBA ("8ae234"), // Bright Green
++    GDK_RGBA ("fce94f"), // Bright Yellow
++    GDK_RGBA ("729fcf"), // Bright Blue
++    GDK_RGBA ("ad7fa8"), // Bright Magenta
++    GDK_RGBA ("34e2e2"), // Bright Cyan
++    GDK_RGBA ("eeeeec"), // Bright White
+   };
