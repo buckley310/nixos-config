@@ -44,7 +44,7 @@ with lib;
       tdesktop
       youtube-dl
 
-      (mpv-with-scripts.override { scripts = [ mpvScripts.mpris ]; })
+      (mpv.override { scripts = [ mpvScripts.mpris ]; })
 
       (vscode-with-extensions.override {
         vscode = vscodium;
