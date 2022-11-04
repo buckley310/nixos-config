@@ -39,6 +39,7 @@
     usbutils
     wget
     whois
+    yq
     zip
 
     (writeShellScriptBin "dirt" "while sleep 1; do grep '^Dirty:' /proc/meminfo ; done")
