@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 let
-  current-mode = "nvidia";
+  current-mode = "nvidia-mux";
 
   constants = {
     hardware.nvidia.prime.intelBusId = "PCI:0:2:0";
