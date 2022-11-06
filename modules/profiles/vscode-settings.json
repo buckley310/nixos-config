@@ -6,9 +6,6 @@
     "editor.scrollBeyondLastLine": false,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
-    "files.watcherExclude": {
-        "**/result/**": true
-    },
     "git.autofetch": true,
     "git.confirmSync": false,
     "python.formatting.provider": "black",
