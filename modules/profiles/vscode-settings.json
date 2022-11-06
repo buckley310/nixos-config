@@ -24,5 +24,6 @@
     "update.showReleaseNotes": false,
     "window.menuBarVisibility": "hidden",
     "window.titleBarStyle": "native",
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "workbench.tree.indent": 16
 }
