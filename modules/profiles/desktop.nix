@@ -47,7 +47,6 @@ with lib;
       (mpv.override { scripts = [ mpvScripts.mpris ]; })
 
       (vscode-with-extensions.override {
-        vscode = vscodium;
         vscodeExtensions = with pkgs.vscode-extensions; [
           jnoortheen.nix-ide
           ms-azuretools.vscode-docker
@@ -91,9 +90,9 @@ with lib;
     ];
 
     sconfig.user-settings = ''
-      mkdir -p ~/.config/VSCodium/User
-      ln -sf /etc/vscode-settings.json ~/.config/VSCodium/User/settings.json
-      ln -sf /etc/vscode-keybindings.json ~/.config/VSCodium/User/keybindings.json
+      mkdir -p ~/.config/Code/User
+      ln -sf /etc/vscode-settings.json ~/.config/Code/User/settings.json
+      ln -sf /etc/vscode-keybindings.json ~/.config/Code/User/keybindings.json
     '';
 
     environment.etc."vscode-settings.json".text = builtins.toJSON (

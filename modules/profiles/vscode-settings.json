@@ -13,6 +13,7 @@
     "security.workspace.trust.banner": "never",
     "security.workspace.trust.startupPrompt": "never",
     "security.workspace.trust.untrustedFiles": "newWindow",
+    "telemetry.telemetryLevel": "off",
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.minimumContrastRatio": 1,
     "terminal.integrated.shellIntegration.enabled": false,
