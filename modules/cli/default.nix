@@ -18,6 +18,7 @@
     inetutils
     iotop
     jq
+    kubectl
     lm_sensors
     ncdu
     nix-index
