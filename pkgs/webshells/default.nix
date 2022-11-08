@@ -2,8 +2,8 @@
 let
   src = fetchgit {
     "url" = "https://gitlab.com/kalilinux/packages/webshells.git";
-    "rev" = "kali/1.1+kali7";
-    "sha256" = "00hra95dg0f5a0bvdmb1dms15yzbxm39wrw768jd8s4maq6s9pmj";
+    "rev" = "603ab1f6b8f2f12abc5753183941e599153099eb";
+    "sha256" = "sha256-2P0iC4XVgQu40mRhMn3ibfWIQ7dCd8sLoHPPNMfy3H8=";
   };
 in
 runCommand "webshells" { } ''
