@@ -2,10 +2,17 @@
 let
   current-mode = "nvidia-mux";
 
+  # remove after pkgs.zfs.latestCompatibleLinuxPackages is 6.x
+  zfs-needs-fixing = builtins.substring 0 2 pkgs.zfs.latestCompatibleLinuxPackages.kernel.version == "5.";
+
   constants = {
     hardware.nvidia.prime.intelBusId = "PCI:0:2:0";
     hardware.nvidia.prime.nvidiaBusId = "PCI:1:0:0";
-    boot.kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
+    boot.kernelPackages =
+      if zfs-needs-fixing
+      then pkgs.linuxPackages_6_0
+      else pkgs.zfs.latestCompatibleLinuxPackages;
+    boot.zfs.enableUnstable = zfs-needs-fixing;
   };
 
   available-modes = {
