@@ -25,7 +25,9 @@ with lib;
         MOUSE_DPI=600@1000
     '';
 
-    fonts.fonts = [ pkgs.bck-nerdfont ];
+    fonts.fonts = [
+      (pkgs.nerdfonts.override { fonts = [ "DejaVuSansMono" ]; })
+    ];
 
     environment.variables.MOZ_ENABLE_WAYLAND = "1";
     environment.variables.MOZ_USE_XINPUT2 = "1";
