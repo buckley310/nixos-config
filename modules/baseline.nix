@@ -32,7 +32,6 @@
   services = {
     openssh.enable = true;
     openssh.startWhenNeeded = true;
-    earlyoom.enable = true;
 
     xserver = {
       libinput.mouse.middleEmulation = false;
