@@ -15,10 +15,5 @@ in
         obs-studio
       ];
 
-      boot.extraModulePackages =
-        lib.optional
-          (lib.versionOlder config.boot.kernelPackages.kernel.version "5.16")
-          (config.boot.kernelPackages.hid-nintendo);
-
     };
 }
