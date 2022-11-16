@@ -29,7 +29,7 @@ in
 
       (runCommand "x-terminal-emulator" { } ''
         mkdir -p $out/bin
-        ln -s ${gnome.gnome-terminal}/bin/gnome-terminal $out/bin/x-terminal-emulator
+        ln -s /run/current-system/sw/bin/kgx $out/bin/x-terminal-emulator
       '')
 
       (writeShellScriptBin "red" ''
