@@ -1,0 +1,8 @@
+--- a/src/kgx-pages.c
++++ b/src/kgx-pages.c
+@@ -487,4 +487,5 @@ close_page (HdyTabView *view,
+   children = kgx_tab_get_children (KGX_TAB (hdy_tab_page_get_child (page)));
+ 
++  return FALSE;
+   if (children->len < 1) {
+     return FALSE; // Aka no, I don’t want to block closing
