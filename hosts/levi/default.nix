@@ -38,6 +38,7 @@ in
 
   environment.persistence."${persist}/system".directories = [
     "/etc/NetworkManager/system-connections"
+    "/var/lib/bluetooth"
     "/var/lib/nixos"
     "/var/lib/systemd"
     "/var/log/journal"
