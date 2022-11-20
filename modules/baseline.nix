@@ -31,8 +31,6 @@
 
   services = {
     openssh.enable = true;
-    openssh.startWhenNeeded = true;
-
     xserver = {
       libinput.mouse.middleEmulation = false;
       deviceSection = ''
