@@ -7,8 +7,12 @@
 
   boot = {
     zfs.forceImportRoot = false;
-    kernelParams = [ "amdgpu.gpu_recovery=1" "panic=30" ];
     initrd.availableKernelModules = [ "nvme" ]; # is this still needed?
+    kernelParams = [
+      "amdgpu.gpu_recovery=1"
+      "nohibernate"
+      "panic=99"
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;
