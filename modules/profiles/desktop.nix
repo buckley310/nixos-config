@@ -3,6 +3,7 @@ with lib;
 {
   config = mkIf (config.sconfig.profile == "desktop") {
     services.pcscd.enable = true;
+    virtualisation.podman.enable = true;
 
     # Pipewire
     sound.enable = true;
