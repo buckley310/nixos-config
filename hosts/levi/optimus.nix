@@ -45,6 +45,7 @@ let
       #   requires BIOS setting changes, which is annoying.
       #
       boot.kernelParams = [ "module_blacklist=i915" ];
+      services.xserver.displayManager.gdm.wayland = false;
       services.xserver.videoDrivers = [ "nvidia" ];
     };
 
