@@ -30,7 +30,8 @@ stdenv.mkDerivation {
   ];
 
   buildInputs = [
-    ncurses
+    qt6.full
+    qt6.qtbase
   ];
 
   installPhase = ''
