@@ -73,6 +73,7 @@
       show_program_path = 0;
       tree_sort_direction = -1;
       tree_view = 1;
+      update_process_names = 1;
     };
   };
 
