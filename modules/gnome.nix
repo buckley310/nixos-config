@@ -40,7 +40,7 @@ in
       '')
     ];
 
-    sconfig.user-settings = ''
+    environment.etc."my-settings.sh".text = ''
       gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
       gsettings set org.gnome.desktop.interface enable-hot-corners false
       gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'

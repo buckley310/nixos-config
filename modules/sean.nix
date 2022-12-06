@@ -42,7 +42,7 @@ in
       (x: (pkgs.writeShellScriptBin "sc-${x}" "nixos-rebuild ${x} --refresh --flake bck"))
       [ "boot" "build" "switch" "test" ];
 
-  sconfig.user-settings = ''
+  environment.etc."my-settings.sh".text = ''
     git config --global user.email "sean.bck@gmail.com"
     git config --global user.name "Sean Buckley"
   '';
