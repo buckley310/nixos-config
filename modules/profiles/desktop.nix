@@ -63,6 +63,7 @@ with lib;
         extraPolicies = {
           NewTabPage = false;
           CaptivePortal = false;
+          DisablePocket = true;
           DisableFirefoxStudies = true;
           OfferToSaveLogins = false;
           DisableFormHistory = true;
