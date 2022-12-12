@@ -41,7 +41,7 @@ in
         local remote=y
         [ "$XDG_SESSION_TYPE" = "x11" ] && unset remote
         [ "$XDG_SESSION_TYPE" = "wayland" ] && unset remote
-        PS1="\n$(powerline-go ${lib.concatStringsSep " " cfg.args})"
+        PS1="\n$(powerline-go ${toString cfg.args})"
       }
       [ "$TERM" = "linux" ] || PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
     '';
