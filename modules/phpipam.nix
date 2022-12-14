@@ -47,6 +47,11 @@ in
       default = { };
     };
 
+    phpPackage = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.php;
+    };
+
   };
 
   config = lib.mkIf cfg.enable {
@@ -59,9 +64,9 @@ in
     systemd = {
       services.phpipam-tasks = {
         script = ''
-          ${pkgs.php74}/bin/php ${phpipamHtdocs}/functions/scripts/pingCheck.php
-          ${pkgs.php74}/bin/php ${phpipamHtdocs}/functions/scripts/discoveryCheck.php
-          ${pkgs.php74}/bin/php ${phpipamHtdocs}/functions/scripts/remove_offline_addresses.php
+          ${cfg.phpPackage}/bin/php ${phpipamHtdocs}/functions/scripts/pingCheck.php
+          ${cfg.phpPackage}/bin/php ${phpipamHtdocs}/functions/scripts/discoveryCheck.php
+          ${cfg.phpPackage}/bin/php ${phpipamHtdocs}/functions/scripts/remove_offline_addresses.php
         '';
         serviceConfig.User = "nginx";
         startAt = "*:0/15";
@@ -70,7 +75,7 @@ in
     };
 
     services = {
-      phpfpm.phpPackage = pkgs.php74;
+      phpfpm.phpPackage = cfg.phpPackage;
       phpfpm.pools.www = {
         user = "nginx";
         group = "nginx";
