@@ -20,9 +20,7 @@
           })
           (builtins.readDir ./pkgs));
 
-      forAllSystems = f: nixpkgs.lib.genAttrs
-        [ "x86_64-linux" ]
-        (system: f system);
+      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
 
       pins = {
         nix.registry.nixpkgs.to = {
