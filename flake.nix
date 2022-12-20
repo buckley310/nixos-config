@@ -4,6 +4,7 @@
 
   outputs = { self, nixpkgs, impermanence, ... }:
     let
+      inherit (nixpkgs) lib;
 
       mypkgs = pkgs:
         let
@@ -13,14 +14,14 @@
             in
             if p.meta.available then p else pkgs.emptyDirectory;
         in
-        (nixpkgs.lib.mapAttrs'
+        (lib.mapAttrs'
           (name: type: {
-            name = nixpkgs.lib.removeSuffix ".nix" name;
+            name = lib.removeSuffix ".nix" name;
             value = pkg (./pkgs + "/${name}");
           })
           (builtins.readDir ./pkgs));
 
-      forAllSystems = nixpkgs.lib.genAttrs [ "x86_64-linux" ];
+      forAllSystems = lib.genAttrs [ "x86_64-linux" ];
 
       pins = {
         nix.registry.nixpkgs.to = {
@@ -42,9 +43,9 @@
           inherit (impermanence.nixosModules) impermanence;
           pkgs.nixpkgs.overlays = [ (_: mypkgs) ];
         } //
-        nixpkgs.lib.mapAttrs'
+        lib.mapAttrs'
           (name: type: {
-            name = nixpkgs.lib.removeSuffix ".nix" name;
+            name = lib.removeSuffix ".nix" name;
             value = import (./modules + "/${name}");
           })
           (builtins.readDir ./modules);
@@ -59,7 +60,7 @@
       nixosModules = mods // { default.imports = builtins.attrValues mods; };
 
       nixosConfigurations = builtins.mapAttrs
-        (_: nixpkgs.lib.nixosSystem)
+        (_: lib.nixosSystem)
         (import ./hosts self.nixosModules.default);
 
       apps = forAllSystems (system:
