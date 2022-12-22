@@ -27,9 +27,8 @@ in
       gnomeExtensions.dash-to-panel
       gnomeExtensions.ddterm
 
-      (runCommand "x-terminal-emulator" { } ''
-        mkdir -p $out/bin
-        ln -s /run/current-system/sw/bin/kgx $out/bin/x-terminal-emulator
+      (writeShellScriptBin "x-terminal-emulator" ''
+        exec kgx "$@"
       '')
 
       (writeShellScriptBin "red" ''
