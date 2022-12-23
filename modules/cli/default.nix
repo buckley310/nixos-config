@@ -9,7 +9,6 @@
     bat
     darkhttpd
     dnsutils
-    dstat
     du-dust
     entr
     file
