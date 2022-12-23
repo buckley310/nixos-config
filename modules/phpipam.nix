@@ -69,9 +69,12 @@ in
           ${cfg.phpPackage}/bin/php ${phpipamHtdocs}/functions/scripts/remove_offline_addresses.php
         '';
         serviceConfig.User = "nginx";
-        startAt = "*:0/15";
       };
-      timers.phpipam-tasks.timerConfig.RandomizedDelaySec = 600;
+      timers.phpipam-tasks = {
+        timerConfig.OnBootSec = 900;
+        timerConfig.OnUnitInactiveSec = 900;
+        wantedBy = [ "timers.target" ];
+      };
     };
 
     services = {
