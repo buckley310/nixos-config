@@ -126,6 +126,7 @@
         vim-nix
       ];
       customRC = ''
+        set mouse=
         set encoding=utf-8
         scriptencoding utf-8
         set list nowrap scrolloff=9 updatetime=300 number
