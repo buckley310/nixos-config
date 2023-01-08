@@ -81,6 +81,7 @@
     config = {
       alias.glog = "log --all --decorate --oneline --graph";
       alias.logl = "log --oneline -n10";
+      alias.vlog = "log --name-status";
       pull.ff = "only";
       init.defaultBranch = "main";
     };
