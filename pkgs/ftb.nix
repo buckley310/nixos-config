@@ -12,8 +12,8 @@
 
 let
   installer = fetchurl {
-    url = "https://apps.modpacks.ch/FTBApp/release/202211151621-329441ed6d-release/FTBA_unix_202211151621-329441ed6d-release.sh";
-    sha256 = "f6a25f9fd4f5c33a48620f311fcac541ddd2e2c014f1487dc2e5c1a8493007d0";
+    url = "https://apps.modpacks.ch/FTBApp/release/202212152008-a5a6712906-release/FTBA_unix_202212152008-a5a6712906-release.sh";
+    sha256 = "da1aeba0c56c599b6b69d6cda60c2c327a3caa3fc8654306d78821459e2128dc";
   };
 
   fhs = buildFHSUserEnv {
