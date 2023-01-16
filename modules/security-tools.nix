@@ -31,13 +31,18 @@ in
       postman
       pwndbg
       remmina
-      security-wordlists
+      seclists
       socat
       thc-hydra
       webshells
       weevely
       wfuzz
     ];
+
+    system.activationScripts.seclists = ''
+      mkdir -m 0755 -p /usr/share
+      ln -sf /run/current-system/sw/share/seclists /usr/share/
+    '';
 
     programs = {
       wireshark.enable = true;
