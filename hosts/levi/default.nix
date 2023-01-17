@@ -31,6 +31,10 @@ in
     "/var/log/journal"
   ];
 
+  programs.bash.interactiveShellInit = ''
+    alias eco='taskset -p ff000 $$'
+  '';
+
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
