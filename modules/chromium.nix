@@ -14,6 +14,7 @@
       BrowserGuestModeEnabled = false;
       DefaultGeolocationSetting = 2;
       DefaultNotificationsSetting = 2;
+      NetworkPredictionOptions = 2;
       PasswordManagerEnabled = false;
       SyncDisabled = true; # required for BrowsingDataLifetime
       BrowsingDataLifetime = [
