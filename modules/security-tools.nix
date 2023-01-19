@@ -10,26 +10,15 @@ in
   config = lib.mkIf cfg {
     environment.systemPackages = with pkgs; [
       binutils
-      bridge-utils
       burpsuite
-      dhcpdump
-      dirb
       exiftool
       feroxbuster
-      ffuf
-      gef
       ghidra-bin
-      gobuster
-      iptables-nftables-compat
-      macchanger
       masscan
       metasploit
       msfpc
-      net-snmp
       nmap
       openvpn
-      postman
-      pwndbg
       remmina
       seclists
       socat
@@ -37,7 +26,13 @@ in
       webshells
       weevely
       wfuzz
+
+      (runCommand "gdb" { } "install -D ${gef}/bin/gef $out/bin/gdb")
     ];
+
+    programs.bash.interactiveShellInit = ''
+      alias feroxbuster="feroxbuster --no-state"
+    '';
 
     system.activationScripts.seclists = ''
       mkdir -m 0755 -p /usr/share
