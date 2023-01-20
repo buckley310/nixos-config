@@ -32,7 +32,9 @@ in
   ];
 
   programs.bash.interactiveShellInit = ''
-    alias eco='taskset -p ff000 $$'
+    function eco() {
+      taskset -p ff000 $$
+    }
   '';
 
   boot = {
