@@ -1,7 +1,6 @@
 { stdenv
 , autoPatchelfHook
 , makeWrapper
-, ncurses
 , qt6
 , python3
 , requireFile
@@ -25,13 +24,11 @@ stdenv.mkDerivation {
   nativeBuildInputs = [
     autoPatchelfHook
     makeWrapper
-    qt6.wrapQtAppsHook
     unzip
   ];
 
   buildInputs = [
     qt6.full
-    qt6.qtbase
   ];
 
   installPhase = ''
