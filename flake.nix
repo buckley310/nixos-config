@@ -63,9 +63,6 @@
         (_: lib.nixosSystem)
         (import ./hosts self.nixosModules.default);
 
-      apps = forAllSystems (system:
-        import lib/apps.nix nixpkgs.legacyPackages.${system});
-
       packages = forAllSystems (system:
         mypkgs nixpkgs.legacyPackages.${system});
     };
