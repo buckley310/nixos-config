@@ -45,6 +45,7 @@ with lib;
       opensc
       pavucontrol
       qemu_full
+      quickemu
       tdesktop
       youtube-dl
 
