@@ -39,6 +39,11 @@ in
       ln -sf /run/current-system/sw/share/seclists /usr/share/
     '';
 
+    networking.firewall.allowedTCPPorts = [
+      8000
+      9999
+    ];
+
     programs = {
       wireshark.enable = true;
       wireshark.package = pkgs.wireshark;
