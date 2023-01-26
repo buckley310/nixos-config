@@ -1,14 +1,14 @@
 { lib, fetchurl, jdk, buildFHSUserEnv }:
 let
-  version = "2022.12.6";
+  version = "2022.12.7";
 
   src = fetchurl {
     name = "burpsuite.jar";
     urls = [
-      "https://portswigger.net/Burp/Releases/Download?productId=100&version=${version}&type=Jar"
-      "https://web.archive.org/web/https://portswigger.net/Burp/Releases/Download?productId=100&version=${version}&type=Jar"
+      "https://portswigger.net/burp/releases/download?productId=100&version=${version}&type=Jar"
+      "https://web.archive.org/web/https://portswigger.net/burp/releases/download?productId=100&version=${version}&type=Jar"
     ];
-    sha256 = "17ba975e5b0ee57e0d2c285160ab842cd1830858cd4ade6c874d293f45a9e01e";
+    sha256 = "2e354c2aadc58267bc282dde462d20b3aca7108077eb141d49f89a16172763cf";
   };
 
 in
