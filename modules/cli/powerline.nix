@@ -37,13 +37,20 @@ in
     environment.systemPackages = [ pkgs.powerline-go ];
 
     programs.bash.interactiveShellInit = ''
+      function _fix_partial_lines() {
+        # print our own newline if program output doesn't end with one
+        local COL
+        local ROW
+        IFS=';' read -sdR -p $'\e[6n' ROW COL
+        [ "$COL" = "1" ] || echo -e '\e[100m \e[0m'
+      }
       function _update_ps1() {
         local remote=y
         [ "$XDG_SESSION_TYPE" = "x11" ] && unset remote
         [ "$XDG_SESSION_TYPE" = "wayland" ] && unset remote
         PS1="$(powerline-go ${toString cfg.args})"
       }
-      [ "$TERM" = "linux" ] || PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+      [ "$TERM" = "linux" ] || PROMPT_COMMAND="_fix_partial_lines; _update_ps1; $PROMPT_COMMAND"
     '';
 
   };
