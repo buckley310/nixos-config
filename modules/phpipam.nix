@@ -11,7 +11,7 @@ let
       owner = "phpipam";
       repo = "phpipam";
       rev = "v${version}";
-      sha256 = "AKlQsbxjW/aAE0NGOLCldZfSw6heqO90oLtDGjpj5b0=";
+      sha256 = "gEL81RUh1xtRszCBN81ZFXYmfrzepBsPrkBKP0ycowg=";
       fetchSubmodules = true;
     };
     installPhase = ''
