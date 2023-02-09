@@ -2,11 +2,15 @@
   nixpkgs.overlays = [
     (self: super: {
       gnome-console = super.gnome-console.overrideAttrs (prev: {
-        patches = prev.patches ++ [
-          ./background.patch
-          ./no-close-tab-prompt.patch
-          ./tango.patch
-        ];
+        patches =
+          (
+            if (builtins.elem "patches" (builtins.attrNames prev))
+            then prev.patches
+            else [ ]
+          ) ++ [
+            ./no-close-tab-prompt.patch
+            ./tango.patch
+          ];
       });
     })
   ];
