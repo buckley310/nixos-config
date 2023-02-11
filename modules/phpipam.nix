@@ -49,7 +49,9 @@ in
 
     phpPackage = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.php;
+      default = pkgs.php74.buildEnv {
+        extraConfig = "date.timezone=${config.time.timeZone}";
+      };
     };
 
   };
@@ -71,8 +73,9 @@ in
         serviceConfig.User = "nginx";
       };
       timers.phpipam-tasks = {
-        timerConfig.OnBootSec = 900;
-        timerConfig.OnUnitInactiveSec = 900;
+        timerConfig.OnBootSec = 600;
+        timerConfig.OnUnitInactiveSec = 600;
+        timerConfig.RandomizedDelaySec = 300;
         wantedBy = [ "timers.target" ];
       };
     };
@@ -83,10 +86,6 @@ in
         user = "nginx";
         group = "nginx";
         phpEnv.PHP_INI_SCAN_DIR = "$PHP_INI_SCAN_DIR";
-        phpOptions = ''
-          date.timezone = America/New_York
-          max_execution_time = 600
-        '';
         settings = {
           "pm" = "ondemand";
           "pm.max_children" = "8";
