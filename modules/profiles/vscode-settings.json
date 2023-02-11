@@ -2,7 +2,7 @@
     "diffEditor.renderSideBySide": false,
     "editor.cursorSurroundingLines": 9,
     "editor.formatOnSave": true,
-    "editor.renderFinalNewline": false,
+    "editor.renderFinalNewline": "off",
     "editor.scrollBeyondLastLine": false,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
