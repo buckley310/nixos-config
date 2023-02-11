@@ -41,7 +41,7 @@ with lib;
       gimp
       glxinfo
       gnome3.dconf-editor
-      helvum
+      # helvum #  <- TODO
       opensc
       pavucontrol
       qemu_full
