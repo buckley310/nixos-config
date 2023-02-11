@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 {
-  time.timeZone = "US/Eastern";
+  time.timeZone = "America/New_York";
 
   # the default is all languages. this just shrinks the install size
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
