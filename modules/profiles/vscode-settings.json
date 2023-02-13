@@ -8,6 +8,7 @@
     "files.trimFinalNewlines": true,
     "git.autofetch": true,
     "git.confirmSync": false,
+    "git.openRepositoryInParentFolders": "always",
     "python.formatting.provider": "black",
     "redhat.telemetry.enabled": false,
     "security.workspace.trust.banner": "never",
