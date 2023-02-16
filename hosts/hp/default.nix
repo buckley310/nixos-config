@@ -4,7 +4,6 @@
     gnome = true;
     profile = "desktop";
     horizon.enable = true;
-    gaming.enable = true;
     wg-home.enable = true;
   };
 

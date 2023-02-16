@@ -2,6 +2,7 @@
 with lib;
 {
   config = mkIf (config.sconfig.profile == "desktop") {
+    programs.steam.enable = true;
     services.pcscd.enable = true;
     virtualisation.podman.enable = true;
 
@@ -42,6 +43,7 @@ with lib;
       glxinfo
       gnome3.dconf-editor
       # helvum #  <- TODO
+      obs-studio
       opensc
       pavucontrol
       qemu_full
