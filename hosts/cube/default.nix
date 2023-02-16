@@ -3,7 +3,6 @@
   sconfig = {
     gnome = true;
     profile = "desktop";
-    gaming.enable = true;
     horizon.enable = true;
   };
 
