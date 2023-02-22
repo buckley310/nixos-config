@@ -42,7 +42,7 @@ with lib;
       gimp
       glxinfo
       gnome3.dconf-editor
-      # helvum #  <- TODO
+      helvum
       obs-studio
       opensc
       pavucontrol
