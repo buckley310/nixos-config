@@ -50,7 +50,10 @@ in
     phpPackage = lib.mkOption {
       type = lib.types.package;
       default = pkgs.php74.buildEnv {
-        extraConfig = "date.timezone=${config.time.timeZone}";
+        extraConfig = ''
+          max_execution_time = 600
+          date.timezone = ${config.time.timeZone}
+        '';
       };
     };
 
