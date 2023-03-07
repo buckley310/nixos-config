@@ -2,7 +2,7 @@
 let
   cfg = config.sconfig.phpipam;
 
-  version = "1.5.1";
+  version = "1.5.2";
 
   phpipamHtdocs = pkgs.stdenv.mkDerivation {
     inherit version;
@@ -11,7 +11,7 @@ let
       owner = "phpipam";
       repo = "phpipam";
       rev = "v${version}";
-      sha256 = "gEL81RUh1xtRszCBN81ZFXYmfrzepBsPrkBKP0ycowg=";
+      sha256 = "FeE6sF2IoXf5/z9PFn3w9l/fnsvkXwt3O6mY92clPjQ=";
       fetchSubmodules = true;
     };
     installPhase = ''
