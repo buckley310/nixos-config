@@ -40,7 +40,6 @@ let
       #   max performance everywhere.
       #
       # bad:
-      #   cant change laptop brightness.
       #   requires BIOS setting changes, which is annoying.
       #
       boot.kernelParams = [ "module_blacklist=i915" ];
