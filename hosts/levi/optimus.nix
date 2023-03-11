@@ -5,7 +5,6 @@ let
   constants = {
     hardware.nvidia.prime.intelBusId = "PCI:0:2:0";
     hardware.nvidia.prime.nvidiaBusId = "PCI:1:0:0";
-    boot.kernelPackages = pkgs.linuxPackages_6_1;
   };
 
   available-modes = {
