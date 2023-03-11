@@ -1,8 +1,9 @@
 { stdenv
 , autoPatchelfHook
+, libglvnd
 , makeWrapper
-, qt6
 , python3
+, qt6
 , requireFile
 , unzip
 }:
@@ -28,6 +29,7 @@ stdenv.mkDerivation {
   ];
 
   buildInputs = [
+    libglvnd
     qt6.full
   ];
 
