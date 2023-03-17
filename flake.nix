@@ -54,7 +54,7 @@
     {
       lib = {
         inherit forAllSystems;
-        deploy = import lib/deploy.nix;
+        gen-ssh-config = import lib/gen-ssh-config.nix lib;
       };
 
       nixosModules = mods // { default.imports = builtins.attrValues mods; };
