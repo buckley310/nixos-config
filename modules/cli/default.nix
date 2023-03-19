@@ -16,6 +16,7 @@
     iotop
     jq
     kubectl
+    kubernetes-helm
     lm_sensors
     ncdu
     nix-index
