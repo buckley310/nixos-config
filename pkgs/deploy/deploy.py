@@ -156,19 +156,20 @@ def rexec(hosts, cmd):
 
 def main():
     op = argv[1]
-    args = argv[2:]
+    hosts = expand(argv[2])
+    args = argv[3:]
 
     if op in ["boot", "switch", "test"]:
-        apply(op, expand(args[0]))
+        apply(op, hosts)
 
     elif op == "check":
-        check(expand(args[0]))
+        check(hosts)
 
     elif op == "push":
-        push(expand(args[0]))
+        push(hosts)
 
     elif op == "exec":
-        rexec(expand(args[0]), args[1:])
+        rexec(hosts, args)
 
     else:
         print("Invalid op:", op)
