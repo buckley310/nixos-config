@@ -143,7 +143,7 @@ def rexec(hosts, cmd):
     hostwidth = max(map(len, hosts))
     for host in hosts:
         r = run(["ssh", host, "--"] + cmd, stdout=PIPE, stderr=STDOUT)
-        lines = r.stdout.decode("utf8").strip().splitlines()
+        lines = r.stdout.decode("utf8").strip("\n").splitlines()
         print(host.rjust(hostwidth), end=" ")
         print(icon_bad if r.returncode else icon_good, end=" ")
         if len(lines) == 1:
