@@ -27,7 +27,7 @@ def get_deployment():
 def expand(ln):
     hosts = set()
     for item in ln.split(","):
-        if item == "@all":
+        if item == "all":
             hosts.update(depl)
         elif item[0] == "@":
             hosts.update(x for x in depl if item[1:] in depl[x]["tags"])
