@@ -5,6 +5,9 @@
   # the default is all languages. this just shrinks the install size
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
 
+  # makes system evaluation much faster
+  documentation.nixos.enable = false;
+
   boot = {
     zfs.forceImportRoot = false;
     initrd.availableKernelModules = [ "nvme" ]; # is this still needed?
@@ -33,9 +36,16 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+    gc = {
+      automatic = true;
+      persistent = false;
+      randomizedDelaySec = "40min";
+      options = "--delete-older-than 30d";
+    };
   };
 
   services = {
+    logind.lidSwitch = "ignore";
     openssh.enable = true;
     xserver = {
       libinput.mouse.middleEmulation = false;
