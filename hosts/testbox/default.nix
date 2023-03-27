@@ -1,7 +1,7 @@
 { config, lib, modulesPath, pkgs, ... }:
 {
   sconfig.gnome = true;
-  sconfig.profile = "desktop";
+  sconfig.desktop.enable = true;
   services.getty.autologinUser = "root";
   system.stateVersion = "99.99";
 

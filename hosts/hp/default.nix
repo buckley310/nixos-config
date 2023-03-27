@@ -2,7 +2,7 @@
 {
   sconfig = {
     gnome = true;
-    profile = "desktop";
+    desktop.enable = true;
     horizon.enable = true;
     wg-home.enable = true;
   };

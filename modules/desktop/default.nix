@@ -1,7 +1,11 @@
 { config, pkgs, lib, ... }:
 with lib;
 {
-  config = mkIf (config.sconfig.profile == "desktop") {
+  options.sconfig.desktop = {
+    enable = lib.mkEnableOption "Enable Desktop Environment";
+  };
+
+  config = mkIf (config.sconfig.desktop.enable) {
     programs.steam.enable = true;
     services.pcscd.enable = true;
     virtualisation.podman.enable = true;
