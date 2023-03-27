@@ -46,7 +46,6 @@
     in
     {
       lib = {
-        inherit forAllSystems;
         gen-ssh-config = import lib/gen-ssh-config.nix lib;
       };
 
