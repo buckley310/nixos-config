@@ -7,17 +7,10 @@
       inherit (nixpkgs) lib;
 
       mypkgs = pkgs:
-        let
-          pkg = path:
-            let
-              p = pkgs.callPackage path { };
-            in
-            if p.meta.available then p else pkgs.emptyDirectory;
-        in
         (lib.mapAttrs'
           (name: type: {
             name = lib.removeSuffix ".nix" name;
-            value = pkg (./pkgs + "/${name}");
+            value = pkgs.callPackage (./pkgs + "/${name}") { };
           })
           (builtins.readDir ./pkgs));
 
