@@ -53,7 +53,6 @@ in
   users.users.sean.passwordFile = "${persist}/shadow_sean";
   users.users.root.passwordFile = "${persist}/shadow_sean";
 
-  hardware.video.hidpi.enable = true;
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
   system.stateVersion = "22.05";
