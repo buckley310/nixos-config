@@ -132,6 +132,7 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
+    defaultEditor = true;
     configure = {
       packages.sconfig.start = with pkgs.vimPlugins; [
         vim-gitgutter
