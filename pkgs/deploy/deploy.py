@@ -7,6 +7,12 @@ from subprocess import run, PIPE, STDOUT
 from sys import argv
 
 
+def strict_host_key_checking():
+    txt = run(["ssh", "-G", "localhost"], stdout=PIPE).stdout
+    if "stricthostkeychecking true" not in txt.decode("utf8").splitlines():
+        raise RuntimeError("This script requires StrictHostKeyChecking")
+
+
 def get_deployment():
     return loads(
         run(
@@ -177,6 +183,7 @@ def main():
 
 icon_bad = "\u274c"
 icon_good = "\u2705"
+strict_host_key_checking()
 depl = get_deployment()
 if __name__ == "__main__":
     main()
