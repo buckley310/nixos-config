@@ -35,8 +35,8 @@ def expand(ln):
     for item in ln.split(","):
         if item == "all":
             hosts.update(depl)
-        elif item[0] == "@":
-            hosts.update(x for x in depl if item[1:] in depl[x]["tags"])
+        elif item in tags:
+            hosts.update(name for name in depl if item in depl[name]["tags"])
         else:
             hosts.add(item)
     for host in hosts:
@@ -185,5 +185,6 @@ icon_bad = "\u274c"
 icon_good = "\u2705"
 strict_host_key_checking()
 depl = get_deployment()
+tags = set(sum([depl[name]["tags"] for name in depl], []))
 if __name__ == "__main__":
     main()
