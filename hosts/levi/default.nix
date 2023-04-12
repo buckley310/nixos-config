@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   persist = "/nix/persist";
 in
@@ -52,6 +52,9 @@ in
   users.mutableUsers = false;
   users.users.sean.passwordFile = "${persist}/shadow_sean";
   users.users.root.passwordFile = "${persist}/shadow_sean";
+
+  services.zfs.trim.interval = "03:05";
+  systemd.timers.zpool-trim.timerConfig.Persistent = lib.mkForce "no";
 
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
