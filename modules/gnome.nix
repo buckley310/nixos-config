@@ -23,9 +23,6 @@ in
     environment.systemPackages = with pkgs; [
       gnome3.gnome-tweaks
       gnomeExtensions.appindicator
-      gnomeExtensions.dash-to-dock
-      gnomeExtensions.dash-to-panel
-      gnomeExtensions.ddterm
 
       (writeShellScriptBin "x-terminal-emulator" ''
         exec kgx "$@"
