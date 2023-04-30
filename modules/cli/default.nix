@@ -1,6 +1,9 @@
 { config, pkgs, lib, ... }:
 {
-  imports = [ ./powerline.nix ];
+  imports = [
+    ./kubectl.nix
+    ./powerline.nix
+  ];
 
   sconfig.powerline.enable = lib.mkDefault true;
 
@@ -15,8 +18,6 @@
     inetutils
     iotop
     jq
-    kubectl
-    kubernetes-helm
     lm_sensors
     ncdu
     nix-index
