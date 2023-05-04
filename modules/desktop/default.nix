@@ -53,7 +53,7 @@ with lib;
       qemu_full
       quickemu
       tdesktop
-      youtube-dl
+      yt-dlp-light
 
       (mpv.override { scripts = [ mpvScripts.mpris ]; })
 
