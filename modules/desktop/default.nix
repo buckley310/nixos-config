@@ -106,7 +106,7 @@ with lib;
         "extensions.autoCheckUpdates" = false;
         "extensions.autoUpdate" = false;
         "terminal.external.linuxExec" = "x-terminal-emulator";
-        "terminal.integrated.fontFamily" = "DejaVuSansMono Nerd Font";
+        "terminal.integrated.fontFamily" = "DejaVuSansM Nerd Font";
         "update.mode" = "none";
       }
     );
