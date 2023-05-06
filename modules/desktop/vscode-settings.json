@@ -22,6 +22,7 @@
     "update.showReleaseNotes": false,
     "window.menuBarVisibility": "hidden",
     "window.titleBarStyle": "native",
+    "workbench.colorTheme": "Default Dark+",
     "workbench.startupEditor": "none",
     "workbench.tree.indent": 16
 }
