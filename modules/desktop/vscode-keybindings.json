@@ -1,0 +1,15 @@
+[
+    {
+        "key": "ctrl+w",
+        "command": "-workbench.action.terminal.killEditor"
+    },
+    {
+        "key": "ctrl+e",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+e",
+        "command": "workbench.action.quickOpen",
+        "when": "!terminalFocus"
+    }
+]

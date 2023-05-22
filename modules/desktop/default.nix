@@ -98,6 +98,7 @@ with lib;
       ln -sf /etc/vscode-keybindings.json ~/.config/Code/User/keybindings.json
     '';
 
+    environment.etc."vscode-keybindings.json".source = ./vscode-keybindings.json;
     environment.etc."vscode-settings.json".text = builtins.toJSON (
       (
         builtins.fromJSON (builtins.readFile ./vscode-settings.json)
@@ -110,12 +111,6 @@ with lib;
         "update.mode" = "none";
       }
     );
-
-    environment.etc."vscode-keybindings.json".text = builtins.toJSON [
-      { key = "ctrl+w"; command = "-workbench.action.terminal.killEditor"; }
-      { key = "ctrl+e"; command = "-workbench.action.quickOpen"; }
-      { key = "ctrl+e"; command = "workbench.action.quickOpen"; when = "!terminalFocus"; }
-    ];
 
     boot.loader.timeout = 1;
   };
