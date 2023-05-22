@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   imports = [
-    ./kubectl.nix
+    ./kubernetes.nix
     ./powerline.nix
   ];
 
