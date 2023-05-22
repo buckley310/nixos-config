@@ -14,8 +14,12 @@
     complete -F __start_kubectl k
     alias k=kubectl
   '';
-  environment.systemPackages = [
-    pkgs.kubectl
-    pkgs.kubernetes-helm
+  environment.systemPackages = with pkgs; [
+    kubectl
+    kubernetes-helm
+
+    (google-cloud-sdk.withExtraComponents
+      [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
+
   ];
 }
