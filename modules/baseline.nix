@@ -15,6 +15,7 @@
       "amdgpu.gpu_recovery=1"
       "nohibernate"
       "panic=99"
+      "sysctl.vm.overcommit_memory=1"
     ];
   };
 
