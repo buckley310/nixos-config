@@ -16,6 +16,7 @@
     "security.workspace.trust.untrustedFiles": "newWindow",
     "telemetry.telemetryLevel": "off",
     "terminal.integrated.fontSize": 16,
+    "terminal.integrated.localEchoEnabled": "off",
     "terminal.integrated.minimumContrastRatio": 1,
     "terminal.integrated.showExitAlert": false,
     "trailing-spaces.highlightCurrentLine": false,
