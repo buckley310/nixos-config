@@ -10,7 +10,7 @@
 
   boot = {
     zfs.forceImportRoot = false;
-    initrd.availableKernelModules = [ "nvme" ]; # is this still needed?
+    initrd.availableKernelModules = [ "nvme" ];
     kernelParams = [
       "amdgpu.gpu_recovery=1"
       "nohibernate"
