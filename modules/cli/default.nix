@@ -46,7 +46,9 @@
 
     (writeShellScriptBin "nr" "exec nix repl \"$(nix eval nixpkgs#path)\"")
 
-    (writeShellScriptBin "pip-install" "exec python -m ensurepip --user")
+    (writeShellScriptBin "pip-install" ''
+      nix run 'nixpkgs#python3.pkgs.pip' -- install --user --upgrade --break-system-packages pip
+    '')
 
     (writeShellScriptBin "nix-roots" ''
       nix-store --gc --print-roots | grep -v \
