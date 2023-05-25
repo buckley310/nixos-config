@@ -1,0 +1,10 @@
+--- a/src/kgx-pages.c
++++ b/src/kgx-pages.c
+@@ -373 +373 @@ close_page (AdwTabView *view,
+-  if (children->len < 1) {
++  if (children->len >= 0) {
+--- a/src/kgx-window.c
++++ b/src/kgx-window.c
+@@ -153 +153 @@ kgx_window_close_request (GtkWindow *window)
+-  if (children->len < 1 || self->close_anyway) {
++  if (children->len >= 0 || self->close_anyway) {
