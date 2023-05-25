@@ -8,8 +8,8 @@
             then prev.patches
             else [ ]
           ) ++ [
-            ./no-close-tab-prompt.patch
             ./no-notification.patch
+            ./no-warn-close.patch
             ./tango.patch
           ];
       });
