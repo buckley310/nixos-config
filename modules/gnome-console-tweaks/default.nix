@@ -9,6 +9,7 @@
             else [ ]
           ) ++ [
             ./no-close-tab-prompt.patch
+            ./no-notification.patch
             ./tango.patch
           ];
       });

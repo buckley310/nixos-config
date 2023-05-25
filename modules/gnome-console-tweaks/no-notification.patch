@@ -1,0 +1,7 @@
+--- a/src/kgx-tab.c
++++ b/src/kgx-tab.c
+@@ -988,3 +988,3 @@ kgx_tab_pop_child (KgxTab     *self,
+   set_status (self, new_status);
+-
++  return;
+   if (!kgx_tab_is_active (self)) {
