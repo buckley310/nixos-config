@@ -47,6 +47,7 @@
     {
       lib = {
         gen-ssh-config = import lib/gen-ssh-config.nix lib;
+        ssh-keys = import lib/ssh-keys.nix;
       };
 
       nixosModules = mods // { default.imports = builtins.attrValues mods; };
