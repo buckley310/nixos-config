@@ -46,6 +46,7 @@
     in
     {
       lib = {
+        gen-iso = import lib/gen-iso.nix lib;
         gen-ssh-config = import lib/gen-ssh-config.nix lib;
         ssh-keys = import lib/ssh-keys.nix;
       };
