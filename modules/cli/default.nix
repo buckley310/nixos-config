@@ -8,7 +8,6 @@
   sconfig.powerline.enable = lib.mkDefault true;
 
   environment.systemPackages = with pkgs; [
-    bat
     dnsutils
     du-dust
     entr
@@ -45,6 +44,10 @@
     (writeShellScriptBin "dirt" "while sleep 1; do grep '^Dirty:' /proc/meminfo ; done")
 
     (writeShellScriptBin "nr" "exec nix repl \"$(nix eval nixpkgs#path)\"")
+
+    (writeShellScriptBin "bat" ''
+      ${bat}/bin/bat --color=always --wrap=never --pager=never --terminal-width=80 "$@"
+    '')
 
     (writeShellScriptBin "pip-install" ''
       nix run 'nixpkgs#python3.pkgs.pip' -- install --user --upgrade --break-system-packages pip
