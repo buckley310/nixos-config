@@ -5,8 +5,6 @@
     ./powerline.nix
   ];
 
-  sconfig.powerline.enable = lib.mkDefault true;
-
   environment.systemPackages = with pkgs; [
     dnsutils
     du-dust

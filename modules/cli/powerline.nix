@@ -1,7 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
-
-  cfg = config.sconfig.powerline;
 
   theme = pkgs.writeText "powerline.json" (builtins.toJSON
     {
@@ -12,39 +10,25 @@ let
       SeparatorFg = 16;
     });
 
+  args = [
+    "-modules=\${remote:+'user,host,'}nix-shell,git,jobs,cwd"
+    "-git-assume-unchanged-size 0"
+    "-theme ${theme}"
+    "-path-aliases '~/git=~/git'"
+    "-jobs $(jobs -p | wc -l)"
+  ];
+
 in
 {
-  options.sconfig.powerline =
-    {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-      };
-      args = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [
-          "-modules=\${remote:+'user,host,'}nix-shell,git,jobs,cwd"
-          "-git-assume-unchanged-size 0"
-          "-theme ${theme}"
-          "-path-aliases '~/git=~/git'"
-          "-jobs $(jobs -p | wc -l)"
-        ];
-      };
-    };
+  environment.systemPackages = [ pkgs.powerline-go ];
 
-  config = lib.mkIf cfg.enable {
-
-    environment.systemPackages = [ pkgs.powerline-go ];
-
-    programs.bash.interactiveShellInit = ''
-      function _update_ps1() {
-        local remote=y
-        [ "$XDG_SESSION_TYPE" = "x11" ] && unset remote
-        [ "$XDG_SESSION_TYPE" = "wayland" ] && unset remote
-        PS1="$(powerline-go ${toString cfg.args})"
-      }
-      [ "$TERM" = "linux" ] || PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-    '';
-
-  };
+  programs.bash.interactiveShellInit = ''
+    function _update_ps1() {
+      local remote=y
+      [ "$XDG_SESSION_TYPE" = "x11" ] && unset remote
+      [ "$XDG_SESSION_TYPE" = "wayland" ] && unset remote
+      PS1="$(powerline-go ${toString args})"
+    }
+    [ "$TERM" = "linux" ] || PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+  '';
 }
