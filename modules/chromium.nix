@@ -16,6 +16,7 @@
       DefaultNotificationsSetting = 2;
       NetworkPredictionOptions = 2;
       PasswordManagerEnabled = false;
+      ShowFullUrlsInAddressBar = true;
       SyncDisabled = true; # required for BrowsingDataLifetime
       BrowsingDataLifetime = [
         { data_types = [ "browsing_history" ]; time_to_live_in_hours = 24 * 7; }
