@@ -5,6 +5,10 @@ with lib;
     enable = lib.mkEnableOption "Enable Desktop Environment";
   };
 
+  imports = [
+    ./chromium.nix
+  ];
+
   config = mkIf (config.sconfig.desktop.enable) {
     programs.steam.enable = true;
     services.pcscd.enable = true;
