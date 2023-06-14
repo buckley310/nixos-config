@@ -1,14 +1,13 @@
 { config, lib, pkgs, ... }:
 let
 
-  theme =
-    {
-      BoldForeground = true;
-      CwdFg = 15;
-      PathBg = 24;
-      PathFg = 15;
-      SeparatorFg = 16;
-    };
+  theme = {
+    BoldForeground = true;
+    CwdFg = 15;
+    PathBg = 24;
+    PathFg = 15;
+    SeparatorFg = 16;
+  };
 
   args = [
     "-modules=\${remote:+'user,host,'}nix-shell,git,jobs,cwd"
