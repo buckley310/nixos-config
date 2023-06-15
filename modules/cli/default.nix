@@ -1,4 +1,8 @@
 { config, pkgs, lib, ... }:
+let
+  pl = lib.importJSON ./powerline-chars.json;
+
+in
 {
   imports = [
     ./kubernetes.nix
@@ -150,8 +154,8 @@
         highlight GitGutterAdd    ctermfg=10
         highlight GitGutterChange ctermfg=11
         highlight GitGutterDelete ctermfg=9
-        let g:gitgutter_sign_removed = '◣'
-        let g:gitgutter_sign_removed_first_line = '◤'
+        let g:gitgutter_sign_removed = '${pl.lower_left_triangle}'
+        let g:gitgutter_sign_removed_first_line = '${pl.upper_left_triangle}'
         let g:gitgutter_sign_modified_removed = '~~'
       '';
     };
