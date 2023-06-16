@@ -26,7 +26,7 @@ let
     "-git-assume-unchanged-size 0"
     "-theme /etc/powerline-theme.json"
     "-path-aliases '~/git=~/git'"
-    "-jobs $(jobs -p | wc -l)"
+    "-jobs $(jobs -pr | wc -l)"
   ];
 
 in
