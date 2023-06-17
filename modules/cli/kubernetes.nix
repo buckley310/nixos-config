@@ -8,9 +8,6 @@
     kubectl
     kubernetes-helm
 
-    (google-cloud-sdk.withExtraComponents
-      [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
-
     # dedicated script, because bash aliases dont work with `watch`
     (writeShellScriptBin "k" "exec kubectl \"$@\"")
   ];
