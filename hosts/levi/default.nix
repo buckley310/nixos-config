@@ -26,7 +26,7 @@ in
     "/etc/NetworkManager/system-connections"
     "/var/lib/bluetooth"
     "/var/lib/nixos"
-    "/var/lib/systemd"
+    "/var/lib/systemd/coredump"
     "/var/log/journal"
   ];
 
@@ -54,7 +54,6 @@ in
   users.users.root.passwordFile = "${persist}/shadow_sean";
 
   services.zfs.trim.interval = "03:05";
-  systemd.timers.zpool-trim.timerConfig.Persistent = lib.mkForce "no";
 
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;

@@ -39,7 +39,6 @@
     '';
     gc = {
       automatic = true;
-      persistent = false;
       randomizedDelaySec = "40min";
       options = "--delete-older-than 30d";
     };
