@@ -9,6 +9,7 @@
       mypkgs = pkgs:
         {
           iso = import lib/gen-iso.nix lib pkgs.system;
+          iso-bcachefs = import lib/gen-iso-bcachefs.nix lib pkgs.system;
         } //
         (lib.mapAttrs'
           (name: type: {
