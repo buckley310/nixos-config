@@ -1,17 +1,17 @@
 lib:
-
-{ system, modules ? [ ] }:
+system:
 
 let
-  cd-minimal = { modulesPath, ... }: {
-    imports = [
-      "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
-    ];
-  };
-
   sys = lib.nixosSystem {
     inherit system;
-    modules = [ cd-minimal ] ++ modules;
+    modules = [
+      ({ modulesPath, ... }: {
+        imports = [
+          "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
+        ];
+        isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+      })
+    ];
   };
 
 in
