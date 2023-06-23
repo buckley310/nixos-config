@@ -4,16 +4,16 @@ let
 
   theme = {
     BoldForeground = true;
-    CwdFg = 15;
+    CwdFg = 231;
     PathBg = 24;
-    PathFg = 15;
+    PathFg = 231;
     SeparatorFg = 16;
   };
 
   customEnd = [{
     Content = "$";
-    Foreground = 15;
-    Background = 245;
+    Foreground = 231;
+    Background = 102;
     Separator = pl.left_hard_divider;
   }];
 
