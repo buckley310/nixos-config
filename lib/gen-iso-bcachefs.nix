@@ -11,6 +11,7 @@ let
         ];
         boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_bcachefs;
         boot.supportedFilesystems = [ "bcachefs" ];
+        boot.initrd.availableKernelModules = [ "bcachefs" ];
         isoImage.squashfsCompression = "gzip -Xcompression-level 1";
       })
     ];
