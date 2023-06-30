@@ -7,6 +7,7 @@
   environment.systemPackages = with pkgs; [
     kubectl
     kubernetes-helm
+    stern
 
     # dedicated script, because bash aliases dont work with `watch`
     (writeShellScriptBin "k" "exec kubectl \"$@\"")
