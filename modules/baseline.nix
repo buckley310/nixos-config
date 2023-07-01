@@ -11,6 +11,10 @@
   boot = {
     zfs.forceImportRoot = false;
     initrd.availableKernelModules = [ "nvme" ];
+    kernel.sysctl = {
+      "fs.inotify.max_user_instances" = 65536;
+      "fs.inotify.max_user_watches" = 1048576;
+    };
     kernelParams = [
       "amdgpu.gpu_recovery=1"
       "nohibernate"
