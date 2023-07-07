@@ -12,9 +12,7 @@ builtins.mapAttrs
   })
 
 {
-  cube = "x86_64-linux";
   hp = "x86_64-linux";
-  lenny = "x86_64-linux";
   levi = "x86_64-linux";
   testbox = "x86_64-linux";
 }
