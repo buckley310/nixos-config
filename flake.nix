@@ -2,7 +2,7 @@
   inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
   inputs.impermanence.url = "github:nix-community/impermanence";
 
-  outputs = { self, nixpkgs, impermanence, ... }:
+  outputs = { self, nixpkgs, impermanence }:
     let
       inherit (nixpkgs) lib;
 
