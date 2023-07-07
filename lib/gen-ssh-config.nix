@@ -15,7 +15,6 @@ let
 
 in
 builtins.toFile "ssh-config" (''
-  StrictHostKeyChecking yes
   GlobalKnownHostsFile ${sshKnownHostsTxt}
 '' +
 lib.concatMapStrings
