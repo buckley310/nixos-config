@@ -14,12 +14,14 @@ let
   attrsToLines = a: lib.concatLines (attrsToList a);
 
 in
-builtins.toFile "ssh-config" (''
-  GlobalKnownHostsFile ${sshKnownHostsTxt}
-'' +
-lib.concatMapStrings
-  (host: ''
-    Host ${host}
-    ${attrsToLines nixosConfigurations.${host}.config.deploy.ssh}
-  '')
-  (builtins.attrNames nixosConfigurations))
+builtins.toFile "ssh-config" (
+  lib.concatMapStrings
+    (host: ''
+      Host ${host}
+          ${attrsToLines nixosConfigurations.${host}.config.deploy.ssh}
+    '')
+    (builtins.attrNames nixosConfigurations) +
+  ''
+    GlobalKnownHostsFile ${sshKnownHostsTxt}
+  ''
+)
