@@ -63,6 +63,7 @@ with lib;
 
       (vscode-with-extensions.override {
         vscodeExtensions = with pkgs.vscode-extensions; [
+          esbenp.prettier-vscode
           jnoortheen.nix-ide
           ms-azuretools.vscode-docker
           ms-python.python
