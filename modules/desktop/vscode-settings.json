@@ -1,6 +1,9 @@
 {
+    "[nix]": { "editor.defaultFormatter": "jnoortheen.nix-ide" },
+    "[python]": { "editor.defaultFormatter": "ms-python.python" },
     "diffEditor.renderSideBySide": false,
     "editor.cursorSurroundingLines": 9,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.renderFinalNewline": "off",
     "editor.scrollBeyondLastLine": false,
