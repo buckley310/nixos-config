@@ -13,6 +13,7 @@
         Preferences = builtins.mapAttrs
           (n: v: { Value = v; Status = "locked"; })
           {
+            "browser.chrome.toolbar_tips" = false; # https://bugzilla.mozilla.org/show_bug.cgi?id=148624
             "browser.contentblocking.category" = "strict";
             "browser.zoom.siteSpecific" = false;
             "extensions.formautofill.addresses.enabled" = false;
