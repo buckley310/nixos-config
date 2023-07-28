@@ -6,6 +6,7 @@
         NewTabPage = false;
         CaptivePortal = false;
         DisablePocket = true;
+        DisableFirefoxAccounts = true;
         DisableFirefoxStudies = true;
         OfferToSaveLogins = false;
         DisableFormHistory = true;
