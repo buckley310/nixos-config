@@ -25,6 +25,7 @@
             "extensions.formautofill.creditCards.enabled" = false;
             "extensions.formautofill.heuristics.enabled" = false;
             "network.IDN_show_punycode" = true;
+            "places.history.expiration.max_pages" = 2048;
             "ui.key.menuAccessKeyFocuses" = false;
           };
         ExtensionSettings =
