@@ -9,7 +9,7 @@
 }:
 
 let
-  hjs = builtins.fromJSON (builtins.readFile ./hashes.js);
+  hjs = builtins.fromJSON (builtins.readFile ./hashes.json);
 
 in
 stdenv.mkDerivation {

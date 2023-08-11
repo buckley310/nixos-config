@@ -2,4 +2,4 @@
 
 cd "$(dirname "$BASH_SOURCE")"
 
-curl -O https://binary.ninja/js/hashes.js
+curl https://binary.ninja/js/hashes.js -o hashes.json
