@@ -25,6 +25,8 @@ in
     nix-prefetch-github
     nix-top
     nixpkgs-fmt
+    nodejs
+    nodePackages.prettier
     openssl
     parted
     pciutils
