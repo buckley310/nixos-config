@@ -1,5 +1,8 @@
 {
-    "[nix]": { "editor.defaultFormatter": "jnoortheen.nix-ide" },
+    "[nix]": {
+        "editor.defaultFormatter": "jnoortheen.nix-ide",
+        "files.trimFinalNewlines": true
+    },
     "[python]": { "editor.defaultFormatter": "ms-python.python" },
     "diffEditor.renderSideBySide": false,
     "editor.cursorSurroundingLines": 9,
@@ -7,8 +10,6 @@
     "editor.formatOnSave": true,
     "editor.renderFinalNewline": "off",
     "editor.scrollBeyondLastLine": false,
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
     "git.autofetch": true,
     "git.confirmSync": false,
     "git.openRepositoryInParentFolders": "always",
