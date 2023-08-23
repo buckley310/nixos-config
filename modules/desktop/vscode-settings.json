@@ -5,6 +5,7 @@
 	"editor.cursorSurroundingLines": 9,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
+	"editor.minimap.enabled": false,
 	"editor.renderFinalNewline": "off",
 	"editor.scrollBeyondLastLine": false,
 	"files.insertFinalNewline": true,
