@@ -114,6 +114,8 @@ in
     terminal = "screen-256color";
     extraConfig = ''
       bind-key j command-prompt -p "Join pane:"  "join-pane -s '%%'"
+      bind-key '"' split-window -v -c "#{pane_current_path}"
+      bind-key '%' split-window -h -c "#{pane_current_path}"
       set -g base-index 1
       set -g pane-base-index 1
       set -g renumber-windows on
