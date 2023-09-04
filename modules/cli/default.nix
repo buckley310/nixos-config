@@ -100,6 +100,10 @@ in
   programs.git = {
     enable = true;
     config = {
+      alias.up = "push";
+      alias.dn = "pull";
+      alias.sh = "show";
+      alias.di = "diff";
       alias.glog = "log --all --decorate --oneline --graph";
       alias.logl = "log --oneline -n10";
       alias.vlog = "log --name-status";
