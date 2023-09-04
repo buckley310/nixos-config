@@ -2,7 +2,7 @@
 {
   sconfig.gnome = true;
   sconfig.desktop.enable = true;
-  services.getty.autologinUser = "root";
+  users.users.sean.password = "sean";
   system.stateVersion = "99.99";
 
   virtualisation.memorySize = 4096;
