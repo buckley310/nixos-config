@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let
-  pl = lib.importJSON ./powerline-chars.json;
+  left_hard_divider = builtins.fromJSON '' "\uE0B0" '';
+  upper_left_triangle = builtins.fromJSON '' "\uE0BC" '';
 
   theme = {
     BoldForeground = true;
@@ -14,11 +15,11 @@ let
     Content = "$";
     Foreground = 231;
     Background = 102;
-    Separator = pl.left_hard_divider;
+    Separator = left_hard_divider;
   }];
 
   plconfig = builtins.toFile "powerline-config.json" (builtins.toJSON {
-    modes.patched.Separator = pl.upper_left_triangle;
+    modes.patched.Separator = upper_left_triangle;
   });
 
   args = [
