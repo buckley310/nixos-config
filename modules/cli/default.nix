@@ -45,6 +45,10 @@
 
     (writeShellScriptBin "nr" "exec nix repl \"$(nix eval nixpkgs#path)\"")
 
+    (lib.hiPrio (writeShellScriptBin "iftop" ''
+      exec ${iftop}/bin/iftop -P -m100M "$@"
+    ''))
+
     (writeShellScriptBin "bat" ''
       ${bat}/bin/bat --color=always --wrap=never --pager=never --terminal-width=80 "$@"
     '')
