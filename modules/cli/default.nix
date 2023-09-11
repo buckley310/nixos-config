@@ -50,7 +50,7 @@
     ''))
 
     (writeShellScriptBin "bat" ''
-      ${bat}/bin/bat --color=always --wrap=never --pager=never --terminal-width=80 "$@"
+      ${bat}/bin/bat --color=always --wrap=never --terminal-width=80 "$@"
     '')
 
     (writeShellScriptBin "pip-install" ''
