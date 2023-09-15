@@ -22,7 +22,6 @@
     nix-top
     nixpkgs-fmt
     nodejs
-    nodePackages.prettier
     openssl
     parted
     pciutils
