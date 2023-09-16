@@ -6,6 +6,7 @@ with lib;
   };
 
   imports = [
+    ./alacritty.nix
     ./chromium.nix
     ./firefox.nix
   ];
@@ -27,7 +28,6 @@ with lib;
     };
 
     sconfig = {
-      alacritty.enable = true;
       security-tools = true;
     };
 

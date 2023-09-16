@@ -6,8 +6,6 @@
 # (November 2021)
 
 let
-  cfg = config.sconfig.alacritty;
-
   configText = builtins.toJSON
     {
       env.TERM = "xterm-256color";
@@ -43,26 +41,21 @@ let
 
 in
 {
-  options.sconfig.alacritty.enable = lib.mkEnableOption "Enable Alacritty";
+  environment.etc."xdg/alacritty.yml".text = configText;
 
-  config = lib.mkIf cfg.enable {
+  environment.systemPackages = [
+    pkgs.alacritty
+    (pkgs.writeTextFile {
+      name = "alacritty.yml";
+      destination = "/etc/xdg/alacritty.yml";
+      text = configText;
+    })
+  ];
 
-    environment.etc."xdg/alacritty.yml".text = configText;
-
-    environment.systemPackages = [
-      pkgs.alacritty
-      (pkgs.writeTextFile {
-        name = "alacritty.yml";
-        destination = "/etc/xdg/alacritty.yml";
-        text = configText;
-      })
-    ];
-
-    programs.bash.interactiveShellInit = ''
-      function _set_title() {
-        printf "\033]0;%s@%s:%s\007" "''${USER}" "''${HOSTNAME%%.*}" "''${PWD/#$HOME/\~}"
-      }
-      [ -z "$VTE_VERSION" ] && PROMPT_COMMAND="_set_title; $PROMPT_COMMAND"
-    '';
-  };
+  programs.bash.interactiveShellInit = ''
+    function _set_title() {
+      printf "\033]0;%s@%s:%s\007" "''${USER}" "''${HOSTNAME%%.*}" "''${PWD/#$HOME/\~}"
+    }
+    [ -z "$VTE_VERSION" ] && PROMPT_COMMAND="_set_title; $PROMPT_COMMAND"
+  '';
 }
