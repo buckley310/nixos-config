@@ -9,6 +9,7 @@ with lib;
     ./alacritty.nix
     ./chromium.nix
     ./firefox.nix
+    ./kitty.nix
   ];
 
   config = mkIf (config.sconfig.desktop.enable) {
