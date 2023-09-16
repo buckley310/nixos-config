@@ -55,8 +55,3 @@ nnoremap <space>k <C-W>k
 nnoremap <space>l <C-W>l
 nnoremap <space>v <C-W>v
 nnoremap <space>s <C-W>s
-
-
-lua << EOF
-require("bufferline").setup{}
-EOF
