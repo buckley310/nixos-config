@@ -17,6 +17,7 @@
       ];
       customRC = ''
         source ${./init.vim}
+        luafile ${./init.lua}
       '';
     };
   };
