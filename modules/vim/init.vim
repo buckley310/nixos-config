@@ -1,11 +1,15 @@
-
 "misc
 set mouse=
 set encoding=utf-8
 set number relativenumber
-set list
+set list listchars=tab:\|\ ,trail:-
 set nowrap
 set scrolloff=9
+set tabstop=4
+set shiftwidth=4
+
+set termguicolors
+colorscheme slate
 
 
 "configure plugins
@@ -13,9 +17,6 @@ let g:gitgutter_sign_removed = "\uE0B8"
 let g:gitgutter_sign_removed_first_line = "\uE0BC"
 let g:gitgutter_sign_modified_removed = '~~'
 set updatetime=500
-highlight GitGutterAdd    ctermfg=10
-highlight GitGutterChange ctermfg=11
-highlight GitGutterDelete ctermfg=9
 
 let g:startify_custom_header = "''"
 let g:startify_custom_indices = map(range(1,100), 'string(v:val)')
