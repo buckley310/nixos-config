@@ -11,6 +11,8 @@ set shiftwidth=4
 set termguicolors
 colorscheme slate
 
+nnoremap <space>H :call CocActionAsync('doHover')<cr>
+
 
 "configure plugins
 let g:gitgutter_sign_removed = "\uE0B8"
