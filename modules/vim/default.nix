@@ -9,6 +9,8 @@
       packages.sconfig.start = with pkgs.vimPlugins; [
         airline
         bufferline-nvim
+        coc-nvim
+        coc-tsserver
         nerdtree
         vim-autoformat
         vim-gitgutter
