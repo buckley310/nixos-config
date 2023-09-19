@@ -9,7 +9,7 @@ set tabstop=4
 set shiftwidth=4
 
 set termguicolors
-colorscheme slate
+colorscheme codedark
 
 nnoremap <space>H :call CocActionAsync('doHover')<cr>
 
