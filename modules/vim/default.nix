@@ -13,6 +13,7 @@
         coc-tsserver
         nerdtree
         vim-autoformat
+        vim-code-dark
         vim-gitgutter
         vim-nix
         vim-startify
