@@ -12,12 +12,19 @@
         coc-nvim
         coc-tsserver
         nerdtree
+        nerdtree-git-plugin
         vim-autoformat
         vim-code-dark
+        vim-devicons
         vim-gitgutter
         vim-nix
         vim-startify
-      ];
+      ] ++
+      # skip syntax-highlight on nixos 23.05
+      lib.optional
+        (vim-nerdtree-syntax-highlight.version != "2021-01-11")
+        (vim-nerdtree-syntax-highlight);
+
       customRC = ''
         source ${./init.vim}
         luafile ${./init.lua}
