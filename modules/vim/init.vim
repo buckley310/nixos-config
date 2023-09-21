@@ -26,6 +26,10 @@ let g:startify_custom_indices = map(range(1,100), 'string(v:val)')
 let NERDTreeMinimalUI=1
 let g:NERDTreeExtensionHighlightColor = {}
 let g:NERDTreeExtensionHighlightColor['nix'] = "689FB6"
+let g:NERDTreeExtensionHighlightColor['tf'] = "834F79"
+
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['tf'] = "\uE69A"
 
 
 "auto formatting

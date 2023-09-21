@@ -19,6 +19,7 @@
         vim-gitgutter
         vim-nix
         vim-startify
+        vim-terraform
       ] ++
       # skip syntax-highlight on nixos 23.05
       lib.optional
