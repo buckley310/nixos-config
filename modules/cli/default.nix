@@ -6,6 +6,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    darkhttpd
     dnsutils
     du-dust
     entr
@@ -68,18 +69,6 @@
           if ln.startswith('size '):
               print(str(int(ln.split(' ')[-1])/(1024*1024*1024))[:5],'GB')
     '')
-
-    (darkhttpd.overrideAttrs (old: {
-      patches = [
-        (builtins.toFile "port.patch" ''
-          --- a/darkhttpd.c
-          +++ b/darkhttpd.c
-          @@ -291 +291 @@ static const char *bindaddr;
-          -static uint16_t bindport = 8080;    /* or 80 if running as root */
-          +static uint16_t bindport = 8000;    /* or 80 if running as root */
-        '')
-      ];
-    }))
 
   ];
 
