@@ -25,7 +25,7 @@ in
       gnomeExtensions.appindicator
 
       (writeShellScriptBin "x-terminal-emulator" ''
-        exec kgx "$@"
+        exec kitty "$@"
       '')
 
       (writeShellScriptBin "red" ''
