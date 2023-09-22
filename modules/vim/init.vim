@@ -58,6 +58,8 @@ nnoremap <silent> <space>q :bd<CR>
 nnoremap <silent> <space>d :bnext<CR>
 nnoremap <silent> <space>a :bprevious<CR>
 
+tnoremap <C-x> <C-\><C-n>
+
 
 "window shortcuts
 nnoremap <space>h <C-W>h
