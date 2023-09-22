@@ -48,7 +48,7 @@ autocmd BufWritePre * :Autoformat
 
 
 "menus
-nnoremap <silent> <space>e :NERDTreeFocus<CR>:vertical resize 30<CR>
+nnoremap <silent> <space>e :NERDTreeFocus<CR>:vertical resize 31<CR>
 nnoremap <silent> <space>o :Startify<CR>
 
 
