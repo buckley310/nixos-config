@@ -66,5 +66,11 @@ nnoremap <space>h <C-W>h
 nnoremap <space>j <C-W>j
 nnoremap <space>k <C-W>k
 nnoremap <space>l <C-W>l
+
+nnoremap <space><left> <C-W>h
+nnoremap <space><down> <C-W>j
+nnoremap <space><up> <C-W>k
+nnoremap <space><right> <C-W>l
+
 nnoremap <space>v <C-W>v
 nnoremap <space>s <C-W>s
