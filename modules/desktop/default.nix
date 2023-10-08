@@ -15,6 +15,7 @@ with lib;
     programs.steam.enable = true;
     services.pcscd.enable = true;
     virtualisation.podman.enable = true;
+    networking.networkmanager.wifi.powersave = false;
 
     # Pipewire
     sound.enable = true;
