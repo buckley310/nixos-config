@@ -12,7 +12,9 @@ formatters.setup {
 	{
 		name = "prettier",
 		filetypes = {
+			"html",
 			"json",
+			"js",
 			"typescript",
 			"yaml"
 		},
