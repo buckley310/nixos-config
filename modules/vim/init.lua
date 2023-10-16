@@ -1,7 +1,10 @@
-lvim.format_on_save = true
-
+vim.opt.mouse = ""
 vim.opt.relativenumber = true
 vim.opt.whichwrap = ""
+
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pylyzer" })
+
+lvim.format_on_save = true
 
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
