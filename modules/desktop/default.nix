@@ -68,7 +68,7 @@ with lib;
           esbenp.prettier-vscode
           jnoortheen.nix-ide
           ms-azuretools.vscode-docker
-          ms-python.python
+          # ms-python.python # currently broken (2023-10-26)
           redhat.vscode-yaml
           shardulm94.trailing-spaces
         ];
