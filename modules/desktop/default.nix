@@ -56,7 +56,7 @@ with lib;
       obs-studio
       opensc
       pavucontrol
-      qemu_full
+      qemu_kvm
       quickemu
       tdesktop
       yt-dlp-light
