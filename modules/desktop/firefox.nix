@@ -16,7 +16,6 @@
           {
             "accessibility.force_disabled" = 1;
             "browser.aboutConfig.showWarning" = false;
-            "browser.chrome.toolbar_tips" = false; # https://bugzilla.mozilla.org/show_bug.cgi?id=148624
             "browser.contentblocking.category" = "strict";
             "browser.tabs.firefox-view" = false;
             "browser.uitour.enabled" = false;
