@@ -1,1 +1,18 @@
-{"version": "3.4.4271", "hashes": {"BinaryNinja-headless.zip": "672d6949bf3c3dedf4bca6f0602f6562fe1ab3b1cd5671483b8f33863d386b56", "BinaryNinja-personal.zip": "4736818eff99dae41f8d9590fea34c6cb80b2b5f0e5ff4d8c0a0509e12abdaf3", "BinaryNinja-personal.dmg": "d33ffc044f4134d1314f82205df81d2ce7e1e74c057d150e53de326a516c34b2", "BinaryNinja-personal.exe": "fa154afdfd13ceaae8d723176c8d14638195e853fcab55822912d5d8181130c4", "BinaryNinja.zip": "47210a3c337bb370e8c134b5a00c2a7a3d8e255f2405a195bcd7dbaa8ec71529", "BinaryNinja.dmg": "887c405af501fbedc879b003ca210ef750e105d04865c37e4264f039ca3cb8cf", "BinaryNinja.exe": "bfb1ccf473b4449f2950e5db5ff1c0957c23d5979d11d9b64a5d05e165faae3f", "BinaryNinja-Enterprise.zip": "fc496d408020dfa71ed55131a9a57da8e4f223a26ac3c4b2315953ea23eab1c3", "BinaryNinja-Enterprise.dmg": "3798d049318d6f90e920aac79b914c0fdbf67b4e8b8b0010bdaa31a7b67f1958", "BinaryNinja-Enterprise.exe": "b6ad4376949f6f1de76a0d712734759a3ee91d73e1d3575be75e0ff37afa75bc", "BinaryNinja-demo.zip": "e1e0ba664f8e6232c7bb7dafe52d50c43edea6f01a25d1b0d857d194a30d2f50", "BinaryNinja-demo.dmg": "20089c807d2f25b7a6fad0c79aec8eac54563ac624b76c1b8b0a327b6a3ddcde", "BinaryNinja-demo.exe": "e1b6d71e875342163ddcbf641d620aca2eb3317a6a69a1fb2b7394d4536a0651"}}
+{
+	"version": "3.5.4526",
+	"hashes": {
+		"BinaryNinja-headless.zip": "af4645c06d671850d31b3a21cdb8d997a98d395150b9cd54427e7c9aa870d3ab",
+		"BinaryNinja-personal.zip": "c21e7959169b3a83780326e3cbfce4c915dc657c6e5a237b96650284bd83210d",
+		"BinaryNinja-personal.dmg": "9cc4fe17e1ed66b58fe169830369f5afbe0aa432bb4bb586af3eea0c220e9935",
+		"BinaryNinja-personal.exe": "f18f6a25163da31117ccd4791dc8ca4d0cc572ef13ff0568c4b8f167cebf443b",
+		"BinaryNinja.zip": "c7a977d56c4ba9fbc6c09e2610d4763e2b9fea3df6ac91f3e9d79496f645ce6b",
+		"BinaryNinja.dmg": "393597b9201561c9a46f70ad60cdbc04bcd891460e3c0ba8e80b002d5a930d65",
+		"BinaryNinja.exe": "3566787d6a48a0996a8ad22cbccfec69eafcd20b57198a702d7e532ffef54e7d",
+		"BinaryNinja-Enterprise.zip": "5462f8f95d3222f0c8f3adf84affdc6ed367997f67c6134e6cc01bbf630ae8a1",
+		"BinaryNinja-Enterprise.dmg": "8c2d28b957fee1793f73d2ba9760a2e48eddbe5d5e98a47b34a949a10340e37f",
+		"BinaryNinja-Enterprise.exe": "b49a966138968a992100edac18756ea11c00756fe7f0e89914cbc181bdfbe83e",
+		"BinaryNinja-demo.zip": "98a2eafeeb05cfceb0a34edf7c5f8c95db750006b02163d4a55420ebaba6e639",
+		"BinaryNinja-demo.dmg": "ddb6537fd3e5ed5407051a07a42eba408f46e06080dee2c4dabf5fd29020c0f6",
+		"BinaryNinja-demo.exe": "89dd37a2a4cc88603fd12b17c543942e0dbce6babd036ba9eded05b0f9019797"
+	}
+}
