@@ -23,3 +23,8 @@ if pcall(require, "null-ls") then
 		},
 	}
 end
+
+vim.api.nvim_create_autocmd('BufEnter', {
+	pattern = '',
+	command = 'highlight LineNr guifg=#aaaaff'
+})
