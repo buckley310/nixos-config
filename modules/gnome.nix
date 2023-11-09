@@ -60,8 +60,5 @@ in
       gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive'
     '';
 
-    # Moving from Terminal to Console removes "Open in Remote Terminal" feature from nautilus
-    programs.gnome-terminal.enable = true;
-
   };
 }
