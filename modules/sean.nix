@@ -21,4 +21,9 @@
     git config --global user.email "sean.bck@gmail.com"
     git config --global user.name "Sean Buckley"
   '';
+
+  users.users.zim = {
+    uid = 2099;
+    isNormalUser = true;
+  };
 }
