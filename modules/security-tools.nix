@@ -48,10 +48,5 @@ in
       wireshark.enable = true;
       wireshark.package = pkgs.wireshark;
     };
-
-    users.users.zim = {
-      uid = 2099;
-      isNormalUser = true;
-    };
   };
 }
