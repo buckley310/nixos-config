@@ -13,7 +13,7 @@ in
       burpsuite
       exiftool
       feroxbuster
-      ghidra-bin
+      ghidra
       masscan
       metasploit
       msfpc
