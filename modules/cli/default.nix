@@ -125,6 +125,8 @@
 
   programs.bash.interactiveShellInit = ''
     stty -ixon
+    alias jq='jq --indent 4'
+    alias yq='yq --indent 4'
     alias p=python3
     alias hd='hexdump -C'
     alias nix-env="echo nix-env is disabled #"
