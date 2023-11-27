@@ -48,8 +48,8 @@ in
   };
 
   users.mutableUsers = false;
-  users.users.sean.passwordFile = "${persist}/shadow_sean";
-  users.users.root.passwordFile = "${persist}/shadow_sean";
+  users.users.sean.hashedPasswordFile = "${persist}/shadow_sean";
+  users.users.root.hashedPasswordFile = "${persist}/shadow_sean";
 
   services.zfs.trim.interval = "03:05";
 
