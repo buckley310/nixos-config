@@ -37,7 +37,7 @@ with lib;
         MOUSE_DPI=600@1000
     '';
 
-    fonts.fonts = [
+    fonts.packages = [
       (pkgs.nerdfonts.override { fonts = [ "DejaVuSansMono" ]; })
     ];
 
