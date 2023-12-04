@@ -18,8 +18,8 @@ builtins.toFile "ssh-config" (
   lib.concatMapStrings
     (host: ''
       Host ${host}
-          UserKnownHostsFile ${sshKnownHostsTxt}
-          ${attrsToLines nixosConfigurations.${host}.config.deploy.ssh}
+      UserKnownHostsFile ${sshKnownHostsTxt}
+      ${attrsToLines nixosConfigurations.${host}.config.deploy.ssh}
     '')
     (builtins.attrNames nixosConfigurations)
 )
