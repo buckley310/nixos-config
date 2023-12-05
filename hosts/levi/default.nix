@@ -30,9 +30,11 @@ in
     "/var/log/journal"
   ];
 
-  programs.bash.interactiveShellInit = ''
-    alias eco='taskset -p ff000 $$'
-  '';
+  environment.systemPackages = [
+    (pkgs.writeShellScriptBin "eco" ''
+      exec taskset ff000 "$@"
+    '')
+  ];
 
   boot = {
     loader.systemd-boot.enable = true;
