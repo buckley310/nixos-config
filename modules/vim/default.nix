@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   environment.variables.EDITOR = "vim";
 
@@ -8,7 +8,9 @@
     (lunarvim.override (_: {
       viAlias = true;
       vimAlias = true;
-      globalConfig = builtins.readFile ./init.lua;
+      globalConfig = builtins.readFile ./init.lua + ''
+        vim.cmd('source ${pkgs.vimPlugins.vim-tmux-navigator}/plugin/tmux_navigator.vim')
+      '';
     }))
 
     (writeShellScriptBin "black" ''
