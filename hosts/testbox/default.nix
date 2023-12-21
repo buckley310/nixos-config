@@ -1,4 +1,4 @@
-{ config, lib, modulesPath, pkgs, ... }:
+{ modulesPath, ... }:
 {
   sconfig.gnome = true;
   sconfig.desktop.enable = true;

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   environment.systemPackages = [ pkgs.kitty ];
   environment.etc."xdg/kitty/kitty.conf".text = ''

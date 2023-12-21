@@ -1,11 +1,7 @@
 # https://feed-the-beast.com/
 
-{ stdenv
-, autoPatchelfHook
-, fetchurl
+{ fetchurl
 , jre
-, bash
-, makeWrapper
 , writeShellScriptBin
 , buildFHSUserEnv
 }:

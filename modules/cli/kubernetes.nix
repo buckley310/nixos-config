@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   programs.bash.interactiveShellInit = ''
     source <(kubectl completion bash)
