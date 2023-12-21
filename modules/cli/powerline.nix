@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   left_hard_divider = builtins.fromJSON '' "\uE0B0" '';
   upper_left_triangle = builtins.fromJSON '' "\uE0BC" '';

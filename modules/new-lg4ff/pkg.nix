@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub, kernel, kmod }:
+{ stdenv, fetchFromGitHub, kernel }:
 
 stdenv.mkDerivation {
   name = "new-lg4ff-${kernel.version}";

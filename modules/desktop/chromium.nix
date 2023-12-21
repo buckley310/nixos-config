@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, ... }:
 {
   config = lib.mkIf (config.sconfig.desktop.enable) {
     nixpkgs.config.chromium.commandLineArgs = toString [
