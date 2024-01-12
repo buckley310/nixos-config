@@ -53,6 +53,10 @@
       ${bat}/bin/bat --color=always --wrap=never --terminal-width=80 "$@"
     '')
 
+    (writeShellScriptBin "hd" ''
+      exec hexdump -C "$@"
+    '')
+
     (writeShellScriptBin "pip-install" ''
       nix run 'nixpkgs#python3.pkgs.pip' -- install --user --upgrade --break-system-packages pip
     '')
@@ -147,7 +151,6 @@
     alias jq='jq --indent 4'
     alias yq='yq --indent 4'
     alias p=python3
-    alias hd='hexdump -C'
     alias nix-env="echo nix-env is disabled #"
     alias nix-what-depends-on='nix-store --query --referrers'
     alias day='date "+%Y-%m-%d"'
