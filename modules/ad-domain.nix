@@ -22,9 +22,9 @@ in
       networking.domain = cfg.longname;
       networking.search = [ (cfg.longname) ];
       security.pam.services.sshd.makeHomeDir = true;
-      krb5 = {
+      security.krb5 = {
         enable = true;
-        libdefaults.default_realm = lib.toUpper cfg.longname;
+        settings.libdefaults.default_realm = lib.toUpper cfg.longname;
       };
       services.sssd = {
         enable = true;
