@@ -61,6 +61,8 @@ with lib;
       tdesktop
       yt-dlp-light
 
+      pcscliteWithPolkit.out # workaround: https://github.com/NixOS/nixpkgs/issues/280826
+
       (mpv.override { scripts = [ mpvScripts.mpris ]; })
 
       (vscode-with-extensions.override {
