@@ -23,6 +23,8 @@ in
       networking.search = [ (cfg.longname) ];
       security.pam.services.sshd.makeHomeDir = true;
       security.krb5 = {
+        # These settings have been updated for NixOS 24.05.
+        # Breaking changes happenned since 23.11.
         enable = true;
         settings.libdefaults.default_realm = lib.toUpper cfg.longname;
       };
