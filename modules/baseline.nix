@@ -37,7 +37,6 @@
 
   nix = {
     nixPath = [ ];
-    daemonCPUSchedPolicy = "idle";
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
