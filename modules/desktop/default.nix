@@ -47,6 +47,7 @@ with lib;
     environment.systemPackages = with pkgs; [
       chromium
       discord
+      easyeffects
       element-desktop
       ffmpeg
       gimp
