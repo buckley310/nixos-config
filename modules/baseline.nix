@@ -40,11 +40,6 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    gc = {
-      automatic = true;
-      randomizedDelaySec = "40min";
-      options = "--delete-older-than 30d";
-    };
   };
 
   services = {
