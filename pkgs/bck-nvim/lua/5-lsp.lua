@@ -56,6 +56,14 @@ lspconfig.nil_ls.setup({
 })
 
 ----------------------------------------------------------------
+lspconfig.jsonls.setup({
+	capabilities = capabilities,
+	on_attach = function(client, _)
+		client.server_capabilities.documentFormattingProvider = false
+	end,
+})
+
+----------------------------------------------------------------
 lspconfig.yamlls.setup({
 	capabilities = capabilities,
 	settings = {
@@ -107,6 +115,7 @@ lspconfig.efm.setup({
 		"css",
 		"html",
 		"javascript",
+		"json",
 		"typescript",
 		"python",
 	},
@@ -118,6 +127,7 @@ lspconfig.efm.setup({
 			css = efmprettier,
 			html = efmprettier,
 			javascript = efmprettier,
+			json = efmprettier,
 			typescript = efmprettier,
 			python = {
 				{
