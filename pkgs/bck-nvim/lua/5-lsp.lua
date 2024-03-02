@@ -1,5 +1,8 @@
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local noFormat = function(client, _)
+	client.server_capabilities.documentFormattingProvider = false
+end
 
 ----------------------------------------------------------------
 lspconfig.lua_ls.setup({
@@ -21,25 +24,19 @@ lspconfig.pyright.setup({
 ----------------------------------------------------------------
 lspconfig.tsserver.setup({
 	capabilities = capabilities,
-	on_attach = function(client, _)
-		client.server_capabilities.documentFormattingProvider = false
-	end,
+	on_attach = noFormat,
 })
 
 ----------------------------------------------------------------
 lspconfig.html.setup({
 	capabilities = capabilities,
-	on_attach = function(client, _)
-		client.server_capabilities.documentFormattingProvider = false
-	end,
+	on_attach = noFormat,
 })
 
 ----------------------------------------------------------------
 lspconfig.cssls.setup({
 	capabilities = capabilities,
-	on_attach = function(client, _)
-		client.server_capabilities.documentFormattingProvider = false
-	end,
+	on_attach = noFormat,
 })
 
 ----------------------------------------------------------------
@@ -58,9 +55,7 @@ lspconfig.nil_ls.setup({
 ----------------------------------------------------------------
 lspconfig.jsonls.setup({
 	capabilities = capabilities,
-	on_attach = function(client, _)
-		client.server_capabilities.documentFormattingProvider = false
-	end,
+	on_attach = noFormat,
 })
 
 ----------------------------------------------------------------
