@@ -1,77 +1,18 @@
 # https://feed-the-beast.com/
 
 { fetchurl
-, jre
+, steam-run
 , writeShellScriptBin
-, buildFHSUserEnv
 }:
 
 let
   installer = fetchurl {
-    url = "https://apps.modpacks.ch/FTBApp/release/202212152008-a5a6712906-release/FTBA_unix_202212152008-a5a6712906-release.sh";
-    sha256 = "da1aeba0c56c599b6b69d6cda60c2c327a3caa3fc8654306d78821459e2128dc";
-  };
-
-  fhs = buildFHSUserEnv {
-    name = "fhs";
-    runScript = "~/FTBA/FTBApp";
-
-    targetPkgs = pkgs: with pkgs; [
-      at-spi2-atk
-      atk
-      cairo
-      nspr
-      dbus
-      fontconfig
-      freetype
-      gdk-pixbuf
-      glib
-      gtk2
-      libdrm
-      cups
-      gtk3-x11
-      harfbuzz
-      liberation_ttf
-      libjpeg
-      libpulseaudio
-      libtiff
-      libudev0-shim
-      expat
-      nss
-      libuuid
-      libv4l
-      libxml2
-      pango
-      pcsclite
-      at-spi2-core
-      pixman
-      alsa-lib
-      libglvnd
-      libxkbcommon
-      xorg.libX11
-      xorg.libXcursor
-      xorg.libXext
-      xorg.libxcb
-      xorg.libXi
-      xorg.libXinerama
-      xorg.libxkbfile
-      xorg.libXrandr
-      xorg.libXrender
-      xorg.libXScrnSaver
-      xorg.libXtst
-      xorg.libXcomposite
-      xorg.libXdamage
-      xorg.libXfixes
-      xorg.libXxf86vm
-      mesa_drivers
-      zlib
-    ];
-
+    url = "https://apps.modpacks.ch/FTBApp/release/202401041638-9dc7936164/FTBA_unix_202401041638-9dc7936164.sh";
+    sha256 = "7806cbf6dd0f91a83ea81f1f3450b586d93a479c9e2982751b2124b9c3e25481";
   };
 
 in
 writeShellScriptBin "ftb" ''
-  export PATH="$PATH:${jre}/bin"
-  [ -d ~/FTBA ] || bash ${installer} -q
-  ${fhs}/bin/fhs
+  [ -d ~/FTBA ] || ${steam-run}/bin/steam-run bash ${installer} -q
+  ${steam-run}/bin/steam-run ~/FTBA/FTBApp
 ''
