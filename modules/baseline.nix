@@ -29,6 +29,8 @@
 
   systemd.tmpfiles.rules = [ "e /nix/var/log - - - 30d" ];
 
+  systemd.oomd.enable = false; # using earlyoom
+
   zramSwap.enable = lib.mkDefault true;
 
   networking.hostId = builtins.substring 0 8 (builtins.hashString "md5" config.networking.hostName);
@@ -43,6 +45,7 @@
   };
 
   services = {
+    earlyoom.enable = true;
     logind.lidSwitch = "ignore";
     openssh.enable = true;
     xserver = {
