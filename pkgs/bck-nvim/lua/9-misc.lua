@@ -15,16 +15,11 @@ vim.keymap.set('n', '<', '<<^')
 vim.keymap.set('v', '<', '<gv^')
 vim.keymap.set('v', '>', '>gv^')
 
-vim.keymap.set('n', '<A-j>', '}')
-vim.keymap.set('n', '<A-k>', '{')
-vim.keymap.set('v', '<A-j>', '}')
-vim.keymap.set('v', '<A-k>', '{')
-
 vim.keymap.set('n', '<space>w', '<cmd>w<cr>')
 vim.keymap.set('n', '<space>q', '<cmd>q<cr>')
 vim.keymap.set('n', '<space>c', '<cmd>:bdelete<cr>')
-vim.keymap.set('n', '<A-h>', '<cmd>bprevious<cr>')
-vim.keymap.set('n', '<A-l>', '<cmd>bnext<cr>')
+vim.keymap.set('n', '<A-j>', '<cmd>bprevious<cr>')
+vim.keymap.set('n', '<A-k>', '<cmd>bnext<cr>')
 
 vim.keymap.set('n', "<C-Up>", "<cmd>resize -2<cr>")
 vim.keymap.set('n', "<C-Down>", "<cmd>resize +2<cr>")
