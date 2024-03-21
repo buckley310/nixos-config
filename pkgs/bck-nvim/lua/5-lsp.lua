@@ -63,9 +63,6 @@ lspconfig.yamlls.setup({
 	capabilities = capabilities,
 	settings = {
 		yaml = {
-			schemas = {
-				kubernetes = "/*.yaml",
-			},
 			customTags = {
 				-- https://github.com/aws-cloudformation/cfn-lint-visual-studio-code/blob/3ff0b8cc1bbfc34448c865b54deff8c7d030beba/server/src/cfnSettings.ts
 				"!And sequence",
