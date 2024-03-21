@@ -26,6 +26,9 @@ vim.keymap.set('n', "<C-Down>", "<cmd>resize +2<cr>")
 vim.keymap.set('n', "<C-Left>", "<cmd>vertical resize -2<cr>")
 vim.keymap.set('n', "<C-Right>", "<cmd>vertical resize +2<cr>")
 
+vim.keymap.set('n', "<C-/>", "<cmd>:terminal<cr>")
+vim.keymap.set('n', "<C-_>", "<cmd>:terminal<cr>") -- This is Ctrl+/ on some terminals?
+
 vim.cmd("autocmd TermOpen * setlocal nonumber norelativenumber signcolumn=no")
 for _, key in pairs({ 'h', 'j', 'k', 'l' }) do
 	for _, mod in pairs({ 'C', 'A' }) do
