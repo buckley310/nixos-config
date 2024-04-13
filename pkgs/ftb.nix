@@ -1,18 +1,38 @@
-# https://feed-the-beast.com/
-
-{ fetchurl
+{ lib
+, dpkg
+, fetchurl
+, stdenv
 , steam-run
-, writeShellScriptBin
 }:
 
-let
-  installer = fetchurl {
-    url = "https://apps.modpacks.ch/FTBApp/release/202401041638-9dc7936164/FTBA_unix_202401041638-9dc7936164.sh";
-    sha256 = "7806cbf6dd0f91a83ea81f1f3450b586d93a479c9e2982751b2124b9c3e25481";
+stdenv.mkDerivation rec {
+  pname = "ftb";
+  version = "1.25.7";
+
+  src = fetchurl {
+    url = "https://piston.feed-the-beast.com/app/ftb-app-${version}-amd64.deb";
+    sha256 = "22714531d506503dad34b10daf5b5757351b5451fd03deecf24af7ad05fd55c2";
   };
 
-in
-writeShellScriptBin "ftb" ''
-  [ -d ~/FTBA ] || ${steam-run}/bin/steam-run bash ${installer} -q
-  ${steam-run}/bin/steam-run ~/FTBA/FTBApp
-''
+  nativeBuildInputs = [ dpkg ];
+
+  dontBuild = true;
+
+  installPhase = ''
+    mkdir -p $out/bin
+    mv opt $out/
+
+    cat <<EOF >$out/bin/ftb
+    #!/usr/bin/env bash
+    exec ${steam-run}/bin/steam-run '$out/opt/FTB App/ftb-app'
+    EOF
+
+    chmod +x $out/bin/ftb
+  '';
+
+  meta = {
+    homepage = "https://feed-the-beast.com/";
+    license = lib.licenses.unfree;
+    platforms = [ "x86_64-linux" ];
+  };
+}
