@@ -8,8 +8,8 @@ let
   fcsrc = fetchFromGitHub {
     owner = "firecracker-microvm";
     repo = "firecracker";
-    rev = "e1c351bdde745d33858e04089eef6e2279b286fd";
-    hash = "sha256-LvVqA5jBKWQYeV9OHrrb+1gmAqHxDszeVBhFwweDrmo=";
+    rev = "v1.7.0";
+    hash = "sha256-NuVH12cy38uu+8oms66p9k0xoMOJSl5AvY5pD1FCKkI=";
   };
 
   shortVer = builtins.head (
