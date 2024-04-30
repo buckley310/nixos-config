@@ -54,6 +54,7 @@ with lib;
       glxinfo
       gnome3.dconf-editor
       helvum
+      kdenlive
       obs-studio
       opensc
       pavucontrol
