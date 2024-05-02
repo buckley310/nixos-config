@@ -151,6 +151,7 @@
     alias jq='jq --indent 4'
     alias yq='yq --indent 4'
     alias p=python3
+    alias h=htop
     alias nix-env="echo nix-env is disabled #"
     alias nix-what-depends-on='nix-store --query --referrers'
     alias day='date "+%Y-%m-%d"'
