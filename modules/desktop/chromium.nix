@@ -13,6 +13,7 @@
         BlockThirdPartyCookies = true;
         BrowserAddPersonEnabled = false;
         BrowserGuestModeEnabled = false;
+        BrowserLabsEnabled = false;
         DefaultGeolocationSetting = 2;
         DefaultNotificationsSetting = 2;
         ExtensionInstallBlocklist = [ "*" ];
