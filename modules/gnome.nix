@@ -56,7 +56,6 @@ in
       gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Super>f']"
       gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
       gsettings set org.gnome.settings-daemon.plugins.media-keys logout '[]'
-      gsettings set org.gnome.settings-daemon.plugins.media-keys www "['<Super>b']"
       gsettings set org.gnome.settings-daemon.plugins.power power-button-action 'interactive'
     '';
 
