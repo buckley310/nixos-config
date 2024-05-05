@@ -6,7 +6,6 @@ in
   sconfig = {
     gnome = true;
     desktop.enable = true;
-    horizon.enable = true;
     wg-home.enable = true;
   };
 
