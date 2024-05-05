@@ -15,6 +15,13 @@
         BrowserGuestModeEnabled = false;
         DefaultGeolocationSetting = 2;
         DefaultNotificationsSetting = 2;
+        ExtensionInstallBlocklist = [ "*" ];
+        ExtensionInstallForcelist = [
+          "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
+          "fihnjjcciajhdojfnbdddfaoknhalnja" # I don't care about cookies
+          "jeoacafpbcihiomhlakheieifhpjdfeo" # Disconnect
+          "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
+        ];
         NetworkPredictionOptions = 2;
         PasswordManagerEnabled = false;
         ShowFullUrlsInAddressBar = true;
