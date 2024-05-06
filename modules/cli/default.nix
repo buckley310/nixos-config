@@ -119,6 +119,7 @@
       bind-key '"' split-window -v -c "#{pane_current_path}"
       bind-key '%' split-window -h -c "#{pane_current_path}"
       set -g base-index 1
+      set -g history-limit 10000
       set -g pane-base-index 1
       set -g renumber-windows on
       set -sa terminal-overrides ",*256color:Tc"
