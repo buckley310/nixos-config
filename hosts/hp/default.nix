@@ -19,6 +19,8 @@ in
     "/var/log/journal"
   ];
 
+  services.xserver.displayManager.defaultSession = "gnome-xorg";
+
   services.openssh.hostKeys = [
     { type = "ed25519"; path = "${persist}/ssh_host_ed25519_key"; }
   ];
