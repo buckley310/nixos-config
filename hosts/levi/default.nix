@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    ./optimus.nix
+    ./xorg.nix
   ];
 
   environment.etc = {
