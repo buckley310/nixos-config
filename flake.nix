@@ -33,7 +33,17 @@
         };
       };
 
-      mods =
+    in
+    {
+      formatter = forAllSystems (system:
+        nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
+
+      lib = {
+        gen-ssh-config = import lib/gen-ssh-config.nix lib;
+        ssh-keys = import lib/ssh-keys.nix;
+      };
+
+      nixosModules =
         {
           inherit pins;
           inherit (impermanence.nixosModules) impermanence;
@@ -46,21 +56,9 @@
           })
           (builtins.readDir ./modules);
 
-    in
-    {
-      formatter = forAllSystems (system:
-        nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
-
-      lib = {
-        gen-ssh-config = import lib/gen-ssh-config.nix lib;
-        ssh-keys = import lib/ssh-keys.nix;
-      };
-
-      nixosModules = mods // { default.imports = builtins.attrValues mods; };
-
       nixosConfigurations = builtins.mapAttrs
         (_: lib.nixosSystem)
-        (import ./hosts self.nixosModules.default);
+        (import ./hosts { imports = builtins.attrValues self.nixosModules; });
 
       packages = forAllSystems (system:
         mypkgs nixpkgs.legacyPackages.${system});
