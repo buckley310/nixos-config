@@ -76,13 +76,6 @@
 
   ];
 
-  system.activationScripts.editorconfig = ''
-    cat <<EOF >/.editorconfig
-    [*]
-    tab_width = 4
-    EOF
-  '';
-
   environment.variables.HTOPRC = "/dev/null";
   programs.htop = {
     enable = true;
