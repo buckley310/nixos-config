@@ -17,7 +17,7 @@ stdenv.mkDerivation {
   inherit (hjs) version;
 
   src = requireFile rec {
-    name = "BinaryNinja-personal.zip";
+    name = "binaryninja_personal_linux.zip";
     url = "https://binary.ninja";
     sha256 = hjs.hashes.${name};
   };

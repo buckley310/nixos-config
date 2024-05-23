@@ -1,18 +1,18 @@
 {
 	"hashes": {
-		"BinaryNinja-Enterprise.dmg": "3b134fea7643aa060115d92b76205dfd32f6f7cb1599d1455b33f4ed35464776",
-		"BinaryNinja-Enterprise.exe": "b5d351989fe1b5ad6dda3a512bb84cacf1f5f4b31c88f0199969ac489a91d80e",
-		"BinaryNinja-Enterprise.zip": "ce70417aa3746f6032d98770c4f5970c98c70e148a015f1f18f94622d1d01d34",
-		"BinaryNinja-free.dmg": "fa7d68ff64b8ca091172660a0218a4f8d811a41ae9e303cd22c6960b502b449f",
-		"BinaryNinja-free.exe": "47d758386878c83230526b3658295bc1defc7a2d930afb8967819a030e9b1943",
-		"BinaryNinja-free.zip": "c692c160f4fc3b47c7b82cb2a0a0b6f6ee21a878ea6a9ceaf9e8e3cf1b09522d",
-		"BinaryNinja-headless.zip": "3fd869cddb787e538f5c089294e1ce399ad7b7ecc62ee2a58db13bd607830c01",
-		"BinaryNinja-personal.dmg": "b657159a9142b3714231ad770de1ccff51bef054597d7d92ea9c2b3e4f46beac",
-		"BinaryNinja-personal.exe": "a738257c31aab31cc0d69cab12532f25be18aeabd1ce41b651ea1b746d799bc4",
-		"BinaryNinja-personal.zip": "e030971677465e1b2c3c7e3dfa380553a5f306eb088f028194845ab52bdc6739",
-		"BinaryNinja.dmg": "7b12654a75dcb377286c320982b4e7a98dc690d123395a19942a7377a632521a",
-		"BinaryNinja.exe": "71a210bb93bf53024f298e5fc547807fb9fd795f08e3432488b05918ee4a0f70",
-		"BinaryNinja.zip": "b826619cb9eb41a128d5e3c8f2a766bb71a02cef8bc7bb074683b5d9082d67bf"
+		"binaryninja_commercial_linux.zip": "ed681eba598a85614a61abe67b0fde1bfb6d033363fe6c8503ee462a39479ffd",
+		"binaryninja_commercial_macosx.dmg": "b9f1b52a440662edc9729f29a451a64f1b307601701752574fabe83774fceba6",
+		"binaryninja_commercial_win64.exe": "2d3f8588ee54c808b55bf27f46ff66d71c308bbf51ac82f2707c55aeccaa5dcc",
+		"binaryninja_enterprise_linux.zip": "731260e12fc53261be1309a73f640a99f935db707f35252a1e312c379f98048d",
+		"binaryninja_enterprise_macosx.dmg": "90282d05a889765ed54135f931c0d785b257580452b07ab7406e59554a9b9328",
+		"binaryninja_enterprise_win64.exe": "a0bd03416c28e6e857716cc491dbf7e37597449463643a7b0f5854eb8e24779e",
+		"binaryninja_free_linux.zip": "28905424a32aa812f69899039d13b74c2a3235851d6e2d778806dc5215c5f1a7",
+		"binaryninja_free_macosx.dmg": "b812206fa61fdcf09b5ea21d07fe8492d5f79b0e50a5ce68e9bc8cadfd3e978e",
+		"binaryninja_free_win64.exe": "a860d06a3dfc97387404cc2558d999985a21359d8f98e7dc4816e874f4483e03",
+		"binaryninja_headless_linux.zip": "9a66b4185452e7e8b77064982e1a2bd4594f19b92dc5005f84f9d3a9049bcc4d",
+		"binaryninja_personal_linux.zip": "dc48e1663e05650c47d8e4eef5c2903acf8df4f7f07feb5fa2746709a8e008c3",
+		"binaryninja_personal_macosx.dmg": "64f729fe3f9c8cafb6fad3030fd77fe2a4ccfe00138e06c94f6cf97ba6a84614",
+		"binaryninja_personal_win64.exe": "6c5ee48e0130545ede18266436fe484baa4fefbf138b95553bb92eca32727caa"
 	},
-	"version": "4.0.4911"
+	"version": "4.0.4958"
 }
