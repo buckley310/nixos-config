@@ -7,9 +7,9 @@ in
 
   config = lib.mkIf cfg {
 
+    services.libinput.enable = true;
     services.xserver = {
       enable = true;
-      libinput.enable = true;
       displayManager.gdm.enable = true;
       displayManager.gdm.autoSuspend = false;
       desktopManager.gnome.enable = true;

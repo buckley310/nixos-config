@@ -48,8 +48,8 @@
     earlyoom.enable = true;
     logind.lidSwitch = "ignore";
     openssh.enable = true;
+    libinput.mouse.middleEmulation = false;
     xserver = {
-      libinput.mouse.middleEmulation = false;
       deviceSection = ''
         Option "VariableRefresh" "true"
       '';

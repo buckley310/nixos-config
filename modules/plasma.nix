@@ -6,9 +6,9 @@ in
   options.sconfig.plasma = lib.mkEnableOption "Enable Plasma Desktop";
 
   config = lib.mkIf cfg {
+    services.libinput.enable = true;
     services.xserver = {
       enable = true;
-      libinput.enable = true;
       displayManager.sddm.enable = true;
       desktopManager.plasma5.enable = true;
     };
