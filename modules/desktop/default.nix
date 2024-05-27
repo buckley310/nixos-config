@@ -41,9 +41,6 @@ with lib;
       (pkgs.nerdfonts.override { fonts = [ "DejaVuSansMono" ]; })
     ];
 
-    environment.variables.MOZ_ENABLE_WAYLAND = "1";
-    environment.variables.MOZ_USE_XINPUT2 = "1";
-
     environment.systemPackages = with pkgs; [
       chromium
       discord
