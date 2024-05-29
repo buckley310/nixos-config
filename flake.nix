@@ -56,9 +56,18 @@
           })
           (builtins.readDir ./modules);
 
-      nixosConfigurations = builtins.mapAttrs
-        (_: lib.nixosSystem)
-        (import ./hosts { imports = builtins.attrValues self.nixosModules; });
+      nixosConfigurations = lib.genAttrs
+        (builtins.attrNames (builtins.readDir ./hosts))
+        (name:
+          let cfg = import (./hosts + "/${name}");
+          in lib.nixosSystem {
+            inherit (cfg) system;
+            modules =
+              cfg.modules ++
+              [{ networking.hostName = name; }] ++
+              (builtins.attrValues self.nixosModules);
+          }
+        );
 
       packages = forAllSystems (system:
         mypkgs nixpkgs.legacyPackages.${system});
