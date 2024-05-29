@@ -3,10 +3,6 @@ let
   persist = "/nix/persist";
 in
 {
-  imports = [
-    ./xorg.nix
-  ];
-
   environment.etc = {
     "machine-id".source = "${persist}/machine-id";
   };
