@@ -7,15 +7,10 @@
       inherit (nixpkgs) lib;
 
       mypkgs = pkgs:
+        self.lib.dirToAttrs ./pkgs (x: pkgs.callPackage x { }) //
         {
           iso = import lib/gen-iso.nix lib pkgs.system;
-        } //
-        (lib.mapAttrs'
-          (name: type: {
-            name = lib.removeSuffix ".nix" name;
-            value = pkgs.callPackage (./pkgs + "/${name}") { };
-          })
-          (builtins.readDir ./pkgs));
+        };
 
       forAllSystems = lib.genAttrs [ "x86_64-linux" ];
 
@@ -41,6 +36,13 @@
       lib = {
         gen-ssh-config = import lib/gen-ssh-config.nix lib;
         ssh-keys = import lib/ssh-keys.nix;
+
+        dirToAttrs = dir: f: lib.mapAttrs'
+          (name: _: {
+            name = lib.removeSuffix ".nix" name;
+            value = f "${toString dir}/${name}";
+          })
+          (builtins.readDir dir);
       };
 
       nixosModules =
@@ -49,22 +51,16 @@
           inherit (impermanence.nixosModules) impermanence;
           pkgs.nixpkgs.overlays = [ (_: mypkgs) ];
         } //
-        lib.mapAttrs'
-          (name: type: {
-            name = lib.removeSuffix ".nix" name;
-            value = import (./modules + "/${name}");
-          })
-          (builtins.readDir ./modules);
+        self.lib.dirToAttrs ./modules import;
 
-      nixosConfigurations = lib.genAttrs
-        (builtins.attrNames (builtins.readDir ./hosts))
-        (name:
-          let cfg = import (./hosts + "/${name}");
+      nixosConfigurations = self.lib.dirToAttrs ./hosts
+        (dir:
+          let cfg = import dir;
           in lib.nixosSystem {
             inherit (cfg) system;
             modules =
               cfg.modules ++
-              [{ networking.hostName = name; }] ++
+              [{ networking.hostName = builtins.baseNameOf dir; }] ++
               (builtins.attrValues self.nixosModules);
           }
         );
