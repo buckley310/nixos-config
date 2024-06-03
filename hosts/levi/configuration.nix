@@ -31,6 +31,10 @@ in
     '')
   ];
 
+  nix.extraOptions = ''
+    extra-platforms = i686-linux
+  '';
+
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
