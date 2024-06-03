@@ -13,7 +13,6 @@ with lib;
 
   config = mkIf (config.sconfig.desktop.enable) {
     programs.steam.enable = true;
-    services.pcscd.enable = true;
     virtualisation.podman.enable = true;
     networking.networkmanager.wifi.powersave = false;
 
