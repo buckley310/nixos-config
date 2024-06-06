@@ -19,10 +19,12 @@ in
 
   environment.persistence."${persist}/system".directories = [
     "/etc/NetworkManager/system-connections"
+    "/tmp"
     "/var/lib/bluetooth"
     "/var/lib/nixos"
     "/var/lib/systemd/coredump"
     "/var/log/journal"
+    "/var/tmp"
   ];
 
   environment.systemPackages = [
