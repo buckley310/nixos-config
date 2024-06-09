@@ -13,8 +13,19 @@ with lib;
 
   config = mkIf (config.sconfig.desktop.enable) {
     programs.steam.enable = true;
-    virtualisation.podman.enable = true;
     networking.networkmanager.wifi.powersave = false;
+
+    systemd.services.docker.path = [
+      pkgs.openssh
+    ];
+    programs.bash.interactiveShellInit = ''
+      ((UID)) && alias docker="sudo --preserve-env=SSH_AUTH_SOCK docker"
+    '';
+    virtualisation.docker = {
+      enable = true;
+      enableOnBoot = false;
+      daemon.settings.data-root = "/nix/persist/docker";
+    };
 
     # Pipewire
     sound.enable = true;
