@@ -163,16 +163,5 @@
     alias day='date "+%Y-%m-%d"'
     alias grep='grep --color=auto'
     alias tmp='cd "$(mktemp -d)"'
-  '' +
-  # compatibility for programs that need $NIX_PATH set:
-  lib.concatMapStrings
-    (x: ''
-      alias ${x}='NIX_PATH="nixpkgs=$(nix eval nixpkgs#path)" ${x}'
-    '')
-    [
-      "nix-build"
-      "nix-index"
-      "nix-prefetch-github"
-      "nix-shell"
-    ];
+  '';
 }

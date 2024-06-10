@@ -38,7 +38,7 @@
   networking.usePredictableInterfaceNames = lib.mkDefault false;
 
   nix = {
-    nixPath = [ ];
+    nixPath = [ "nixpkgs=flake:nixpkgs" ];
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
