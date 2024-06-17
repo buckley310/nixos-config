@@ -43,8 +43,6 @@
 
     (writeShellScriptBin "dirt" "while sleep 1; do grep '^Dirty:' /proc/meminfo ; done")
 
-    (writeShellScriptBin "nr" "exec nix repl \"$(nix eval nixpkgs#path)\"")
-
     (lib.hiPrio (writeShellScriptBin "iftop" ''
       exec ${iftop}/bin/iftop -P -m100M "$@"
     ''))
@@ -163,5 +161,6 @@
     alias day='date "+%Y-%m-%d"'
     alias grep='grep --color=auto'
     alias tmp='cd "$(mktemp -d)"'
+    alias nixpkgs='nix repl --file flake:nixpkgs'
   '';
 }
