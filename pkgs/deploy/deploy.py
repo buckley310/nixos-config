@@ -27,16 +27,24 @@ def get_deployment():
 def expand(ln):
     hosts = set()
     for item in ln.split(","):
-        if item == "all":
-            hosts.update(depl)
-        elif item in tags:
-            hosts.update(name for name in depl if item in depl[name]["tags"])
+        if item[0] == "-":
+            item = item[1:]
+            action = hosts.difference_update
         else:
-            hosts.add(item)
+            action = hosts.update
+
+        if item == "all":
+            action(depl)
+        elif item in tags:
+            action(name for name in depl if item in depl[name]["tags"])
+        else:
+            action([item])
+
     for host in hosts:
         for c in host:
             if not c in (ascii_letters + digits + "-"):
                 raise RuntimeError(f"Invalid hostname: {host}")
+
     return sorted(hosts)
 
 
