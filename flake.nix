@@ -14,6 +14,20 @@
 
       forAllSystems = lib.genAttrs [ "x86_64-linux" ];
 
+      pins = {
+        nix.registry.nixpkgs.to = {
+          inherit (nixpkgs) rev;
+          owner = "NixOS";
+          repo = "nixpkgs";
+          type = "github";
+        };
+        nix.registry.bck.to = {
+          owner = "buckley310";
+          repo = "nixos-config";
+          type = "github";
+        };
+      };
+
     in
     {
       formatter = forAllSystems (system:
@@ -33,13 +47,9 @@
 
       nixosModules =
         {
+          inherit pins;
           inherit (impermanence.nixosModules) impermanence;
           pkgs.nixpkgs.overlays = [ (_: mypkgs) ];
-          pins.nix.registry.bck.to = {
-            owner = "buckley310";
-            repo = "nixos-config";
-            type = "github";
-          };
         } //
         self.lib.dirToAttrs ./modules import;
 
