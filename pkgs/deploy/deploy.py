@@ -92,6 +92,8 @@ def check(hosts):
     print("#" * 64)
 
     for host in hosts:
+        print(host.rjust(hostwidth + 1), end=" ", flush=True)
+
         current_sys, cur_kernel, boot_kernel = (
             run(
                 [
@@ -112,8 +114,6 @@ def check(hosts):
 
         reboot_needed = cur_kernel != boot_kernel
         update_needed = current_sys != new_sys[host]
-
-        print(host.rjust(hostwidth + 1), end=" ")
 
         if not (reboot_needed or update_needed):
             print(icon_good, "[OK]")
@@ -150,9 +150,9 @@ def push(hosts):
 def rexec(hosts, cmd):
     hostwidth = max(map(len, hosts))
     for host in hosts:
+        print(host.rjust(hostwidth), end=" ", flush=True)
         r = run(["ssh", host, "--"] + cmd, stdout=PIPE, stderr=STDOUT)
         lines = r.stdout.decode("utf8").strip("\n").splitlines()
-        print(host.rjust(hostwidth), end=" ")
         print(icon_bad if r.returncode else icon_good, end=" ")
         if len(lines) == 1:
             print(lines[0])
