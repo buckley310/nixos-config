@@ -18,9 +18,6 @@ with lib;
     systemd.services.docker.path = [
       pkgs.openssh
     ];
-    programs.bash.interactiveShellInit = ''
-      ((UID)) && alias docker="sudo --preserve-env=SSH_AUTH_SOCK docker"
-    '';
     virtualisation.docker = {
       enable = true;
       enableOnBoot = false;
