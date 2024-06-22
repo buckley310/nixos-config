@@ -125,6 +125,7 @@
       set -g history-limit 10000
       set -g pane-base-index 1
       set -g renumber-windows on
+      set -g set-titles on
       set -sa terminal-overrides ",*256color:Tc"
       # escape-time reduces the time where the escape key acts as an alt key
       set -s escape-time 1
