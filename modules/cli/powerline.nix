@@ -30,6 +30,8 @@ let
     "-jobs $(jobs -pr | wc -l)"
   ];
 
+  termtitle = ''\[\e]0;\u@\h: \w\a\]'';
+
 in
 {
   environment.systemPackages = [
@@ -48,7 +50,7 @@ in
       local remote=y
       [ "$XDG_SESSION_TYPE" = "x11" ] && unset remote
       [ "$XDG_SESSION_TYPE" = "wayland" ] && unset remote
-      PS1="$(powerline-go ${toString args})"
+      PS1="${termtitle}$(powerline-go ${toString args})"
     }
     [ "$TERM" = "linux" ] || PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
   '';
