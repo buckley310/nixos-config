@@ -25,7 +25,6 @@ with lib;
     };
 
     # Pipewire
-    sound.enable = true;
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
