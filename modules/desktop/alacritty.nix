@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   config = (pkgs.formats.toml { }).generate "alacritty.toml"
@@ -21,8 +21,18 @@ let
       import = [ "${pkgs.alacritty-theme}/tango_dark.toml" ];
     };
 
+  # Alacritty seems to not communicate well with gnome-shell. Quick fix:
+  notify-fix = pkgs.runCommand "alacritty-fix" { } ''
+    dt=share/applications/Alacritty.desktop
+    install -D ${pkgs.alacritty}/$dt $out/$dt
+    sed -i 's/^StartupNotify=.*//' $out/$dt
+  '';
+
 in
 {
   environment.etc."xdg/alacritty.toml".source = config;
-  environment.systemPackages = [ pkgs.alacritty ];
+  environment.systemPackages = [
+    (lib.hiPrio notify-fix)
+    pkgs.alacritty
+  ];
 }
