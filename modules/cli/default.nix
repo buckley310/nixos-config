@@ -18,6 +18,7 @@
     jq
     lm_sensors
     ncdu
+    nix-diff
     nix-index
     nix-prefetch-github
     nix-top
