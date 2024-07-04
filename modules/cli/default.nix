@@ -21,7 +21,6 @@
     nix-diff
     nix-index
     nix-prefetch-github
-    nix-top
     nixpkgs-fmt
     nodejs
     openssl
