@@ -13,6 +13,8 @@ let
       keyboard.bindings = [
         { action = "ScrollHalfPageDown"; mods = "Shift"; key = "PageDown"; }
         { action = "ScrollHalfPageUp"; mods = "Shift"; key = "PageUp"; }
+        { action = "SpawnNewInstance"; mods = "Control|Shift"; key = "N"; }
+        { action = "SpawnNewInstance"; mods = "Control|Shift"; key = "T"; }
       ];
       colors = {
         primary.background = "0x1e1e1e";
