@@ -22,7 +22,10 @@ with lib;
     virtualisation.docker = {
       enable = true;
       enableOnBoot = false;
-      daemon.settings.data-root = "/nix/persist/docker";
+      daemon.settings = {
+        data-root = "/nix/persist/docker";
+        runtimes.runsc.path = "${pkgs.gvisor}/bin/runsc";
+      };
     };
 
     # Pipewire
