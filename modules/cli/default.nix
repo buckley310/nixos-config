@@ -128,7 +128,7 @@
       set -g set-titles on
       set -sa terminal-overrides ",*256color:Tc"
       # escape-time reduces the time where the escape key acts as an alt key
-      set -s escape-time 1
+      set -s escape-time 10
       ################################################################################
       # Smart pane switching with awareness of Vim splits.
       # See: https://github.com/christoomey/vim-tmux-navigator
