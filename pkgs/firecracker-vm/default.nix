@@ -1,6 +1,6 @@
 { callPackage
 , firecracker
-, writeShellScriptBin
+, writeShellApplication
 , writeText
 }:
 
@@ -27,6 +27,8 @@ let
   });
 
 in
-writeShellScriptBin "firecracker-vm" ''
-  ${firecracker}/bin/firecracker --no-api --config-file ${vmconfig}
-''
+writeShellApplication {
+  name = "firecracker-vm";
+  text = "${firecracker}/bin/firecracker --no-api --config-file ${vmconfig}";
+  derivationArgs.passthru = { inherit kernel rootfs; };
+}
