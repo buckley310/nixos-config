@@ -5,6 +5,7 @@ vim.cmd("set scrolloff=9")
 vim.cmd("set tabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("set ignorecase smartcase")
+vim.cmd("set clipboard=unnamedplus")
 
 vim.keymap.set('n', '<space>ff', '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<space>fr', '<cmd>Telescope oldfiles<cr>')
