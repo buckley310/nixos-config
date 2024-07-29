@@ -1,10 +1,10 @@
+[*]
+indent_style = tab
+
 [*.{nix,yaml}]
 indent_style = space
 indent_size = 2
 
-[*.py]
+[*.{py,sh}]
 indent_style = space
 indent_size = 4
-
-[*.{json,lua}]
-indent_style = tab
