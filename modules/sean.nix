@@ -2,7 +2,8 @@
 {
   environment.variables.EDITOR = "nvim";
   environment.systemPackages = [
-    pkgs.bck-nvim
+    pkgs.bck-nvim-base
+    pkgs.bck-nvim-tools
   ];
 
   users.users.sean = {
