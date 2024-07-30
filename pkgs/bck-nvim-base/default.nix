@@ -1,17 +1,8 @@
 { lib
+, extraBinPaths ? [ ]
 , neovim-unwrapped
 , vimPlugins
 , wrapNeovim
-
-  # LSP
-, black
-, efm-langserver
-, lua-language-server
-, nil
-, nodePackages
-, pyright
-, vscode-langservers-extracted
-, yaml-language-server
 }:
 
 let
@@ -22,17 +13,7 @@ let
 
   extraPath = lib.concatLines (map
     (p: "let $PATH .= ':${p}/bin'")
-    [
-      black
-      efm-langserver
-      lua-language-server
-      nil
-      nodePackages.prettier
-      nodePackages.typescript-language-server
-      pyright
-      vscode-langservers-extracted
-      yaml-language-server
-    ]
+    (extraBinPaths)
   );
 
 in
