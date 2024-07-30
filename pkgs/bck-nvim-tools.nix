@@ -1,4 +1,6 @@
 { symlinkJoin
+, runCommand
+
 , black
 , efm-langserver
 , lua-language-server
@@ -9,6 +11,13 @@
 , yaml-language-server
 }:
 
+let
+  symlinkBin = path: runCommand "symlinkBin" { } ''
+    mkdir -p $out/bin
+    ln -s "${path}" $out/bin/
+  '';
+
+in
 symlinkJoin {
   name = "bck-nvim-tools";
   paths = [
@@ -16,10 +25,11 @@ symlinkJoin {
     efm-langserver
     lua-language-server
     nil
-    nodePackages.prettier
-    nodePackages.typescript-language-server
     pyright
     vscode-langservers-extracted
     yaml-language-server
+
+    (symlinkBin "${nodePackages.prettier}/bin/prettier")
+    (symlinkBin "${nodePackages.typescript-language-server}/bin/typescript-language-server")
   ];
 }
