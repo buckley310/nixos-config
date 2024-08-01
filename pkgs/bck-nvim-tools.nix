@@ -3,6 +3,9 @@
 
 , black
 , efm-langserver
+, errcheck
+, go
+, gopls
 , lua-language-server
 , nil
 , nodePackages
@@ -23,6 +26,9 @@ symlinkJoin {
   paths = [
     black
     efm-langserver
+    errcheck
+    go
+    gopls
     lua-language-server
     nil
     pyright
