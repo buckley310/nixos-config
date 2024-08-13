@@ -21,7 +21,9 @@ in
 
     environment.systemPackages = with pkgs; [
       gnome3.gnome-tweaks
-      gnomeExtensions.appindicator
+
+      # https://github.com/ubuntu/gnome-shell-extension-appindicator/issues/441
+      # gnomeExtensions.appindicator
 
       (writeShellScriptBin "x-terminal-emulator" ''
         exec kitty "$@"
