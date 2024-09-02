@@ -14,6 +14,7 @@
   boot.kernelParams = [ "module_blacklist=i915" ];
   services.xserver.displayManager.gdm.wayland = false;
   services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;
   services.xserver.screenSection = ''
     Option "metamodes" "DP-2: 2560x1440_165 +0+0 {AllowGSYNCCompatible=On}"
   '';
