@@ -1,9 +1,8 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
   config = lib.mkIf (config.sconfig.desktop.enable) {
-    nixpkgs.config.chromium.commandLineArgs = toString [
-      "--enable-features=WebUIDarkMode"
-      "--force-dark-mode"
+    environment.systemPackages = [
+      pkgs.brave
     ];
     programs.chromium = {
       enable = true;
@@ -20,7 +19,6 @@
         ExtensionInstallForcelist = [
           "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
           "fihnjjcciajhdojfnbdddfaoknhalnja" # I don't care about cookies
-          "jeoacafpbcihiomhlakheieifhpjdfeo" # Disconnect
           "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
         ];
         NetworkPredictionOptions = 2;
