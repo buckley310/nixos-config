@@ -27,6 +27,11 @@ lspconfig.pyright.setup({
 })
 
 ----------------------------------------------------------------
+lspconfig.rust_analyzer.setup({
+	capabilities = capabilities,
+})
+
+----------------------------------------------------------------
 lspconfig.ts_ls.setup({
 	capabilities = capabilities,
 	on_attach = noFormat,

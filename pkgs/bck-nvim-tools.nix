@@ -2,6 +2,7 @@
 , runCommand
 
 , black
+, cargo
 , efm-langserver
 , errcheck
 , go
@@ -10,6 +11,9 @@
 , nil
 , nodePackages
 , pyright
+, rust-analyzer
+, rustc
+, rustfmt
 , vscode-langservers-extracted
 , yaml-language-server
 }:
@@ -25,6 +29,7 @@ symlinkJoin {
   name = "bck-nvim-tools";
   paths = [
     black
+    cargo
     efm-langserver
     errcheck
     go
@@ -32,6 +37,9 @@ symlinkJoin {
     lua-language-server
     nil
     pyright
+    rust-analyzer
+    rustc
+    rustfmt
     vscode-langservers-extracted
     yaml-language-server
 
