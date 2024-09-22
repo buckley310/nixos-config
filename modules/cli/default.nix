@@ -48,7 +48,7 @@
     ''))
 
     (writeShellScriptBin "bat" ''
-      ${bat}/bin/bat --color=always --wrap=never --terminal-width=80 "$@"
+      ${bat}/bin/bat --pager=never --color=always --wrap=never --terminal-width=80 "$@"
     '')
 
     (writeShellScriptBin "hd" ''
