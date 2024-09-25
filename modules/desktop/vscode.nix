@@ -13,7 +13,7 @@
     })
   ];
 
-  environment.etc."my-settings.sh".text = ''
+  environment.etc."bck-settings.sh".text = ''
     mkdir -p ~/.config/Code/User
     ln -sf /etc/vscode-settings.json ~/.config/Code/User/settings.json
     ln -sf /etc/vscode-keybindings.json ~/.config/Code/User/keybindings.json

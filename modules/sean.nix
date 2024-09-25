@@ -24,7 +24,7 @@
 
   systemd.tmpfiles.rules = [ "e /home/sean/Downloads - - - 9d" ];
 
-  environment.etc."my-settings.sh".text = ''
+  environment.etc."bck-settings.sh".text = ''
     git config --global user.email "sean.bck@gmail.com"
     git config --global user.name "Sean Buckley"
   '';
