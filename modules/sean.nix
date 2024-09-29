@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  environment.variables.EDITOR = "nvim";
+  environment.variables.EDITOR = "hx";
   environment.systemPackages = [
     pkgs.bck-nvim-base
     pkgs.bck-nvim-tools
