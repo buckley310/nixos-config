@@ -1,0 +1,10 @@
+--- a/helix-view/src/document.rs
++++ b/helix-view/src/document.rs
+@@ -762,6 +762,7 @@ pub fn format(&self) -> Option<BoxFuture<'static, Result<Transaction, FormatterE
+             let text = self.text().clone();
+             let mut process = tokio::process::Command::new(&fmt_cmd);
+             process
++                .env("HX_FILE", self.path()?.to_str().unwrap_or(""))
+                 .args(fmt_args)
+                 .stdin(Stdio::piped())
+                 .stdout(Stdio::piped())
