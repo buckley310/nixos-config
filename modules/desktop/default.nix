@@ -69,6 +69,8 @@ with lib;
       tdesktop
       yt-dlp-light
 
+      xsel # allow editors to access system clipboard
+
       (mpv.override { scripts = [ mpvScripts.mpris ]; })
     ];
 
