@@ -27,7 +27,7 @@ let
     "-git-assume-unchanged-size 0"
     "-theme /etc/powerline-theme.json"
     "-path-aliases '~/git=~/git'"
-    "-jobs $(jobs -pr | wc -l)"
+    "-jobs $(jobs -p | wc -l)"
   ];
 
   termtitle = ''\[\e]0;\u@\h: \w\a\]'';
