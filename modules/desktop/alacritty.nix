@@ -1,7 +1,7 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
-  config = (pkgs.formats.toml { }).generate "alacritty.toml"
+  aconfig = (pkgs.formats.toml { }).generate "alacritty.toml"
     {
       env.TERM = "xterm-256color";
       font.size = 12;
@@ -32,9 +32,11 @@ let
 
 in
 {
-  environment.etc."xdg/alacritty.toml".source = config;
-  environment.systemPackages = [
-    (lib.hiPrio notify-fix)
-    pkgs.alacritty
-  ];
+  config = lib.mkIf (config.sconfig.desktop.enable) {
+    environment.etc."xdg/alacritty.toml".source = aconfig;
+    environment.systemPackages = [
+      (lib.hiPrio notify-fix)
+      pkgs.alacritty
+    ];
+  };
 }
