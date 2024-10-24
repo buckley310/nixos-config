@@ -20,7 +20,7 @@ in
     systemd.services.packagekit.enable = false;
 
     environment.systemPackages = with pkgs; [
-      gnome3.gnome-tweaks
+      gnome-tweaks
 
       # https://github.com/ubuntu/gnome-shell-extension-appindicator/issues/441
       # gnomeExtensions.appindicator

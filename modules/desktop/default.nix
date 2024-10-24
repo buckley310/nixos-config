@@ -58,7 +58,7 @@ with lib;
       ffmpeg
       gimp
       glxinfo
-      gnome3.dconf-editor
+      dconf-editor
       helvum
       kdenlive
       obs-studio
