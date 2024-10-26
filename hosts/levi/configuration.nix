@@ -11,6 +11,14 @@ in
     { type = "ed25519"; path = "${persist}/ssh_host_ed25519_key"; }
   ];
 
+  # services.ollama = {
+  #   enable = true;
+  #   acceleration = "cuda";
+  # };
+  # programs.bash.interactiveShellInit = ''
+  #   alias ai='ollama run llama3.1:8b'
+  # '';
+
   sconfig = {
     gnome = true;
     desktop.enable = true;
