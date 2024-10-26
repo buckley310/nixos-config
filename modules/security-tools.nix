@@ -25,7 +25,7 @@ in
       thc-hydra
       webshells
       weevely
-      # wfuzz # TODO: temporarily broken package
+      wfuzz
 
       (runCommand "gdb" { } "install -D ${gef}/bin/gef $out/bin/gdb")
     ];
