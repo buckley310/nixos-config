@@ -39,6 +39,7 @@ with lib;
     };
 
     sconfig = {
+      devtools.enable = true;
       security-tools = true;
     };
 
