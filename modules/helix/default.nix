@@ -15,6 +15,7 @@ let
       "css"
       "html"
       "javascript"
+      "json"
       "typescript"
     ];
 
