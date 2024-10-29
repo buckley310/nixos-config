@@ -26,6 +26,8 @@ in
         rustc.llvmPackages.lld
         rustfmt
         stern
+        terraform
+        terraform-ls
         vscode-langservers-extracted
         yaml-language-server
 
@@ -36,6 +38,8 @@ in
           [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
       ];
     programs.bash.interactiveShellInit = ''
+      alias t=terraform
+      complete -C terraform t
       source <(kubectl completion bash)
       complete -F __start_kubectl k
     '';
