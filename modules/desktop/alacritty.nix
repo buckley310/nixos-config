@@ -20,7 +20,7 @@ let
         primary.background = "0x1e1e1e";
         primary.foreground = "0xffffff";
       };
-      import = [ "${pkgs.alacritty-theme}/tango_dark.toml" ];
+      general.import = [ "${pkgs.alacritty-theme}/tango_dark.toml" ];
     };
 
   # Alacritty seems to not communicate well with gnome-shell. Quick fix:
