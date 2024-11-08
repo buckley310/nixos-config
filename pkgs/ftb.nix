@@ -1,8 +1,9 @@
-{ lib
-, dpkg
-, fetchurl
-, stdenv
-, steam-run
+{
+  lib,
+  dpkg,
+  fetchurl,
+  stdenv,
+  steam-run,
 }:
 
 stdenv.mkDerivation rec {

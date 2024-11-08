@@ -1,11 +1,12 @@
-{ stdenv
-, autoPatchelfHook
-, fetchFromGitHub
-, fetchzip
-, gcc-unwrapped
-, makeWrapper
-, ocamlPackages
-, model ? "small"
+{
+  stdenv,
+  autoPatchelfHook,
+  fetchFromGitHub,
+  fetchzip,
+  gcc-unwrapped,
+  makeWrapper,
+  ocamlPackages,
+  model ? "small",
 }:
 
 let
@@ -30,8 +31,7 @@ let
   '';
 
 in
-stdenv.mkDerivation rec
-{
+stdenv.mkDerivation rec {
   pname = "mp4grep";
   version = "0.1.4";
 

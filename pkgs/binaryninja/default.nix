@@ -1,11 +1,12 @@
-{ stdenv
-, autoPatchelfHook
-, libglvnd
-, makeWrapper
-, python3
-, qt6
-, requireFile
-, unzip
+{
+  stdenv,
+  autoPatchelfHook,
+  libglvnd,
+  makeWrapper,
+  python3,
+  qt6,
+  requireFile,
+  unzip,
 }:
 
 let

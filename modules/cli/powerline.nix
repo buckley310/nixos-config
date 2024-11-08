@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
-  left_hard_divider = builtins.fromJSON '' "\uE0B0" '';
-  upper_left_triangle = builtins.fromJSON '' "\uE0BC" '';
+  left_hard_divider = builtins.fromJSON ''"\uE0B0" '';
+  upper_left_triangle = builtins.fromJSON ''"\uE0BC" '';
 
   theme = {
     BoldForeground = true;
@@ -11,16 +11,20 @@ let
     SeparatorFg = 16;
   };
 
-  customEnd = [{
-    Content = "$";
-    Foreground = 231;
-    Background = 102;
-    Separator = left_hard_divider;
-  }];
+  customEnd = [
+    {
+      Content = "$";
+      Foreground = 231;
+      Background = 102;
+      Separator = left_hard_divider;
+    }
+  ];
 
-  plconfig = builtins.toFile "powerline-config.json" (builtins.toJSON {
-    modes.patched.Separator = upper_left_triangle;
-  });
+  plconfig = builtins.toFile "powerline-config.json" (
+    builtins.toJSON {
+      modes.patched.Separator = upper_left_triangle;
+    }
+  );
 
   args = [
     "-modules=\${remote:+'user,host,'}nix-shell,git,jobs,cwd,newline,customend"
@@ -37,9 +41,7 @@ in
   environment.systemPackages = [
     pkgs.powerline-go
 
-    (pkgs.writeShellScriptBin
-      "powerline-go-customend"
-      "echo '${builtins.toJSON customEnd}'")
+    (pkgs.writeShellScriptBin "powerline-go-customend" "echo '${builtins.toJSON customEnd}'")
   ];
 
   environment.etc."powerline-theme.json".text = builtins.toJSON theme;

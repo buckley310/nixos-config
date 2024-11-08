@@ -1,8 +1,9 @@
-{ e2fsprogs
-, pkgsStatic
-, runCommand
-, util-linux
-, writeShellScript
+{
+  e2fsprogs,
+  pkgsStatic,
+  runCommand,
+  util-linux,
+  writeShellScript,
 }:
 
 let
