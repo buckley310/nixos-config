@@ -49,11 +49,11 @@
           }) (builtins.readDir dir);
       };
 
-      nixosModules = {
+      nixosModules = self.lib.dirToAttrs ./modules import // {
         inherit pins;
         inherit (impermanence.nixosModules) impermanence;
         pkgs.nixpkgs.overlays = [ (_: mypkgs) ];
-      } // self.lib.dirToAttrs ./modules import;
+      };
 
       nixosConfigurations = self.lib.dirToAttrs ./hosts (
         dir:
