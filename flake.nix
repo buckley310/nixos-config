@@ -30,9 +30,6 @@
 
     in
     {
-      formatter = forAllSystems (system:
-        nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
-
       lib = {
         base64 = import lib/base64.nix;
         gen-ssh-config = import lib/gen-ssh-config.nix lib;

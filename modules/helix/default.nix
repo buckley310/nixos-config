@@ -58,7 +58,7 @@ in
         {
           name = "nix";
           auto-format = true;
-          formatter.command = "nixpkgs-fmt";
+          formatter = { command = "nixfmt"; args = [ "--verify" ]; };
         }
         {
           name = "python";
