@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   config = lib.mkIf (config.sconfig.desktop.enable) {
     environment.systemPackages = [
@@ -26,8 +31,14 @@
         ShowFullUrlsInAddressBar = true;
         SyncDisabled = true; # required for BrowsingDataLifetime
         BrowsingDataLifetime = [
-          { data_types = [ "browsing_history" ]; time_to_live_in_hours = 24 * 7; }
-          { data_types = [ "download_history" ]; time_to_live_in_hours = 6; }
+          {
+            data_types = [ "browsing_history" ];
+            time_to_live_in_hours = 24 * 7;
+          }
+          {
+            data_types = [ "download_history" ];
+            time_to_live_in_hours = 6;
+          }
         ];
       };
     };

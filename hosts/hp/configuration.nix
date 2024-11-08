@@ -20,7 +20,10 @@ in
   ];
 
   services.openssh.hostKeys = [
-    { type = "ed25519"; path = "${persist}/ssh_host_ed25519_key"; }
+    {
+      type = "ed25519";
+      path = "${persist}/ssh_host_ed25519_key";
+    }
   ];
 
   users.mutableUsers = false;
@@ -36,11 +39,27 @@ in
   hardware.enableRedistributableFirmware = true;
 
   fileSystems = {
-    "/" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "mode=755" ]; };
-    "/boot" = { device = "/dev/disk/by-partlabel/EFI\\x20system\\x20partition"; fsType = "vfat"; };
-    "/home" = { device = "zroot/locker/home"; fsType = "zfs"; };
-    "/nix" = { device = "zroot/locker/nix"; fsType = "zfs"; };
-    "/var/log" = { device = "zroot/locker/log"; fsType = "zfs"; };
+    "/" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = [ "mode=755" ];
+    };
+    "/boot" = {
+      device = "/dev/disk/by-partlabel/EFI\\x20system\\x20partition";
+      fsType = "vfat";
+    };
+    "/home" = {
+      device = "zroot/locker/home";
+      fsType = "zfs";
+    };
+    "/nix" = {
+      device = "zroot/locker/nix";
+      fsType = "zfs";
+    };
+    "/var/log" = {
+      device = "zroot/locker/log";
+      fsType = "zfs";
+    };
   };
 
   system.stateVersion = "22.05";

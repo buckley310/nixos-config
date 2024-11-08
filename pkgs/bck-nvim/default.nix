@@ -1,20 +1,17 @@
-{ lib
-, extraBinPaths ? [ ]
-, neovim-unwrapped
-, vimPlugins
-, wrapNeovim
+{
+  lib,
+  extraBinPaths ? [ ],
+  neovim-unwrapped,
+  vimPlugins,
+  wrapNeovim,
 }:
 
 let
-  luafiles = lib.concatLines (map
-    (x: "luafile ${./lua}/${x}")
-    (builtins.attrNames (builtins.readDir ./lua))
+  luafiles = lib.concatLines (
+    map (x: "luafile ${./lua}/${x}") (builtins.attrNames (builtins.readDir ./lua))
   );
 
-  extraPath = lib.concatLines (map
-    (p: "let $PATH .= ':${p}/bin'")
-    (extraBinPaths)
-  );
+  extraPath = lib.concatLines (map (p: "let $PATH .= ':${p}/bin'") (extraBinPaths));
 
 in
 wrapNeovim neovim-unwrapped {

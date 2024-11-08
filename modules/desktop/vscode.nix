@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   config = lib.mkIf (config.sconfig.desktop.enable) {
     environment.systemPackages = with pkgs; [
@@ -22,9 +27,8 @@
 
     environment.etc."vscode-keybindings.json".source = ./vscode-keybindings.json;
     environment.etc."vscode-settings.json".text = builtins.toJSON (
-      (
-        builtins.fromJSON (builtins.readFile ./vscode-settings.json)
-      ) // {
+      (builtins.fromJSON (builtins.readFile ./vscode-settings.json))
+      // {
         # NixOS-specific vscode settings:
         "extensions.autoCheckUpdates" = false;
         "extensions.autoUpdate" = false;

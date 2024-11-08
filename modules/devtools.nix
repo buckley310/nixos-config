@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   cfg = config.sconfig.devtools;
 in
@@ -6,37 +11,35 @@ in
   options.sconfig.devtools.enable = lib.mkEnableOption "Development Tools";
 
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs;
-      [
-        black
-        cargo
-        efm-langserver
-        errcheck
-        go
-        gopls
-        kubectl
-        kubernetes-helm
-        lua-language-server
-        nil
-        nodePackages.prettier
-        nodePackages.typescript-language-server
-        pyright
-        rust-analyzer
-        rustc
-        rustc.llvmPackages.lld
-        rustfmt
-        stern
-        terraform
-        terraform-ls
-        vscode-langservers-extracted
-        yaml-language-server
+    environment.systemPackages = with pkgs; [
+      black
+      cargo
+      efm-langserver
+      errcheck
+      go
+      gopls
+      kubectl
+      kubernetes-helm
+      lua-language-server
+      nil
+      nodePackages.prettier
+      nodePackages.typescript-language-server
+      pyright
+      rust-analyzer
+      rustc
+      rustc.llvmPackages.lld
+      rustfmt
+      stern
+      terraform
+      terraform-ls
+      vscode-langservers-extracted
+      yaml-language-server
 
-        # dedicated script, because bash aliases dont work with `watch`
-        (writeShellScriptBin "k" "exec kubectl \"$@\"")
+      # dedicated script, because bash aliases dont work with `watch`
+      (writeShellScriptBin "k" "exec kubectl \"$@\"")
 
-        (google-cloud-sdk.withExtraComponents
-          [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
-      ];
+      (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
+    ];
     programs.bash.interactiveShellInit = ''
       alias t=terraform
       complete -C terraform t

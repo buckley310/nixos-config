@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   config = lib.mkIf (config.sconfig.desktop.enable) {
     environment.systemPackages = [
@@ -12,25 +17,31 @@
           OfferToSaveLogins = false;
           DisableFormHistory = true;
           SearchSuggestEnabled = false;
-          Preferences = builtins.mapAttrs
-            (n: v: { Value = v; Status = "locked"; })
-            {
-              "accessibility.force_disabled" = 1;
-              "browser.aboutConfig.showWarning" = false;
-              "browser.contentblocking.category" = "strict";
-              "browser.tabs.firefox-view" = false;
-              "browser.uitour.enabled" = false;
-              "browser.zoom.siteSpecific" = false;
-              "extensions.formautofill.addresses.enabled" = false;
-              "extensions.formautofill.creditCards.enabled" = false;
-              "extensions.formautofill.heuristics.enabled" = false;
-              "network.IDN_show_punycode" = true;
-              "places.history.expiration.max_pages" = 2048;
-              "ui.key.menuAccessKeyFocuses" = false;
-            };
-          ExtensionSettings =
-            { "*".installation_mode = "blocked"; } //
+          Preferences =
             builtins.mapAttrs
+              (n: v: {
+                Value = v;
+                Status = "locked";
+              })
+              {
+                "accessibility.force_disabled" = 1;
+                "browser.aboutConfig.showWarning" = false;
+                "browser.contentblocking.category" = "strict";
+                "browser.tabs.firefox-view" = false;
+                "browser.uitour.enabled" = false;
+                "browser.zoom.siteSpecific" = false;
+                "extensions.formautofill.addresses.enabled" = false;
+                "extensions.formautofill.creditCards.enabled" = false;
+                "extensions.formautofill.heuristics.enabled" = false;
+                "network.IDN_show_punycode" = true;
+                "places.history.expiration.max_pages" = 2048;
+                "ui.key.menuAccessKeyFocuses" = false;
+              };
+          ExtensionSettings =
+            {
+              "*".installation_mode = "blocked";
+            }
+            // builtins.mapAttrs
               (n: v: {
                 installation_mode = "force_installed";
                 install_url = "https://addons.mozilla.org/firefox/downloads/latest/${v}/latest.xpi";

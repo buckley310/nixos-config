@@ -42,9 +42,11 @@
 
     (writeShellScriptBin "dirt" "while sleep 1; do grep '^Dirty:' /proc/meminfo ; done")
 
-    (lib.hiPrio (writeShellScriptBin "iftop" ''
-      exec ${iftop}/bin/iftop -P -m100M "$@"
-    ''))
+    (lib.hiPrio (
+      writeShellScriptBin "iftop" ''
+        exec ${iftop}/bin/iftop -P -m100M "$@"
+      ''
+    ))
 
     (writeShellScriptBin "bat" ''
       ${bat}/bin/bat --pager=never --color=always --wrap=never --terminal-width=80 "$@"
@@ -85,7 +87,11 @@
       update_process_names = 1;
     };
     package = pkgs.htop.overrideAttrs (
-      { patches ? [ ], ... }: {
+      {
+        patches ? [ ],
+        ...
+      }:
+      {
         patches = patches ++ [
           # This patch fixes process sort order while in tree view.
           # Started in 3.3.0. Should be fixed in 3.4.0.

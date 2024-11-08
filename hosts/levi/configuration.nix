@@ -8,7 +8,10 @@ in
   };
 
   services.openssh.hostKeys = [
-    { type = "ed25519"; path = "${persist}/ssh_host_ed25519_key"; }
+    {
+      type = "ed25519";
+      path = "${persist}/ssh_host_ed25519_key";
+    }
   ];
 
   # services.ollama = {
@@ -22,7 +25,10 @@ in
   sconfig = {
     gnome = true;
     desktop.enable = true;
-    wg-home = { enable = true; path = "${persist}/wireguard_home.conf"; };
+    wg-home = {
+      enable = true;
+      path = "${persist}/wireguard_home.conf";
+    };
   };
 
   environment.persistence."${persist}/system".directories = [
@@ -49,14 +55,32 @@ in
   boot = {
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    initrd.availableKernelModules = [ "xhci_pci" "vmd" "nvme" "sd_mod" ];
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "vmd"
+      "nvme"
+      "sd_mod"
+    ];
   };
 
   fileSystems = {
-    "/" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "mode=755" ]; };
-    "/boot" = { fsType = "vfat"; device = "/dev/nvme0n1p1"; };
-    "/nix" = { device = "levi/nix"; fsType = "zfs"; };
-    "/home" = { device = "levi/home"; fsType = "zfs"; };
+    "/" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = [ "mode=755" ];
+    };
+    "/boot" = {
+      fsType = "vfat";
+      device = "/dev/nvme0n1p1";
+    };
+    "/nix" = {
+      device = "levi/nix";
+      fsType = "zfs";
+    };
+    "/home" = {
+      device = "levi/home";
+      fsType = "zfs";
+    };
   };
 
   users.mutableUsers = false;

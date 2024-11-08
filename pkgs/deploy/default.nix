@@ -1,6 +1,7 @@
-{ nixos-rebuild
-, python3
-, writeShellScriptBin
+{
+  nixos-rebuild,
+  python3,
+  writeShellScriptBin,
 }:
 
 writeShellScriptBin "deploy" ''
