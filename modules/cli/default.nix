@@ -18,9 +18,9 @@
     lm_sensors
     ncdu
     nix-diff
+    nixfmt-rfc-style
     nix-index
     nix-prefetch-github
-    nixpkgs-fmt
     nodejs
     openssl
     parted
