@@ -159,8 +159,6 @@
 
   programs.bash.interactiveShellInit = ''
     stty -ixon
-    alias jq='jq --indent 4'
-    alias yq='yq --indent 4'
     alias p=python3
     alias h=htop
     alias e='$EDITOR'
