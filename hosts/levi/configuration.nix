@@ -14,14 +14,6 @@ in
     }
   ];
 
-  # services.ollama = {
-  #   enable = true;
-  #   acceleration = "cuda";
-  # };
-  # programs.bash.interactiveShellInit = ''
-  #   alias ai='ollama run llama3.1:8b'
-  # '';
-
   sconfig = {
     gnome = true;
     desktop.enable = true;
