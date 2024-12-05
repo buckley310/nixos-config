@@ -20,7 +20,6 @@
     nix-diff
     nixfmt-rfc-style
     nix-index
-    nix-prefetch-github
     nodejs
     openssl
     parted
@@ -102,22 +101,6 @@
         ];
       }
     );
-  };
-
-  programs.git = {
-    enable = true;
-    config = {
-      alias.up = "push";
-      alias.dn = "pull";
-      alias.sh = "show";
-      alias.glog = "log --all --decorate --oneline --graph";
-      alias.glogl = "log --all --decorate --oneline --graph -n10";
-      alias.logl = "log --oneline -n10";
-      alias.vlog = "log --name-status";
-      core.pager = "less -x1,5";
-      pull.ff = "only";
-      init.defaultBranch = "main";
-    };
   };
 
   programs.tmux = {
