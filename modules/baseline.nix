@@ -19,7 +19,24 @@
     ];
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    # builtins.trace "unfree: ${lib.getName pkg}" (
+    builtins.elem (lib.getName pkg) [
+      "cuda_cudart"
+      "libcublas"
+      "cuda_cccl"
+      "cuda_nvcc"
+      "nvidia-x11"
+      "vscode-with-extensions"
+      "vscode"
+      "burpsuite"
+      "terraform"
+      "discord"
+      "steam"
+      "steam-unwrapped"
+      "nvidia-settings"
+    ];
 
   security.sudo.extraConfig = "Defaults lecture=never";
 
