@@ -31,7 +31,7 @@ in
       # gnomeExtensions.appindicator
 
       (writeShellScriptBin "x-terminal-emulator" ''
-        exec kitty "$@"
+        exec alacritty "$@"
       '')
 
       (writeShellScriptBin "red" ''
