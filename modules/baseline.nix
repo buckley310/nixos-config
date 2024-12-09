@@ -40,8 +40,6 @@
 
   security.sudo.extraConfig = "Defaults lecture=never";
 
-  systemd.tmpfiles.rules = [ "e /nix/var/log - - - 30d" ];
-
   systemd.oomd.enable = false; # using earlyoom
 
   zramSwap.enable = lib.mkDefault true;
@@ -54,6 +52,7 @@
     nixPath = [ "nixpkgs=flake:nixpkgs" ];
     extraOptions = ''
       experimental-features = nix-command flakes
+      keep-build-log = false
     '';
   };
 
