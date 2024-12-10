@@ -62,19 +62,19 @@ in
     systemd.services.samba-smbd.enable = lib.mkDefault false;
     services.samba = {
       enable = true;
-      enableNmbd = lib.mkDefault false;
-      enableWinbindd = lib.mkDefault false;
+      nmbd.enable = lib.mkDefault false;
+      winbindd.enable = lib.mkDefault false;
       package = pkgs.samba4Full;
-      securityType = "ads";
-      extraConfig = ''
-        realm = ${lib.toUpper cfg.longname}
-        workgroup = ${lib.toUpper cfg.shortname}
-        client use spnego = yes
-        restrict anonymous = 2
-        server signing = mandatory
-        client signing = mandatory
-        kerberos method = secrets and keytab
-      '';
+      settings.global = {
+        "security" = "ads";
+        "realm" = lib.toUpper cfg.longname;
+        "workgroup" = lib.toUpper cfg.shortname;
+        "client use spnego" = "yes";
+        "restrict anonymous" = 2;
+        "server signing" = "mandatory";
+        "client signing" = "mandatory";
+        "kerberos method" = "secrets and keytab";
+      };
     };
   };
 }
