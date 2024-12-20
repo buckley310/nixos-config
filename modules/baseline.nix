@@ -50,10 +50,10 @@
 
   nix = {
     nixPath = [ "nixpkgs=flake:nixpkgs" ];
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      keep-build-log = false
-    '';
+    settings = {
+      experimental-features = "nix-command flakes";
+      keep-build-log = false;
+    };
   };
 
   services = {

@@ -1,6 +1,8 @@
 {
-  inputs.nixpkgs.url = "nixpkgs/nixos-unstable";
-  inputs.impermanence.url = "github:nix-community/impermanence";
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    impermanence.url = "github:nix-community/impermanence";
+  };
 
   outputs =
     {
