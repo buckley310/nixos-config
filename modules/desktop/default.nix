@@ -54,7 +54,7 @@ with lib;
     '';
 
     fonts.packages = [
-      (pkgs.nerdfonts.override { fonts = [ "DejaVuSansMono" ]; })
+      pkgs.nerd-fonts.dejavu-sans-mono
     ];
 
     environment.systemPackages = with pkgs; [
