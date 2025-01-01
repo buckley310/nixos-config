@@ -71,7 +71,6 @@ with lib;
       opensc
       pavucontrol
       qemu_kvm
-      quickemu
       tdesktop
       yt-dlp-light
 
