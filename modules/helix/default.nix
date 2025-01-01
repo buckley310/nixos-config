@@ -33,7 +33,6 @@ in
       indent-guides.render = true;
       line-number = "relative";
       mouse = false;
-      scrolloff = 10;
       true-color = true;
     };
     keys = {
