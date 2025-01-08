@@ -34,6 +34,8 @@ in
       line-number = "relative";
       mouse = false;
       true-color = true;
+      end-of-line-diagnostics = "hint";
+      inline-diagnostics.cursor-line = "error";
     };
     keys = {
       normal.A-j = ":buffer-previous";
