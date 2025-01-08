@@ -59,9 +59,18 @@ in
         alias.glogl = "log --all --decorate --oneline --graph -n10";
         alias.logl = "log --oneline -n10";
         alias.vlog = "log --name-status";
+        core.autocrlf = "input";
         core.pager = "less -x1,5";
         pull.ff = "only";
         init.defaultBranch = "main";
+        "credential \"https://github.com\"".helper = [
+          ""
+          "!gh auth git-credential"
+        ];
+        "credential \"https://gist.github.com\"".helper = [
+          ""
+          "!gh auth git-credential"
+        ];
       };
     };
   };
