@@ -1,7 +1,18 @@
 {
   # NVIDIA-only using MUX switch in BIOS.
-  environment.variables.MUTTER_DEBUG_FORCE_KMS_MODE = "simple";
-  hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.open = false;
+
+  hardware.graphics = {
+    enable = true;
+  };
+
   services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false;
+  };
+
+  # environment.variables.MUTTER_DEBUG_FORCE_KMS_MODE = "simple";
 }
