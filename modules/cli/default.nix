@@ -72,6 +72,30 @@
               print(str(int(ln.split(' ')[-1])/(1024*1024*1024))[:5],'GB')
     '')
 
+    (writeShellScriptBin "runvm-lin" (toString [
+      "exec ${pkgs.qemu_kvm}/bin/qemu-kvm"
+      "-bios ${pkgs.OVMF.fd}/FV/OVMF.fd"
+      "-cpu host"
+      "-smp cores=4"
+      "-m 4G"
+      "-usbdevice tablet"
+      "-rtc base=utc"
+      "-vga virtio"
+      "\"$@\""
+    ]))
+
+    (writeShellScriptBin "runvm-win" (toString [
+      "exec ${pkgs.qemu_kvm}/bin/qemu-kvm"
+      "-bios ${pkgs.OVMF.fd}/FV/OVMF.fd"
+      "-cpu host"
+      "-smp cores=4"
+      "-m 4G"
+      "-usbdevice tablet"
+      "-rtc base=localtime"
+      "-vga qxl"
+      "\"$@\""
+    ]))
+
   ];
 
   environment.variables.HTOPRC = "/dev/null";
