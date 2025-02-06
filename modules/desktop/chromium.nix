@@ -33,11 +33,11 @@
         BrowsingDataLifetime = [
           {
             data_types = [ "browsing_history" ];
-            time_to_live_in_hours = 24 * 7;
+            time_to_live_in_hours = 24 * 30;
           }
           {
             data_types = [ "download_history" ];
-            time_to_live_in_hours = 6;
+            time_to_live_in_hours = 12;
           }
         ];
       };
