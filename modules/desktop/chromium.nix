@@ -23,7 +23,6 @@
         ExtensionInstallBlocklist = [ "*" ];
         ExtensionInstallForcelist = [
           "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
-          "fihnjjcciajhdojfnbdddfaoknhalnja" # I don't care about cookies
           "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
         ];
         NetworkPredictionOptions = 2;
