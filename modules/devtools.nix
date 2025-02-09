@@ -39,8 +39,6 @@ in
 
       # dedicated script, because bash aliases dont work with `watch`
       (writeShellScriptBin "k" "exec kubectl \"$@\"")
-
-      (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     ];
     programs.bash.interactiveShellInit = ''
       alias t=terraform
