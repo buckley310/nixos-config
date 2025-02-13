@@ -47,7 +47,6 @@
                 install_url = "https://addons.mozilla.org/firefox/downloads/latest/${v}/latest.xpi";
               })
               {
-                "jid1-KKzOGWgsW3Ao4Q@jetpack" = "i-dont-care-about-cookies";
                 "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
                 "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = "vimium-ff";
               };
