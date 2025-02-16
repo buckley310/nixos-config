@@ -82,6 +82,7 @@ in
 
   services.zfs.trim.interval = "03:05";
 
+  hardware.nvidia.open = true;
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
   system.stateVersion = "22.05";
