@@ -15,7 +15,6 @@ in
   ];
 
   sconfig = {
-    gnome = true;
     desktop.enable = true;
     wg-home = {
       enable = true;
