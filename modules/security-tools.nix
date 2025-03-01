@@ -18,6 +18,8 @@ in
       burpsuite
       exiftool
       feroxbuster
+      gdb
+      gef
       ghidra
       masscan
       metasploit
@@ -31,8 +33,6 @@ in
       webshells
       weevely
       wfuzz
-
-      (runCommand "gdb" { } "install -D ${gef}/bin/gef $out/bin/gdb")
     ];
 
     programs.bash.interactiveShellInit = ''
