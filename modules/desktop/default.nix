@@ -66,7 +66,6 @@ with lib;
       glxinfo
       dconf-editor
       helvum
-      kdenlive
       obs-studio
       opensc
       pavucontrol
