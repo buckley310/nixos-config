@@ -109,22 +109,6 @@
       tree_view = 1;
       update_process_names = 1;
     };
-    package = pkgs.htop.overrideAttrs (
-      {
-        patches ? [ ],
-        ...
-      }:
-      {
-        patches = patches ++ [
-          # This patch fixes process sort order while in tree view.
-          # Started in 3.3.0. Should be fixed in 3.4.0.
-          (pkgs.fetchpatch {
-            url = "https://github.com/htop-dev/htop/commit/5d778eaacc78c69d5597b57afb4f98062d8856ef.patch";
-            hash = "sha256-bjIYve2cAQNYKOYqQcVrw3aJs9ceanjfv0Y9yRwNlvg=";
-          })
-        ];
-      }
-    );
   };
 
   programs.tmux = {
