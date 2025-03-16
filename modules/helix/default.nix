@@ -36,6 +36,7 @@ in
       true-color = true;
       end-of-line-diagnostics = "hint";
       inline-diagnostics.cursor-line = "error";
+      soft-wrap.enable = true;
     };
     keys = {
       normal.A-j = ":buffer-previous";
