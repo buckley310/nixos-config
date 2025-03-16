@@ -43,7 +43,7 @@ let
       primary.background = "0x1e1e1e";
       primary.foreground = "0xffffff";
     };
-    general.import = [ "${pkgs.alacritty-theme}/tango_dark.toml" ];
+    general.import = [ "${pkgs.alacritty-theme}/share/alacritty-theme/tango_dark.toml" ];
   };
 
 in
