@@ -20,6 +20,7 @@ let
         "html"
         "javascript"
         "json"
+        "jsonc"
         "typescript"
       ];
 
