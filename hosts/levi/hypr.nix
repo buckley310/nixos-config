@@ -1,0 +1,3 @@
+{
+  sconfig.hypr.enable = true;
+}
