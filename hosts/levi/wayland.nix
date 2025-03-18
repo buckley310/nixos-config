@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   ...
@@ -12,13 +11,6 @@
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-  };
 
   # environment.variables.MUTTER_DEBUG_FORCE_KMS_MODE = "simple";
   # environment.variables.HYPRLAND_TRACE = "1";
