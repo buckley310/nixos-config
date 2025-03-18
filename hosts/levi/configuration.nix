@@ -81,6 +81,7 @@ in
 
   services.zfs.trim.interval = "03:05";
 
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
 
   hardware.nvidia.open = true;
