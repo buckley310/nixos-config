@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
   persist = "/nix/persist";
 in
@@ -80,6 +80,8 @@ in
   users.users.root.hashedPasswordFile = "${persist}/shadow_sean";
 
   services.zfs.trim.interval = "03:05";
+
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
 
   hardware.nvidia.open = true;
   hardware.cpu.intel.updateMicrocode = true;
