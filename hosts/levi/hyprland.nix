@@ -10,8 +10,6 @@
     enable = true;
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-
   # environment.variables.MUTTER_DEBUG_FORCE_KMS_MODE = "simple";
   # environment.variables.HYPRLAND_TRACE = "1";
 
