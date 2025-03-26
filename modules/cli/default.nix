@@ -5,6 +5,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    bat
     darkhttpd
     dnsutils
     du-dust
@@ -46,10 +47,6 @@
         exec ${iftop}/bin/iftop -P -m100M "$@"
       ''
     ))
-
-    (writeShellScriptBin "bat" ''
-      ${bat}/bin/bat --pager=never --color=always --wrap=never --terminal-width=80 "$@"
-    '')
 
     (writeShellScriptBin "hd" ''
       exec hexdump -C "$@"
