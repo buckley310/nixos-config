@@ -78,6 +78,5 @@ with lib;
       (mpv.override { scripts = [ mpvScripts.mpris ]; })
     ];
 
-    boot.loader.timeout = 1;
   };
 }
