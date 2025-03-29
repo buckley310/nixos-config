@@ -58,6 +58,7 @@ in
         alias.logl = "log --oneline -n10";
         alias.vlog = "log --name-status";
         alias.diffc = "diff --cached";
+        alias.st = "status";
         core.autocrlf = "input";
         core.pager = "less -x1,5";
         pull.ff = "only";
