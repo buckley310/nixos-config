@@ -37,6 +37,7 @@ in
       end-of-line-diagnostics = "hint";
       inline-diagnostics.cursor-line = "error";
       soft-wrap.enable = true;
+      file-picker.hidden = false;
     };
     keys = {
       normal.A-j = ":buffer-previous";
