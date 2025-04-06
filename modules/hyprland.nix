@@ -23,6 +23,7 @@ in
     environment.systemPackages = with pkgs; [
       fuzzel
       hyprlock
+      hyprshot
       nautilus
       playerctl
       swayidle
