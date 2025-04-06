@@ -45,6 +45,8 @@
 
   security.sudo.extraConfig = "Defaults lecture=never";
 
+  security.sudo.wheelNeedsPassword = false;
+
   systemd.oomd.enable = false; # using earlyoom
 
   zramSwap.enable = lib.mkDefault true;
