@@ -22,6 +22,11 @@ in
 
     services.colord.enable = false;
 
+    services.udev.extraHwdb = ''
+      mouse:usb:*
+        MOUSE_DPI=600@1000
+    '';
+
     systemd.services.packagekit.enable = false;
 
     environment.systemPackages = with pkgs; [
