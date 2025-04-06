@@ -21,13 +21,13 @@ in
     '';
 
     environment.systemPackages = with pkgs; [
+      fuzzel
       hyprlock
       nautilus
       playerctl
       swayidle
       vimix-cursors
       waybar
-      wofi
     ];
   };
 }
