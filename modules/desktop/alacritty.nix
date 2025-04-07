@@ -20,11 +20,13 @@ let
     keyboard.bindings = [
       {
         action = "ScrollHalfPageDown";
+        mode = "~Alt";
         mods = "Shift";
         key = "PageDown";
       }
       {
         action = "ScrollHalfPageUp";
+        mode = "~Alt";
         mods = "Shift";
         key = "PageUp";
       }
