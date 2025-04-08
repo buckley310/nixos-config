@@ -34,6 +34,7 @@ in
       indent-guides.render = true;
       mouse = false;
       true-color = true;
+      scrolloff = 99;
       end-of-line-diagnostics = "hint";
       inline-diagnostics.cursor-line = "error";
       soft-wrap.enable = true;
