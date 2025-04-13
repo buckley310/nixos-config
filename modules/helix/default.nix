@@ -46,6 +46,8 @@ in
       normal.space.e = ":w";
       normal.space.x = ":q";
       normal.space.backspace = ":reset-diff-change";
+      normal.pagedown = "page_cursor_half_down";
+      normal.pageup = "page_cursor_half_up";
     };
   };
 
