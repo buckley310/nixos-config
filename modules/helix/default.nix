@@ -44,6 +44,7 @@ in
       normal.A-j = ":buffer-previous";
       normal.A-k = ":buffer-next";
       normal.space.e = ":w";
+      normal.space.t = ":w";
       normal.space.x = ":q";
       normal.space.backspace = ":reset-diff-change";
       normal.pagedown = "page_cursor_half_down";
