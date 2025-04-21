@@ -12,6 +12,7 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      awscli2
       black
       cargo
       efm-langserver
