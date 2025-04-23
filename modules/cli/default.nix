@@ -21,7 +21,6 @@
     nix-diff
     nixfmt-rfc-style
     nix-index
-    nodejs
     openssl
     parted
     pciutils
