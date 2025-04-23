@@ -25,6 +25,7 @@ in
       lua-language-server
       nil
       nix-prefetch-github
+      nodejs_latest
       nodePackages.prettier
       nodePackages.typescript-language-server
       pyright
@@ -42,6 +43,7 @@ in
       (writeShellScriptBin "k" "exec kubectl \"$@\"")
     ];
     programs.bash.interactiveShellInit = ''
+      alias cdk="npx aws-cdk"
       alias t=terraform
       complete -C terraform t
       source <(kubectl completion bash)
