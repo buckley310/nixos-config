@@ -41,6 +41,11 @@ in
 
       # dedicated script, because bash aliases dont work with `watch`
       (writeShellScriptBin "k" "exec kubectl \"$@\"")
+
+      # call from script, so we dont add any libs to current-system
+      (pkgs.writeShellScriptBin "cfn-lsp-extra" ''
+        exec ${pkgs.cfn-lsp-extra}/bin/cfn-lsp-extra "$@"
+      '')
     ];
     programs.bash.interactiveShellInit = ''
       alias cdk="npx aws-cdk"
