@@ -53,6 +53,7 @@ with lib;
     ];
 
     environment.systemPackages = with pkgs; [
+      bruno
       discord
       easyeffects
       element-desktop
@@ -66,6 +67,7 @@ with lib;
       pavucontrol
       qemu_kvm
       tdesktop
+      thunderbird
       yt-dlp-light
 
       xsel # allow editors to access system clipboard
