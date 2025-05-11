@@ -34,7 +34,6 @@ in
   ];
 
   environment.systemPackages = with pkgs; [
-    (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     (pkgs.writeShellScriptBin "eco" ''
       exec taskset ff000 "$@"
     '')
