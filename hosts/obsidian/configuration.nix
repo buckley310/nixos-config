@@ -1,0 +1,70 @@
+{
+  sconfig.desktop.enable = true;
+  sconfig.hypr.enable = true;
+
+  environment.etc = {
+    "machine-id".source = "/persist/machine-id";
+  };
+
+  services.openssh.hostKeys = [
+    {
+      type = "ed25519";
+      path = "/persist/ssh_host_ed25519_key";
+    }
+  ];
+
+  environment.persistence."/persist/system".directories = [
+    "/var/lib/bluetooth"
+    "/var/lib/nixos"
+    "/var/lib/systemd/coredump"
+    "/var/log/journal"
+  ];
+
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "vmd"
+      "nvme"
+      "sd_mod"
+    ];
+  };
+
+  fileSystems = {
+    "/" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = [ "mode=755" ];
+    };
+    "/boot" = {
+      device = "/dev/nvme0n1p1";
+      fsType = "vfat";
+    };
+    "/nix" = {
+      device = "zpool/locker/nix";
+      fsType = "zfs";
+    };
+    "/home" = {
+      device = "zpool/locker/home";
+      fsType = "zfs";
+    };
+    "/persist" = {
+      device = "zpool/locker/persist";
+      fsType = "zfs";
+      neededForBoot = true;
+    };
+  };
+
+  users.mutableUsers = false;
+  users.users.sean.hashedPasswordFile = "/persist/shadow_sean";
+  users.users.root.hashedPasswordFile = "/persist/shadow_sean";
+
+  services.zfs.trim.interval = "05:05";
+  services.zfs.trim.randomizedDelaySec = "50min";
+
+  hardware.cpu.amd.updateMicrocode = true;
+  hardware.enableRedistributableFirmware = true;
+
+  system.stateVersion = "25.05";
+}
