@@ -12,45 +12,62 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      awscli2
+
+      # LSP / Formatter
       black
-      cargo
       efm-langserver
-      errcheck
-      gh
-      go
-      gopls
-      kubectl
-      kubernetes-helm
-      lua-language-server
       nil
-      nix-prefetch-github
-      nodejs_latest
+      lua-language-server
+      vscode-langservers-extracted
+      yaml-language-server
+      pyright
       nodePackages.prettier
       nodePackages.typescript-language-server
-      pyright
+
+      # Rust
+      cargo
       rust-analyzer
       rustc
       rustc.llvmPackages.lld
       rustfmt
-      stern
+
+      # Go
+      go
+      gopls
+      errcheck
+
+      # TF
       terraform
       terraform-ls
-      vscode-langservers-extracted
-      yaml-language-server
 
+      # AWS
+      awscli2
+      rain
+      (runCommand "q" { } ''
+        install -D "${amazon-q-cli}/bin/amazon-q" "$out/bin/q"
+      '')
+      # call from script, so we dont add any extra libs
+      (writeShellScriptBin "cfn-lsp-extra" ''
+        exec ${pkgs.cfn-lsp-extra}/bin/cfn-lsp-extra "$@"
+      '')
+
+      # K8s
+      kubectl
+      kubernetes-helm
+      stern
+      (writeShellScriptBin "k" ''
+        exec kubectl "$@"
+      '')
+
+      # Other
+      gh
+      nix-prefetch-github
+      nodejs_latest
       (google-cloud-sdk.withExtraComponents [
         google-cloud-sdk.components.gke-gcloud-auth-plugin
       ])
-
-      # dedicated script, because bash aliases dont work with `watch`
-      (writeShellScriptBin "k" "exec kubectl \"$@\"")
-
-      # call from script, so we dont add any libs to current-system
-      (pkgs.writeShellScriptBin "cfn-lsp-extra" ''
-        exec ${pkgs.cfn-lsp-extra}/bin/cfn-lsp-extra "$@"
-      '')
     ];
+
     programs.bash.interactiveShellInit = ''
       alias cdk="npx aws-cdk"
       alias t=terraform
