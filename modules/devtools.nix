@@ -48,7 +48,10 @@ in
       '')
       # call from script, so we dont add any extra libs
       (writeShellScriptBin "cfn-lsp-extra" ''
-        exec ${pkgs.cfn-lsp-extra}/bin/cfn-lsp-extra "$@"
+        exec ${cfn-lsp-extra}/bin/cfn-lsp-extra "$@"
+      '')
+      (writeShellScriptBin "cfn-lint" ''
+        exec ${python3.pkgs.cfn-lint}/bin/cfn-lint "$@"
       '')
 
       # K8s
