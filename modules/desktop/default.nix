@@ -21,16 +21,13 @@ with lib;
     programs.steam.enable = true;
     networking.networkmanager.wifi.powersave = false;
 
-    systemd.services.docker.path = [
-      pkgs.openssh
-    ];
     virtualisation.docker = {
       enable = true;
       enableOnBoot = false;
-      daemon.settings = {
-        data-root = "/nix/persist/docker";
-        runtimes.runsc.path = "${pkgs.gvisor}/bin/runsc";
-      };
+      # daemon.settings = {
+      #   data-root = "/nix/persist/docker";
+      #   runtimes.runsc.path = "${pkgs.gvisor}/bin/runsc";
+      # };
     };
 
     # Pipewire
