@@ -1,0 +1,76 @@
+diff --git a/helix-core/src/doc_formatter.rs b/helix-core/src/doc_formatter.rs
+index 3cfc1570..ef210d3c 100644
+--- a/helix-core/src/doc_formatter.rs
++++ b/helix-core/src/doc_formatter.rs
+@@ -150,6 +150,7 @@ pub struct TextFormat {
+     pub wrap_indicator_highlight: Option<Highlight>,
+     pub viewport_width: u16,
+     pub soft_wrap_at_text_width: bool,
++    pub double_leading_spaces: bool,
+ }
+ 
+ // test implementation is basically only used for testing or when softwrap is always disabled
+@@ -164,6 +165,7 @@ fn default() -> Self {
+             viewport_width: 17,
+             wrap_indicator_highlight: None,
+             soft_wrap_at_text_width: false,
++            double_leading_spaces: false,
+         }
+     }
+ }
+@@ -471,6 +473,14 @@ fn next(&mut self) -> Option<Self::Item> {
+             }
+         } else {
+             self.visual_pos.col += grapheme.width();
++            if self.text_fmt.double_leading_spaces && self.indent_level.is_none() {
++                if let Grapheme::Other { g } = grapheme.raw.clone() {
++                    if g == " " {
++                        // this affects text position, not indent guides
++                        self.visual_pos.col += 1
++                    }
++                }
++            }
+         }
+         Some(grapheme)
+     }
+diff --git a/helix-term/src/ui/document.rs b/helix-term/src/ui/document.rs
+index d1a74e7e..3f0c92e3 100644
+--- a/helix-term/src/ui/document.rs
++++ b/helix-term/src/ui/document.rs
+@@ -321,7 +321,11 @@ pub fn new(
+ 
+         let text_style = theme.get("ui.text");
+ 
+-        let indent_width = doc.indent_style.indent_width(tab_width) as u16;
++        // this affects indent guides, not text
++        let indent_width = match doc.indent_style.indent_width(tab_width) as u16 {
++            2 => 4,
++            x => x,
++        };
+ 
+         TextRenderer {
+             surface,
+diff --git a/helix-view/src/annotations/diagnostics.rs b/helix-view/src/annotations/diagnostics.rs
+index 09085d3f..2e0cd0b1 100644
+--- a/helix-view/src/annotations/diagnostics.rs
++++ b/helix-view/src/annotations/diagnostics.rs
+@@ -102,6 +102,7 @@ pub fn text_fmt(&self, anchor_col: u16, width: u16) -> TextFormat {
+             wrap_indicator_highlight: None,
+             viewport_width: width,
+             soft_wrap_at_text_width: true,
++            double_leading_spaces: false,
+         }
+     }
+ }
+diff --git a/helix-view/src/document.rs b/helix-view/src/document.rs
+index 14628988..b4e31811 100644
+--- a/helix-view/src/document.rs
++++ b/helix-view/src/document.rs
+@@ -2156,6 +2156,7 @@ pub fn text_format(&self, mut viewport_width: u16, theme: Option<&Theme>) -> Tex
+                 .and_then(|theme| theme.find_scope_index("ui.virtual.wrap"))
+                 .map(Highlight),
+             soft_wrap_at_text_width,
++            double_leading_spaces: self.indent_width() == 2,
+         }
+     }
+ 
