@@ -23,13 +23,13 @@ in
     '';
 
     environment.systemPackages = with pkgs; [
+      adwaita-icon-theme
       fuzzel
       hyprlock
       hyprshot
       nautilus
       playerctl
       swayidle
-      vimix-cursors
       waybar
     ];
   };
