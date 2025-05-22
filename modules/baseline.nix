@@ -49,6 +49,8 @@
 
   systemd.oomd.enable = false; # using earlyoom
 
+  services.speechd.enable = false;
+
   zramSwap.enable = lib.mkDefault true;
 
   networking.hostId = builtins.substring 0 8 (builtins.hashString "md5" config.networking.hostName);
