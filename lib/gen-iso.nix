@@ -11,6 +11,8 @@ let
             "${modulesPath}/installer/cd-dvd/installation-cd-minimal.nix"
           ];
           isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+          boot.supportedFilesystems = [ "zfs" ];
+          nix.settings.experimental-features = "nix-command flakes";
         }
       )
     ];
