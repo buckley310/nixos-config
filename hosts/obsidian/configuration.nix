@@ -39,19 +39,19 @@
       options = [ "mode=755" ];
     };
     "/boot" = {
-      device = "/dev/nvme0n1p1";
+      device = "/dev/disk/by-uuid/BC7D-DF98";
       fsType = "vfat";
     };
     "/nix" = {
-      device = "zpool/locker/nix";
+      device = "obsidian/nix";
       fsType = "zfs";
     };
     "/home" = {
-      device = "zpool/locker/home";
+      device = "obsidian/home";
       fsType = "zfs";
     };
     "/persist" = {
-      device = "zpool/locker/persist";
+      device = "obsidian/persist";
       fsType = "zfs";
       neededForBoot = true;
     };
