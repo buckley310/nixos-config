@@ -22,6 +22,10 @@ in
       uwsm check may-start && exec uwsm start hyprland-uwsm.desktop
     '';
 
+    environment.etc."bck-settings.sh".text = ''
+      dconf write /org/gnome/desktop/interface/color-scheme '"prefer-dark"'
+    '';
+
     environment.systemPackages = with pkgs; [
       adwaita-icon-theme
       fuzzel
