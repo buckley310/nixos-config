@@ -69,7 +69,6 @@
     earlyoom.enable = true;
     logind.lidSwitch = "ignore";
     openssh.enable = true;
-    openssh.startWhenNeeded = true;
     libinput.mouse.middleEmulation = false;
     xserver = {
       deviceSection = ''
