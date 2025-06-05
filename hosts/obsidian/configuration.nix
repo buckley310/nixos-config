@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   sconfig.desktop.enable = true;
   sconfig.hypr.enable = true;
@@ -21,6 +22,7 @@
   ];
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_6_14;
     loader.systemd-boot.enable = true;
     loader.systemd-boot.memtest86.enable = true;
     loader.efi.canTouchEfiVariables = true;
