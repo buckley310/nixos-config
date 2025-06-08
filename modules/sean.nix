@@ -21,8 +21,6 @@
     openssh.authorizedKeys.keys = import ../lib/ssh-keys.nix;
   };
 
-  systemd.tmpfiles.rules = [ "e /home/sean/Downloads - - - 9d" ];
-
   environment.etc."bck-settings.sh".text = ''
     git config --global user.email "sean.bck@gmail.com"
     git config --global user.name "Sean Buckley"
