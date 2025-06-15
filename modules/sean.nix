@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
   environment.variables.EDITOR = "hx";
-  environment.systemPackages = [
-    pkgs.bck-nvim
-  ];
 
   users.users.sean = {
     uid = 2000;
