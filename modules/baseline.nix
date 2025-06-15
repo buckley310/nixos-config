@@ -55,8 +55,6 @@
 
   networking.hostId = builtins.substring 0 8 (builtins.hashString "md5" config.networking.hostName);
 
-  networking.usePredictableInterfaceNames = lib.mkDefault false;
-
   nix = {
     nixPath = [ "nixpkgs=flake:nixpkgs" ];
     settings = {
