@@ -32,6 +32,7 @@ in
       auto-format = true;
       bufferline = "multiple";
       indent-guides.render = true;
+      line-number = "relative";
       mouse = false;
       true-color = true;
       scrolloff = 99;
