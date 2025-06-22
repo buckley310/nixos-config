@@ -14,7 +14,6 @@ with lib;
     ./alacritty.nix
     ./chromium.nix
     ./firefox.nix
-    ./vscode.nix
   ];
 
   config = mkIf (config.sconfig.desktop.enable) {
