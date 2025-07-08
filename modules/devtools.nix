@@ -21,8 +21,8 @@ in
       vscode-langservers-extracted
       yaml-language-server
       pyright
-      nodePackages.prettier
-      nodePackages.typescript-language-server
+      nodejs_24.pkgs.prettier
+      nodejs_24.pkgs.typescript-language-server
 
       # Rust
       cargo
@@ -65,7 +65,7 @@ in
       # Other
       gh
       nix-prefetch-github
-      nodejs_latest
+      nodejs_24
       (google-cloud-sdk.withExtraComponents [
         google-cloud-sdk.components.gke-gcloud-auth-plugin
       ])
