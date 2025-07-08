@@ -123,6 +123,7 @@ in
   ];
 
   environment.etc."bck-settings.sh".text = ''
-    mkdir -p ~/.config && ln -nTfs /etc/bck-helix ~/.config/helix
+    mkdir -p ~/.config/helix
+    ln -fs /etc/bck-helix/{config,languages}.toml ~/.config/helix/
   '';
 }
