@@ -77,5 +77,6 @@
 
   environment.systemPackages = with pkgs; [
     smartmontools
+    sshfs
   ];
 }
