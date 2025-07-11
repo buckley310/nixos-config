@@ -134,7 +134,6 @@
     stty -ixon
     alias p=python3
     alias h=htop
-    alias e='$EDITOR'
     alias nix-what-depends-on='nix-store --query --referrers'
     alias day='date "+%Y-%m-%d"'
     alias grep='grep --color=auto'
