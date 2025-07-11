@@ -109,6 +109,9 @@
 
   programs.tmux = {
     enable = true;
+    baseIndex = 1;
+    escapeTime = 10;
+    historyLimit = 10000;
     terminal = "screen-256color";
     extraConfig = ''
       bind-key j command-prompt -p "Join pane:"  "join-pane -s '%%'"
@@ -121,14 +124,9 @@
       bind-key -n C-l select-pane -t +1
       bind-key -n S-Pagedown copy-mode \; send-keys -X halfpage-down
       bind-key -n S-Pageup   copy-mode \; send-keys -X halfpage-up
-      set -g base-index 1
-      set -g history-limit 10000
-      set -g pane-base-index 1
       set -g renumber-windows on
       set -g set-titles on
       set -sa terminal-overrides ",*256color:Tc"
-      # escape-time reduces the time where the escape key acts as an alt key
-      set -s escape-time 10
     '';
   };
 
