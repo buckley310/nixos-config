@@ -63,9 +63,8 @@ with lib;
       qemu_kvm
       tdesktop
       thunderbird
+      wl-clipboard
       yt-dlp-light
-
-      xsel # allow editors to access system clipboard
 
       (mpv.override { scripts = [ mpvScripts.mpris ]; })
     ];
