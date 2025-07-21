@@ -22,7 +22,7 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_6_14;
+    kernelPackages = pkgs.linuxPackages_6_15;
     loader.systemd-boot.enable = true;
     loader.systemd-boot.memtest86.enable = true;
     loader.efi.canTouchEfiVariables = true;
