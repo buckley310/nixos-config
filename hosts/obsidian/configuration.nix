@@ -7,6 +7,9 @@
     "machine-id".source = "/persist/machine-id";
   };
 
+  # services.blueman.enable = true;
+  # hardware.bluetooth.enable = true;
+
   services.openssh.hostKeys = [
     {
       type = "ed25519";
