@@ -1,8 +1,13 @@
 { pkgs, ... }:
 let
-  hx-pretty = pkgs.writeShellScript "hx-pretty.sh" ''
-    exec prettier --stdin-filepath "$HX_FILE"
-  '';
+  hx-pretty = {
+    command = "prettier";
+    args = [
+      "--verify"
+      "--stdin-filepath"
+      "%{buffer_name}"
+    ];
+  };
 
   prettier-formats =
     map
@@ -13,7 +18,7 @@ let
           tab-width = 4;
           unit = "\t";
         };
-        formatter.command = hx-pretty;
+        formatter = hx-pretty;
       })
       [
         "css"
@@ -91,7 +96,7 @@ in
           {
             name = "yaml";
             auto-format = true;
-            formatter.command = hx-pretty;
+            formatter = hx-pretty;
           }
         ];
         language-server = {
@@ -102,21 +107,7 @@ in
         };
       };
 
-  environment.systemPackages = with pkgs; [
-    (helix.overrideAttrs (
-      {
-        patches ? [ ],
-        ...
-      }:
-      {
-        # Patch required for .editorconfig to work properly with formatters
-        patches = patches ++ [ ./format-filepath.patch ];
-        postPatch = ''
-          sed 's/tab-width = .,/tab-width = 4,/' -i languages.toml
-        '';
-      }
-    ))
-  ];
+  environment.systemPackages = [ pkgs.helix ];
 
   environment.etc."bck-settings.sh".text = ''
     mkdir -p ~/.config/helix
