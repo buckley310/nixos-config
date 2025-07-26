@@ -2,10 +2,12 @@
   stdenv,
   autoPatchelfHook,
   libglvnd,
+  libxml2,
   makeWrapper,
   python3,
   qt6,
   requireFile,
+  runCommand,
   unzip,
 }:
 
@@ -32,6 +34,10 @@ stdenv.mkDerivation {
   buildInputs = [
     libglvnd
     qt6.full
+
+    (runCommand "libxml2workaround" { } ''
+      install -D "${libxml2.out}/lib/libxml2.so" "$out/lib/libxml2.so.2"
+    '')
   ];
 
   installPhase = ''
