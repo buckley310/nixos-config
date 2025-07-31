@@ -38,6 +38,7 @@
       "burpsuite"
       "terraform"
       "discord"
+      "discord-gamesdk"
       "steam"
       "steam-unwrapped"
       "nvidia-settings"
