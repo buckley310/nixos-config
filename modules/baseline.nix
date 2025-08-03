@@ -28,6 +28,7 @@
     pkg:
     # builtins.trace "unfree: ${lib.getName pkg}" (
     builtins.elem (lib.getName pkg) [
+      "86Box"
       "cuda_cudart"
       "libcublas"
       "cuda_cccl"

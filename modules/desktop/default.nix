@@ -48,6 +48,7 @@ with lib;
     ];
 
     environment.systemPackages = with pkgs; [
+      _86Box-with-roms
       bruno
       discord
       easyeffects
