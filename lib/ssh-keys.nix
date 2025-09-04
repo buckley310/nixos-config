@@ -1,5 +1,5 @@
 [
-  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE59uvHtxmdjqMaKyPiKLdiwfu0i59iFczrbGY0t6Oed sean@levi"
+  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKWBa5JUvOltnp72cPR0tx940b2Ye8xCrdDoOnhd2Oue sean@ewaste"
   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILiARIGdAG8gcJLWdz9GWUYmQpxKUQ0iyfD5mdAXVioZ sean@obsidian"
   "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN47zVi5s/hFubTaam+w+VoOdABOFB+nJjWOTrEUDVEJ sean@phone"
 ]
