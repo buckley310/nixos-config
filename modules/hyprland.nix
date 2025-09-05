@@ -17,7 +17,9 @@ in
     programs.hyprland.withUWSM = true;
 
     environment.extraInit = lib.mkAfter ''
-      uwsm check may-start && exec uwsm start hyprland-uwsm.desktop
+      [ $(tty) = /dev/tty1 ] &&
+        uwsm check may-start &&
+        exec uwsm start hyprland-uwsm.desktop
     '';
 
     environment.etc."bck-settings.sh".text = ''
