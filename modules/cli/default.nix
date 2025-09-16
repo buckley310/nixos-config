@@ -1,6 +1,7 @@
 { lib, pkgs, ... }:
 {
   imports = [
+    ./lf.nix
     ./powerline.nix
   ];
 
