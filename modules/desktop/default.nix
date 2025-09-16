@@ -14,6 +14,7 @@ with lib;
     ./alacritty.nix
     ./chromium.nix
     ./firefox.nix
+    ./foot.nix
   ];
 
   config = mkIf (config.sconfig.desktop.enable) {
