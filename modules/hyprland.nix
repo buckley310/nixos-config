@@ -16,6 +16,8 @@ in
     programs.hyprland.enable = true;
     programs.hyprland.withUWSM = true;
 
+    environment.variables.ELECTRON_OZONE_PLATFORM_HINT = "auto";
+
     environment.extraInit = lib.mkAfter ''
       [ $(tty) = /dev/tty1 ] &&
         uwsm check may-start &&
