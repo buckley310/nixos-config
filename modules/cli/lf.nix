@@ -9,10 +9,6 @@ let
       text/*)
         ${pkgs.bat}/bin/bat --decorations=never --color=always --paging=never -- "$1"
       ;;
-      video/*)
-        ${pkgs.ffmpegthumbnailer}/bin/ffmpegthumbnailer -s0 -o ~/.cache/lf-preview.png -i "$1"
-        ${pkgs.chafa}/bin/chafa -s "$2"x"$3" --animate off --polite on -t 1 --bg black ~/.cache/lf-preview.png
-      ;;
       *)
         ${pkgs.file}/bin/file -Lb -- "$1"
       ;;
