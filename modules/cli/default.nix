@@ -141,5 +141,6 @@
     alias grep='grep --color=auto'
     alias tmp='cd "$(mktemp -d)"'
     alias nixpkgs='nix repl --file flake:nixpkgs'
+    ${builtins.readFile ./osc7cwd.sh}
   '';
 }
