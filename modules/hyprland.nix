@@ -34,7 +34,6 @@ in
       gammastep
       hyprlock
       hyprshot
-      nautilus
       playerctl
       swayidle
       waybar
