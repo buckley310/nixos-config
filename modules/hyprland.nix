@@ -31,6 +31,7 @@ in
     environment.systemPackages = with pkgs; [
       adwaita-icon-theme
       fuzzel
+      gammastep
       hyprlock
       hyprshot
       nautilus
