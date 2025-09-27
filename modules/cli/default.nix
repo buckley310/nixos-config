@@ -93,6 +93,12 @@
       "\"$@\""
     ]))
 
+    (writeShellScriptBin "nix-latest" ''
+      cd ~/git/nixpkgs
+      git fetch origin nixos-unstable
+      git show  origin/nixos-unstable
+    '')
+
   ];
 
   environment.variables.HTOPRC = "/dev/null";
