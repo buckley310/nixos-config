@@ -35,6 +35,7 @@ in
       hyprlock
       hyprshot
       playerctl
+      pulseaudio
       swayidle
       waybar
     ];
