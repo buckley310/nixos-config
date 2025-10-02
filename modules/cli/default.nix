@@ -148,5 +148,9 @@
     alias tmp='cd "$(mktemp -d)"'
     alias nixpkgs='nix repl --file flake:nixpkgs'
     ${builtins.readFile ./osc7cwd.sh}
+    osc133a_prompt_marker() {
+      printf '\e]133;A\e\\'
+    }
+    PROMPT_COMMAND="osc133a_prompt_marker; $PROMPT_COMMAND"
   '';
 }
