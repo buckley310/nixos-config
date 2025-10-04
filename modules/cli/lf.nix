@@ -2,7 +2,8 @@
 let
 
   previewer = pkgs.writeShellScript "preview" ''
-    case "$(${pkgs.file}/bin/file -Lb --mime-type -- "$1")" in
+    mime="$(${pkgs.file}/bin/file -Lb --mime-type -- "$1")"
+    case "$mime" in
       image/*)
         ${pkgs.chafa}/bin/chafa -s "$2"x"$3" --animate off --polite on -t 1 --bg black -- "$1"
       ;;
@@ -10,7 +11,7 @@ let
         ${pkgs.bat}/bin/bat --decorations=never --color=always --paging=never -- "$1"
       ;;
       *)
-        ${pkgs.file}/bin/file -Lb -- "$1"
+        echo "$mime"
       ;;
     esac
   '';
