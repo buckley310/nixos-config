@@ -31,11 +31,6 @@ in
       rustc.llvmPackages.lld
       rustfmt
 
-      # Go
-      go
-      gopls
-      errcheck
-
       # TF
       terraform
       terraform-ls
