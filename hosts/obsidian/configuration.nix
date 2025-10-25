@@ -20,6 +20,7 @@
   environment.persistence."/persist/system".directories = [
     "/var/lib/bluetooth"
     "/var/lib/nixos"
+    "/var/lib/private"
     "/var/lib/systemd/coredump"
     "/var/log/journal"
   ];
