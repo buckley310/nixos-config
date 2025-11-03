@@ -56,14 +56,13 @@ with lib;
       element-desktop
       ffmpeg
       gimp
-      glxinfo
       dconf-editor
       helvum
       obs-studio
       opensc
       pavucontrol
       qemu_kvm
-      tdesktop
+      telegram-desktop
       thunderbird
       wl-clipboard
       yt-dlp-light

@@ -67,7 +67,7 @@
 
   services = {
     earlyoom.enable = true;
-    logind.lidSwitch = "ignore";
+    logind.settings.Login.HandleLidSwitch = "ignore";
     openssh.enable = true;
     libinput.mouse.middleEmulation = false;
     xserver = {

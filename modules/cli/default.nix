@@ -9,7 +9,7 @@
     bat
     darkhttpd
     dnsutils
-    du-dust
+    dust
     entr
     file
     gcc
