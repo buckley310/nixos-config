@@ -17,7 +17,7 @@
         pkgs:
         self.lib.dirToAttrs ./pkgs (x: pkgs.callPackage x { })
         // {
-          iso = import lib/gen-iso.nix lib pkgs.system;
+          iso = import lib/gen-iso.nix lib pkgs.stdenv.hostPlatform.system;
         };
 
       forAllSystems = lib.genAttrs [ "x86_64-linux" ];
