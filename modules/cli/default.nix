@@ -134,6 +134,7 @@
       set -g renumber-windows on
       set -g set-titles on
       set -sa terminal-overrides ",*256color:Tc"
+      set-window-option -g mode-keys vi
     '';
   };
 
