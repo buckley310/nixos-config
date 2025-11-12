@@ -42,7 +42,7 @@ in
       true-color = true;
       scrolloff = 99;
       end-of-line-diagnostics = "hint";
-      inline-diagnostics.cursor-line = "error";
+      inline-diagnostics.cursor-line = "hint";
       soft-wrap.enable = true;
       file-picker.hidden = false;
     };
