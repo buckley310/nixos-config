@@ -3,7 +3,7 @@
   autoPatchelfHook,
   libglvnd,
   libxml2,
-  makeWrapper,
+  makeShellWrapper,
   python3,
   qt6,
   requireFile,
@@ -27,13 +27,14 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = [
     autoPatchelfHook
-    makeWrapper
+    makeShellWrapper
+    qt6.wrapQtAppsHook
     unzip
   ];
 
   buildInputs = [
     libglvnd
-    qt6.full
+    qt6.qtdeclarative
 
     (runCommand "libxml2workaround" { } ''
       install -D "${libxml2.out}/lib/libxml2.so" "$out/lib/libxml2.so.2"
@@ -44,7 +45,7 @@ stdenv.mkDerivation {
     mkdir -p $out/lib $out/bin
     cp -a . $out/lib/binaryninja-personal
     uppath="~/.binaryninja/update/`echo -n $out/lib/binaryninja-personal|sha256sum|cut -c-64`"
-    makeWrapper $out/lib/binaryninja-personal/binaryninja $out/bin/binaryninja \
+    makeShellWrapper $out/lib/binaryninja-personal/binaryninja $out/bin/binaryninja \
         --run "install -D ${builtins.toFile "noauto" "{\"auto\":false}"} $uppath/manifest" \
         --suffix LD_LIBRARY_PATH : "${python3}/lib"
   '';
