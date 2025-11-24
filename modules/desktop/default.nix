@@ -30,6 +30,10 @@ with lib;
       # };
     };
 
+    services.udev.packages = [
+      pkgs.zsa-udev-rules
+    ];
+
     # Pipewire
     security.rtkit.enable = true;
     services.pipewire = {
