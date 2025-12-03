@@ -145,7 +145,7 @@
     alias tree='tree -I .git'
     alias nix-what-depends-on='nix-store --query --referrers'
     alias day='date "+%Y-%m-%d"'
-    alias grep='grep --color=auto'
+    alias grep='grep --exclude-dir=.git --color=auto'
     alias tmp='cd "$(mktemp -d)"'
     alias nixpkgs='nix repl --file flake:nixpkgs'
     ${builtins.readFile ./osc7cwd.sh}
