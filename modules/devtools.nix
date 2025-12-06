@@ -47,9 +47,8 @@ in
       gh
       nix-prefetch-github
       nodejs_24
-      (google-cloud-sdk.withExtraComponents [
-        google-cloud-sdk.components.gke-gcloud-auth-plugin
-      ])
+      # (google-cloud-sdk.withExtraComponents [
+      #   google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     ];
 
     programs.bash.interactiveShellInit = ''
