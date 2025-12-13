@@ -15,9 +15,7 @@ in
 
       # LSP / Formatter
       black
-      efm-langserver
       nil
-      lua-language-server
       vscode-langservers-extracted
       yaml-language-server
       python3.pkgs.python-lsp-server

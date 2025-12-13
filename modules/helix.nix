@@ -58,22 +58,6 @@ in
       {
         language = prettier-formats ++ [
           {
-            name = "bash";
-            auto-format = true;
-            indent = {
-              tab-width = 4;
-              unit = "\t";
-            };
-          }
-          {
-            name = "lua";
-            auto-format = true;
-            indent = {
-              tab-width = 4;
-              unit = "\t";
-            };
-          }
-          {
             name = "nix";
             auto-format = true;
             formatter = {
