@@ -44,6 +44,7 @@ in
       '')
 
       # Other
+      cloc
       gh
       nix-prefetch-github
       nodejs_24
