@@ -20,7 +20,7 @@ in
       lua-language-server
       vscode-langservers-extracted
       yaml-language-server
-      pyright
+      python3.pkgs.python-lsp-server
       nodejs_24.pkgs.prettier
       nodejs_24.pkgs.typescript-language-server
 

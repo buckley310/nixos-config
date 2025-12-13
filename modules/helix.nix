@@ -84,7 +84,6 @@ in
           {
             name = "python";
             auto-format = true;
-            language-servers = [ "pyright" ];
             formatter = {
               command = "black";
               args = [
@@ -99,12 +98,6 @@ in
             formatter = hx-pretty;
           }
         ];
-        language-server = {
-          pyright = {
-            command = "pyright-langserver";
-            args = [ "--stdio" ];
-          };
-        };
       };
 
   environment.systemPackages = [ pkgs.helix ];
