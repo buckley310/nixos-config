@@ -58,6 +58,7 @@ with lib;
       discord
       easyeffects
       element-desktop
+      feh
       ffmpeg
       gimp
       helvum
@@ -70,7 +71,22 @@ with lib;
       yt-dlp-light
 
       (mpv.override { scripts = [ mpvScripts.mpris ]; })
+
+      # Quick way to make Feh preferred by XDG
+      (runCommand "feh-helper" { } ''
+        install -D \
+          '${feh}/share/applications/feh.desktop' \
+          "$out/share/applications/aaa-feh.desktop"
+      '')
     ];
+
+    environment.etc."feh/buttons".text = ''
+      toggle_menu 2
+      zoom 3
+    '';
+    environment.etc."feh/themes".text = ''
+      feh --auto-zoom --scale-down
+    '';
 
   };
 }
