@@ -54,16 +54,14 @@ with lib;
 
     environment.systemPackages = with pkgs; [
       _86Box-with-roms
-      bruno
+      dconf-editor
       discord
       easyeffects
       element-desktop
       ffmpeg
       gimp
-      dconf-editor
       helvum
       obs-studio
-      opensc
       pavucontrol
       qemu_kvm
       telegram-desktop
