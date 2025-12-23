@@ -13,6 +13,7 @@
     entr
     file
     gcc
+    helix
     iftop
     inetutils
     iotop
