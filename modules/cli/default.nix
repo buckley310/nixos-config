@@ -7,6 +7,7 @@
 
   environment.systemPackages = with pkgs; [
     bat
+    bc
     darkhttpd
     dnsutils
     dust
