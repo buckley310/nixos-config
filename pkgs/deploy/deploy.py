@@ -76,7 +76,7 @@ def apply(goal, hosts):
                 "nixos-rebuild",
                 goal,
                 "--use-substitutes",
-                "--use-remote-sudo",
+                "--sudo",
                 "--target-host",
                 host,
                 "--flake",
