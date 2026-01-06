@@ -85,7 +85,7 @@ with lib;
       zoom 3
     '';
     environment.etc."feh/themes".text = ''
-      feh --auto-zoom --scale-down
+      feh --auto-zoom --scale-down --action1 ";wl-copy < %F"
     '';
 
   };
