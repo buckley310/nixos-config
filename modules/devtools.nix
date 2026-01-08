@@ -58,31 +58,6 @@ in
       complete -F __start_kubectl k
     '';
 
-    programs.git = {
-      enable = true;
-      config = {
-        alias.up = "push";
-        alias.dn = "pull";
-        alias.sh = "show";
-        alias.glog = "log --all --decorate --oneline --graph";
-        alias.glogl = "log --all --decorate --oneline --graph -n10";
-        alias.logl = "log --oneline -n10";
-        alias.vlog = "log --name-status";
-        alias.diffc = "diff --cached";
-        alias.st = "status";
-        core.autocrlf = "input";
-        core.pager = "less -x1,5";
-        pull.ff = "only";
-        init.defaultBranch = "main";
-        "credential \"https://github.com\"".helper = [
-          ""
-          "!gh auth git-credential"
-        ];
-        "credential \"https://gist.github.com\"".helper = [
-          ""
-          "!gh auth git-credential"
-        ];
-      };
-    };
+    programs.git.enable = true;
   };
 }
