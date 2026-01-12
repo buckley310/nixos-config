@@ -62,6 +62,7 @@ with lib;
       ffmpeg
       gimp
       helvum
+      oath-toolkit
       obs-studio
       pavucontrol
       qemu_kvm
