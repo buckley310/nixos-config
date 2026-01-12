@@ -20,7 +20,7 @@ in
       feroxbuster
       gdb
       gef
-      ghidra
+      # ghidra # failing build
       masscan
       metasploit
       msfpc
