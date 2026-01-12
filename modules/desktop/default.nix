@@ -70,6 +70,7 @@ with lib;
       thunderbird
       wl-clipboard
       yt-dlp-light
+      zbar
 
       (mpv.override { scripts = [ mpvScripts.mpris ]; })
 
