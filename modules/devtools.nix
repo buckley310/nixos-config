@@ -43,6 +43,7 @@ in
 
       # Other
       cloc
+      gcc
       gh
       nix-prefetch-github
       nodejs_24
