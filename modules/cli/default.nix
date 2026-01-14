@@ -8,7 +8,7 @@
   environment.systemPackages = with pkgs; [
     bat
     bc
-    darkhttpd
+    caddy
     dnsutils
     dust
     entr
