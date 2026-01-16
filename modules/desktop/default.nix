@@ -62,6 +62,7 @@ with lib;
       ffmpeg
       gimp
       helvum
+      mupdf
       oath-toolkit
       obs-studio
       pavucontrol
@@ -74,11 +75,16 @@ with lib;
 
       (mpv.override { scripts = [ mpvScripts.mpris ]; })
 
-      # Quick way to make Feh preferred by XDG
+      # Quick way to make apps preferred by XDG
       (runCommand "feh-helper" { } ''
         install -D \
           '${feh}/share/applications/feh.desktop' \
           "$out/share/applications/aaa-feh.desktop"
+      '')
+      (runCommand "mupdf-helper" { } ''
+        install -D \
+          '${mupdf}/share/applications/mupdf.desktop' \
+          "$out/share/applications/aaa-mupdf.desktop"
       '')
     ];
 
