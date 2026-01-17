@@ -60,6 +60,7 @@ with lib;
       element-desktop
       feh
       ffmpeg
+      gamescope
       gimp
       helvum
       mupdf
