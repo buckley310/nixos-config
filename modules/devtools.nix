@@ -52,7 +52,6 @@ in
     ];
 
     programs.bash.interactiveShellInit = ''
-      alias cdk="npx aws-cdk"
       alias t=terraform
       complete -C terraform t
       source <(kubectl completion bash)
