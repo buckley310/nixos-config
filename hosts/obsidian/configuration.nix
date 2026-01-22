@@ -1,4 +1,16 @@
-{ pkgs, ... }:
+{
+  lib,
+  ...
+}:
+let
+  bindMount =
+    paths:
+    lib.genAttrs paths (path: {
+      device = "/persist/system" + path;
+      options = [ "bind" ];
+      noCheck = true;
+    });
+in
 {
   sconfig.desktop.enable = true;
   sconfig.hypr.enable = true;
@@ -15,14 +27,6 @@
       type = "ed25519";
       path = "/persist/ssh_host_ed25519_key";
     }
-  ];
-
-  environment.persistence."/persist/system".directories = [
-    "/var/lib/bluetooth"
-    "/var/lib/nixos"
-    "/var/lib/private"
-    "/var/lib/systemd/coredump"
-    "/var/log/journal"
   ];
 
   boot = {
@@ -60,7 +64,14 @@
       fsType = "zfs";
       neededForBoot = true;
     };
-  };
+  }
+  // bindMount [
+    "/var/lib/bluetooth"
+    "/var/lib/nixos"
+    "/var/lib/private"
+    "/var/lib/systemd/coredump"
+    "/var/log/journal"
+  ];
 
   users.mutableUsers = false;
   users.users.sean.hashedPasswordFile = "/persist/shadow_sean";

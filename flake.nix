@@ -1,14 +1,12 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      impermanence,
     }:
     let
       inherit (nixpkgs) lib;
@@ -52,7 +50,6 @@
 
       nixosModules = self.lib.dirToAttrs ./modules import // {
         inherit pins;
-        inherit (impermanence.nixosModules) impermanence;
         pkgs.nixpkgs.overlays = [ (_: mypkgs) ];
       };
 
