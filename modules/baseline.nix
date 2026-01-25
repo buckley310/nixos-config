@@ -65,10 +65,16 @@
     };
   };
 
+  programs.ssh.extraConfig = ''
+    Host *
+    SendEnv COLORTERM
+  '';
+
   services = {
     earlyoom.enable = true;
     logind.settings.Login.HandleLidSwitch = "ignore";
     openssh.enable = true;
+    openssh.settings.AcceptEnv = [ "COLORTERM" ];
     libinput.mouse.middleEmulation = false;
     xserver = {
       deviceSection = ''
