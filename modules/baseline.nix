@@ -45,7 +45,9 @@
       "nvidia-settings"
     ];
 
-  security.sudo.extraConfig = "Defaults lecture=never";
+  security.sudo.extraConfig = ''
+    Defaults lecture=never
+  '';
 
   security.sudo.wheelNeedsPassword = false;
 
