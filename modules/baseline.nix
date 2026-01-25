@@ -29,20 +29,12 @@
     # builtins.trace "unfree: ${lib.getName pkg}" (
     builtins.elem (lib.getName pkg) [
       "86Box"
-      "cuda_cudart"
-      "libcublas"
-      "cuda_cccl"
-      "cuda_nvcc"
-      "nvidia-x11"
-      "vscode-with-extensions"
-      "vscode"
       "burpsuite"
-      "terraform"
       "discord"
       "discord-gamesdk"
       "steam"
       "steam-unwrapped"
-      "nvidia-settings"
+      "terraform"
     ];
 
   security.sudo.extraConfig = ''
