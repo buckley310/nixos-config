@@ -15,6 +15,11 @@ in
   sconfig.desktop.enable = true;
   sconfig.hypr.enable = true;
 
+  services.udev.extraHwdb = ''
+    mouse:usb:*
+      MOUSE_DPI=2000@1000
+  '';
+
   environment.etc = {
     "machine-id".source = "/persist/machine-id";
   };
