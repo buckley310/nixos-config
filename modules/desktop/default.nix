@@ -53,7 +53,7 @@ with lib;
     ];
 
     environment.systemPackages = with pkgs; [
-      # _86Box-with-roms # build currently failing
+      _86Box-with-roms
       dconf-editor
       discord
       easyeffects
