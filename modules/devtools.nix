@@ -45,6 +45,7 @@ in
       cloc
       gcc
       gh
+      goaccess
       nix-prefetch-github
       nodejs_24
       # (google-cloud-sdk.withExtraComponents [
