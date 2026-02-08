@@ -68,7 +68,7 @@
     earlyoom.enable = true;
     logind.settings.Login.HandleLidSwitch = "ignore";
     openssh.enable = true;
-    openssh.settings.AcceptEnv = [ "COLORTERM" ];
+    # openssh.settings.AcceptEnv = [ "COLORTERM" ]; # Broken on 25.11
     libinput.mouse.middleEmulation = false;
     xserver = {
       deviceSection = ''
