@@ -7,7 +7,7 @@ from subprocess import run, PIPE, STDOUT
 from sys import argv
 
 
-def get_deployment():
+def nixos_hostnames():
     return loads(
         run(
             [
@@ -15,7 +15,7 @@ def get_deployment():
                 "eval",
                 "--json",
                 "--apply",
-                "builtins.mapAttrs (n: v: v.config.deploy)",
+                "builtins.attrNames",
                 ".#nixosConfigurations",
             ],
             stdout=PIPE,
@@ -34,9 +34,7 @@ def expand(ln):
             action = hosts.update
 
         if item == "all":
-            action(depl)
-        elif item in tags:
-            action(name for name in depl if item in depl[name]["tags"])
+            action(nixos_hostnames())
         else:
             action([item])
 
@@ -185,7 +183,5 @@ def main():
 
 icon_bad = "\u274c"
 icon_good = "\u2705"
-depl = get_deployment()
-tags = set(sum([depl[name]["tags"] for name in depl], []))
 if __name__ == "__main__":
     main()
