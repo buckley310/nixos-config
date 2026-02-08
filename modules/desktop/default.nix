@@ -11,7 +11,6 @@ with lib;
   };
 
   imports = [
-    ./alacritty.nix
     ./chromium.nix
     ./firefox.nix
     ./foot.nix
