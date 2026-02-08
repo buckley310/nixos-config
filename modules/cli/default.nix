@@ -8,7 +8,6 @@
   environment.systemPackages = with pkgs; [
     bat
     bc
-    caddy
     dnsutils
     dust
     entr

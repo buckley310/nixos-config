@@ -42,6 +42,7 @@ in
       '')
 
       # Other
+      caddy
       cloc
       gcc
       gh
