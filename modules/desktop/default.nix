@@ -20,6 +20,8 @@ with lib;
     programs.steam.enable = true;
     networking.networkmanager.wifi.powersave = false;
 
+    zramSwap.enable = true;
+
     virtualisation.docker = {
       enable = true;
       enableOnBoot = false;
