@@ -13,6 +13,17 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
 
+      # Misc
+      caddy
+      cloc
+      gcc
+      gh
+      goaccess
+      nix-prefetch-github
+      nodejs_24
+      # (google-cloud-sdk.withExtraComponents [
+      #   google-cloud-sdk.components.gke-gcloud-auth-plugin ])
+
       # LSP / Formatter
       black
       nil
@@ -40,17 +51,6 @@ in
       (writeShellScriptBin "k" ''
         exec kubectl "$@"
       '')
-
-      # Other
-      caddy
-      cloc
-      gcc
-      gh
-      goaccess
-      nix-prefetch-github
-      nodejs_24
-      # (google-cloud-sdk.withExtraComponents [
-      #   google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     ];
 
     programs.bash.interactiveShellInit = ''
