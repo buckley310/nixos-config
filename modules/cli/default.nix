@@ -52,10 +52,6 @@
       exec hexdump -C "$@"
     '')
 
-    (writeShellScriptBin "pip-install" ''
-      nix run 'nixpkgs#python3.pkgs.pip' -- install --user --upgrade --break-system-packages pip
-    '')
-
     (writeShellScriptBin "nix-roots" ''
       nix-store --gc --print-roots | grep -v \
         -e '^/proc/' \
