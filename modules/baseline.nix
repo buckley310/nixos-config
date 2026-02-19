@@ -28,7 +28,7 @@
     pkg:
     # builtins.trace "unfree: ${lib.getName pkg}" (
     builtins.elem (lib.getName pkg) [
-      "86Box"
+      "86box"
       "burpsuite"
       "discord"
       "discord-gamesdk"
