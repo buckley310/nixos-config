@@ -15,6 +15,7 @@ in
 
       # Misc
       caddy
+      cargo-flamegraph
       cloc
       gcc
       gh
